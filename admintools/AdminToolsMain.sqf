@@ -13,11 +13,11 @@ if ((getPlayerUID player) in AllAdminList) then { // All Admins
 		adminmenu =
 		[
 			["",true],
-				["--Malory's Admin Menu--", [],  "", -5, [["expression", format[_EXECscript1,"null.sqf"]]], "1", "1"],
-				["Super Admin Menu", [2], "#USER:SuperAdminMenu", -5, [["expression", ""]], "1", "1"],
-				["Skin Change Menu", [3], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-				["Weapon Kits", [4], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
-				["Temporary Vehicle Menu", [5], "#USER:VehicleMenu", -5, [["expression", ""]], "1", "1"],		
+				["-- Epoch Admin Tools --", [],  "", -5, [["expression", format[_EXECscript1,"null.sqf"]]], "1", "1"],
+				["Super Admin Menu >>", [2], "#USER:SuperAdminMenu", -5, [["expression", ""]], "1", "1"],
+				["Skin Change Menu >>", [3], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
+				["Weapon Kits >>", [4], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
+				["Temporary Vehicle Menu >>", [5], "#USER:VehicleMenu", -5, [["expression", ""]], "1", "1"],		
 				["", [-1], "", -5, [["expression", ""]], "1", "0"],
 			["Exit", [13], "", -3, [["expression", ""]], "1", "1"]		
 		];};
@@ -26,7 +26,7 @@ if ((getPlayerUID player) in AllAdminList) then { // All Admins
 		[
 			["",true],
 				["--Level 3 Admin Menu--", [],  "", -5, [["expression", format[_EXECscript1,"null.sqf"]]], "1", "1"],
-				["Admin Menu", [2], "#USER:AdminMenu3", -5, [["expression", ""]], "1", "1"],
+				["Admin Menu >>", [2], "#USER:AdminMenu3", -5, [["expression", ""]], "1", "1"],
 				["Temporary Vehicle Menu", [3], "#USER:VehicleMenu", -5, [["expression", ""]], "1", "1"],
 				["Skin Change Menu", [4], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],				
 				["", [-1], "", -5, [["expression", ""]], "1", "0"],
@@ -37,7 +37,7 @@ if ((getPlayerUID player) in AllAdminList) then { // All Admins
 		[
 			["",true],
 				["--Level 2 Admin Menu--", [],  "", -5, [["expression", format[_EXECscript1,"null.sqf"]]], "1", "1"],
-				["Admin Menu", [2], "#USER:AdminMenu2", -5, [["expression", ""]], "1", "1"],	
+				["Admin Menu >>", [2], "#USER:AdminMenu2", -5, [["expression", ""]], "1", "1"],	
 				["", [-1], "", -5, [["expression", ""]], "1", "0"],
 			["Exit", [13], "", -3, [["expression", ""]], "1", "1"]		
 		];};	
@@ -46,7 +46,7 @@ if ((getPlayerUID player) in AllAdminList) then { // All Admins
 		[
 			["",true],
 				["--Level 1 Admin Menu--", [],  "", -5, [["expression", format[_EXECscript1,"null.sqf"]]], "1", "1"],
-				["Admin Menu", [2], "#USER:AdminMenu1", -5, [["expression", ""]], "1", "1"],	
+				["Admin Menu >>", [2], "#USER:AdminMenu1", -5, [["expression", ""]], "1", "1"],	
 				["", [-1], "", -5, [["expression", ""]], "1", "0"],
 			["Exit", [13], "", -3, [["expression", ""]], "1", "1"]		
 		];};			
@@ -70,12 +70,12 @@ SuperAdminMenu =
 SuperAdminMenu2 =
 [
 	["",true],
-		["Spawn Vehicle with Key", [2], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],
-		["Vehicle Tools", [3], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],			
+		["Spawn Vehicle with Key >>", [2], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],
+		["Vehicle Tools >>", [3], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],			
 		["Spawn Building Crate", [4],  "", -5, [["expression", format[_EXECscript1,"maladminbuilding.sqf"]]], "1", "1"],		
 		["Spawn Weapon Crate", [5], "", -5, [["expression", format[_EXECscript1,"maladminweapons.sqf"]]], "1", "1"],
 		["Spawn Consumable Crate", [6],  "", -5, [["expression", format[_EXECscript1,"maladminconsu.sqf"]]], "1", "1"],
-		["ESP Menu", [7],  "#USER:EspMenu", -5, [["expression", ""]], "1", "1"],			
+		["ESP Menu >>", [7],  "#USER:EspMenu", -5, [["expression", ""]], "1", "1"],			
 		["Toggle Grass Off", [8],  "", -5, [["expression", format[_EXECscript1,"malgrassoff.sqf"]]], "1", "1"],	
 		["Toggle Grass On", [9],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
 		["Infinite Ammo", [10],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],			
@@ -131,12 +131,12 @@ AdminMenu3 =
 AdminMenu32 =
 [
 	["",true],
-		["Spawn Vehicle with Key", [2], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],
-		["Vehicle Tools", [3], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],			
+		["Spawn Vehicle with Key >>", [2], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],
+		["Vehicle Tools >>", [3], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],			
 		["Spawn Building Crate", [4],  "", -5, [["expression", format[_EXECscript1,"maladminbuilding.sqf"]]], "1", "1"],		
 		["Spawn Weapon Crate", [5], "", -5, [["expression", format[_EXECscript1,"maladminweapons.sqf"]]], "1", "1"],
 		["Spawn Consumable Crate", [6],  "", -5, [["expression", format[_EXECscript1,"maladminconsu.sqf"]]], "1", "1"],
-		["ESP Menu", [7],  "#USER:EspMenu", -5, [["expression", ""]], "1", "1"],	
+		["ESP Menu >>", [7],  "#USER:EspMenu", -5, [["expression", ""]], "1", "1"],	
 		["Toggle Grass Off", [8],  "", -5, [["expression", format[_EXECscript1,"malgrassoff.sqf"]]], "1", "1"],	
 		["Toggle Grass On", [9],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],		
 		["", [-1], "", -5, [["expression", ""]], "1", "0"],
@@ -158,7 +158,7 @@ AdminMenu2 =
 AdminMenu22 =
 [
 	["",true],
-		["Spawn Vehicle with Key", [2], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],		
+		["Spawn Vehicle with Key >>", [2], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],		
 		["Point to Refuel", [3],  "", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],			
 		["Flip Vehicle", [4],  "", -5, [["expression", format[_EXECscript1,"flipvehicle.sqf"]]], "1", "1"],		
 		["Player ESP", [5],  "", -5, [["expression", format[_EXECscript1,"mallightesp.sqf"]]], "1", "1"],	
