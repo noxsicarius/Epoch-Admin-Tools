@@ -10,11 +10,15 @@ if (malpgm == 0) then
 	malpgm = 1;
     cutText ["Player and Zombie God Mode - ON", "PLAIN"];
 	player_zombieCheck = {};
-	fnc_usec_damageHandler = {};
-	fnc_usec_unconscious  = {};	
-	player addEventHandler ["handleDamage", {false}];
-	player removeAllEventHandlers "handleDamage";
-	player allowDamage false;
+	(vehicle player) removeAllEventHandlers "handleDamage";
+	(vehicle player) addEventHandler ["handleDamage", { false }];	
+	(vehicle player) allowDamage false;
+	r_player_unconscious = false;
+	r_player_infected = false;
+	r_player_injured = false;
+	r_player_inpain = false;
+	r_fracture_legs = false;
+	r_fracture_arms = false;
 	while {malpgm == 1} do
 	{
 	};
@@ -31,6 +35,3 @@ else
 	player removeAllEventHandlers "handleDamage";
 	player allowDamage true;
 };
-
-
-
