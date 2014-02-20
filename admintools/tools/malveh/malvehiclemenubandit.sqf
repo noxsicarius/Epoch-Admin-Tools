@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////////////////////////////
 /////////// Malory's Modded Vehicle Spawn Menu (Bandit Traders) /////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
-if ((getPlayerUID player) in AllAdminList) then { // Vehicle Admins
+if ((getPlayerUID player) in AdminList) then { // Vehicle Admins
 Malvsm =
 [
 	["Add Vehicle",true],
 
-		["--Locked Bandit Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "1"],          
+		["--Locked Bandit Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "0"],          
 		["Helicopters Armed", [2], "#USER:MalHA", -5, [["expression", ""]], "1", "1"],
 		["Trucks Armed", [3], "#USER:MalTR", -5, [["expression", ""]], "1", "1"],
 		["Military Armed", [4], "#USER:MalMA", -5, [["expression", ""]], "1", "1"],            

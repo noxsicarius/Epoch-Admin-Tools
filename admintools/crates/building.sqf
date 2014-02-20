@@ -87,14 +87,14 @@ clearWeaponCargoGlobal _magicbox;
 clearMagazineCargoGlobal _magicbox;
 clearBackpackCargoGlobal _magicbox;
 
-{_magicbox addWeaponCargoGlobal [_x,50];} forEach _dayz_wep;
+{_magicbox addWeaponCargoGlobal [_x,5];} forEach _dayz_wep;
 {_magicbox addMagazineCargoGlobal [_x,50];} forEach _dayz_mag;
 
 "MeleeHatchet" call dayz_meleeMagazineCheck;
 "MeleeCrowbar" call dayz_meleeMagazineCheck;
 
 //hint "Admin Building Crate Spawned";
-cutText ["Admin Building Crate Spawned", "PLAIN"];
+cutText ["Building Crate Spawned", "PLAIN"];
 
 //Wait 5 minutes, then remove crate
 sleep 300;

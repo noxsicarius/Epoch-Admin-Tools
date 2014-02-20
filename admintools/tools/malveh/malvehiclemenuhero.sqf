@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////////////////////////////
 /////////// Malory's Modded Vehicle Spawn Menu (Hero Traders) ///////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
-if ((getPlayerUID player) in AllAdminList) then { // Vehicle Admins
+// if ((getPlayerUID player) in AdminList) then { // Vehicle Admins
 Malvsm =
 [
 	["Add Vehicle",true],
    
-		["--Locked Hero Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "1"],          
+		["--Locked Hero Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "0"],          
 		["Helicopters Armed", [2], "#USER:MalHA", -5, [["expression", ""]], "1", "1"],
 		["Trucks Armed", [3], "#USER:MalTR", -5, [["expression", ""]], "1", "1"],
 		["Military Armed", [4], "#USER:MalMA", -5, [["expression", ""]], "1", "1"],          
@@ -51,10 +51,10 @@ MalMA =
 		["LandRover Special CZ", [4], "", -5, [["expression", '["LandRover_Special_CZ_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
 		["LandRover MG TK", [5], "", -5, [["expression", '["LandRover_MG_TK_CIV_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
 		["UAZ MG TK", [6], "", -5, [["expression", '["UAZ_MG_TK_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
-		["GAZ_Vodnik", [7], "", -5 [["expression", '["GAZ_Vodnik"] execVM "admintools\tools\malvechilespawn.sqf"']], "1", "1"],
+		["GAZ_Vodnik", [7], "", -5, [["expression", '["GAZ_Vodnik"] execVM "admintools\tools\malvechilespawn.sqf"']], "1", "1"],
 		["", [-1], "", -5, [["expression", ""]], "1", "0"],
 			["Back", [12], "#USER:Malvsm", -5, [["expression", ""]], "1", "1"],
 			["Exit", [13], "", -3, [["expression", ""]], "1", "1"]
 ];
 showCommandingMenu "#USER:Malvsm";
-};
+// };

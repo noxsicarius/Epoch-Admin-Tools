@@ -1,7 +1,7 @@
 waituntil {!alive player ; !isnull (finddisplay 46)};
 
-if ((getPlayerUID player) in AllAdminList) then { // All Admins
-	sleep 2;
+if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
+	sleep 5;
 	player addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\Eexcute.sqf","",0,false,true,"",""];
 };
 

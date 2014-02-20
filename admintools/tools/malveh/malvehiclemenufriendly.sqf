@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////////////////////////////
 /////////// Malory's Modded Vehicle Spawn Menu (Friendly Traders) ///////////////////
 ////////////////////////////////////////////////////////////////////////////////////
-if ((getPlayerUID player) in AllAdminList) then { // Vehicle Admins ///////////////
+if ((getPlayerUID player) in AdminList) then { // Vehicle Admins ///////////////
 Malvsm =
 [
 	["Add Vehicle",true],
 	
-		["--Locked Friendly Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "1"],
+		["--Locked Friendly Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "0"],
 		["Airplanes", [2], "#USER:Malfair", -5, [["expression", ""]], "1", "1"],
 		["Helicopters Unarmed", [3], "#USER:Malfheli", -5, [["expression", ""]], "1", "1"],		
 		["Military Unarmed", [4], "#USER:Malmu", -5, [["expression", ""]], "1", "1"],

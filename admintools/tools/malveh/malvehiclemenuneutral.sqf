@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////////////////////////////
 /////////// Malory's Modded Vehicle Spawn Menu (Neutral Traders) ////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
-if ((getPlayerUID player) in AllAdminList) then { // Vehicle Admins
+if ((getPlayerUID player) in AdminList) then { // Vehicle Admins
 Malvsm =	
 [
 	["Add Vehicle",true],
 	
-		["--Locked Neutral Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "1"],		
+		["--Locked Neutral Trader Vehicles--", [],  "", -5, [["expression", ""]], "1", "0"],		
 		["Military Unarmed", [2], "#USER:Malmu", -5, [["expression", ""]], "1", "1"],
 		["Utility (SUV)", [3], "#USER:Malutil", -5, [["expression", ""]], "1", "1"],
 		["Cargo Trucks", [4], "#USER:Malcargo", -5, [["expression", ""]], "1", "1"],
