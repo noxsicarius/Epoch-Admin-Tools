@@ -73,13 +73,13 @@ LoadSpecificList = {
 waitUntil { !dialog };
 if ((PermDialogSelected < 0) && (TempDialogSelected < 0)) exitWith {};
 
-if (PermDialogSelected > 0) then {
+if (PermDialogSelected > -1) then {
 	_vehicle = ((vhnlist select PermDialogSelected) select 0);
 	hint format["Spawning Perm %1", _vehicle];
 	[_vehicle] execVM "admintools\tools\addvehicle.sqf";
 };
 
-if (TempDialogSelected > 0) then {
+if (TempDialogSelected > -1) then {
 	_vehicle = ((vhnlist select TempDialogSelected) select 0);
 	hint format["Spawning Temp %1", _vehicle];
 	[_vehicle] execVM "admintools\tools\addtempvehicle.sqf";
