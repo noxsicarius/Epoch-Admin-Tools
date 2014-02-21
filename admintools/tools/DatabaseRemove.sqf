@@ -14,7 +14,7 @@ _fnc_databaseremtimer = {
 	for "_i" from 1 to 5 do
 	{
 		_text = getText (configFile >> "CfgVehicles" >> typeOf _obj >> "displayName");
-		cutText [format["!!!Deleting %1 from Databse in %2 seconds!!!\nMove from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
+		cutText [format["!!!Deleting %1 from Database in %2 seconds!!!\nMove from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
 		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; breakOut "exit";};
 		sleep 1;
 		_cnt = _cnt - 1;
