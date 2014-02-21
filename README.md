@@ -46,6 +46,12 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
     
 4. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 5. Save the init.sqf
+6. Open your description.ext
+7. Paste the following at the bottom:
+
+~~~~java
+#include "admintools\dialog.hpp"
+~~~~
 
 ##### The mission PBO can now be repacked. Continue with ***Battleye Filters*** below.
 
