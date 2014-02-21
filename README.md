@@ -1,7 +1,7 @@
 Epoch-Admin-Tools
 =================
 
-![Admin Tools](http://i.imgur.com/pfwIdkB.png)
+![Admin Tools](http://i.imgur.com/dzX5Uhh.png)
 
 ([Click here for more screenshots](http://imgur.com/a/RH4cx#0))
 
