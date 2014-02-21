@@ -1,7 +1,7 @@
 Epoch-Admin-Tools
 =================
 
-![Admin Tools](http://i.imgur.com/pfwIdkB.png)
+![Admin Tools](http://i.imgur.com/dzX5Uhh.png)
 
 ([Click here for more screenshots](http://imgur.com/a/RH4cx#0))
 
@@ -20,6 +20,8 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 * Change skins
 * Spawn weapons and items
 * Spawn locked vehicles with keys (saved even after restart)
+* "Display code" for locked vehicles/buildings and "Create key" for vehicles with lost keys.
+* Base Destruction - Destroy all buildables/vehicles within a radius up to 500m.
 * ...and more!
 
 ## Installation
@@ -31,31 +33,18 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
     ~~~~java
     // Epoch Admin Tools
-    AllAdminList = [
-    "111111111", // <Admin In-Game Name>
-    "999999999", // <Admin In-Game Name>
-    "999999999" // <Admin In-Game Name>
-    ];
-    SuperAdminList = [
+    AdminList = [
     "111111111", // <Admin In-Game Name>
     "999999999" // <Admin In-Game Name>
     ];
-    AdminList3 = [
-    "999999999", // <Admin In-Game Name>
-    "999999999" // <Admin In-Game Name>
-    ];
-    AdminList2 = [
-    "999999999", // <Admin In-Game Name>
-    "999999999" // <Admin In-Game Name>
-    ];
-    AdminList1 = [
+    ModList = [
     "999999999", // <Admin In-Game Name>
     "999999999" // <Admin In-Game Name>
     ];
     [] execVM "admintools\Activate.sqf";
     ~~~~
     
-4. Replace the "111111111" in BOTH arrays (AllAdminList & SuperAdminList) with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
+4. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 5. Save the init.sqf
 
 ##### The mission PBO can now be repacked. Continue with ***Battleye Filters*** below.
@@ -93,9 +82,9 @@ This is caused by Epoch's included antihack/cleanup script in the server pbo.
 ## Optional Steps
 
 ### Add more admins:
-1. Get the PID of the admin.
-2. Pick what access you want your admin to have. In order from MOST to LEAST number of commands: SuperAdminList > AdminList3 > AdminList2 > AdminList1. You can view which Admin has what commands in the ***admintools/AdminToolsMain.sqf***.
-3. Place the PID in ***two*** areas of the init.sqf: *Always* in the AllAdminList, and also ***one*** other area - SuperAdminList, or AdminList3, or whatever you choose. 
+1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
+2. Pick what access you want your admin to have. In order from MOST to LEAST number of commands: AdminList > ModList. You can view/edit commands in ***admintools/AdminToolsMain.sqf***.
+3. Place the PID in the chosen section of your ***init.sqf***. 
 
 
 ### Fix teleport rubber-banding:
