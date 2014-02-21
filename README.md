@@ -86,6 +86,8 @@ This is caused by Epoch's included antihack/cleanup script in the server pbo.
 2. Pick what access you want your admin to have. In order from MOST to LEAST number of commands: AdminList > ModList. You can view/edit commands in ***admintools/AdminToolsMain.sqf***.
 3. Place the PID in the chosen section of your ***init.sqf***. 
 
+***Important: Take note of how the array's commas are used in the init.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
+
 
 ### Fix teleport rubber-banding:
 This is caused by Epoch's default included antihack. Here you have two options. ***Option #1*** is potentially hazardous as it disables Epoch's default antihack for you and everyone else. ***Option #2*** is more secure, but it will only fix teleporting for yourself and other people whose PID you add to the array (such as admins) - it will still prevent you from teleporting other people (outside the array) to you because they will still have the antihack enabled on them.
