@@ -21,10 +21,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 		["Weapon Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
-		["Vehicle Menu(with images) >>", [],  "", -5, [["expression", format[_EXECscript1,"addvehicleDialog.sqf"]]], "1", "1"],	
-		["Temporary Vehicle Menu >>", [], "#USER:VehicleMenu", -5, [["expression", ""]], "1", "1"],		
-		["Locked Vehicle Menu >>", [], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],		
-		["Vehicle Tools >>", [], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],
+		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
@@ -35,7 +32,7 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 	["",true],
 		["-- Epoch Admin Tools (Level: Mod) --", [],  "", -5, [["expression", ""]], "1", "0"],
 		["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
-		["Temporary Vehicle Menu >>", [], "#USER:VehicleMenu", -5, [["expression", ""]], "1", "1"],		
+		["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
@@ -74,6 +71,16 @@ ModMenu =
 	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],			
 	["Toggle Grass Off", [],  "", -5, [["expression", format[_EXECscript1,"malgrassoff.sqf"]]], "1", "1"],	
 	["Toggle Grass On", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+VehicleMenu =
+[
+["",true],	
+	["Graphical Vehicle Menu", [],  "", -5, [["expression", format[_EXECscript1,"addvehicleDialog.sqf"]]], "1", "1"],	
+	["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
+	["Locked Vehicle Menu >>", [], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],		
+	["Vehicle Tools >>", [], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -204,7 +211,7 @@ BaseDestructionMenu=
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-VehicleMenu=
+VehicleTempMenu=
 [
 ["",true],
 	["Spawn Temporary Vehicle -- AIR",[],"",-5,[["expression",""]],"1","0"],
@@ -215,10 +222,10 @@ VehicleMenu=
 	["MV-22 Osprey",[],"",-5,[["expression",'["MV22"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["C-130J Super Hercules",[],"",-5,[["expression",'["C130J"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["",[],"",-5,[["expression",""]],"1","0"],
-		["Next page",[],"#USER:VehicleMenu2",-5,[["expression",""]],"1","1"],
+		["Next page",[],"#USER:VehicleTempMenu2",-5,[["expression",""]],"1","1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-VehicleMenu2 =
+VehicleTempMenu2 =
 [
 ["",true],
 	["Spawn Temporary Vehicle -- WHEELED",[],"",-5,[["expression",""]],"1","0"],
@@ -234,10 +241,10 @@ VehicleMenu2 =
 	["ATV",[],"",-5,[["expression",'["ATV_US_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["Towing Tractor",[],"",-5,[["expression",'["TowingTractor"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-		["Next page", [], "#USER:VehicleMenu3", -5, [["expression", ""]], "1", "1"],
+		["Next page", [], "#USER:VehicleTempMenu3", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-VehicleMenu3 =
+VehicleTempMenu3 =
 [
 ["",true],
 	["Spawn Temporary Vehicle -- TRACKED",[],"",-5,[["expression",""]],"1","0"],
@@ -246,10 +253,10 @@ VehicleMenu3 =
 	["M270 MLRS",[],"",-5,[["expression",'["MLRS_DES_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["T-34",[],"",-5,[["expression",'["T34_TK_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-		["Next page", [], "#USER:VehicleMenu4", -5, [["expression", ""]], "1", "1"],
+		["Next page", [], "#USER:VehicleTempMenu4", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-VehicleMenu4 =
+VehicleTempMenu4 =
 [
 ["",true],
 	["Spawn Temporary Vehicle -- WATER",[],"",-5,[["expression",""]],"1","0"],
@@ -258,7 +265,7 @@ VehicleMenu4 =
 	["RHIB",[],"",-5,[["expression",'["RHIB"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["Small boat",[],"",-5,[["expression",'["Smallboat_1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-		// ["Next page", [], "#USER:VehicleMenu5", -5, [["expression", ""]], "1", "1"],
+		// ["Next page", [], "#USER:VehicleTempMenu5", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 showCommandingMenu "#USER:epochmenustart";
