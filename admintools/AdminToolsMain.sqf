@@ -21,6 +21,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 		["Weapon Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
+		["Vehicle Menu(with images) >>", [],  "", -5, [["expression", format[_EXECscript1,"addvehicleDialog.sqf"]]], "1", "1"],	
 		["Temporary Vehicle Menu >>", [], "#USER:VehicleMenu", -5, [["expression", ""]], "1", "1"],		
 		["Locked Vehicle Menu >>", [], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],		
 		["Vehicle Tools >>", [], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],
