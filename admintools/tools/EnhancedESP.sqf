@@ -33,7 +33,7 @@ ZombieMarkerColor="ColorGreen";
 ZombieName="Zombie";
 //----------------------#Zombies#--------------------------
 //----------------------#Vehicles#-------------------------
-AddVehicleToMap=false;
+AddVehicleToMap=true;
 VehicleMarkerType="vehicle";
 VehicleMarkerColor="ColorBlue";
 //----------------------#Vehicles#-------------------------
