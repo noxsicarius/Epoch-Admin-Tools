@@ -1,4 +1,3 @@
-//if ((getPlayerUID player) in server_admin_list) then {/*["109423430","89972550","148153798","71775302"]) then {*/
 private ["_ct","_id","_result","_inventory","_backpack"];
 
 _ct = cursorTarget;
