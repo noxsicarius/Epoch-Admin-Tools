@@ -47,7 +47,7 @@ MalMA =
 
 		["--Military Armed--", [],  "", -5, [["expression", ""]], "1", "1"],
 		["HMMWV M998A2 SOV", [2], "", -5, [["expression", '["HMMWV_M998A2_SOV_DES_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
-		["HMMWV M1151 M2 CZ", [3], "", -5, [["expression", '["HMMWV__M1151_M@_CZ_DES_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
+		["HMMWV M1151 M2 CZ", [3], "", -5, [["expression", '["HMMWV_M1151_M2_CZ_DES_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
 		["LandRover Special CZ", [4], "", -5, [["expression", '["LandRover_Special_CZ_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
 		["LandRover MG TK", [5], "", -5, [["expression", '["LandRover_MG_TK_CIV_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
 		["UAZ MG TK", [6], "", -5, [["expression", '["UAZ_MG_TK_EP1"] execVM "admintools\tools\malvehiclespawn.sqf"']], "1", "1"],
