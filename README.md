@@ -56,8 +56,9 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 ##### The mission PBO can now be repacked. Continue with ***Battleye Filters*** below.
 
 ### Battleye Filters:
-1. Return to the zip file and open the Battleye folder.
-2. Extract the .txt files within to your server's Battleye configs folder (via FTP or web-based file manager) and replace the originals to prevent "script restriction" errors while using the menu. The location depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
+1. It's important that you start with updated filters. Many server hosts are still using old, outdated filters, which will likely cause "Script Restriction" errors if not updated. You can find these updated filters specifically made for Epoch in the Epoch Server download on the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page). Once downloaded, simply find the "Battleye" folder in the archive and extract the .txt files within to your server's Battleye folder, replacing the existing .txt files. The location of your Battleye filters depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
+2. Return to the Epoch Admin Tools zip file and open the Battleye folder.
+3. Extract the .txt files within to your server's Battleye configs folder (via FTP or web-based file manager) and replace the originals.
 
 
 ### Temporary vehicles despawning/blowing up fix:
