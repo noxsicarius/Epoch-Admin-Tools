@@ -97,7 +97,7 @@ This is caused by Epoch's included antihack/cleanup script in the server pbo.
 
 
 ### Fix teleport rubber-banding:
-This is caused by Epoch's default included antihack. Here you have two options. ***Option #1*** is potentially hazardous as it disables Epoch's default antihack for you and everyone else. ***Option #2*** is more secure, but it will only fix teleporting for yourself and other people whose PID you add to the array (such as admins) - it will still prevent you from teleporting other people (outside the array) to you because they will still have the antihack enabled on them.
+This is caused by Epoch's default included antihack. Here you have two options. ***Option #1*** will allow "Teleport" and "Teleport to Me" for all players, but is potentially more hazardous than Option #2 as it disables Epoch's default antihack (which prevents unauthorized teleporting, among other things). ***Option #2*** is more secure, but it will only allow "Teleport" and "Teleport to Me" for players whose PIDs you add to the array - it will still prevent "Teleport to Me" on players not in the list of PIDs because they will still have the antihack enabled on them.
 
 ***Option #1)*** Open your ***init.sqf*** and comment out the following line so that the result looks like this:
 
