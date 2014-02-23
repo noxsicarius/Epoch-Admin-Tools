@@ -7,21 +7,29 @@ Epoch-Admin-Tools
 
 An admin menu for the purpose of testing and administrating a [DayZ Epoch](https://github.com/vbawol/DayZ-Epoch) server. 
 
-## A few of the features:
+## Features:
+#### For help with Administration:
 * Multiple Admin levels
+* Spectate players
+* Spawn locked vehicles with keys (saved even after restart)
+* "Display code" for locked vaults/doors
+* "Create key" for vehicles with lost keys
+* Force lock and unlock vehicles without keys
+* Base Destruction - Destroy all buildables/vehicles within a customizable radius
+* Spawnable crates with weapons, items, and supplies (e.g. "VIP crate", "Bambi crate", "Medical crate", etc.)
+* Spawn locked or temporary vehicles via the menu or a custom-made graphical vehicle menu ([screenshot](https://f.cloud.github.com/assets/204934/2233637/43153c0a-9b2c-11e3-8a03-40d11239e1cb.png))
+
+
+#### Other features:
 * Godmode
 * Teleport self (or others to you)
 * Flying
-* Delete or Repair object on crosshairs
-* Heal self and others within X meters
-* ESP
-* Infinite Ammo
 * Invisibility
+* Infinite Ammo / No recoil
 * Change skins
-* Spawn weapons and items
-* Spawn locked vehicles with keys (saved even after restart)
-* "Display code" for locked vehicles/buildings and "Create key" for vehicles with lost keys.
-* Base Destruction - Destroy all buildables/vehicles within a radius up to 500m.
+* Delete, repair/refuel, or only refuel vehicle on crosshairs
+* Heal self and others within 25 meters
+* ESP - display players, zombies, safes, tents, vehicles, and AI on the map
 * ...and more!
 
 ## Installation
@@ -56,10 +64,12 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 ##### The mission PBO can now be repacked. Continue with ***Battleye Filters*** below.
 
 ### Battleye Filters:
-1. It's important that you start with updated filters. Many server hosts are still using old, outdated filters, which will likely cause "Script Restriction" errors if not updated. You can find these updated filters specifically made for Epoch in the Epoch Server download on the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page). Once downloaded, simply find the "Battleye" folder in the archive and extract the .txt files within to your server's Battleye folder, replacing the existing .txt files. The location of your Battleye filters depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
-2. Return to the Epoch Admin Tools zip file and open the Battleye folder.
-3. Extract the .txt files within to your server's Battleye configs folder (via FTP or web-based file manager) and replace the originals.
+It's important that you *start* with updated filters. Many server hosts are still using old, outdated filters, which will likely cause "Script Restriction" errors if not updated. You can find these updated filters specifically made for Epoch in the Epoch Server download on the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page). Once downloaded, simply find the "Battleye" folder in the archive and extract the .txt files within to your server's Battleye folder, replacing the existing .txt files. The location of your Battleye filters depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 
+1. Return to the Epoch Admin Tools zip file and open the Battleye folder.
+2. Extract the .txt files within to your server's Battleye configs folder (via FTP or web-based file manager) and replace the originals.
+
+##### Not done yet! Continue with ***Temporary vehicles despawning/blowing up fix*** below.
 
 ### Temporary vehicles despawning/blowing up fix:
 This is caused by Epoch's included antihack/cleanup script in the server pbo.
@@ -83,8 +93,9 @@ This is caused by Epoch's included antihack/cleanup script in the server pbo.
 * Note #1: In case the above line changes in the future and your searches have 0 results, try searching for ***server_checkHackers*** or ***CLEANUP: KILLING A HACKER***.
 * Note #2: An alternative method to this solution is to set the nearby ***setDamage 1*** variables to ***setDamage 0*** (there should be 2 of them). The catch is, this is less secure. It will allow hackers to spawn vehicles and not be punished.
 
-> #### Installation is now complete, but you may want to consider additional optional instructions below. 
-#### IMPORTANT: It's common for the Admin Tools to be absent the first time a server is loaded. Abort to the lobby, then re-join the server to make the Admin Tools reappear.
+#### Installation is now complete, but you may want to consider additional optional instructions below.
+
+#### IMPORTANT: It's common for the Admin Tools to be absent the first time a server is loaded. Abort to the lobby, then re-join the server to make the Admin Tools reappear. It will appear after a few seconds in your ActionMenu, accessable with the scroll wheel.
 
 ## Optional Steps
 
