@@ -47,7 +47,6 @@ _dayz_mag =[
 "ItemSandbagExLarge", 
 "ItemSandbagExLarge5x",
 "ItemTankTrap",
-"ItemTent",
 "ItemTentOld", 
 "ItemTentDomed", 
 "ItemTentDomed2",
