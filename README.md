@@ -34,7 +34,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
 ## Installation
 
-### Mission.pbo:
+#### Mission.pbo:
 1. Click "[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)" on the right sidebar
 2. Extract the ***admintools*** folder into the root of your Epoch mission
 3. Open your ***init.sqf*** and paste the following at the bottom:
@@ -57,13 +57,13 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 6. Open your description.ext
 7. Paste the following at the bottom:
 
-~~~~java
-#include "admintools\dialog.hpp"
-~~~~
+    ~~~~java
+    #include "admintools\dialog.hpp"
+    ~~~~
 
 ##### The mission PBO can now be repacked. Continue with ***Battleye Filters*** below.
 
-### Battleye Filters:
+#### Battleye Filters:
 It's important that you *start* with updated filters. Many server hosts are still using old, outdated filters, which will likely cause "Script Restriction" errors if not updated. You can find these updated filters specifically made for Epoch in the Epoch Server download on the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page). Once downloaded, simply find the "Battleye" folder in the archive and extract the .txt files within to your server's Battleye folder, replacing the existing .txt files. The location of your Battleye filters depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 
 1. Return to the Epoch Admin Tools zip file and open the Battleye folder.
@@ -71,7 +71,7 @@ It's important that you *start* with updated filters. Many server hosts are stil
 
 ##### Not done yet! Continue with ***Temporary vehicles despawning/blowing up fix*** below.
 
-### Temporary vehicles despawning/blowing up fix:
+#### Temporary vehicles despawning/blowing up fix:
 This is caused by Epoch's included antihack/cleanup script in the server pbo.
 
 1. Open your server .pbo file with your preferred PBO editor.
@@ -93,22 +93,13 @@ This is caused by Epoch's included antihack/cleanup script in the server pbo.
 * Note #1: In case the above line changes in the future and your searches have 0 results, try searching for ***server_checkHackers*** or ***CLEANUP: KILLING A HACKER***.
 * Note #2: An alternative method to this solution is to set the nearby ***setDamage 1*** variables to ***setDamage 0*** (there should be 2 of them). The catch is, this is less secure. It will allow hackers to spawn vehicles and not be punished.
 
-#### Installation is now complete, but you may want to consider additional optional instructions below.
+#### Installation complete! ...But you might want to consider additional optional instructions below:
 
-#### IMPORTANT: It's common for the Admin Tools to be absent the first time a server is loaded. Abort to the lobby, then re-join the server to make the Admin Tools reappear. It will appear after a few seconds in your ActionMenu, accessable with the scroll wheel.
 
 ## Optional Steps
 
-### Add more admins:
-1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
-2. Pick what access you want your admin to have. In order from MOST to LEAST number of commands: AdminList > ModList. You can view/edit commands in ***admintools/AdminToolsMain.sqf***.
-3. Place the PID in the chosen section of your ***init.sqf***. 
-
-***Important: Take note of how the array's commas are used in the init.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
-
-
 ### Fix teleport rubber-banding:
-This is caused by Epoch's default included antihack. Here you have two options. ***Option #1*** will allow "Teleport" and "Teleport to Me" for all players, but is potentially more hazardous than Option #2 as it disables Epoch's default antihack (which prevents unauthorized teleporting, among other things). ***Option #2*** is more secure, but it will only allow "Teleport" and "Teleport to Me" for players whose PIDs you add to the array - it will still prevent "Teleport to Me" on players not in the list of PIDs because they will still have the antihack enabled on them.
+If this step is not done, you will not be able to use "Teleport" OR "Teleport to Me". This is caused by Epoch's default included antihack, which sends teleported people right back to where they were - hence "rubber-banding". Here you have two options. ***Option #1*** will allow "Teleport" and "Teleport to Me" for all players, but is potentially more hazardous than Option #2 as it disables Epoch's default antihack (which prevents unauthorized teleporting, among other things). ***Option #2*** is more secure, but it will only allow "Teleport" and "Teleport to Me" for players whose PIDs you add to the array - it will still prevent "Teleport to Me" on players not in the list of PIDs because they will still have the antihack enabled on them.
 
 ***Option #1)*** Open your ***init.sqf*** and comment out the following line so that the result looks like this:
 
@@ -127,10 +118,15 @@ if (not ((getPlayerUID player) in AT_all)) then {
     
 ...then replace the above numbers with PIDs of players with whom you wish to have the antihack disabled.
 
+### Add more admins:
+1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
+2. Pick what access you want your admin to have. In order from MOST to LEAST number of commands: AdminList > ModList. You can view/edit commands in ***admintools/AdminToolsMain.sqf***.
+3. Place the PID in the chosen section of your ***init.sqf***. 
+
+***Important: Take note of how the array's commas are used in the init.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
+
 
 ## FAQ
-* My Admin Menu actionMenu doesn't appear!
- * This is common, and I'm looking into a fix. Abort to the lobby and log back in. It should fix itself.
 * I'm getting kicked with "Script Restriction #X"!
  * Make sure you've installed the Battleye Filters correctly. If everything looks good, create a new issue for me here on Github so I can look into a fix. If you're feeling independant, you can fix the error yourself with a little knowledge about [how the filters work](http://dayz.st/w/Battleye_Filters).
 
