@@ -1,31 +1,20 @@
-if (isnil "tracker") then {tracker = 0;};
+waituntil {!alive player ; !isnull (finddisplay 46)};
 
-if (tracker == 0) then
-{
-
-[]spawn
-{
-private["_veh", "_idx"];
-_idx = -1;
-
-while {true} do
-{
-   if (_idx == -1) then
-   {
-      _idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\Eexcute.sqf","",0,false,true,"",""];
-      _veh = vehicle player;
-   };
-
-   if (_veh != vehicle player) then
-   {
-      _veh removeAction _idx;
-      _idx = -1;      
-   };
-   Sleep 1;
-};
-};
-tracker = 1;
+if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
+	sleep 5;
+	player addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\Eexcute.sqf","",0,false,true,"",""];
 };
 
-waituntil {!alive player ; sleep 1;};
-tracker = 0;
+// [] spawn {
+  // waituntil {!isnull player};
+  // private ["_id","_veh"];
+  // while {((getPlayerUID player) in AllAdminList)} do {
+    // waituntil {vehicle player == player};
+    // if (!isnil "_veh") then { _veh removeaction _id };
+    // _id = player addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\Eexcute.sqf","",0,false,true,"",""];
+    // waituntil {vehicle player != player};
+    // player removeaction _id;
+    // _veh = vehicle player;
+    // _id = _veh addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\Eexcute.sqf","",0,false,true,"",""];
+  // };
+// };
