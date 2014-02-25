@@ -75,30 +75,39 @@ It's important that you *start* with updated filters. Many server hosts are stil
 This is caused by Epoch's included antihack/cleanup script in the server pbo.
 
 1. Open your server .pbo file with your preferred PBO editor.
-2. Open the ***server_functions.sqf*** in the \init folder.
-3. Search the file for the following:
+2. Open ***init/server_functions.sqf*** and search the file for the following:
 
-~~~~java
-    if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
-~~~~
+    ~~~~java
+        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
+    ~~~~
     
-4.) Comment out this line and/or replace it with the following:
+3. Comment out this line and/or replace it with the following:
 
-~~~~java
-    if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
-~~~~
+    ~~~~java
+        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
+    ~~~~
 
-5.) Done. Repackage the server pbo and upload it to your server. 
+4. Now open your ***compile/server_updateObject.sqf*** and place this:
 
-* Note #1: In case the above line changes in the future and your searches have 0 results, try searching for ***server_checkHackers*** or ***CLEANUP: KILLING A HACKER***.
-* Note #2: An alternative method to this solution is to set the nearby ***setDamage 1*** variables to ***setDamage 0*** (there should be 2 of them). The catch is, this is less secure. It will allow hackers to spawn vehicles and not be punished.
+
+    ~~~~java
+    if (_object getVariable "MalSar" == 1) exitWith {};
+    ~~~~
+
+    ...immediately above this:
+
+    ~~~~java
+    if (!_parachuteWest and !(locked _object)) then {
+    ~~~~
+
+Done. Repackage the server pbo and upload it to your server. 
 
 #### Installation complete! ...But you might want to consider additional optional instructions below:
 
 
 ## Optional Steps
 
-### Fix teleport rubber-banding:
+### Fix teleport/flying rubber-banding:
 If this step is not done, you will not be able to use "Teleport" OR "Teleport to Me". This is caused by Epoch's default included antihack, which sends teleported people right back to where they were - hence "rubber-banding". Here you have two options. ***Option #1*** will allow "Teleport" and "Teleport to Me" for all players, but is potentially more hazardous than Option #2 as it disables Epoch's default antihack (which prevents unauthorized teleporting, among other things). ***Option #2*** is more secure, but it will only allow "Teleport" and "Teleport to Me" for players whose PIDs you add to the array - it will still prevent "Teleport to Me" on players not in the list of PIDs because they will still have the antihack enabled on them.
 
 ***Option #1)*** Open your ***init.sqf*** and comment out the following line so that the result looks like this:
