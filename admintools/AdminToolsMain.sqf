@@ -88,8 +88,7 @@ VehicleTools =
 [
 ["",true],	
 	["Speedboost", [],  "", -5, [["expression", format[_EXECscript1,"speedboost.sqf"]]], "1", "1"],		
-	["Turn on Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],
-	["Turn off Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMoff.sqf"]]], "1", "1"],		
+	["Toggle Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],		
 	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to only Refuel (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],		
 	["Point to Delete (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointdelete.sqf"]]], "1", "1"],		
