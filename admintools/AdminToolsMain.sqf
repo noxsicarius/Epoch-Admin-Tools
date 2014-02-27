@@ -51,9 +51,8 @@ AdminMenu =
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
 	["Invisibility", [],  "", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
-	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],			
-	["Toggle Grass Off", [],  "", -5, [["expression", format[_EXECscript1,"malgrassoff.sqf"]]], "1", "1"],	
-	["Toggle Grass On", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
+	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],	
+	["Toggle Grass", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
