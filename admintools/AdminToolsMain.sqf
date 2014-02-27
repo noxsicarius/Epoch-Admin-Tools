@@ -88,7 +88,8 @@ VehicleTools =
 [
 ["",true],	
 	["Speedboost", [],  "", -5, [["expression", format[_EXECscript1,"speedboost.sqf"]]], "1", "1"],		
-	["Toggle Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],		
+	["Turn on Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],
+	["Turn off Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMoff.sqf"]]], "1", "1"],		
 	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to only Refuel (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],		
 	["Point to Delete (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointdelete.sqf"]]], "1", "1"],		
@@ -178,16 +179,12 @@ WeaponMenu2 =
 CrateMenu=[
 	["",true],
 	["Admin Crate",[],"",-5,[["expression",format[_EXECscript6,"admin.sqf"]]],"1","1"],
-	["VIP Crate",[],"",-5,[["expression",format[_EXECscript6,"vipbox.sqf"]]],"1","1"],
+	["VIP Crate",[],"",-5,[["expression",format[_EXECscript6,"vip.sqf"]]],"1","1"],
 	["Bambi Crate",[],"",-5,[["expression",format[_EXECscript6,"bambi.sqf"]]],"1","1"],
-	["ALL Weapons/Items Crate (LAG)",[],"",-5,[["expression",format[_EXECscript6,"allweapons.sqf"]]],"1","1"],
+	["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECscript6,"allweapons.sqf"]]],"1","1"],
+	["(Most) Weapons Crate",[],"",-5,[["expression",format[_EXECscript6,"weapons.sqf"]]],"1","1"],
 	["Building Crate",[],"",-5,[["expression",format[_EXECscript6,"building.sqf"]]],"1","1"],
-	["Food/Water Crate",[],"",-5,[["expression",format[_EXECscript6,"food.sqf"]]],"1","1"],
-	["Medical Crate",[],"",-5,[["expression",format[_EXECscript6,"medical.sqf"]]],"1","1"],
-	["Money Crate",[],"",-5,[["expression",format[_EXECscript6,"moneybox.sqf"]]],"1","1"],
-	["Repair Crate",[],"",-5,[["expression",format[_EXECscript6,"repair.sqf"]]],"1","1"],
-	["Skins Crate",[],"",-5,[["expression",format[_EXECscript6,"skins.sqf"]]],"1","1"],
-	["Tools Crate",[],"",-5,[["expression",format[_EXECscript6,"tools.sqf"]]],"1","1"],
+	["Items Crate",[],"",-5,[["expression",format[_EXECscript6,"items.sqf"]]],"1","1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
