@@ -69,8 +69,7 @@ ModMenu =
 	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
 	["Invisibility", [],  "", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
 	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],			
-	["Toggle Grass Off", [],  "", -5, [["expression", format[_EXECscript1,"malgrassoff.sqf"]]], "1", "1"],	
-	["Toggle Grass On", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
+	["Toggle Grass", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -88,7 +87,7 @@ VehicleTools =
 [
 ["",true],	
 	["Speedboost", [],  "", -5, [["expression", format[_EXECscript1,"speedboost.sqf"]]], "1", "1"],		
-	["Turn on Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],
+	["Toggle Vehicle Auto Repair",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],		
 	["Turn off Vehicle God Mode",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMoff.sqf"]]], "1", "1"],		
 	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to only Refuel (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],		
