@@ -22,6 +22,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Weapon Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
 		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
+		["Weather/Time Menu >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],			
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
@@ -184,6 +185,25 @@ CrateMenu=[
 	["Building Crate",[],"",-5,[["expression",format[_EXECscript6,"building.sqf"]]],"1","1"],
 	["Items Crate",[],"",-5,[["expression",format[_EXECscript6,"items.sqf"]]],"1","1"],
 	["Backpack Tent",[],"",-5,[["expression",format[_EXECscript6,"backpack.sqf"]]],"1","1"],
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+WTMenu=[
+	["",true],
+	["Set Time:", [], "", -5, [["expression", ""]], "1", "0"],		
+	["Midnight (no moon)",[],"",-5,[["expression",'setDate [2012, 1, 15, 0, 0]']],"1","1"],
+	["Midnight (full moon)",[],"",-5,[["expression",'setDate [2012, 6, 6, 0, 0]']],"1","1"],
+	["Noon",[],"",-5,[["expression",'setDate [2012, 6, 0, 12, 0]']],"1","1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+	["Set Weather:", [], "", -5, [["expression", ""]], "1", "0"],		
+	["Clear",[],"",-5,[["expression",'3 setovercast 0']],"1","1"],
+	["Cloudy",[],"",-5,[["expression",'3 setovercast 0.5']],"1","1"],
+	["Storm",[],"",-5,[["expression",'3 setovercast 1']],"1","1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+	["Set Fog:", [], "", -5, [["expression", ""]], "1", "0"],		
+	["Off",[],"",-5,[["expression",'3 setfog 0']],"1","1"],		
+	["Medium",[],"",-5,[["expression",'3 setfog 0.5']],"1","1"],		
+	["Maximum",[],"",-5,[["expression",'3 setfog 1']],"1","1"],		
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
