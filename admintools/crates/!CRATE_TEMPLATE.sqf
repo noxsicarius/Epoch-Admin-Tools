@@ -1,59 +1,35 @@
 // Name of this crate
-_crateName = "ALL Weapons/Items Crate";
-
-if (isNil "weapons_list") then
-{
-	weapons_list = [];
-	_cfgweapons = configFile >> 'cfgWeapons';
-	for "_i" from 0 to (count _cfgweapons)-1 do
-	{
-		_weapon = _cfgweapons select _i;
-		if (isClass _weapon) then
-		{
-			_key_colors = ["ItemKeyYellow","ItemKeyBlue","ItemKeyRed","ItemKeyGreen","ItemKeyBlack"];
-			if (getNumber (_weapon >> "scope") == 2 and getText(_weapon >> "picture") != "" and !(configName(inheritsFrom(_weapon)) in _key_colors)) then
-			{
-				_wpn_type = configName _weapon;
-				weapons_list set [count weapons_list, _wpn_type];
-			};
-		};
-	};
-};
-if (isNil "magazines_list") then
-{
-	magazines_list = [];
-	_cfgmagazines = configFile >> 'cfgMagazines';
-	for "_i" from 0 to (count _cfgmagazines)-1 do
-	{
-		_magazine = _cfgmagazines select _i;
-		if (isClass _magazine) then
-		{
-			if (getNumber (_magazine >> "scope") == 2 and getText(_magazine >> "picture") != "") then
-			{
-				_mag_type = configName _magazine;
-				magazines_list set [count magazines_list, _mag_type];
-			};
-		};
-	};
-};
+_crateName = "Your Crate";
 
 // Crate type. Possibilities: MedBox0, FoodBox0, BAF_BasicWeapons, USSpecialWeaponsBox, USSpecialWeapons_EP1, USVehicleBox, RUSpecialWeaponsBox, RUVehicleBox, etc.
 _classname = "USOrdnanceBox";
 
+// Set the # of items
+_numItems = 1;
+
+// Location of player and crate
 _dir = getdir player;
 _pos = getposATL player;
 _pos = [(_pos select 0)+1*sin(_dir),(_pos select 1)+1*cos(_dir), (_pos select 2)];
 _spawnCrate = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
 _spawnCrate setDir _dir;
 _spawnCrate setposATL _pos;
-			
-{
-	_spawnCrate addWeaponCargoGlobal [_x, 5];
-} forEach weapons_list;
 
-{
-	_spawnCrate addMagazineCargoGlobal [_x, 20];
-} forEach magazines_list;
+// Remove default items/weapons from current crate before adding custom gear
+clearWeaponCargoGlobal _spawnCrate;
+clearMagazineCargoGlobal _spawnCrate;
+clearBackpackCargoGlobal _spawnCrate;
+
+// Add weapon-slot items to crate
+_spawnCrate addWeaponCargoGlobal ["Binocular", _numItems * 5];
+_spawnCrate addWeaponCargoGlobal ["ItemEtool", _numItems * 5];
+
+// Add magazine-slot items to crate
+_spawnCrate addMagazineCargoGlobal ["FoodSteakCooked", _numItems * 5];
+_spawnCrate addMagazineCargoGlobal ["ItemAntibiotic", _numItems * 5];
+
+// Add only 1 backpack. The rest will fall out onto the ground.
+_spawnCrate addBackpackCargoGlobal ["DZ_Backpack_EP1", 1];
 
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;
