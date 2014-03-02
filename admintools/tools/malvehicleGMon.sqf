@@ -1,7 +1,7 @@
 /*
 Not 100% god mode. There is a chance the car can still be blown
 up, but the chance is small. This will be a good script until
-a better solution is found. DOES NOT interfeer with normal god mode
+a better solution is found. DOES NOT interfere with normal god mode
 */
 
 
@@ -13,12 +13,12 @@ if(isNil "vehicleGod") then
 if (vehicleGod == 0) then
 {
 	vehicleGod = 1;
-	cutText ["Vehicle God Mode - ON", "PLAIN DOWN"];
+	cutText ["Vehicle Auto Repair - ON", "PLAIN DOWN"];
 }
 else
 {
 	vehicleGod = 0;
-	cutText ["Vehicle God Mode - OFF", "PLAIN DOWN"];
+	cutText ["Vehicle Auto Repair - OFF", "PLAIN DOWN"];
 };
 
 while{alive (vehicle player) && vehicleGod == 1} do
