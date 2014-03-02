@@ -1,4 +1,5 @@
 // Malory's Player God-Mode Script
+// Heals all problems and removes damage
 
 if (isNil "malpgm") then
 {
@@ -17,8 +18,26 @@ if (malpgm == 0) then
 	r_player_infected = false;
 	r_player_injured = false;
 	r_player_inpain = false;
+	r_player_loaded = flase;
+	r_player_cardiac = false;
+	r_player_lowblood = false;
 	r_fracture_legs = false;
 	r_fracture_arms = false;
+	r_player_blood = 11999;
+	r_player_timeout =		0;
+	r_handlerCount = 		0;
+	dayz_sourceBleeding = objNull;
+	dayz_hunger	= 0;
+	dayz_thirst = 0;
+	dayz_temperatur = 100;
+	disableUserInput false;
+	player setVariable ["USEC_injured",false,true];
+	{player setVariable[_x,false,true];} forEach USEC_woundHit;
+	player setVariable ["unconsciousTime", r_player_timeout, true];
+	player setHit ['legs',0];
+	player setVariable ['hit_legs',0,false];
+	player setVariable['medForceUpdate',true,true];
+	
 	while {malpgm == 1} do
 	{
 	};
