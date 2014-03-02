@@ -33,11 +33,17 @@ if (pselect5 != "exit") then
 			tempList = [
 				"_tempException"
 			];
+			
 			hint format ["Teleporting %1", _name];
 			_x attachTo [vehicle player, [2, 2, 0]];
 			sleep 0.25;
 			detach _x;
+			
 			_tempException = nil;
+			tempList = [
+				"_tempException"
+			];
+			
 			sleep 0.5;
 
 		};
