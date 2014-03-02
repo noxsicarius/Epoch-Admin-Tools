@@ -119,10 +119,13 @@ If this step is not done, you will not be able to use "Teleport" OR "Teleport to
 ***Option #2)*** Open your ***init.sqf*** and replace the above line with this:
 
 ~~~~java
-AT_all = ["111111111","222222222","333333333"];
-if (not ((getPlayerUID player) in AT_all)) then {
-    [] execVM "\z\addons\dayz_code\system\antihack.sqf";
-};
+	if (not ((getPlayerUID player) in AdminList)) then 
+	{
+		if (not ((getPlayerUID player) in tempList)) then
+		{
+			[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+		};
+	};
 ~~~~
     
 ...then replace the above numbers with PIDs of players with whom you wish to have the antihack disabled.
