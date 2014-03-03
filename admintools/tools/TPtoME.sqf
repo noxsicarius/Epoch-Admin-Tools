@@ -43,9 +43,6 @@ if (pselect5 != "exit") then
 			tempList = [
 				"_tempException"
 			];
-			
-			sleep 0.5;
-
 		};
 	} forEach entities "CAManBase";
 };

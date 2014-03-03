@@ -121,9 +121,12 @@ If this step is not done, you will not be able to use "Teleport" OR "Teleport to
 ~~~~java
 	if (not ((getPlayerUID player) in AdminList)) then 
 	{
-		if (not ((getPlayerUID player) in tempList)) then
+		if (not ((getPlayerUID player) in ModList)) then
 		{
-			[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+			if (not ((getPlayerUID player) in tempList)) then
+			{
+				[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+			};
 		};
 	};
 ~~~~
