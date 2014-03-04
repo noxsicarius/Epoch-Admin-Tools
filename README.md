@@ -131,7 +131,6 @@ If this step is not done, you will not be able to use "Teleport" OR "Teleport to
 	};
 ~~~~
     
-...then replace the above numbers with PIDs of players with whom you wish to have the antihack disabled.
 
 ### Add more admins:
 1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
