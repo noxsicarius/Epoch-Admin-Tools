@@ -19,16 +19,30 @@ while {pselect5 == ""} do
 	WaitUntil {pselect5 != "" or snext};	
 	snext = false;
 };
+
+tempList = nil;
+
 if (pselect5 != "exit") then
 {
 	_name = pselect5;
+	
 	{
 		if(name _x == _name) then
 		{
+			_tempException = getPlayerUID _x;
+			tempList = [
+				"_tempException"
+			];
+			
 			hint format ["Teleporting %1", _name];
 			_x attachTo [vehicle player, [2, 2, 0]];
 			sleep 0.25;
 			detach _x;
+			
+			_tempException = nil;
+			tempList = [
+				"_tempException"
+			];
 		};
 	} forEach entities "CAManBase";
 };

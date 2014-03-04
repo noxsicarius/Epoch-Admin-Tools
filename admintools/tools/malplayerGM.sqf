@@ -11,6 +11,7 @@ if (malpgm == 0) then
 	malpgm = 1;
     cutText ["Player and Zombie God Mode - ON", "PLAIN"];
 	player_zombieCheck = {};
+	fnc_usec_damageHandler = {};
 	(vehicle player) removeAllEventHandlers "handleDamage";
 	(vehicle player) addEventHandler ["handleDamage", { false }];	
 	(vehicle player) allowDamage false;
@@ -37,10 +38,6 @@ if (malpgm == 0) then
 	player setHit ['legs',0];
 	player setVariable ['hit_legs',0,false];
 	player setVariable['medForceUpdate',true,true];
-	
-	while {malpgm == 1} do
-	{
-	};
 }
 	
 else
