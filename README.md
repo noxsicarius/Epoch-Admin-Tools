@@ -108,27 +108,33 @@ Done. Repackage the server pbo and upload it to your server.
 ## Optional Steps
 
 ### Fix teleport/flying rubber-banding:
-If this step is not done, you will not be able to use "Teleport" OR "Teleport to Me". This is caused by Epoch's default included antihack, which sends teleported people right back to where they were - hence "rubber-banding". Here you have two options. ***Option #1*** will allow "Teleport" and "Teleport to Me" for all players, but is potentially more hazardous than Option #2 as it disables Epoch's default antihack (which prevents unauthorized teleporting, among other things). ***Option #2*** is more secure, but it will only allow "Teleport" and "Teleport to Me" for players whose PIDs you add to the array - it will still prevent "Teleport to Me" on players not in the list of PIDs because they will still have the antihack enabled on them.
+If this step is not done, you will not be able to use "Teleport" OR "Teleport to Me". This is caused by Epoch's default included antihack, which sends teleported people right back to where they were - hence "rubber-banding". Here you have two options. ***Option #1*** is recommended because it is much more secure and it does not require the antihack to be disabled. ***Option #2*** is not recommended because it disables the antihack completely, but it will still work to fix this issue.
 
-***Option #1)*** Open your ***init.sqf*** and comment out the following line so that the result looks like this:
+***Option #1)*** Open your ***init.sqf*** and replace this:
+
+~~~~java
+[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+~~~~
+
+...with this:
+
+~~~~java
+if (not ((getPlayerUID player) in AdminList)) then 
+{
+	if (not ((getPlayerUID player) in ModList)) then
+	{
+		if (not ((getPlayerUID player) in tempList)) then
+		{
+			[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+		};
+	};
+};
+~~~~
+
+***Option #2)*** Open your ***init.sqf*** and comment out the following line so that the result looks like this:
 
 ~~~~java
 //[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-~~~~
-
-***Option #2)*** Open your ***init.sqf*** and replace the above line with this:
-
-~~~~java
-	if (not ((getPlayerUID player) in AdminList)) then 
-	{
-		if (not ((getPlayerUID player) in ModList)) then
-		{
-			if (not ((getPlayerUID player) in tempList)) then
-			{
-				[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-			};
-		};
-	};
 ~~~~
     
 
