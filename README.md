@@ -34,34 +34,28 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
 ## Installation
 
-#### Mission.pbo:
+#### MPMissions folder:
 1. Click "[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)" on the right sidebar
 2. Extract the ***admintools*** folder into the root of your Epoch mission
 3. Open your ***init.sqf*** and paste the following at the bottom:
 
     ~~~~java
     // Epoch Admin Tools
-    AdminList = [
-    "111111111", // <Admin In-Game Name>
-    "999999999" // <Admin In-Game Name>
-    ];
-    ModList = [
-    "999999999", // <Admin In-Game Name>
-    "999999999" // <Admin In-Game Name>
-    ];
     [] execVM "admintools\Activate.sqf";
     ~~~~
-    
-4. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
-5. Save the init.sqf
-6. Open your description.ext
-7. Paste the following at the bottom:
+ 
+4. Save the init.sqf
+5. Open your description.ext
+6. Paste the following at the bottom:
 
     ~~~~java
     #include "admintools\dialog.hpp"
     ~~~~
+	
+7. Open the AdminList.sqf inside your admintools folder (admintools\AdminList.sqf)
+8. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 
-##### The mission PBO can now be repacked. Continue with ***Battleye Filters*** below.
+##### Continue with ***Battleye Filters*** below.
 
 #### Battleye Filters:
 It's important that you *start* with updated filters. Many server hosts are still using old, outdated filters, which will likely cause "Script Restriction" errors if not updated. You can find these updated filters specifically made for Epoch in the Epoch Server download on the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page). Once downloaded, simply find the "Battleye" folder in the archive and extract the .txt files within to your server's Battleye folder, replacing the existing .txt files. The location of your Battleye filters depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
@@ -69,7 +63,7 @@ It's important that you *start* with updated filters. Many server hosts are stil
 1. Return to the Epoch Admin Tools zip file and open the Battleye folder.
 2. Extract the .txt files within to your server's Battleye configs folder (via FTP or web-based file manager) and replace the originals.
 
-##### Not done yet! Continue with ***Temporary vehicles despawning/blowing up fix*** below.
+##### Not done yet! Continue with ***Temporary vehicles despawning/blowing up fix*** AND ***Teleport fix**** below.
 
 #### Temporary vehicles despawning/blowing up fix:
 This is caused by Epoch's included antihack/cleanup script in the server pbo.
@@ -100,15 +94,10 @@ This is caused by Epoch's included antihack/cleanup script in the server pbo.
     if (!_parachuteWest and !(locked _object)) then {
     ~~~~
 
-Done. Repackage the server pbo and upload it to your server. 
-
-#### Installation complete! ...But you might want to consider additional optional instructions below:
+Repackage the server pbo and upload it to your server. 
 
 
-## Optional Steps
-
-### Fix teleport/flying rubber-banding:
-If this step is not done, you will not be able to use "Teleport" OR "Teleport to Me". This is caused by Epoch's default included antihack, which sends teleported people right back to where they were - hence "rubber-banding". Here you have two options. ***Option #1*** is recommended because it is much more secure and it does not require the antihack to be disabled. ***Option #2*** is not recommended because it disables the antihack completely, but it will still work to fix this issue.
+### Fix teleport/flying rubber-banding and add list of admins:
 
 ***Option #1)*** Open your ***init.sqf*** and replace this:
 
@@ -119,31 +108,37 @@ If this step is not done, you will not be able to use "Teleport" OR "Teleport to
 ...with this:
 
 ~~~~java
-if (not ((getPlayerUID player) in AdminList)) then 
-{
-	if (not ((getPlayerUID player) in ModList)) then
+	[] execVM "admintools\AdminList.sqf"; //Admin Tools
+	
+	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
 	{
-		if (not ((getPlayerUID player) in tempList)) then
-		{
-			[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-		};
+		[] execVM "\z\addons\dayz_code\system\antihack.sqf";
 	};
-};
 ~~~~
 
 ***Option #2)*** Open your ***init.sqf*** and comment out the following line so that the result looks like this:
 
 ~~~~java
+[] execVM "admintools\AdminList.sqf"; //Admin Tools: Admin/Mod list
 //[] execVM "\z\addons\dayz_code\system\antihack.sqf";
 ~~~~
-    
+
+And then place this at the end of the file so it looks like this:
+
+~~~~java
+// Epoch Admin Tools
+[] execVM "admintools\AdminList.sqf";
+[] execVM "admintools\Activate.sqf";
+~~~~
+
+######## Installation complete! #########
 
 ### Add more admins:
 1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
 2. Pick what access you want your admin to have. In order from MOST to LEAST number of commands: AdminList > ModList. You can view/edit commands in ***admintools/AdminToolsMain.sqf***.
-3. Place the PID in the chosen section of your ***init.sqf***. 
+3. Place the PID in the chosen section of your ***AdminList.sqf***. 
 
-***Important: Take note of how the array's commas are used in the init.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
+***Important: Take note of how the array's commas are used in the AdminList.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
 
 
 ## FAQ
@@ -152,3 +147,6 @@ if (not ((getPlayerUID player) in AdminList)) then
 
 ## Credits
 This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-). Special thanks to Malory for allowing a lowly script kiddie such as myself take over this project.
+Project Lead: Gregarious
+Project sub-lead: NoxSicarius (Nox)
+Project Contributors:

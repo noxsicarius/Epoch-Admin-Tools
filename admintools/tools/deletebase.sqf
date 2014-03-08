@@ -1,8 +1,5 @@
-//if ((getPlayerUID player) in server_admin_list) then { //all admins
 private ["_option","_location","_object","_objects","_objectClasses","_i","_dir","_objectID","_objectUID"];
 
-// global vars
-//if (isNil "BD_center") then { BD_center = [0,0,0]; };
 if (isNil "BD_radius") then { BD_radius = 10; };
 
 _option = _this select 0;
@@ -74,5 +71,4 @@ switch (_option) do {
 			};
 		};
 	};
-};
 };
