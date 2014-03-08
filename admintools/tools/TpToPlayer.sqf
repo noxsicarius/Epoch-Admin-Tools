@@ -33,7 +33,7 @@ if (pselect5 != "exit") then
 			hint format ["Teleporting to %1", _name];
 			(vehicle player) attachTo [_x, [2, 2, 0]];
 			sleep 0.25;
-			detach _x;
+			detach (vehicle player);
 		};
 	} forEach entities "CAManBase";
 };
