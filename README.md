@@ -7,7 +7,7 @@ Epoch-Admin-Tools
 
 An admin menu for the purpose of testing and administrating a [DayZ Epoch](https://github.com/vbawol/DayZ-Epoch) server. 
 
-## Features:
+# Features:
 #### For help with Administration:
 * Multiple Admin levels
 * Spectate players
@@ -32,43 +32,58 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 * ESP - display players, zombies, safes, tents, vehicles, and AI on the map
 * ...and more!
 
-## Installation
+# Installation
 
-#### MPMissions folder:
+### MPMissions Folder: Your_Mission.pbo:
 1. Click "[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)" on the right sidebar
 2. Extract the ***admintools*** folder into the root of your Epoch mission
 3. Open your ***init.sqf*** and paste the following at the bottom:
 
-    ~~~~java
-    // Epoch Admin Tools
-    [] execVM "admintools\Activate.sqf";
-    ~~~~
- 
-4. Save the init.sqf
-5. Open your description.ext
-6. Paste the following at the bottom:
+	~~~~java
+	// Epoch Admin Tools
+	[] execVM "admintools\AdminList.sqf";
+	[] execVM "admintools\Activate.sqf";
+	~~~~
+
+4. And replace this:
+
+	~~~~java
+	[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	~~~~
+
+	...with this:
+
+	~~~~java
+	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
+	{
+		[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	};
+	~~~~
+
+5. Save the init.sqf
+6. Open your ***description.ext***
+7. Paste the following at the bottom:
 
     ~~~~java
+    // Epoch Admin Tools
     #include "admintools\dialog.hpp"
     ~~~~
 	
-7. Open the AdminList.sqf inside your admintools folder (admintools\AdminList.sqf)
-8. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
+8. Open ***admintools\AdminList.sqf***
+9. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 
-##### Continue with ***Battleye Filters*** below.
 
-#### Battleye Filters:
+### Server: Battleye Filters
 It's important that you *start* with updated filters. Many server hosts are still using old, outdated filters, which will likely cause "Script Restriction" errors if not updated. You can find these updated filters specifically made for Epoch in the Epoch Server download on the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page). Once downloaded, simply find the "Battleye" folder in the archive and extract the .txt files within to your server's Battleye folder, replacing the existing .txt files. The location of your Battleye filters depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 
-1. Return to the Epoch Admin Tools zip file and open the Battleye folder.
-2. Extract the .txt files within to your server's Battleye configs folder (via FTP or web-based file manager) and replace the originals.
+1. Return to the Epoch Admin Tools zip file and open the ***Battleye*** folder.
+2. Extract the .txt files within to your server's Battleye filters folder (via FTP or web-based file manager) and replace the originals.
 
-##### Not done yet! Continue with ***Temporary vehicles despawning/blowing up fix*** AND ***Teleport fix**** below.
 
-#### Temporary vehicles despawning/blowing up fix:
-This is caused by Epoch's included antihack/cleanup script in the server pbo.
+### Server: Temporary vehicles despawning/blowing up fix
+This is caused by Epoch's included antihack/cleanup script in the ***@DayZ_Epoch_Server/addons/dayz_server.pbo***. The dayz_server.pbo can be unpacked and packed just like your mission .pbo.
 
-1. Open your server .pbo file with your preferred PBO editor.
+1. Open your ***dayz_server*** folder after unpacking it with your preferred PBO editor.
 2. Open ***init/server_functions.sqf*** and search the file for the following:
 
     ~~~~java
@@ -94,49 +109,15 @@ This is caused by Epoch's included antihack/cleanup script in the server pbo.
     if (!_parachuteWest and !(locked _object)) then {
     ~~~~
 
-Repackage the server pbo and upload it to your server. 
+5. Repackage the server pbo and upload it to your server. 
 
 
-### Fix teleport/flying rubber-banding and add list of admins:
+# Installation complete!
 
-***Option #1)*** Open your ***init.sqf*** and replace this:
-
-~~~~java
-[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-~~~~
-
-...with this:
-
-~~~~java
-	[] execVM "admintools\AdminList.sqf"; //Admin Tools
-	
-	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
-	{
-		[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-	};
-~~~~
-
-***Option #2)*** Open your ***init.sqf*** and comment out the following line so that the result looks like this:
-
-~~~~java
-[] execVM "admintools\AdminList.sqf"; //Admin Tools: Admin/Mod list
-//[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-~~~~
-
-And then place this at the end of the file so it looks like this:
-
-~~~~java
-// Epoch Admin Tools
-[] execVM "admintools\AdminList.sqf";
-[] execVM "admintools\Activate.sqf";
-~~~~
-
-######## Installation complete! #########
-
-### Add more admins:
+## (Optional) Add more admins:
 1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
-2. Pick what access you want your admin to have. In order from MOST to LEAST number of commands: AdminList > ModList. You can view/edit commands in ***admintools/AdminToolsMain.sqf***.
-3. Place the PID in the chosen section of your ***AdminList.sqf***. 
+2. Pick what access you want your admin to have - Admin or Moderator (Mod). You can view/edit commands and access in ***admintools/AdminToolsMain.sqf***.
+3. Place the PID in the chosen section of your ***admintools/AdminList.sqf***. 
 
 ***Important: Take note of how the array's commas are used in the AdminList.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
 
@@ -146,7 +127,7 @@ And then place this at the end of the file so it looks like this:
  * Make sure you've installed the Battleye Filters correctly. If everything looks good, create a new issue for me here on Github so I can look into a fix. If you're feeling independant, you can fix the error yourself with a little knowledge about [how the filters work](http://dayz.st/w/Battleye_Filters).
 
 ## Credits
-This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-). Special thanks to Malory for allowing a lowly script kiddie such as myself take over this project.
-Project Lead: Gregarious
-Project sub-lead: NoxSicarius (Nox)
-Project Contributors:
+This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
+
+* Project Lead: Gregarious
+* Project sub-lead: NoxSicarius (Nox)
