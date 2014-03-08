@@ -43,15 +43,17 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
     // Epoch Admin Tools
     [] execVM "admintools\Activate.sqf";
     ~~~~
-    
-4. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
-5. Save the init.sqf
-6. Open your description.ext
-7. Paste the following at the bottom:
+ 
+4. Save the init.sqf
+5. Open your description.ext
+6. Paste the following at the bottom:
 
     ~~~~java
     #include "admintools\dialog.hpp"
     ~~~~
+	
+7. Open the AdminList.sqf inside your admintools folder (admintools\AdminList.sqf)
+8. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 
 ##### Continue with ***Battleye Filters*** below.
 
