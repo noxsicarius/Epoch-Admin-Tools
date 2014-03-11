@@ -1,16 +1,13 @@
 _pathtotools = "admintools\tools\";
-_pathtoskins = "admintools\skins\";
+//_pathtoskins = "admintools\skins\";
 _pathtoweapon = "admintools\weaponkits\";
-// _pathtoshields = "admintools\shields\";
 _pathtovehicles = "admintools\vehicles\";
 _pathtocrates = "admintools\crates\";
 _EXECscript1 = 'player execVM "'+_pathtotools+'%1"';
-_EXECscript2 = 'player execVM "'+_pathtoskins+'%1"';
+//_EXECscript2 = 'player execVM "'+_pathtoskins'%1"';
 _EXECscript3 = 'player execVM "'+_pathtoweapon+'%1"';
-// _EXECscript4 = 'player execVM "'+_pathtoshields+'%1"';
 _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
 _EXECscript6 = 'player execVM "'+_pathtocrates+'%1"';
-// if ((getPlayerUID player) in AllAdminList) then { // All Admins
 if ((getPlayerUID player) in AdminList) then { // Admins
 	epochmenustart =
 	[
@@ -38,7 +35,7 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
 	];};			
-// };
+
 AdminMenu =
 [
 ["",true],
@@ -61,19 +58,19 @@ AdminMenu =
 ModMenu =
 [
 ["",true],
-	["Spectate player", [],  "", -5, [["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
-	["Teleport", [],  "", -5, [["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
-	["Teleport To Me", [], "", -5, [["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],		
-	["Teleport To Player", [], "", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
-	["Toggle God Mode", [],  "", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
-	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
+	["Spectate player",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Teleport",[],"", -5,[["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
+	["Teleport To Me",[],"", -5,[["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],		
+	["Teleport To Player",[],"",-5,[["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
+	["Toggle God Mode",[],"", -5,[["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
+	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
-	["Invisibility", [],  "", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
-	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],			
-	["Toggle Grass", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
-	["", [], "", -5, [["expression", ""]], "1", "0"],
-		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+	["Heal (25m)",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
+	["Invisibility",[],"",-5,[["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
+	["Infinite Ammo",[],"",-5,[["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],			
+	["Toggle Grass",[],"",-5,[["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu",[20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 VehicleMenu =
 [
@@ -112,22 +109,22 @@ EspMenu =
 [
 ["",true],
 	["Modify ESP options in EnhancedESP.sqf",[],"",-5,[["expression",""]],"1","0"],
-	["Enhanced ESP", [],  "", -5, [["expression", format[_EXECscript1,"EnhancedESP.sqf"]]], "1", "1"],
-	["Player ESP Only", [],  "", -5, [["expression", format[_EXECscript1,"mallightesp.sqf"]]], "1", "1"],		
-		["", [], "", -5, [["expression", ""]], "1", "0"],
-		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+	["Enhanced ESP",[],"", -5, [["expression", format[_EXECscript1,"EnhancedESP.sqf"]]],"1","1"],
+	["Player ESP Only",[],"", -5, [["expression", format[_EXECscript1,"mallightesp.sqf"]]],"1","1"],		
+		["",[],"", -5, [["expression",""]],"1","0"],
+		["Main Menu",[20],"#USER:epochmenustart", -5,[["expression",""]],"1","1"]
 ];
 AdminSkinsMenu =
 [
 ["",true],
-	["Survivor", [],  "", -5, [["expression", format[_EXECscript2,"Survivor.sqf"]]], "1", "1"],	
-	["Hero", [],  "", -5, [["expression", format[_EXECscript2,"Hero.sqf"]]], "1", "1"],	
-	["Bandit", [],  "", -5, [["expression", format[_EXECscript2,"Bandit.sqf"]]], "1", "1"],
-	["Soldier", [],  "", -5, [["expression", format[_EXECscript2,"Soldier.sqf"]]], "1", "1"],		
-	["Ghillie", [],  "", -5, [["expression", format[_EXECscript2,"Ghillie.sqf"]]], "1", "1"],
-	["Special Forces", [],  "", -5, [["expression", format[_EXECscript2,"Specialforces.sqf"]]], "1", "1"],
-	["Pilot", [],  "", -5, [["expression", format[_EXECscript2,"Pilot.sqf"]]], "1", "1"],			
-	["Invisible", [],  "", -5, [["expression", format[_EXECscript2,"invisible.sqf"]]], "1", "1"],
+	["Survivor",[],"",-5,[["expression",'["Survivor2_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Hero",[],"",-5,[["expression",'["Survivor3_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Bandit",[],"",-5,[["expression",'["Bandit1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Soldier",[],"",-5,[["expression",'["Soldier1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Ghillie",[],"",-5,[["expression",'["Sniper1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Special Forces",[],"",-5,[["expression",'["CZ_Special_Forces_GL_DES_EP1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Pilot",[],"",-5,[["expression",'["Pilot_EP1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"],		
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -135,14 +132,14 @@ AdminSkinsMenu =
 AdminSkinsMenu2 =
 [
 ["",true],
-	["Camo", [],  "", -5, [["expression", format[_EXECscript2,"Camo.sqf"]]], "1", "1"],		
-	["Bodyguard", [],  "", -5, [["expression", format[_EXECscript2,"Bodyguard.sqf"]]], "1", "1"],
-	["Officer", [],  "", -5, [["expression", format[_EXECscript2,"Officer.sqf"]]], "1", "1"],	
-	["Alejandria", [],  "", -5, [["expression", format[_EXECscript2,"Alejandria.sqf"]]], "1", "1"],
-	["Savannah", [],  "", -5, [["expression", format[_EXECscript2,"Savannah.sqf"]]], "1", "1"],	
-	["Melly", [],  "", -5, [["expression", format[_EXECscript2,"Melly.sqf"]]], "1", "1"],
-	["Bandit Jane", [],  "", -5, [["expression", format[_EXECscript2,"BanditJane.sqf"]]], "1", "1"],		
-	["Invisible", [],  "", -5, [["expression", format[_EXECscript2,"invisible.sqf"]]], "1", "1"],
+	["Camo",[],"",-5,[["expression",'["Camo1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Bodyguard",[],"",-5,[["expression",'["Soldier_Bodyguard_AA12_PMC_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Officer",[],"",-5,[["expression",'["Rocket_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Alejandria",[],"",-5,[["expression",'["SurvivorWcombat_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Savannah",[],"",-5,[["expression",'["SurvivorWdesert_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Melly",[],"",-5,[["expression",'["SurvivorWpink_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Bandit Jane",[],"",-5,[["expression",'["BanditW2_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
