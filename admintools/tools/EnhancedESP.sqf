@@ -1,5 +1,6 @@
-_str = parseText format ["%1<br/>Enhanced ESP <t color='#45b711'>ON</t>"];
-hint _str;
+_strON = parseText format ["%1<br/>Enhanced ESP <t color='#45b711'>ON</t>"];
+_strOFF = parseText format ["%1<br/>Enhanced ESP <t color='#45b711'>OFF</t>"];
+
 
 //Added semicolon after markPos = !markPos
 if (isNil "markPos") then {markPos = true;} else {markPos = !markPos;};
@@ -52,6 +53,7 @@ CrashesMarkerColor="ColorRed";
 //----------------------#Crashes#--------------------------
 
 //GLOBAL VARS END
+if(markPos) then {hint _strON;};
 
 While {markPos} do 
 {
@@ -193,6 +195,7 @@ While {markPos} do
 
 if(!markPos) then 
 {
+	hint _strOFF;
 	If (AddPlayersToMap) then 
 	{
 		{
