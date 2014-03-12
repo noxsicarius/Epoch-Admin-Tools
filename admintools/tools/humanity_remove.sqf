@@ -8,12 +8,12 @@ _target = cursorTarget;
 humanityRemoveScreen = [
 	["",true],
 	["Select humanity to remove:", [-1], "", 0, [["expression", "humanity_remove=false;"]], "1", "0"],
-	["100", [2], "", -5, [["expression", "humanityGain=-100;selector=true;"]], "1", "1"],
-	["500", [3], "", -5, [["expression", "humanityGain=-500;selector=true;"]], "1", "1"],
-	["1000", [4], "", -5, [["expression", "humanityGain=-1000;selector=true;"]], "1", "1"],
-	["2500", [5], "", -5, [["expression", "humanityGain=-2500;selector=true;"]], "1", "1"],
-	["5000", [6], "", -5, [["expression", "humanityGain=-5000;selector=true;"]], "1", "1"],
-	["10000", [7], "", -5, [["expression", "humanityGain=-10000;selector=true;"]], "1", "1"],
+	["-100", [2], "", -5, [["expression", "humanityGain=-100;selector=true;"]], "1", "1"],
+	["-500", [3], "", -5, [["expression", "humanityGain=-500;selector=true;"]], "1", "1"],
+	["-1000", [4], "", -5, [["expression", "humanityGain=-1000;selector=true;"]], "1", "1"],
+	["-2500", [5], "", -5, [["expression", "humanityGain=-2500;selector=true;"]], "1", "1"],
+	["-5000", [6], "", -5, [["expression", "humanityGain=-5000;selector=true;"]], "1", "1"],
+	["-10000", [7], "", -5, [["expression", "humanityGain=-10000;selector=true;"]], "1", "1"],
 	["Exit", [8], "", 0, [["expression", "humanity_remove=false;"]], "1", "1"]
 ];
 
