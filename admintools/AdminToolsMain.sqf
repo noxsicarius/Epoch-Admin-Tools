@@ -117,6 +117,14 @@ EspMenu =
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+HumanityMenu =
+[
+["",true],
+	["Add Humanity to self or target", [],  "", -5, [["expression", format[_EXECscript1,"humanity.sqf"]]], "1", "1"],
+	["Remove Humanity from self or target", [],  "", -5, [["expression", format[_EXECscript1,"humanity_remove.sqf"]]], "1", "1"],	
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
 AdminSkinsMenu =
 [
 ["",true],
