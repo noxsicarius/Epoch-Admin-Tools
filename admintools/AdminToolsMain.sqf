@@ -45,7 +45,8 @@ AdminMenu =
 	["Teleport To Player", [], "", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
 	["Toggle God Mode", [],  "", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
 	["Zombie Shield",[],"",-5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
-	["Toggle Flying", [],  "", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],		
+	["Toggle Flying", [],  "", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],
+	["Humanity Menu >>", [], "#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
@@ -113,6 +114,14 @@ EspMenu =
 	["Player ESP Only",[],"", -5, [["expression", format[_EXECscript1,"mallightesp.sqf"]]],"1","1"],		
 		["",[],"", -5, [["expression",""]],"1","0"],
 		["Main Menu",[20],"#USER:epochmenustart", -5,[["expression",""]],"1","1"]
+];
+HumanityMenu =
+[
+["",true],
+	["Add Humanity to self or target", [],  "", -5, [["expression", format[_EXECscript1,"humanity.sqf"]]], "1", "1"],
+	["Remove Humanity from self or target", [],  "", -5, [["expression", format[_EXECscript1,"humanity_remove.sqf"]]], "1", "1"],	
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 AdminSkinsMenu =
 [
