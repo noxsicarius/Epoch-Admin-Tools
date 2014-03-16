@@ -1,4 +1,4 @@
-if (isNil "SheildMe") then {SheildMe = true;} else {SheildMe = !SheildMe};
+if (isNil "SheildMe") then {SheildMe = true;} else {SheildMe = !SheildMe;};
  if(SheildMe) then {
  zombieDistanceScreen = 
 [

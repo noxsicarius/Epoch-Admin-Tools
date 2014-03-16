@@ -30,7 +30,7 @@ if (pselect5 != "exit") then
 	{
 		if(name _x == _name) then
 		{			
-			hint format ["Teleporting to %1", _name];
+			titleText[format["Teleporting to %1", _name],"PLAIN DOWN"];
 			(vehicle player) attachTo [_x, [2, 2, 0]];
 			sleep 0.25;
 			detach (vehicle player);

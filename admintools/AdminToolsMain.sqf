@@ -1,10 +1,8 @@
 _pathtotools = "admintools\tools\";
-//_pathtoskins = "admintools\skins\";
 _pathtoweapon = "admintools\weaponkits\";
 _pathtovehicles = "admintools\vehicles\";
 _pathtocrates = "admintools\crates\";
 _EXECscript1 = 'player execVM "'+_pathtotools+'%1"';
-//_EXECscript2 = 'player execVM "'+_pathtoskins'%1"';
 _EXECscript3 = 'player execVM "'+_pathtoweapon+'%1"';
 _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
 _EXECscript6 = 'player execVM "'+_pathtocrates+'%1"';
@@ -45,12 +43,12 @@ AdminMenu =
 	["Teleport To Player", [], "", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
 	["Toggle God Mode", [],  "", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
 	["Zombie Shield",[],"",-5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
-	["Toggle Flying", [],  "", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],
-	["Humanity Menu >>", [], "#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
 	["Invisibility", [],  "", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
+	["Toggle Flying", [],  "", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],
+	["Humanity Menu >>", [], "#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],	
 	["Toggle Grass", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
