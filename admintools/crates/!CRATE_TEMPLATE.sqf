@@ -4,9 +4,6 @@ _crateName = "Your Crate";
 // Crate type. Possibilities: MedBox0, FoodBox0, BAF_BasicWeapons, USSpecialWeaponsBox, USSpecialWeapons_EP1, USVehicleBox, RUSpecialWeaponsBox, RUVehicleBox, etc.
 _classname = "USOrdnanceBox";
 
-// Set the # of items
-_numItems = 1;
-
 // Location of player and crate
 _dir = getdir player;
 _pos = getposATL player;
@@ -21,14 +18,16 @@ clearMagazineCargoGlobal _spawnCrate;
 clearBackpackCargoGlobal _spawnCrate;
 
 // Add weapon-slot items to crate
-_spawnCrate addWeaponCargoGlobal ["Binocular", _numItems * 5];
-_spawnCrate addWeaponCargoGlobal ["ItemEtool", _numItems * 5];
+// Syntax: _spawnCrate addWeaponCargoGlobal ["ITEM", number-of-items];
+_spawnCrate addWeaponCargoGlobal ["Binocular", 5];
+_spawnCrate addWeaponCargoGlobal ["ItemEtool", 5];
 
 // Add magazine-slot items to crate
-_spawnCrate addMagazineCargoGlobal ["FoodSteakCooked", _numItems * 5];
-_spawnCrate addMagazineCargoGlobal ["ItemAntibiotic", _numItems * 5];
+// Syntax: _spawnCrate addMagazineCargoGlobal ["ITEM", number-of-items];
+_spawnCrate addMagazineCargoGlobal ["FoodSteakCooked", 5];
+_spawnCrate addMagazineCargoGlobal ["ItemAntibiotic", 5];
 
-// Add only 1 backpack. The rest will fall out onto the ground.
+// Add only 1 backpack. The rest will fall out onto the ground. Do not use LargeGunBag here, the box will not hold it.
 _spawnCrate addBackpackCargoGlobal ["DZ_Backpack_EP1", 1];
 
 // Send text to spawner only

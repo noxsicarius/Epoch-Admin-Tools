@@ -1,0 +1,11 @@
+GearAdd = (vehicle player);
+GearRemove = (vehicle player);
+removeAllWeapons GearRemove;
+GearAdd addWeapon 'AKS_74_kobra';
+GearAdd addMagazine '30Rnd_545x39_AK';
+GearAdd addMagazine '30Rnd_545x39_AK';
+GearAdd addMagazine '30Rnd_545x39_AK';
+GearAdd addWeapon 'M9SD';
+GearAdd addMagazine '15Rnd_9x19_M9SD';
+GearAdd addMagazine '15Rnd_9x19_M9SD';
+GearAdd addMagazine '15Rnd_9x19_M9SD';
