@@ -41,7 +41,6 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
 	~~~~java
 	// Epoch Admin Tools
-	[] execVM "admintools\AdminList.sqf";
 	[] execVM "admintools\Activate.sqf";
 	~~~~
 
@@ -54,6 +53,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 	...with this:
 
 	~~~~java
+	[] execVM "admintools\AdminList.sqf";
 	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
 	{
 		[] execVM "\z\addons\dayz_code\system\antihack.sqf";
@@ -114,13 +114,21 @@ This is caused by Epoch's included antihack/cleanup script in the ***@DayZ_Epoch
 
 # Installation complete!
 
+##################### IMPORTANT #####################
+If there is a problem with the tools:
+Help requests can be posted on the main forum here: http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/
+	Reinstall the tools following the ReadMe very carefully.
+	If the above does not work you MUST include the following in a forum post:
+	Provide a DETAILED description of what is happening
+	Provide the RPT log for your server
+	If it is clashing with another mod provide a list of all mods on your server
+
 ## (Optional) Add more admins:
 1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
 2. Pick what access you want your admin to have - Admin or Moderator (Mod). You can view/edit commands and access in ***admintools/AdminToolsMain.sqf***.
 3. Place the PID in the chosen section of your ***admintools/AdminList.sqf***. 
 
 ***Important: Take note of how the array's commas are used in the AdminList.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
-
 
 ## FAQ
 * I'm getting kicked with "Script Restriction #X"!
@@ -130,4 +138,4 @@ This is caused by Epoch's included antihack/cleanup script in the ***@DayZ_Epoch
 This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
 
 * Project Lead: Gregarious
-* Project sub-lead: NoxSicarius (Nox)
+* Project contributor: NoxSicarius (Nox)

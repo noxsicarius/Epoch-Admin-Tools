@@ -26,7 +26,7 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 	epochmenustart =
 	[
 	["",true],
-		["-- Epoch Admin Tools (Level: Mod) --", [],  "", -5, [["expression", ""]], "1", "0"],
+		["-- Epoch Admin Tools (Level: Mod) --", [],"", -5, [["expression", ""]], "1", "0"],
 		["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
 		["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
@@ -37,21 +37,21 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 AdminMenu =
 [
 ["",true],
-	["Spectate player", [],  "", -5, [["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
-	["Teleport", [],  "", -5, [["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
-	["Teleport To Me", [], "", -5, [["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],
-	["Teleport To Player", [], "", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
-	["Toggle God Mode", [],  "", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
-	["Zombie Shield",[],"",-5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
-	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
-	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Heal (25m)", [],  "", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
-	["Invisibility", [],  "", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
-	["Toggle Flying", [],  "", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],
-	["Humanity Menu >>", [], "#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
-	["Infinite Ammo", [],  "", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],	
-	["Toggle Grass", [],  "", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
-	["", [], "", -5, [["expression", ""]], "1", "0"],
+	["Spectate player",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Teleport",[],"", -5,[["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
+	["Teleport To Me",[],"", -5, [["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],
+	["Teleport To Player",[],"", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
+	["Toggle God Mode",[],"", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
+	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
+	["Point to Repair (Perm)",[],"", -5,[["expression", format[_EXECscript1,"PointRepairPERM.sqf"]]], "1", "1"],
+	["Point to Delete (Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
+	["Heal (25m)",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
+	["Invisibility",[],"", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
+	["Toggle Flying",[],"", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],
+	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
+	["Infinite Ammo",[],"", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],	
+	["Toggle Grass",[],"", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 ModMenu =
@@ -74,7 +74,7 @@ ModMenu =
 VehicleMenu =
 [
 ["",true],	
-	["Graphical Vehicle Menu", [],  "", -5, [["expression", format[_EXECscript1,"addvehicleDialog.sqf"]]], "1", "1"],	
+	["Graphical Vehicle Menu", [],"", -5, [["expression", format[_EXECscript1,"addvehicleDialog.sqf"]]], "1", "1"],	
 	["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
 	["Locked Vehicle Menu >>", [], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],		
 	["Vehicle Tools >>", [], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],
@@ -84,23 +84,24 @@ VehicleMenu =
 VehicleTools =
 [
 ["",true],	
-	["Speedboost", [],  "", -5, [["expression", format[_EXECscript1,"speedboost.sqf"]]], "1", "1"],		
-	["Toggle Vehicle Auto Repair",[],  "", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],		
-	["Point to Repair (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
-	["Point to only Refuel (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],		
-	["Point to Delete (Temp)", [],  "", -5, [["expression", format[_EXECscript1,"malpointdelete.sqf"]]], "1", "1"],		
+	["Speedboost", [],"", -5, [["expression", format[_EXECscript1,"speedboost.sqf"]]], "1", "1"],		
+	["Toggle Vehicle Auto Repair",[],"", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],		
+	["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
+	["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECscript1,"PointRepairPERM.sqf"]]], "1", "1"],
+	["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointdelete.sqf"]]], "1", "1"],		
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Flip Vehicle", [],  "", -5, [["expression", format[_EXECscript1,"flipvehicle.sqf"]]], "1", "1"],		
+	["Point to only Refuel (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],		
+	["Flip Vehicle", [],"", -5, [["expression", format[_EXECscript1,"flipvehicle.sqf"]]], "1", "1"],		
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 VehiclekeyMenu =
 [
 ["",true],
-	["Neutral Trader Menu", [],  "", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenuneutral.sqf"]]], "1", "1"],
-	["Friendly Trader Menu", [],  "", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenufriendly.sqf"]]], "1", "1"],		
-	["Hero Trader Menu", [],  "", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenuhero.sqf"]]], "1", "1"],
-	["Bandit Trader Menu", [],  "", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenubandit.sqf"]]], "1", "1"],
+	["Neutral Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenuneutral.sqf"]]], "1", "1"],
+	["Friendly Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenufriendly.sqf"]]], "1", "1"],		
+	["Hero Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenuhero.sqf"]]], "1", "1"],
+	["Bandit Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenubandit.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -116,8 +117,8 @@ EspMenu =
 HumanityMenu =
 [
 ["",true],
-	["Add Humanity to self or target", [],  "", -5, [["expression", format[_EXECscript1,"humanity.sqf"]]], "1", "1"],
-	["Remove Humanity from self or target", [],  "", -5, [["expression", format[_EXECscript1,"humanity_remove.sqf"]]], "1", "1"],	
+	["Add Humanity to self or target", [],"", -5, [["expression", format[_EXECscript1,"humanity.sqf"]]], "1", "1"],
+	["Remove Humanity from self or target", [],"", -5, [["expression", format[_EXECscript1,"humanity_remove.sqf"]]], "1", "1"],	
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -153,15 +154,15 @@ AdminSkinsMenu2 =
 WeaponMenu =
 [
 ["",true],
-	["Delete all gear", [],  "", -5, [["expression", format[_EXECscript3,"cleanme.sqf"]]], "1", "1"],
-	["M4 Holo", [],  "", -5, [["expression", format[_EXECscript3,"M4Holo.sqf"]]], "1", "1"],
-	["M4 CCO SD", [],  "", -5, [["expression", format[_EXECscript3,"M4cco-SD.sqf"]]], "1", "1"],
-	["M4A1 HWS GL SD Camo", [],  "", -5, [["expression", format[_EXECscript3,"M4A1gl-SD.sqf"]]], "1", "1"],
-	["Sa58V ACOG", [],  "", -5, [["expression", format[_EXECscript3,"Sa58V-ACOG.sqf"]]], "1", "1"],
-	["M16 ACOG", [],  "", -5, [["expression", format[_EXECscript3,"M16-ACOG.sqf"]]], "1", "1"],
-	["Aks Kobra", [],  "", -5, [["expression", format[_EXECscript3,"AksKobra.sqf"]]], "1", "1"],	
-	["FN FAL", [],  "", -5, [["expression", format[_EXECscript3,"FN-FAL.sqf"]]], "1", "1"],
-	["Pecheneg 50 cal", [],  "", -5, [["expression", format[_EXECscript3,"Pecheneg.sqf"]]], "1", "1"],
+	["Delete all gear", [],"", -5, [["expression", format[_EXECscript3,"cleanme.sqf"]]], "1", "1"],
+	["M4 Holo", [],"", -5, [["expression", format[_EXECscript3,"M4Holo.sqf"]]], "1", "1"],
+	["M4 CCO SD", [],"", -5, [["expression", format[_EXECscript3,"M4cco-SD.sqf"]]], "1", "1"],
+	["M4A1 HWS GL SD Camo", [],"", -5, [["expression", format[_EXECscript3,"M4A1gl-SD.sqf"]]], "1", "1"],
+	["Sa58V ACOG", [],"", -5, [["expression", format[_EXECscript3,"Sa58V-ACOG.sqf"]]], "1", "1"],
+	["M16 ACOG", [],"", -5, [["expression", format[_EXECscript3,"M16-ACOG.sqf"]]], "1", "1"],
+	["Aks Kobra", [],"", -5, [["expression", format[_EXECscript3,"AksKobra.sqf"]]], "1", "1"],	
+	["FN FAL", [],"", -5, [["expression", format[_EXECscript3,"FN-FAL.sqf"]]], "1", "1"],
+	["Pecheneg 50 cal", [],"", -5, [["expression", format[_EXECscript3,"Pecheneg.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Next page", [], "#USER:WeaponMenu2", -5, [["expression", ""]], "1", "1"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -169,14 +170,14 @@ WeaponMenu =
 WeaponMenu2 =
 [
 ["",true],
-	["Mk 48", [],  "", -5, [["expression", format[_EXECscript3,"Mk48.sqf"]]], "1", "1"],
-	["AS50", [],  "", -5, [["expression", format[_EXECscript3,"AS50.sqf"]]], "1", "1"],
-	[".338 LAPUA", [],  "", -5, [["expression", format[_EXECscript3,"Lapua.sqf"]]], "1", "1"],
-	["DMR", [],  "", -5, [["expression", format[_EXECscript3,"DMR.sqf"]]], "1", "1"],
-	["M14 Aim", [],  "", -5, [["expression", format[_EXECscript3,"M14Aim.sqf"]]], "1", "1"],
-	["Alice Pack", [],  "", -5, [["expression", format[_EXECscript3,"bpAlice.sqf"]]], "1", "1"],
-	["Large Gun Bag", [],  "", -5, [["expression", format[_EXECscript3,"bpLargeGunBag.sqf"]]], "1", "1"],
-	["All Tools/Medical", [],  "", -5, [["expression", format[_EXECscript3,"items.sqf"]]], "1", "1"],
+	["Mk 48", [],"", -5, [["expression", format[_EXECscript3,"Mk48.sqf"]]], "1", "1"],
+	["AS50", [],"", -5, [["expression", format[_EXECscript3,"AS50.sqf"]]], "1", "1"],
+	[".338 LAPUA", [],"", -5, [["expression", format[_EXECscript3,"Lapua.sqf"]]], "1", "1"],
+	["DMR", [],"", -5, [["expression", format[_EXECscript3,"DMR.sqf"]]], "1", "1"],
+	["M14 Aim", [],"", -5, [["expression", format[_EXECscript3,"M14Aim.sqf"]]], "1", "1"],
+	["Alice Pack", [],"", -5, [["expression", format[_EXECscript3,"bpAlice.sqf"]]], "1", "1"],
+	["Large Gun Bag", [],"", -5, [["expression", format[_EXECscript3,"bpLargeGunBag.sqf"]]], "1", "1"],
+	["All Tools/Medical", [],"", -5, [["expression", format[_EXECscript3,"items.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
