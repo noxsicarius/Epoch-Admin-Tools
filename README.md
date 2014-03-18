@@ -43,7 +43,6 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
 	~~~~java
 	// Epoch Admin Tools
-	[] execVM "admintools\AdminList.sqf";
 	[] execVM "admintools\Activate.sqf";
 	~~~~
 
@@ -56,6 +55,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 	...with this:
 
 	~~~~java
+	[] execVM "admintools\AdminList.sqf";
 	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
 	{
 		[] execVM "\z\addons\dayz_code\system\antihack.sqf";
