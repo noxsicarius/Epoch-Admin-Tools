@@ -40,7 +40,7 @@ speedBoostToggle = {
 };
 invisibilityToggle = {
 	invisibility = !invisibility;
-	[] execVM "admintools\tools\malinvisinit.sqf";
+	[invisiblity] execVM "admintools\tools\malinvis.sqf";
 };
 flyingToggle = {
 	flying = !flying;
@@ -71,7 +71,7 @@ AdminToggleON =
 	if (speedBoost) then {[speedBoost] execVM "admintools\tools\speedboost.sqf";};
 	if (enhancedESP) then {[enhancedESP] execVM "admintools\tools\EnhancedESP.sqf";};
 	if (playerESP) then {[playerESP] execVM "admintools\tools\mallightesp.sqf";};
-	if (invisibility) then {[] execVM "admintools\tools\malinvisinit.sqf";};
+	if (invisibility) then {[invisibility] execVM "admintools\tools\malinvis.sqf";};
 	if (infAmmo) then {[infAmmo] execVM "admintools\tools\malinfammo.sqf";};
 	if (flying) then {[flying] execVM "admintools\tools\malfly.sqf";};
 	if (godMode) then {[godMode] execVM "admintools\tools\malplayerGM.sqf";};
@@ -84,7 +84,7 @@ AdminToggleOFF
 	if (speedBoost) then {[!speedBoost] execVM "admintools\tools\speedboost.sqf";};
 	if (enhancedESP) then {[!enhancedESP] execVM "admintools\tools\EnhancedESP.sqf";};
 	if (playerESP) then {[!playerESP] execVM "admintools\tools\mallightesp.sqf";};
-	if (invisibility) then {[] execVM "admintools\tools\malinvisinit.sqf";};
+	if (invisibility) then {[!invisibility] execVM "admintools\tools\malinvis.sqf";};
 	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\malinfammo.sqf";};
 	if (flying) then {[!flying] execVM "admintools\tools\malfly.sqf";};
 	if (godMode) then {[!godMode] execVM "admintools\tools\malplayerGM.sqf";};

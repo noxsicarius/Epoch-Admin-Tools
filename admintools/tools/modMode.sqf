@@ -29,7 +29,7 @@ infAmmoToggle = {
 };
 invisibilityToggle = {
 	invisibility = !invisibility;
-	[] execVM "admintools\tools\malinvisinit.sqf";
+	[invisibility] execVM "admintools\tools\malinvis.sqf";
 };
 
 optionMenu = 
@@ -51,7 +51,7 @@ optionMenu =
 modToggleON =
 {
 	if (playerESP) then {[playerESP] execVM "admintools\tools\mallightesp.sqf";};
-	if (invisibility) then {[] execVM "admintools\tools\malinvisinit.sqf";};
+	if (invisibility) then {[invisibility] execVM "admintools\tools\malinvis.sqf";};
 	if (infAmmo) then {[infAmmo] execVM "admintools\tools\malinfammo.sqf";};
 	if (godMode) then {[godMode] execVM "admintools\tools\malplayerGM.sqf";};
 	if (carGodMode) then {[carGodMode] execVM "admintools\tools\malvehicleGMon.sqf";};
@@ -61,7 +61,7 @@ modToggleON =
 modToggleOFF =
 {
 	if (playerESP) then {[!playerESP] execVM "admintools\tools\mallightesp.sqf";};
-	if (invisibility) then {[] execVM "admintools\tools\malinvisinit.sqf";};
+	if (invisibility) then {[!invisibility] execVM "admintools\tools\malinvis.sqf";};
 	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\malinfammo.sqf";};
 	if (godMode) then {[!godMode] execVM "admintools\tools\malplayerGM.sqf";};
 	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\malvehicleGMon.sqf";};
