@@ -40,7 +40,7 @@ speedBoostToggle = {
 };
 invisibilityToggle = {
 	invisibility = !invisibility;
-	[invisiblity] execVM "admintools\tools\malinvis.sqf";
+	[invisibility] execVM "admintools\tools\malinvis.sqf";
 };
 flyingToggle = {
 	flying = !flying;
@@ -79,7 +79,7 @@ AdminToggleON =
 	if (grassOff) then {[grassOff] execVM "admintools\tools\malgrasson.sqf";};
 };
 
-AdminToggleOFF
+AdminToggleOFF =
 {
 	if (speedBoost) then {[!speedBoost] execVM "admintools\tools\speedboost.sqf";};
 	if (enhancedESP) then {[!enhancedESP] execVM "admintools\tools\EnhancedESP.sqf";};
