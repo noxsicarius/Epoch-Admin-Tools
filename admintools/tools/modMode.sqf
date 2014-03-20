@@ -48,24 +48,34 @@ optionMenu =
 	showCommandingMenu "#USER:toggleMenu";
 };
 
-AdminToggle =
+modToggleON =
 {
 	if (playerESP) then {[playerESP] execVM "admintools\tools\mallightesp.sqf";};
-	if (invisibility) then {[invisibility] execVM "admintools\tools\malinvisinit.sqf";};
+	if (invisibility) then {[] execVM "admintools\tools\malinvisinit.sqf";};
 	if (infAmmo) then {[infAmmo] execVM "admintools\tools\malinfammo.sqf";};
 	if (godMode) then {[godMode] execVM "admintools\tools\malplayerGM.sqf";};
 	if (carGodMode) then {[carGodMode] execVM "admintools\tools\malvehicleGMon.sqf";};
 	if (grassOff) then {[grassOff] execVM "admintools\tools\malgrasson.sqf";};
 };
 
-if(AdminMode) then {
+modToggleOFF =
+{
+	if (playerESP) then {[!playerESP] execVM "admintools\tools\mallightesp.sqf";};
+	if (invisibility) then {[] execVM "admintools\tools\malinvisinit.sqf";};
+	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\malinfammo.sqf";};
+	if (godMode) then {[!godMode] execVM "admintools\tools\malplayerGM.sqf";};
+	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\malvehicleGMon.sqf";};
+	if (grassOff) then {[!grassOff] execVM "admintools\tools\malgrasson.sqf";};
+};
+
+if(modMode) then {
 	cutText ["God Mode, Vehicle God Mode, ESP, Inf Ammo, and Grass OFF - ENABLED","PLAIN DOWN"];titleFadeOut 4;
 	titleText ["***Press F4 to toggle Mod-Mode options***","PLAIN"];titleFadeOut 5;
 	F4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 62) then {call optionMenu;};"];
-	call AdminToggle;
+	call modToggleON;
 }
 else{
 	titleText ["Mod Mode - DISABLED","PLAIN DOWN"];titleFadeOut 3;
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F4_KEY];
-	call AdminToggle;
+	call modToggleOFF;
 };
