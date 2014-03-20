@@ -11,7 +11,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 	[
 	["",true],
 		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
-		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
+		["Admin Menu (F4 for options) >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
 		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
 		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
@@ -26,7 +26,7 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 	[
 	["",true],
 		["-- Epoch Admin Tools (Level: Mod) --", [],"", -5, [["expression", ""]], "1", "0"],
-		["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
+		["Mod Menu (F4 for options)>>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
 		["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
@@ -42,7 +42,7 @@ AdminMenu =
 	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
 	["Point to Repair (Perm)",[],"", -5,[["expression", format[_EXECscript1,"PointRepairPERM.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Spectate player",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Spectate player (F5 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 	["Heal (25m)",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
 	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
@@ -57,7 +57,7 @@ ModMenu =
 	["Mod Mode",[],"", -5,[["expression",format[_EXECscript1,"modMode.sqf"]]],"1","1"],
 	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Spectate player",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Spectate player (F5 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 	["Heal (25m)",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu",[20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
