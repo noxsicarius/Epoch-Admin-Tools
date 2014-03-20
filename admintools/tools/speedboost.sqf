@@ -1,6 +1,6 @@
-if (isNil "speedToggle") then {speedToggle = true;} else { speedToggle = !speedToggle;};
-
-if (speedToggle) then {
+private ["_speedToggle"];
+_speedToggle = _this select 0;
+if (_speedToggle) then {
 	waituntil {!isnull (finddisplay 46)};
 	SPEED_UP =(findDisplay 46) displayAddEventHandler ["KeyDown","_this select 1 call MY_KEYDOWN_FNC;false;"];
 
@@ -30,9 +30,7 @@ if (speedToggle) then {
 			};
 		};
 	};
-	titleText ["Speed Boost - ON","PLAIN DOWN"];titleFadeOut 2;
 }
 else{
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", SPEED_UP];
-	titleText ["Speed Boost - OFF","PLAIN DOWN"];titleFadeOut 2;
 };

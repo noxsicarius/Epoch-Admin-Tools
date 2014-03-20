@@ -12,14 +12,13 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 	["",true],
 		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
 		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
-		["ESP Menu >>", [],  "#USER:EspMenu", -5, [["expression", ""]], "1", "1"],			
-		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-		["Weapon Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
-		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
 		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
-		["Weather/Time Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],			
+		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
-		["AdminMode Options >>", [], "#USER:AdminModeMenu", -5, [["expression", ""]], "1", "1"],["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Weapon Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
+		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
+		["Weather/Time Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],			
+		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
 	];};
 if ((getPlayerUID player) in ModList) then { // Admin Level 3
@@ -45,8 +44,6 @@ AdminMenu =
 	["Point to Delete (Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Spectate player",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 	["Heal (25m)",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
-	["Invisibility",[],"", -5, [["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
-	["Toggle Flying",[],"", -5, [["expression", format[_EXECscript1,"malfly.sqf"]]], "1", "1"],
 	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -57,26 +54,14 @@ ModMenu =
 	["Teleport",[],"", -5,[["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
 	["Teleport To Me",[],"", -5,[["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],		
 	["Teleport To Player",[],"",-5,[["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
-	["Admin Mode",[],"", -5,[["expression",format[_EXECscript1,"AdminMode.sqf"]]],"1","1"],
+	["Mod Mode",[],"", -5,[["expression",format[_EXECscript1,"modMode.sqf"]]],"1","1"],
 	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Spectate player",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 	["Heal (25m)",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
-	["Invisibility",[],"",-5,[["expression", format[_EXECscript1,"malinvisinit.sqf"]]], "1", "1"],			
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu",[20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-AdminModeMenu =
-[
-["",true],
-	["Toggle God Mode",[],"", -5, [["expression", format[_EXECscript1,"malplayerGM.sqf"]]], "1", "1"],
-	["Toggle Vehicle Auto Repair",[],"", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],		
-	["Player ESP Only",[],"", -5, [["expression", format[_EXECscript1,"mallightesp.sqf"]]],"1","1"],		
-	["Infinite Ammo",[],"", -5, [["expression", format[_EXECscript1,"malinfammo.sqf"]]], "1", "1"],	
-	["Toggle Grass",[],"", -5, [["expression", format[_EXECscript1,"malgrasson.sqf"]]], "1", "1"],
-		["", [], "", -5,[["expression", ""]], "1", "0"],
-		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
-];	
 VehicleMenu =
 [
 ["",true],	
@@ -90,14 +75,12 @@ VehicleMenu =
 VehicleTools =
 [
 ["",true],	
-	["Speedboost", [],"", -5, [["expression", format[_EXECscript1,"speedboost.sqf"]]], "1", "1"],		
 	["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
 	["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECscript1,"PointRepairPERM.sqf"]]], "1", "1"],
 	["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointdelete.sqf"]]], "1", "1"],		
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Point to only Refuel (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],		
 	["Flip Vehicle", [],"", -5, [["expression", format[_EXECscript1,"flipvehicle.sqf"]]], "1", "1"],		
-	["Toggle Vehicle Auto Repair",[],"", -5, [["expression", format[_EXECscript1,"malvehicleGMon.sqf"]]], "1", "1"],		
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];

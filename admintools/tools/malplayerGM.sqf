@@ -1,15 +1,10 @@
 // Malory's Player God-Mode Script
 // Heals all problems and removes damage
 
-if (isNil "malpgm") then
+private ["_malpgm"];
+_malpgm = _this select 0;
+if (_malpgm) then
 {
-	malpgm = 0;
-};
-
-if (malpgm == 0) then
-{
-	malpgm = 1;
-    cutText ["Player and Zombie God Mode - ON", "PLAIN"];
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
 	(vehicle player) removeAllEventHandlers "handleDamage";
@@ -39,11 +34,8 @@ if (malpgm == 0) then
 	player setVariable ['hit_legs',0,false];
 	player setVariable['medForceUpdate',true,true];
 }
-	
 else
 {
-	malpgm = 0;
-    cutText ["Player and Zombie God Mode - OFF", "PLAIN"];
 	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
 	fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
 	fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";	

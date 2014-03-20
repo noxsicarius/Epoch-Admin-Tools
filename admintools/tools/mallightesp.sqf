@@ -1,3 +1,6 @@
+private ["_malesp"];
+_malesp = _this select 0;
+
 setGroupIconsVisible [true, true];
 _color_green = [0,1,0,1];
 _color_blue = [0,0,1,1];
@@ -5,9 +8,7 @@ _color_white = [1, 1, 1, 1];
 _color_orange = [1,0.3,0,1];
 _color_red = [1,0,0,1];
 
-if (isnil "malesp") then {malesp = 0;}; if (malesp == 0) then {malesp = 1; hint "ESP ON";} else {malesp = 0; hint "ESP OFF";};
-
-while {malesp == 1} do
+while {_malesp} do
 {
 	{
 		if (vehicle _x == _x) then 

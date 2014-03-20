@@ -1,4 +1,6 @@
 // Malory's Modded Flying Script 
+private ["_flying"];
+_flying = _this select 0;
 
 forwardAndBackward = 4; 
 leftAndRight = 2;     
@@ -9,47 +11,47 @@ hoverPos = nil;
 
 move_forward =
 {
-        if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
-        {
-_vehicle = (vehicle player);
-_vel = velocity _vehicle;
-_dir = direction _vehicle;
-_speed = 0.4; comment "Added speed";
-_vehicle setVelocity [(_vel select 0)+(sin _dir*_speed),(_vel select 1)+
-(cos _dir*_speed),0.4];
-        };
+    if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
+    {
+		_vehicle = (vehicle player);
+		_vel = velocity _vehicle;
+		_dir = direction _vehicle;
+		_speed = 0.4; comment "Added speed";
+		_vehicle setVelocity [(_vel select 0)+(sin _dir*_speed),(_vel select 1)+
+		(cos _dir*_speed),0.4];
+    };
 };
 
 move_left =
 {
-        if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
-        {
-            _leftDirection = getdir (vehicle player);
-            (vehicle player) setdir (_leftDirection) - leftAndRight;
-        };
+    if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
+    {
+        _leftDirection = getdir (vehicle player);
+        (vehicle player) setdir (_leftDirection) - leftAndRight;
+    };
 };
 
 move_backward =
 {
-        if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
-        {
-_vehicle = (vehicle player);
-_vel = velocity _vehicle;
-_dir = direction _vehicle;
-_speed = -0.4; comment "Added speed";
-_vehicle setVelocity [(_vel select 0)+(sin _dir*_speed),(_vel select 1)+
-(cos _dir*_speed),0.4];
-        };
+    if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
+    {
+		_vehicle = (vehicle player);
+		_vel = velocity _vehicle;
+		_dir = direction _vehicle;
+		_speed = -0.4; comment "Added speed";
+		_vehicle setVelocity [(_vel select 0)+(sin _dir*_speed),(_vel select 1)+
+		(cos _dir*_speed),0.4];
+    };
 };
 
 move_right =
 {
-        if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
-        {
-            _rightDirection = getdir (vehicle player);
-            (vehicle player) setdir (_rightDirection) + leftAndRight;
-            player setVariable["lastPos",1];player setVariable["lastPos",[]];
-        };
+    if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
+    {
+        _rightDirection = getdir (vehicle player);
+        (vehicle player) setdir (_rightDirection) + leftAndRight;
+        player setVariable["lastPos",1];player setVariable["lastPos",[]];
+    };
 };
 
 move_up =
@@ -60,23 +62,23 @@ move_up =
         //player playMoveNow "AswmPercMrunSnonWnonDf_AswmPercMstpSnonWnonDnon"
     };
     
-_vehicle = (vehicle player);
-_vel = velocity _vehicle;
-_dir = direction _vehicle;
-_speed = 6; comment "Added speed";
-_vehicle setVelocity [(_vel select 0),(_vel select 1),8];
+	_vehicle = (vehicle player);
+	_vel = velocity _vehicle;
+	_dir = direction _vehicle;
+	_speed = 6; comment "Added speed";
+	_vehicle setVelocity [(_vel select 0),(_vel select 1),8];
 };
 
 move_down =
 {
-        if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
-        {
-           _vehicle = (vehicle player);
-            _forwardCurrentDirection = getdir (vehicle player);
-            _forwardCurrentPosition = getPosATL (vehicle player);
-            (vehicle player) setdir _forwardCurrentDirection;
-            _vehicle setVelocity [0,0,-4];
-        };
+    if ((getPosATL (vehicle player) select 2) > distanceFromGround) then
+    {
+        _vehicle = (vehicle player);
+        _forwardCurrentDirection = getdir (vehicle player);
+        _forwardCurrentPosition = getPosATL (vehicle player);
+        (vehicle player) setdir _forwardCurrentDirection;
+        _vehicle setVelocity [0,0,-4];
+    };
 };
 
 toggle_hover =
@@ -95,10 +97,8 @@ toggle_hover =
     };
 };
 
-if (isnil "malfly") then 
+if (_flying) then 
 {
-    titleText ["Flying - ON / WASD to move / Q&Z for up and down / Space to Hover","PLAIN DOWN"]; titleFadeOut 4;
-    malfly = true;
     keyForward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 17) then {call move_forward;}"];     //W - Forward
     keyLeft = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 30) then {call move_left;}"];         //A - Left
     keyBackward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 31) then {call move_backward;}"];     //S - Backward
@@ -109,8 +109,6 @@ if (isnil "malfly") then
 }
 else
 {
-    titleText ["Flying - Off","PLAIN DOWN"]; titleFadeOut 4;
-    malfly = nil;
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyForward];
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyLeft];
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyBackward];
@@ -120,10 +118,10 @@ else
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyHover];
 };
 
-while {malfly} do
+while {_flying} do
 {
     if (hovering) then
     {
-(vehicle player) setvelocity [0,0,0.2];
+		(vehicle player) setvelocity [0,0,0.2];
     };
 };
