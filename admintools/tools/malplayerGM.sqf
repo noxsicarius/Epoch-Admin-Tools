@@ -7,6 +7,7 @@ if (_malpgm) then
 {
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
+	fnc_usec_unconscious = {};
 	(vehicle player) removeAllEventHandlers "handleDamage";
 	(vehicle player) addEventHandler ["handleDamage", { false }];	
 	(vehicle player) allowDamage false;
