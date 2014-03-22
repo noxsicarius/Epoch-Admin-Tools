@@ -1,19 +1,14 @@
-// Malory's Infinite Ammo 
+infAmmo = _this select 0;
 
-if (isnil "malinfam" ) then {malinfam=true;} else {malinfam = !malinfam;};
-
-if (malinfam) then
+if (infAmmo) then
 {
-	hint "Infinite Ammo and No Recoil - ON";
-	while {malinfam} do
+	while {infAmmo} do
 	{
 	vehicle player setVehicleAmmo 0.99;
 	vehicle player setUnitRecoilCoefficient 0;
 	sleep 0.01;
 	}
-
-}
-else{hint "Infinite Ammo and No Recoil - OFF";};
+};
 
 
 

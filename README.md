@@ -11,12 +11,11 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 #### For help with Administration:
 * Multiple Admin levels
 * Spectate players
-* Spawn locked vehicles with keys (saved even after restart)
 * "Display code" for locked vaults/doors
 * "Create key" for vehicles with lost keys
 * Force lock and unlock vehicles without keys
 * Base Destruction - Destroy all buildables/vehicles within a customizable radius
-* Spawnable crates with weapons, items, and supplies (e.g. "VIP crate", "Bambi crate", "Medical crate", etc.)
+* Spawnable crates with weapons, items, and supplies (e.g. "BackPack Crate", "All Weapons/Items Crate, etc.)
 * Spawn locked or temporary vehicles via the menu or a custom-made graphical vehicle menu ([screenshot](https://f.cloud.github.com/assets/204934/2233637/43153c0a-9b2c-11e3-8a03-40d11239e1cb.png))
 
 
@@ -43,7 +42,6 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
 	~~~~java
 	// Epoch Admin Tools
-	[] execVM "admintools\AdminList.sqf";
 	[] execVM "admintools\Activate.sqf";
 	~~~~
 
@@ -56,6 +54,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 	...with this:
 
 	~~~~java
+	[] execVM "admintools\AdminList.sqf";
 	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
 	{
 		[] execVM "\z\addons\dayz_code\system\antihack.sqf";

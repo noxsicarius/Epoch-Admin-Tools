@@ -1,0 +1,11 @@
+GearAdd = (vehicle player);
+GearRemove = (vehicle player);
+removeAllWeapons GearRemove;
+GearAdd addWeapon 'Mk_48_DES_EP1';
+GearAdd addMagazine '100Rnd_762x51_M240';
+GearAdd addMagazine '100Rnd_762x51_M240';
+GearAdd addMagazine '100Rnd_762x51_M240';
+GearAdd addWeapon 'M9SD';
+GearAdd addMagazine '15Rnd_9x19_M9SD';
+GearAdd addMagazine '15Rnd_9x19_M9SD';
+GearAdd addMagazine '15Rnd_9x19_M9SD';

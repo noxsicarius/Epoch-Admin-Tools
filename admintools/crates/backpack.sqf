@@ -4,9 +4,6 @@ _crateName = "Backpack Tent";
 // Crate type
 _classname = "TentStorageDomed2";
 
-// Set the # of items
-_numItems = 1;
-
 // Location of player and crate
 _dir = getdir player;
 _pos = getposATL player;

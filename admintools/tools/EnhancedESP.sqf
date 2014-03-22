@@ -1,11 +1,7 @@
-_strON = parseText format ["%1<br/>Enhanced ESP <t color='#45b711'>ON</t>"];
-_strOFF = parseText format ["%1<br/>Enhanced ESP <t color='#45b711'>OFF</t>"];
 
+markPos = _this select 0;
 
-//Added semicolon after markPos = !markPos
-if (isNil "markPos") then {markPos = true;} else {markPos = !markPos;};
 if(isNil "markers") then { markers = []};
-
 
 player addweapon "ItemMap";
 player addweapon "ItemGPS";
@@ -53,8 +49,6 @@ CrashesMarkerColor="ColorRed";
 //----------------------#Crashes#--------------------------
 
 //GLOBAL VARS END
-if(markPos) then {hint _strON;};
-
 While {markPos} do 
 {
 	If (AddPlayersToMap) then 
@@ -195,7 +189,6 @@ While {markPos} do
 
 if(!markPos) then 
 {
-	hint _strOFF;
 	If (AddPlayersToMap) then 
 	{
 		{
