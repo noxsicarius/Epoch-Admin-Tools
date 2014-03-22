@@ -1,9 +1,8 @@
-private ["_infAmmo"];
-_infAmmo = _this select 0;
+infAmmo = _this select 0;
 
-if (_infAmmo) then
+if (infAmmo) then
 {
-	while {_infAmmo} do
+	while {infAmmo} do
 	{
 	vehicle player setVehicleAmmo 0.99;
 	vehicle player setUnitRecoilCoefficient 0;
