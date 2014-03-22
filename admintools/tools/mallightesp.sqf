@@ -1,5 +1,4 @@
-private ["_malesp"];
-_malesp = _this select 0;
+playerESP = _this select 0;
 
 setGroupIconsVisible [true, true];
 _color_green = [0,1,0,1];
@@ -8,7 +7,7 @@ _color_white = [1, 1, 1, 1];
 _color_orange = [1,0.3,0,1];
 _color_red = [1,0,0,1];
 
-while {_malesp} do
+while {playerESP} do
 {
 	{
 		if (vehicle _x == _x) then 

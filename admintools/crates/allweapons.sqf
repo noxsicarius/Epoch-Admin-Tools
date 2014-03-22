@@ -8,7 +8,7 @@ if (isNil "weapons_list") then
 	for "_i" from 0 to (count _cfgweapons)-1 do
 	{
 		_weapon = _cfgweapons select _i;
-		if (isClass _weapon) then
+		if (isClass _weapon && !MeleeBaseBallBat) then
 		{
 			_key_colors = ["ItemKeyYellow","ItemKeyBlue","ItemKeyRed","ItemKeyGreen","ItemKeyBlack"];
 			if (getNumber (_weapon >> "scope") == 2 and getText(_weapon >> "picture") != "" and !(configName(inheritsFrom(_weapon)) in _key_colors)) then
