@@ -8,7 +8,7 @@ if (isNil "weapons_list") then
 	for "_i" from 0 to (count _cfgweapons)-1 do
 	{
 		_weapon = _cfgweapons select _i;
-		if (isClass _weapon && !MeleeBaseBallBat) then
+		if (isClass _weapon) then
 		{
 			_key_colors = ["ItemKeyYellow","ItemKeyBlue","ItemKeyRed","ItemKeyGreen","ItemKeyBlack"];
 			if (getNumber (_weapon >> "scope") == 2 and getText(_weapon >> "picture") != "" and !(configName(inheritsFrom(_weapon)) in _key_colors)) then
@@ -48,11 +48,13 @@ _spawnCrate setDir _dir;
 _spawnCrate setposATL _pos;
 			
 {
-	_spawnCrate addWeaponCargoGlobal [_x, 5];
+	if(_x != "MeleeBaseBallBat") then{
+	_spawnCrate addWeaponCargoGlobal [_x, 5];};
 } forEach weapons_list;
 
 {
-	_spawnCrate addMagazineCargoGlobal [_x, 20];
+	if(_x != "AngelCookies") then{
+	_spawnCrate addMagazineCargoGlobal [_x, 20];};
 } forEach magazines_list;
 
 // Send text to spawner only
