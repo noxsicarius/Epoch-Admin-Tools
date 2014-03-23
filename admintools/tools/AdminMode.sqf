@@ -1,3 +1,10 @@
+/* Below are the default ON/OFF toggles. Anything marked 
+   true will turn on when you turn on AdminMode.
+   To make an option default ON change = false to = true.
+   To make an option default OFF change = true to = false.
+*/
+
+// Start of config
 if (isNil "godMode") then {godMode = true;};
 if (isNil "carGodMode") then {carGodMode = true;};
 if (isNil "playerESP") then {playerESP = true;};
@@ -7,6 +14,7 @@ if (isNil "infAmmo") then {infAmmo = true;};
 if (isNil "speedBoost") then {speedBoost = false;};
 if (isNil "invisibility") then {invisibility = false;};
 if (isNil "flying") then {flying = false;};
+// END OF CONFIG
 
 if (isNil "AdminMode") then {AdminMode = true;}else{AdminMode = !AdminMode;};
 
