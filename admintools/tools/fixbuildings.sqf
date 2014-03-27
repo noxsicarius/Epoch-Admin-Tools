@@ -1,1 +1,0 @@
-titleText ["Attempting to fix buildings","PLAIN DOWN"];titleFadeOut 2;_repair = (getPosATL player) nearObjects ["Building", 150000];_fix=0;_break=1;{_x setDammage _fix} forEach _repair;

@@ -1,1 +1,0 @@
-[] execVM "admintools\AdminToolsMain.sqf";
