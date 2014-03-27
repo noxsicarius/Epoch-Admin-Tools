@@ -6,6 +6,7 @@ _EXECscript1 = 'player execVM "'+_pathtotools+'%1"';
 _EXECscript3 = 'player execVM "'+_pathtoweapon+'%1"';
 _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
 _EXECscript6 = 'player execVM "'+_pathtocrates+'%1"';
+
 if ((getPlayerUID player) in AdminList) then { // Admins
 	epochmenustart =
 	[
@@ -35,13 +36,13 @@ if ((getPlayerUID player) in ModList) then { // Admin Level 3
 AdminMenu =
 [
 ["",true],
-	["Teleport",[],"", -5,[["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
-	["Teleport To Me",[],"", -5, [["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],
-	["Teleport To Player",[],"", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
+	["Teleport (F1)",[],"", -5,[["expression", format[_EXECscript1,"Teleport.sqf"]]], "1", "1"],
+	["Teleport To Me (F2)",[],"", -5, [["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],
+	["Teleport To Player (F3)",[],"", -5, [["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
 	["Admin Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"AdminMode.sqf"]]],"1","1"],
 	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
-	["Point to Repair (Perm)",[],"", -5,[["expression", format[_EXECscript1,"PointRepairPERM.sqf"]]], "1", "1"],
-	["Point to Delete (Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
+	["Point to Repair Vehicle(Perm)",[],"", -5,[["expression", format[_EXECscript1,"PointToRepairPERM.sqf"]]], "1", "1"],
+	["Point to Delete Vehicle(Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Spectate player (F5 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 	["Heal (25m)",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
 	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
@@ -51,11 +52,11 @@ AdminMenu =
 ModMenu =
 [
 ["",true],
-	["Teleport",[],"", -5,[["expression", format[_EXECscript1,"malteleport.sqf"]]], "1", "1"],
-	["Teleport To Me",[],"", -5,[["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],		
-	["Teleport To Player",[],"",-5,[["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
+	["Teleport (F1)",[],"", -5,[["expression", format[_EXECscript1,"Teleport.sqf"]]], "1", "1"],
+	["Teleport To Me (F2)",[],"", -5,[["expression", format[_EXECscript1, "TPtoME.sqf"]]], "1", "1"],		
+	["Teleport To Player (F3)",[],"",-5,[["expression", format[_EXECscript1, "TpToPlayer.sqf"]]], "1", "1"],
 	["Mod Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"modMode.sqf"]]],"1","1"],
-	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
+	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"PointToRepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Spectate player (F5 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 	["Heal (25m)",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
@@ -75,11 +76,11 @@ VehicleMenu =
 VehicleTools =
 [
 ["",true],	
-	["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointrepair.sqf"]]], "1", "1"],
-	["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECscript1,"PointRepairPERM.sqf"]]], "1", "1"],
-	["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointdelete.sqf"]]], "1", "1"],		
+	["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToRepair.sqf"]]], "1", "1"],
+	["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECscript1,"PointToRepairPERM.sqf"]]], "1", "1"],
+	["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToDelete.sqf"]]], "1", "1"],		
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Point to only Refuel (Temp)", [],"", -5, [["expression", format[_EXECscript1,"malpointonlyrefuel.sqf"]]], "1", "1"],		
+	["Point to only Refuel (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToRefuel.sqf"]]], "1", "1"],		
 	["Flip Vehicle", [],"", -5, [["expression", format[_EXECscript1,"flipvehicle.sqf"]]], "1", "1"],		
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -93,15 +94,6 @@ VehiclekeyMenu =
 	["Bandit Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenubandit.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
-];
-EspMenu = 
-[
-["",true],
-	["Modify ESP options in EnhancedESP.sqf",[],"",-5,[["expression",""]],"1","0"],
-	["Enhanced ESP",[],"", -5, [["expression", format[_EXECscript1,"EnhancedESP.sqf"]]],"1","1"],
-	["Player ESP Only",[],"", -5, [["expression", format[_EXECscript1,"mallightesp.sqf"]]],"1","1"],		
-		["",[],"", -5, [["expression",""]],"1","0"],
-		["Main Menu",[20],"#USER:epochmenustart", -5,[["expression",""]],"1","1"]
 ];
 HumanityMenu =
 [

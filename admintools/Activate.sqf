@@ -1,10 +1,9 @@
 if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
 
-	if (isnil "tracker") then {tracker = 0;};
+	if (isnil "tracker") then {tracker = true;};
 
-	if (tracker == 0) then
+	if (tracker) then
 	{
-
 		[]spawn
 		{
 			private["_veh", "_idx"];
@@ -14,21 +13,20 @@ if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then
 			{
 				if (_idx == -1) then
 				{
-					_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\Eexcute.sqf","",0,false,true,"",""];
+					[]execVM "admintools\tools\FunctionKeys.sqf";
+					_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",0,false,true,"",""];
 					_veh = vehicle player;
 				};
-
 				if (_veh != vehicle player) then
 				{
 					_veh removeAction _idx;
 					_idx = -1;      
 				};
-				Sleep 1;
+				Sleep 2;
 			};
 		};
-		tracker = 1;
+		tracker = false;
 	};
-
-	waituntil {!alive player ; sleep 1;};
-	tracker = 0;
+	waituntil {!alive player ; sleep 2;};
+	tracker = true;
 };
