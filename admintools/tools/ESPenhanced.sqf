@@ -1,9 +1,7 @@
 markPos = _this select 0;
 
 if(isNil "markers") then { markers = []};
-
-player addweapon "ItemMap";
-player addweapon "ItemGPS";
+if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
 //GLOBAL VARS START
 
@@ -66,12 +64,10 @@ While {markPos} do
 				};
 				If (PlayerShowDistance && !PlayerShowBloodInt) then 
 				{
-					//_text=parseText format ["%1<br/><t align='center'>%2</t>",name _x,round(player distance _x)];
 					(group _x) setGroupIconParams [PlayerMarkerColor, format["%1-%2", name _x,round(player distance _x)],TheThicknessOfThePointPlayer,true];
 				};
 				if (!PlayerShowBloodInt && !PlayerShowDistance) then 
 				{
-					//_text=parseText format ["%1",name _x];
 					(group _x) setGroupIconParams [PlayerMarkerColor, format ["%1",name _x],TheThicknessOfThePointPlayer,true];
 				};
 				ParamsPlayersMarkers=[true,AddPlayersToScreen];

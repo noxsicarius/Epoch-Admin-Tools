@@ -27,10 +27,14 @@ carGodModeToggle = {
 	[carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";
 };
 playerESPToggle = {
+	enhancedESP = false;
+	[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";
 	playerESP = !playerESP;
 	[playerESP] execVM "admintools\tools\ESPplayer.sqf";
 };
 enhancedESPToggle = {
+	playerESP = false;
+	[playerESP] execVM "admintools\tools\ESPplayer.sqf";
 	enhancedESP = !enhancedESP;
 	[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";
 };
