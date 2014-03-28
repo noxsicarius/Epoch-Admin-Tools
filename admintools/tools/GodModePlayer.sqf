@@ -15,7 +15,7 @@ if (_malpgm) then
 	r_player_infected = false;
 	r_player_injured = false;
 	r_player_inpain = false;
-	r_player_loaded = flase;
+	r_player_loaded = false;
 	r_player_cardiac = false;
 	r_player_lowblood = false;
 	r_fracture_legs = false;

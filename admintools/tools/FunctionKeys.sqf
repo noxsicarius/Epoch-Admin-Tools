@@ -17,8 +17,8 @@
 F1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 59) then {[] execVM ""admintools\tools\Teleport.sqf"";};"];
 F2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 60) then {[] execVM ""admintools\tools\TPtoME.sqf"";};"];
 F3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 61) then {[] execVM ""admintools\tools\TpToPlayer.sqf"";};"];
-// F4 is reserved for Admin Mode and Mod Mode
-// F5 is reserved for ending Spectator mode.
+// F4 is reserved for AdminMode.sqf and modMode.sqf
+// F5 is reserved for spectate.sqf
 // F6_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 64) then {[] execVM ""admintools\tools\FILENAMEHERE.sqf"";};"];
 // F7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 65) then {[] execVM ""admintools\tools\FILENAMEHERE.sqf"";};"];
 // F8_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 66) then {[] execVM ""admintools\tools\FILENAMEHERE.sqf"";};"];
