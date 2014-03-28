@@ -33,19 +33,25 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
 # Installation
 
-### *Recommended PBO tool: [PBO Manager](http://www.armaholic.com/page.php?id=16369)*
+###  Each installation step is CRITICAL to installing this tool. ANY deviation from the following steps WILL break it. 99% of reported errors are due to users not following these instructions PERFECTLY!
 
-### MPMissions Folder: Your_Mission.pbo:
-1. Click ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)*** on the right sidebar
-2. Extract the ***admintools*** folder into the root of your Epoch mission
-3. Open your ***init.sqf*** and paste the following at the bottom:
+1. Click ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)*** on the right sidebar of this Github page.
+
+	> Recommended PBO tool for all "pack", "repack", or "unpack" steps: ***[PBO Manager](http://www.armaholic.com/page.php?id=16369)***
+
+1. Log into your server via FTP or your host's File Manager. Locate, download, and unpack (using PBO Manager or a similar PBO editor) your ***MPMissions/Your_Mission.pbo***, and open the resulting folder.
+ 
+	> Note: "Your_Mission.pbo" is a placeholder name. Your mission might be called "DayZ_Epoch_11.Chernarus", "DayZ_Epoch_13.Tavi", or "dayz_mission" depending on hosting and chosen map.
+
+1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of Your_Mission.pbo.
+1. Open the ***init.sqf*** in the root of your mission folder and paste the following at the bottom:
 
 	~~~~java
 	// Epoch Admin Tools
 	[] execVM "admintools\Activate.sqf";
 	~~~~
 
-4. And replace this:
+1. And replace this:
 
 	~~~~java
 	[] execVM "\z\addons\dayz_code\system\antihack.sqf";
@@ -54,6 +60,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 	...with this:
 
 	~~~~java
+	// Epoch Admin Tools
 	[] execVM "admintools\AdminList.sqf";
 	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
 	{
@@ -61,48 +68,45 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 	};
 	~~~~
 
-5. Save the init.sqf
-6. Open your ***description.ext***
-7. Paste the following at the bottom:
+1. Save the init.sqf
+1. Open your ***description.ext***
+1. Paste the following at the bottom:
 
     ~~~~java
     // Epoch Admin Tools
     #include "admintools\dialog.hpp"
     ~~~~
 	
-8. Open ***admintools\AdminList.sqf***
-9. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
+1. Open ***admintools\AdminList.sqf***
+1. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
+1. The mission pbo is done. Repack it and upload it to your server (FTP or host's File Manager).
+1. Download the latest Epoch Server build from the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page) and open the archive.
+1. Find the ***Battleye*** folder inside the archive and extract the .txt files within to your server's Battleye folder (via FTP or host's File Manager), overwriting the existing .txt files. 
 
-
-### Server: Battleye Filters
-It's important that you *start* with updated filters. Many server hosts are still using old, outdated filters, which will likely cause "Script Restriction" errors if not updated. You can find these updated filters specifically made for Epoch in the Epoch Server download on the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page). 
-
-1. Download the Epoch Server file linked above and open the archive.
-2. Find the ***Battleye*** folder and extract the .txt files within to your server's Battleye folder, overwriting the existing .txt files. The location of your Battleye filters depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
-3. Return to the Epoch Admin Tools project zip file and open the ***Battleye*** folder.
-4. Again, extract the .txt files into your server's Battleye filters folder and overwrite everything when prompted.
-
-
-### Server: Temporary vehicles despawning/blowing up fix
-This is caused by Epoch's included antihack/cleanup script in the ***@DayZ_Epoch_Server/addons/dayz_server.pbo***. The dayz_server.pbo can be unpacked and packed just like your mission .pbo.
-
-1. Unpack the ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** and open the resulting ***dayz_server*** folder.
-2. Open ***init/server_functions.sqf*** and search the file for the following:
+	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
+	
+1. Return to the Epoch-Admin-Tools zip file (downloaded in step #1) and open the ***Battleye*** folder. Again, extract the .txt files from the ***Epoch-Admin-Tools/Battleye*** folder into the same Battleye folder in the previous step and overwrite everything when prompted.
+1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
+1. Open ***init/server_functions.sqf*** and replace this:
 
     ~~~~java
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
     ~~~~
     
-3. Comment out this line and/or replace it with the following:
+	...with this:
 
     ~~~~java
+    	// Epoch Admin Tools
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
     ~~~~
+    
+	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
 
-4. Now open your ***compile/server_updateObject.sqf*** and place this:
+1. Now open your ***compile/server_updateObject.sqf*** and place this:
 
 
     ~~~~java
+    // Epoch Admin Tools
     if (_object getVariable "MalSar" == 1) exitWith {};
     ~~~~
 
@@ -112,10 +116,7 @@ This is caused by Epoch's included antihack/cleanup script in the ***@DayZ_Epoch
     if (!_parachuteWest and !(locked _object)) then {
     ~~~~
 
-5. Repackage the server pbo and upload it to your server. 
-
-
-# Installation complete!
+5. Repack the server pbo and upload it to your server. 
 
 
 ## (Optional) Add more admins or configure access:
@@ -129,7 +130,7 @@ This is caused by Epoch's included antihack/cleanup script in the ***@DayZ_Epoch
 
 ## FAQ
 * I'm getting kicked with "Script Restriction #X"!
- * Make sure you've installed the instructions perfectly in the Battleye Filters section. If that fails, you can fix the error yourself with a little knowledge about [how the filters work](http://dayz.st/w/Battleye_Filters).
+ * Make sure you've installed the Battleye filters perfectly in the instructions. If it still fails, you can fix the error yourself with a little knowledge about [how the filters work](http://dayz.st/w/Battleye_Filters).
 * The menu doesn't appear.
  * The most likely cause of this error is either a syntax error in your ***init.sqf*** (e.g. a missing semi-colon), a syntax error in your ***admintools\AdminList.sqf*** (e.g. a comma after the last string in the array of Admins/Mods - see above optional instruction) or forgetting to add your Player ID (or typing it wrong) into the ***admintools\AdminList.sqf***. Specific errors can be found by reading your server's [RPT file](https://community.bistudio.com/wiki/arma.RPT). Also see [Debugging Techniques](https://community.bistudio.com/wiki/Debugging_Techniques).
 
