@@ -43,7 +43,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
  
 	> Note: "Your_Mission.pbo" is a placeholder name. Your mission might be called "DayZ_Epoch_11.Chernarus", "DayZ_Epoch_13.Tavi", or "dayz_mission" depending on hosting and chosen map.
 
-1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of Your_Mission.pbo.
+1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of your mission folder.
 1. Open the ***init.sqf*** in the root of your mission folder and paste the following at the bottom:
 
 	~~~~java
