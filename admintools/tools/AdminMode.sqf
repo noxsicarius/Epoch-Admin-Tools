@@ -27,16 +27,14 @@ carGodModeToggle = {
 	[carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";
 };
 playerESPToggle = {
-	enhancedESP = false;
-	[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";
 	playerESP = !playerESP;
 	[playerESP] execVM "admintools\tools\ESPplayer.sqf";
+	if(!(playerESP)) then {enhancedESP = false; [enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";};
 };
 enhancedESPToggle = {
-	playerESP = false;
-	[playerESP] execVM "admintools\tools\ESPplayer.sqf";
 	enhancedESP = !enhancedESP;
 	[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";
+	if(enhancedESP) then {playerESP = true; [playerESP] execVM "admintools\tools\ESPplayer.sqf";};
 };
 grassOffToggle = {
 	grassOff = !grassOff;
@@ -59,13 +57,12 @@ flyingToggle = {
 	[flying] execVM "admintools\tools\Flying.sqf";
 };
 
-// To disable an option for admins place a // in the front of the line below
-// and change the initialization to false in the config at the top of this file
-
 optionMenu = 
 {
 	toggleMenu = 
 	[
+		// To disable an option for admins place a // in the front of the line below
+		// and change the initialization to false in the config at the top of this file
 		["",true],
 		["Toggle options:(current state)", [-1], "", -5, [["expression", ""]], "1", "0"],
 		[format["Vehicle Speed Boost: %1",speedBoost],[2],"", -5, [["expression", 'call speedBoostToggle']], "1", "1"],		
@@ -83,33 +80,33 @@ optionMenu =
 
 AdminToggleON =
 {
-	if (speedBoost) then {[speedBoost] execVM "admintools\tools\speedboost.sqf";};
-	if (enhancedESP) then {[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";};
-	if (playerESP) then {[playerESP] execVM "admintools\tools\ESPplayer.sqf";};
-	if (invisibility) then {[invisibility] execVM "admintools\tools\Invisibility.sqf";};
-	if (infAmmo) then {[infAmmo] execVM "admintools\tools\InfiniteAmmo.sqf";};
-	if (flying) then {[flying] execVM "admintools\tools\Flying.sqf";};
-	if (godMode) then {[godMode] execVM "admintools\tools\GodModePlayer.sqf";};
-	if (carGodMode) then {[carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";};
-	if (grassOff) then {[grassOff] execVM "admintools\tools\GrassOFF.sqf";};
+	if (speedBoost) then {[speedBoost] execVM "admintools\tools\speedboost.sqf";}; Sleep 0.1;
+	if (enhancedESP) then {[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";}; Sleep 0.1;
+	if (playerESP) then {[playerESP] execVM "admintools\tools\ESPplayer.sqf";}; Sleep 0.1;
+	if (invisibility) then {[invisibility] execVM "admintools\tools\Invisibility.sqf";}; Sleep 0.1;
+	if (infAmmo) then {[infAmmo] execVM "admintools\tools\InfiniteAmmo.sqf";}; Sleep 0.1;
+	if (flying) then {[flying] execVM "admintools\tools\Flying.sqf";}; Sleep 0.1;
+	if (godMode) then {[godMode] execVM "admintools\tools\GodModePlayer.sqf";}; Sleep 0.1;
+	if (carGodMode) then {[carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";}; Sleep 0.1;
+	if (grassOff) then {[grassOff] execVM "admintools\tools\GrassOFF.sqf";}; Sleep 0.1;
 };
 
 AdminToggleOFF =
 {
-	if (speedBoost) then {[!speedBoost] execVM "admintools\tools\speedboost.sqf";};
-	if (enhancedESP) then {[!enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";};
-	if (playerESP) then {[!playerESP] execVM "admintools\tools\ESPplayer.sqf";};
-	if (invisibility) then {[!invisibility] execVM "admintools\tools\Invisibility.sqf";};
-	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\InfiniteAmmo.sqf";};
-	if (flying) then {[!flying] execVM "admintools\tools\Flying.sqf";};
-	if (godMode) then {[!godMode] execVM "admintools\tools\GodModePlayer.sqf";};
-	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";};
-	if (grassOff) then {[!grassOff] execVM "admintools\tools\GrassOFF.sqf";};
+	if (speedBoost) then {[!speedBoost] execVM "admintools\tools\speedboost.sqf";}; Sleep 0.1;
+	if (enhancedESP) then {[!enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";}; Sleep 0.1;
+	if (playerESP) then {[!playerESP] execVM "admintools\tools\ESPplayer.sqf";}; Sleep 0.1;
+	if (invisibility) then {[!invisibility] execVM "admintools\tools\Invisibility.sqf";}; Sleep 0.1;
+	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\InfiniteAmmo.sqf";}; Sleep 0.1;
+	if (flying) then {[!flying] execVM "admintools\tools\Flying.sqf";}; Sleep 0.1;
+	if (godMode) then {[!godMode] execVM "admintools\tools\GodModePlayer.sqf";}; Sleep 0.1;
+	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";}; Sleep 0.1;
+	if (grassOff) then {[!grassOff] execVM "admintools\tools\GrassOFF.sqf";}; Sleep 0.1;
 };
 
 if(AdminMode) then {
-	cutText ["God Mode, Vehicle God Mode, ESP, Inf Ammo, and Grass OFF - ENABLED","PLAIN DOWN"];titleFadeOut 4;
-	titleText ["***Press F4 to toggle AdminMode options***","PLAIN"];titleFadeOut 5;
+	1 cutText ["God Mode, Vehicle God Mode, ESP, Inf Ammo, and Grass OFF - ENABLED","PLAIN DOWN",0.5];
+	2 cutText ["***Press F4 to toggle AdminMode options***","PLAIN",0.75];
 	F4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 62) then {call optionMenu;};"];
 	call AdminToggleON;
 }
