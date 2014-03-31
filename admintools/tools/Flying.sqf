@@ -124,5 +124,4 @@ while {_flying} do
     {
 		(vehicle player) setvelocity [0,0,0.2];
     };
-	player setVariable ["unconsciousTime", r_player_timeout, true];
 };

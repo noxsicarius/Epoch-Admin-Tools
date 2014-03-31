@@ -7,6 +7,8 @@ _color_white = [1, 1, 1, 1];
 _color_orange = [1,0.3,0,1];
 _color_red = [1,0,0,1];
 
+if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
+
 while {playerESP} do
 {
 	{
@@ -17,7 +19,7 @@ while {playerESP} do
 			
 			if ((side _x == side player) && (side player != resistance)) then 
 			{
-				group _x setGroupIconParams [_color_blue, format ["[%1]-[%2m]",name _x,round(_x distance player)], 0.5, true];
+				group _x setGroupIconParams [_color_red, format ["[%1]-[%2m]",name _x,round(_x distance player)], 0.5, true];
 			} 
 			else 
 			{
@@ -61,6 +63,6 @@ while {playerESP} do
 			};
 		};
 	} forEach playableUnits;
-sleep 0.5;
+	sleep 1;
 };
 {clearGroupIcons group _x;} forEach playableUnits;
