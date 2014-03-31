@@ -18,7 +18,7 @@ teleport = {
 
 closedialog 0;
 sleep 0.5;
-TitleText [format["Click on the map to Teleport"], "PLAIN DOWN"];
+TitleText [format["Click on the map to Teleport"], "PLAIN DOWN"]; titleFadeOut 3;
 
 openMap [true, false];
 onMapSingleClick '[_pos select 0, _pos select 1, _pos select 2] call teleport';
