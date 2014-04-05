@@ -5,7 +5,9 @@ Epoch-Admin-Tools
 
 ([Click here for more screenshots](http://imgur.com/a/RH4cx#0))
 
-An admin menu for the purpose of testing and administrating a [DayZ Epoch](https://github.com/vbawol/DayZ-Epoch) server. 
+An admin menu with powerful tools for the purpose of testing and/or administrating a [DayZ Epoch Mod](http://epochmod.com/) server. Most tools will also be compatible with original DayZMod servers and other derivatives.
+
+#### For guides and help: [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki)
 
 # Features:
 #### For help with Administration:
@@ -15,8 +17,8 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 * "Create key" for vehicles with lost keys
 * Force lock and unlock vehicles without keys
 * Base Destruction - Destroy all buildables/vehicles within a customizable radius
-* Spawnable crates with weapons, items, and supplies (e.g. "BackPack Crate", "All Weapons/Items Crate, etc.)
-* Spawn locked or temporary vehicles via the menu or a custom-made graphical vehicle menu ([screenshot](https://f.cloud.github.com/assets/204934/2233637/43153c0a-9b2c-11e3-8a03-40d11239e1cb.png))
+* Spawnable crates with weapons, items, and supplies
+* Spawn vehicles via the menu or a custom-made graphical vehicle menu ([screenshot](https://f.cloud.github.com/assets/204934/2233637/43153c0a-9b2c-11e3-8a03-40d11239e1cb.png)) (Thanks @Sandbird!)
 
 
 #### Other features:
@@ -46,7 +48,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
  
 	> Note: "Your_Mission.pbo" is a placeholder name. Your mission might be called "DayZ_Epoch_11.Chernarus", "DayZ_Epoch_13.Tavi", or "dayz_mission" depending on hosting and chosen map.
 
-1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of Your_Mission.pbo.
+1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of your mission folder.
 1. Open the ***init.sqf*** in the root of your mission folder and paste the following at the bottom:
 
 	~~~~java
@@ -122,13 +124,7 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 5. Repack the server pbo and upload it to your server. 
 
 
-## (Optional) Add more admins or configure access:
-1. Get the [PID](http://i48.tinypic.com/2isxjkz.png) of the admin.
-2. Pick what access you want your admin to have - Admin or Moderator (Mod). You can view/edit commands and access in ***admintools/AdminToolsMain.sqf***.
-3. Place the PID in the chosen section of your ***admintools/AdminList.sqf***. 
-4. To disable access to certain commands for Admins (including yourself) or Mods, simply comment out the command you want to disable by placing ***//*** at the beginning of the line.
-
-***Important: Take note of how the array's commas are used in the AdminList.sqf. The last string in the array should not have a comma. Noncompliance will cause the Admin Menu to break.***
+#### View the [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki) for additional configuration options and help.
 
 
 ## FAQ
