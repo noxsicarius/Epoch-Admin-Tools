@@ -35,6 +35,9 @@ An admin menu for the purpose of testing and administrating a [DayZ Epoch](https
 
 ###  Each installation step is CRITICAL to installing this tool. ANY deviation from the following steps WILL break it. 99% of reported errors are due to users not following these instructions PERFECTLY!
 
+
+#### A video install tutorial can be found here: https://www.youtube.com/watch?v=hV_vwvp_vFs
+
 1. Click ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)*** on the right sidebar of this Github page.
 
 	> Recommended PBO tool for all "pack", "repack", or "unpack" steps: ***[PBO Manager](http://www.armaholic.com/page.php?id=16369)***
