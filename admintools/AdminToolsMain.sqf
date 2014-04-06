@@ -186,7 +186,7 @@ GearMenu=[
 ];
 CrateMenuLocal=[
 	["",true],
-	["Weapons Crate",[],"",-5,[["expression",format[_EXECscript6,"allweapons.sqf"]]],"1","1"],
+	["Weapons Crate",[],"",-5,[["expression",format[_EXECscript6,"weapons.sqf"]]],"1","1"],
 	["Items Crate",[],"",-5,[["expression",format[_EXECscript6,"items.sqf"]]],"1","1"],
 	["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECscript6,"allweapons.sqf"]]],"1","1"],
 	["Building Crate",[],"",-5,[["expression",format[_EXECscript6,"building.sqf"]]],"1","1"],
