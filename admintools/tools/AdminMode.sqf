@@ -14,6 +14,7 @@ if (isNil "infAmmo") then {infAmmo = true;};
 if (isNil "speedBoost") then {speedBoost = false;};
 if (isNil "invisibility") then {invisibility = false;};
 if (isNil "flying") then {flying = false;};
+if (isNil "fastBuild") then {fastBuild = false;};
 // END OF CONFIG
 
 if (isNil "AdminMode") then {AdminMode = true;}else{AdminMode = !AdminMode;};
@@ -56,6 +57,10 @@ flyingToggle = {
 	flying = !flying;
 	[flying] execVM "admintools\tools\Flying.sqf";
 };
+fastBuildToggle = {
+	fastBuild = !fastBuild;
+	[fastBuild] execVM "admintools\tools\FastBuild.sqf";
+};
 
 optionMenu = 
 {
@@ -69,11 +74,12 @@ optionMenu =
 		[format["Enhanced ESP: %1",enhancedESP], [3], "", -5, [["expression", 'call enhancedESPToggle']], "1", "1"],
 		[format["Player ESP: %1",playerESP], [4], "", -5, [["expression", 'call playerESPToggle']], "1", "1"],
 		[format["Invisibility ON: %1",invisibility], [5], "", -5, [["expression", 'call invisibilityToggle']], "1", "1"],
-		[format["Infinite Ammo: %1",infAmmo], [6], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
+		[format["Fast Build ON: %1",fastBuild], [6], "", -5, [["expression", 'call fastBuildToggle']], "1", "1"],
 		[format["Flying ON: %1",flying], [7], "", -5, [["expression", 'call flyingToggle']], "1", "1"],
-		[format["God Mode: %1",godMode], [8], "", -5, [["expression", 'call godModeToggle']], "1", "1"],
-		[format["Car God Mode: %1",carGodMode], [9], "", -5, [["expression", 'call carGodModeToggle']], "1", "1"],
-		[format["Grass Off: %1",grassOff], [10], "", -5, [["expression", 'call grassOffToggle']], "1", "1"]
+		[format["Infinite Ammo: %1",infAmmo], [8], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
+		[format["God Mode: %1",godMode], [9], "", -5, [["expression", 'call godModeToggle']], "1", "1"],
+		[format["Car God Mode: %1",carGodMode], [10], "", -5, [["expression", 'call carGodModeToggle']], "1", "1"],
+		[format["Grass Off: %1",grassOff], [11], "", -5, [["expression", 'call grassOffToggle']], "1", "1"]
 	];
 	showCommandingMenu "#USER:toggleMenu";
 };

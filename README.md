@@ -37,6 +37,10 @@ An admin menu with powerful tools for the purpose of testing and/or administrati
 
 ###  Each installation step is CRITICAL to installing this tool. ANY deviation from the following steps WILL break it. 99% of reported errors are due to users not following these instructions PERFECTLY!
 
+
+#### A video install tutorial can be found here: http://youtu.be/hV_vwvp_vFs
+
+
 1. Click ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)*** on the right sidebar of this Github page.
 
 	> Recommended PBO tool for all "pack", "repack", or "unpack" steps: ***[PBO Manager](http://www.armaholic.com/page.php?id=16369)***
