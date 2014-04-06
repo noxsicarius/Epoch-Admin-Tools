@@ -40,7 +40,9 @@ else {
 				_headShots = player getVariable["headShots",0];
 				player setVariable["headShots",_headShots+1,true];
 			};
-		 };
+		};
+		Sleep 0.1;
 	};
+	Sleep 0.3;
 };
 titleText ["Zombie shield deactivated!","PLAIN DOWN"]; titleFadeOut 4;
