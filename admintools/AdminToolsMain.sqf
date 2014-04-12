@@ -10,8 +10,7 @@ _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
 _EXECscript6 = 'player execVM "'+_pathtocrates+'%1"';
 
 if ((getPlayerUID player) in AdminList) then { // Admins
-	epochmenustart =
-	[
+	epochmenustart = [
 	["",true],
 		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
 		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
@@ -23,25 +22,28 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Weather/Time Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],			
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
-	];};
-if ((getPlayerUID player) in ModList) then { // Admin Level 3
-	epochmenustart =
-	[
-	["",true],
-		["-- Epoch Admin Tools (Level: Mod) --", [],"", -5, [["expression", ""]], "1", "0"],
-		["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
-		["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
-		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-		["", [], "", -5, [["expression", ""]], "1", "0"],
-			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
-	];};			
+	];
+} else {
+	if ((getPlayerUID player) in ModList) then { // Admin Level 3
+		epochmenustart = [
+		["",true],
+			["-- Epoch Admin Tools (Level: Mod) --", [],"", -5, [["expression", ""]], "1", "0"],
+			["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
+			["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
+			["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
+			["", [], "", -5, [["expression", ""]], "1", "0"],
+				["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
+		];
+	}
+};			
 AdminMenu =
 [
 ["",true],
-	["Admin Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"AdminMode.sqf"]]],"1","1"],
+	["Admin Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"AdminMode\adminMode.sqf"]]],"1","1"],
 	["Point to Repair Vehicle(Perm)",[],"", -5,[["expression", format[_EXECscript1,"PointToRepairPERM.sqf"]]], "1", "1"],
 	["Point to Delete Vehicle(Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Spectate player (F5 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECscript1,"SafeZoneArea.sqf"]]], "1", "1"],
 	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
 	["Heal (25m)",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
