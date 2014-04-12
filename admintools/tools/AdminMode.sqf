@@ -21,45 +21,45 @@ if (isNil "AdminMode") then {AdminMode = true;}else{AdminMode = !AdminMode;};
 
 godModeToggle = {
 	godMode = !godMode;
-	[godMode] execVM "admintools\tools\GodModePlayer.sqf";
+	[godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";
 };
 carGodModeToggle = {
 	carGodMode = !carGodMode;
-	[carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";
+	[carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";
 };
 playerESPToggle = {
 	playerESP = !playerESP;
-	[playerESP] execVM "admintools\tools\ESPplayer.sqf";
-	if(!(playerESP)) then {enhancedESP = false; [enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";};
+	if(playerESP && enhancedESP) then {enhancedESP = false; [enhancedESP] execVM "admintools\tools\AdminMode\ESPenhanced.sqf";};
+	[playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";
 };
 enhancedESPToggle = {
 	enhancedESP = !enhancedESP;
-	[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";
-	if(enhancedESP) then {playerESP = true; [playerESP] execVM "admintools\tools\ESPplayer.sqf";};
+	if(playerESP && enhancedESP) then {playerESP = false; [playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";};
+	[enhancedESP] execVM "admintools\tools\AdminMode\ESPenhanced.sqf";
 };
 grassOffToggle = {
 	grassOff = !grassOff;
-	[grassOff] execVM "admintools\tools\GrassOFF.sqf";
+	[grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";
 };
 infAmmoToggle = {
 	infAmmo = !infAmmo;
-	[infAmmo] execVM "admintools\tools\InfiniteAmmo.sqf";
+	[infAmmo] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";
 };
 speedBoostToggle = {
 	speedBoost = !speedBoost;
-	[speedBoost] execVM "admintools\tools\speedboost.sqf";
+	[speedBoost] execVM "admintools\tools\AdminMode\speedboost.sqf";
 };
 invisibilityToggle = {
 	invisibility = !invisibility;
-	[invisibility] execVM "admintools\tools\Invisibility.sqf";
+	[invisibility] execVM "admintools\tools\AdminMode\Invisibility.sqf";
 };
 flyingToggle = {
 	flying = !flying;
-	[flying] execVM "admintools\tools\Flying.sqf";
+	[flying] execVM "admintools\tools\AdminMode\Flying.sqf";
 };
 fastBuildToggle = {
 	fastBuild = !fastBuild;
-	[fastBuild] execVM "admintools\tools\FastBuild.sqf";
+	[fastBuild] execVM "admintools\tools\AdminMode\FastBuild.sqf";
 };
 
 optionMenu = 
@@ -86,28 +86,28 @@ optionMenu =
 
 AdminToggleON =
 {
-	if (speedBoost) then {[speedBoost] execVM "admintools\tools\speedboost.sqf";}; Sleep 0.1;
-	if (enhancedESP) then {[enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";}; Sleep 0.1;
-	if (playerESP) then {[playerESP] execVM "admintools\tools\ESPplayer.sqf";}; Sleep 0.1;
-	if (invisibility) then {[invisibility] execVM "admintools\tools\Invisibility.sqf";}; Sleep 0.1;
-	if (infAmmo) then {[infAmmo] execVM "admintools\tools\InfiniteAmmo.sqf";}; Sleep 0.1;
-	if (flying) then {[flying] execVM "admintools\tools\Flying.sqf";}; Sleep 0.1;
-	if (godMode) then {[godMode] execVM "admintools\tools\GodModePlayer.sqf";}; Sleep 0.1;
-	if (carGodMode) then {[carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";}; Sleep 0.1;
-	if (grassOff) then {[grassOff] execVM "admintools\tools\GrassOFF.sqf";}; Sleep 0.1;
+	if (speedBoost) then {[speedBoost] execVM "admintools\tools\AdminMode\speedboost.sqf";}; Sleep 0.1;
+	if (enhancedESP) then {[enhancedESP] execVM "admintools\tools\AdminMode\ESPenhanced.sqf";}; Sleep 0.1;
+	if (playerESP) then {[playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";}; Sleep 0.1;
+	if (invisibility) then {[invisibility] execVM "admintools\tools\AdminMode\Invisibility.sqf";}; Sleep 0.1;
+	if (infAmmo) then {[infAmmo] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";}; Sleep 0.1;
+	if (flying) then {[flying] execVM "admintools\tools\AdminMode\Flying.sqf";}; Sleep 0.1;
+	if (godMode) then {[godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";}; Sleep 0.1;
+	if (carGodMode) then {[carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";}; Sleep 0.1;
+	if (grassOff) then {[grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";}; Sleep 0.1;
 };
 
 AdminToggleOFF =
 {
-	if (speedBoost) then {[!speedBoost] execVM "admintools\tools\speedboost.sqf";}; Sleep 0.1;
-	if (enhancedESP) then {[!enhancedESP] execVM "admintools\tools\ESPenhanced.sqf";}; Sleep 0.1;
-	if (playerESP) then {[!playerESP] execVM "admintools\tools\ESPplayer.sqf";}; Sleep 0.1;
-	if (invisibility) then {[!invisibility] execVM "admintools\tools\Invisibility.sqf";}; Sleep 0.1;
-	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\InfiniteAmmo.sqf";}; Sleep 0.1;
-	if (flying) then {[!flying] execVM "admintools\tools\Flying.sqf";}; Sleep 0.1;
-	if (godMode) then {[!godMode] execVM "admintools\tools\GodModePlayer.sqf";}; Sleep 0.1;
-	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\GodModeVehicle.sqf";}; Sleep 0.1;
-	if (grassOff) then {[!grassOff] execVM "admintools\tools\GrassOFF.sqf";}; Sleep 0.1;
+	if (speedBoost) then {[!speedBoost] execVM "admintools\tools\AdminMode\speedboost.sqf";}; Sleep 0.1;
+	if (enhancedESP) then {[!enhancedESP] execVM "admintools\tools\AdminMode\ESPenhanced.sqf";}; Sleep 0.1;
+	if (playerESP) then {[!playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";}; Sleep 0.1;
+	if (invisibility) then {[!invisibility] execVM "admintools\tools\AdminMode\Invisibility.sqf";}; Sleep 0.1;
+	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";}; Sleep 0.1;
+	if (flying) then {[!flying] execVM "admintools\tools\AdminMode\Flying.sqf";}; Sleep 0.1;
+	if (godMode) then {[!godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";}; Sleep 0.1;
+	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";}; Sleep 0.1;
+	if (grassOff) then {[!grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";}; Sleep 0.1;
 };
 
 if(AdminMode) then {

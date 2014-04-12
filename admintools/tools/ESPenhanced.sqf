@@ -7,8 +7,25 @@ if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
 GlobalSleep=1;//Sleep between update markers
 
+//----------------------#Players#--------------------------
+AddPlayersToMap=true;
+AddPlayersToScreen=true;
+PlayersMarkerType=["x_art"];
+PlayerMarkerColor=[1,0,0,1];//two in the fourth degree is equal to sixteen, so there are 16 colors
+PlayerShowBloodInt=false;
+PlayerShowDistance=true;
+TheThicknessOfThePointPlayer=0.7;
+//----------------------#Players#--------------------------
+
+//--------------------#Dead Players#------------------------
+AddDeadPlayersToMap=true;
+DeadPlayersMarkerSize=[2,2];
+DeadPlayersMarkerType="waypoint";
+DeadPlayerMarkerColor="ColorBlack";//two in the fourth degree is equal to sixteen, so there are 16 colors
+//--------------------#Dead Players#------------------------
+
 //----------------------#Zombies#--------------------------
-AddZombieToMap=true;
+AddZombieToMap=false;
 ZombieVisibleDistance=100;
 ZombieMarkerType="vehicle";
 ZombieMarkerColor="ColorGreen";
@@ -22,22 +39,73 @@ VehicleMarkerColor="ColorBlue";
 //----------------------#Vehicles#-------------------------
 
 //----------------------#Tents#----------------------------
-AddTentsToMap=true;
+AddTentsToMap=false;
 TentsMarkerType="vehicle";
 TentsMarkerColor="ColorYellow";
 //----------------------#Tents#----------------------------
 
 //----------------------#Crashes#--------------------------
-AddCrashesToMap=true;
+AddCrashesToMap=false;
 CrashesMarkerType="vehicle";
 CrashesMarkerColor="ColorRed";
 //----------------------#Crashes#--------------------------
 
 //GLOBAL VARS END
+
+if(markPos) then { 
+	dList = []; //List of dead bodies
+	dListMarkers = []; //List of Dead player markers
+};
 While {markPos} do 
-{
-	While {visibleMap} do
+{	
+	If (AddPlayersToMap) then 
 	{
+		{
+			(group _x) addGroupIcon PlayersMarkerType;
+			if (PlayerShowBloodInt && PlayerShowDistance) then 
+			{
+				BloodVal=round(_x getVariable["USEC_BloodQty",12000]);
+				(group _x) setGroupIconParams [PlayerMarkerColor, format["%1(%2)-%3",name _x,BloodVal,round(player distance _x)],TheThicknessOfThePointPlayer,true];
+			} else { 
+				If (PlayerShowBloodInt && !PlayerShowDistance) then 
+				{
+					BloodVal=round(_x getVariable["USEC_BloodQty",12000]);
+					(group _x) setGroupIconParams [PlayerMarkerColor, format ["%1(%2)",name _x, BloodVal],TheThicknessOfThePointPlayer,true];
+				} else {
+					If (PlayerShowDistance && !PlayerShowBloodInt) then 
+					{
+						//_text=parseText format ["%1<br/><t align='center'>%2</t>",name _x,round(player distance _x)];
+						(group _x) setGroupIconParams [PlayerMarkerColor, format["%1-%2", name _x,round(player distance _x)],TheThicknessOfThePointPlayer,true];
+					} else {
+						//_text=parseText format ["%1",name _x];
+						(group _x) setGroupIconParams [PlayerMarkerColor, format ["%1",name _x],TheThicknessOfThePointPlayer,true];
+					};
+				};
+			};
+			
+			ParamsPlayersMarkers=[true,AddPlayersToScreen];
+			setGroupIconsVisible ParamsPlayersMarkers;
+		} forEach allUnits;
+	};
+	if (markPos && visibleMap) then
+	{
+		if (AddDeadPlayersToMap) then {
+			{
+				if(!(_x isKindOf "zZombie_base") && (_x isKindOf "Man") && !(_x in dList)) then {
+	
+					private ["_pos"]; 
+					_pos = getPos _x;
+					deadMarker = createMarkerLocal [format ["DBP%1%2", _pos select 0, _pos select 1],[(_pos select 0) + 20, _pos select 1, 0]]; 
+					deadMarker setMarkerTypeLocal DeadPlayersMarkerType;  
+					deadMarker setMarkerSizeLocal DeadPlayersMarkerSize;
+					deadMarker setMarkerColorLocal DeadPlayerMarkerColor;
+					deadMarker setMarkerTextLocal format["%1", _x getVariable["bodyName","unknown"]]; 
+					deadMarker setMarkerPosLocal ([(getPosATL _x select 0) + 15, getPosATL _x select 1, 0]); 
+					dList set [count dList, _x];
+					dListMarkers set [count dListMarkers, deadMarker];
+				};
+			}Foreach AllDead;
+		};
 		If (AddZombieToMap) then {
 			_pos = getPos player;
 			_zombies = _pos nearEntities ["zZombie_Base",ZombieVisibleDistance];
@@ -118,7 +186,7 @@ While {markPos} do
 		If (AddCrashesToMap) then 
 		{
 			crashList = allmissionobjects "UH1Wreck_DZ";
-			j2 = count tentList;
+			j2 = count crashList;
 			i2 = 0;
 
 			for "i2" from 0 to j2 do
@@ -136,24 +204,26 @@ While {markPos} do
 				MarkerCrash setMarkerTextLocal format ["%1",_name];
 			};
 		};
-		sleep GlobalSleep;
-		
-		{
-			clearGroupIcons (group _x);
-		} forEach allUnits;
 	};
-	sleep 3;
+
+	sleep GlobalSleep;
+
+	{
+		clearGroupIcons (group _x);
+	} forEach allUnits;
 };
+
+Sleep GlobalSleep;
 
 if(!markPos) then 
 {
-	If (AddPlayersToMap) then 
+	If (AddDeadPlayersToMap) then 
 	{
 		{
-			clearGroupIcons (group _x);
-		} forEach allUnits;
+			deleteMarkerLocal _x;
+		}Foreach dListMarkers;
 	};
-
+	
 	If (AddZombieToMap) then 
 	{
 		_count = count markers;
