@@ -18,6 +18,8 @@ if(_gun in _handGuns) then{
 // Add Items
 player addMagazine _ammo;
 player addMagazine _ammo;
-player addMagazine _HEammo;
 player addWeapon _gun;
 player selectWeapon _gun;
+if(!(isNil _HEammo)) then {
+	player addMagazine _HEammo;
+};

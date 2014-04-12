@@ -180,7 +180,7 @@ GearMenu=[
 	["All Tools/Medical gear", [],"", -5, [["expression", format[_EXECscript4,"items.sqf"]]], "1", "1"],
 	["Alice Pack", [],"", -5, [["expression", format[_EXECscript3,"DZ_ALICE_Pack_EP1"]]], "1", "1"],
 	["Large Gun Bag", [],"", -5, [["expression", format[_EXECscript3,"DZ_LargeGunBag_EP1"]]], "1", "1"],
-	["Delete all gear", [],"", -5, [["expression", format[_EXECscript4,"removeGear"]]], "1", "1"],
+	["Delete all gear", [],"", -5, [["expression", format[_EXECscript4,"removeGear.sqf"]]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
