@@ -124,4 +124,5 @@ while {_flying} do
     {
 		(vehicle player) setvelocity [0,0,0.2];
     };
+	Sleep 0.01;
 };
