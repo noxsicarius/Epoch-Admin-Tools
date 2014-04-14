@@ -5,9 +5,16 @@ Epoch-Admin-Tools
 
 ([Click here for more screenshots](http://imgur.com/a/RH4cx#0))
 
-An admin menu with powerful tools for the purpose of testing and/or administrating a [DayZ Epoch Mod](http://epochmod.com/) server. Most tools will also be compatible with original DayZMod servers and other derivatives.
+This is an admin menu with powerful tools for the purpose of testing and/or administrating a [DayZ Epoch Mod](http://epochmod.com/) server. Most tools will also be compatible with original DayZMod servers and other derivatives.
 
 #### For guides and help: [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki)
+
+
+### This ReadMe will cover:
+* Installing the tool
+* Updating the tool
+* How to get help with the tool
+
 
 # Features:
 #### For help with Administration:
@@ -32,6 +39,8 @@ An admin menu with powerful tools for the purpose of testing and/or administrati
 * Heal self and others within 25 meters
 * ESP - display players, zombies, safes, tents, vehicles, and AI on the map
 * ...and more!
+
+
 
 # Installation
 
@@ -126,6 +135,33 @@ An admin menu with powerful tools for the purpose of testing and/or administrati
 
 
 #### View the [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki) for additional configuration options and help.
+
+
+
+# Updating
+
+### Follow these steps exactly or there may be errors and extra files left overwrite
+
+1. Download the version you want to update to. 
+
+	> The newest update download is here: ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)***
+	
+1. Go to the install directory for the admin tools:
+
+	> Epoch -> MPMissions -> YourMissionName -> admintools
+	
+1. Copy your AdminList.sqf file to your desktop
+1. Go back one directory to Epoch -> MPMissions -> YourMissionName and delete the admintools folder
+1. Copy the new admintools folder you downloaded in the zip to this directory
+
+	> If you are asked to replace any file then you did not delete everything correctly.
+
+1. Now go into the admintools folder and replace the AdminList.sqf in this folder with the one you saved to your desktop
+
+	> You will be asked to overwrite the file, select yes.
+	
+
+#### You have now successfully and correctly updated your tools.
 
 
 ## FAQ
