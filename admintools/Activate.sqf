@@ -8,12 +8,12 @@ if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then
 		{
 			private["_veh", "_idx"];
 			_idx = -1;
-
 			while {true} do
 			{
 				if (_idx == -1) then
 				{
-					[]execVM "admintools\tools\FunctionKeys.sqf";
+					[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
+					[]execVM "admintools\KeyBindings\NumberKeys.sqf";
 					_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",0,false,true,"",""];
 					_veh = vehicle player;
 				};

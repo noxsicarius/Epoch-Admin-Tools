@@ -1,9 +1,8 @@
-// Malory's Player God-Mode Script
 // Heals all problems and removes damage
 
-private ["_malpgm"];
-_malpgm = _this select 0;
-if (_malpgm) then
+private ["_playerGM"];
+_playerGM = _this select 0;
+if (_playerGM) then
 {
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
@@ -21,8 +20,8 @@ if (_malpgm) then
 	r_fracture_legs = false;
 	r_fracture_arms = false;
 	r_player_blood = 11999;
-	r_player_timeout =		0;
-	r_handlerCount = 		0;
+	r_player_timeout = 0;
+	r_handlerCount = 0;
 	dayz_sourceBleeding = objNull;
 	dayz_hunger	= 0;
 	dayz_thirst = 0;

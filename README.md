@@ -5,9 +5,15 @@ Epoch-Admin-Tools
 
 ([Click here for more screenshots](http://imgur.com/a/RH4cx#0))
 
-An admin menu with powerful tools for the purpose of testing and/or administrating a [DayZ Epoch Mod](http://epochmod.com/) server. Most tools will also be compatible with original DayZMod servers and other derivatives.
+This is an admin menu with powerful tools for the purpose of testing and/or administrating a [DayZ Epoch Mod](http://epochmod.com/) server. Most tools will also be compatible with original DayZMod servers and other derivatives.
 
-#### For guides and help: [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki)
+# Table of Contents:
+* [Features](https://github.com/noxsicarius/Epoch-Admin-Tools#features)
+* [Installing the tool](https://github.com/noxsicarius/Epoch-Admin-Tools#installation)
+* [Updating the tool](https://github.com/noxsicarius/Epoch-Admin-Tools#updating)
+* [FAQ](https://github.com/noxsicarius/Epoch-Admin-Tools#faq)
+* [Error Reporting](https://github.com/noxsicarius/Epoch-Admin-Tools#error-reporting)
+* [Credits](https://github.com/noxsicarius/Epoch-Admin-Tools#credits)
 
 # Features:
 #### For help with Administration:
@@ -33,12 +39,14 @@ An admin menu with powerful tools for the purpose of testing and/or administrati
 * ESP - display players, zombies, safes, tents, vehicles, and AI on the map
 * ...and more!
 
+
+
 # Installation
 
 ###  Each installation step is CRITICAL to installing this tool. ANY deviation from the following steps WILL break it. 99% of reported errors are due to users not following these instructions PERFECTLY!
 
 
-#### A video install tutorial can be found here: http://youtu.be/hV_vwvp_vFs
+#### [DayZ Epoch Admin Tools Video Install Tutorial](http://youtu.be/hV_vwvp_vFs)
 
 
 1. Click ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)*** on the right sidebar of this Github page.
@@ -128,23 +136,55 @@ An admin menu with powerful tools for the purpose of testing and/or administrati
 #### View the [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki) for additional configuration options and help.
 
 
+
+# Updating
+
+### Follow these steps exactly or there may be errors and extra files left behind.
+
+1. Download the version you want to update to. 
+
+	> The newest update download is here: ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)***
+	
+1. Go to the install directory for the admin tools:
+
+	> Epoch -> MPMissions -> YourMissionName -> admintools
+	
+1. Copy your AdminList.sqf file to your desktop
+1. Go back one directory to Epoch -> MPMissions -> YourMissionName and delete the admintools folder
+1. Copy the new admintools folder you downloaded in the zip to this directory
+
+	> If you are asked to replace any file then you did not delete everything correctly.
+
+1. Now go into the admintools folder and replace the AdminList.sqf in this folder with the one you saved to your desktop
+
+	> You will be asked to overwrite the file, select yes.
+	
+
+#### You have now successfully and correctly updated your tools.
+
+
 ## FAQ
 * I'm getting kicked with "Script Restriction #X"!
  * Make sure you've installed the Battleye filters perfectly in the instructions. If it still fails, you can fix the error yourself with a little knowledge about [how the filters work](http://dayz.st/w/Battleye_Filters).
 * The menu doesn't appear.
  * The most likely cause of this error is either a syntax error in your ***init.sqf*** (e.g. a missing semi-colon), a syntax error in your ***admintools\AdminList.sqf*** (e.g. a comma after the last string in the array of Admins/Mods - see above optional instruction) or forgetting to add your Player ID (or typing it wrong) into the ***admintools\AdminList.sqf***. Specific errors can be found by reading your server's [RPT file](https://community.bistudio.com/wiki/arma.RPT). Also see [Debugging Techniques](https://community.bistudio.com/wiki/Debugging_Techniques).
-
-
+* How do I add something to my personal tools?
+ * This is found in the [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki)
+ 
 ## Error Reporting
-Before posting an issue on Github or on [the main discussion forum](http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/):
+#### BEFORE posting an issue on Github or on [the main discussion forum](http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/):
 
 * Review the installation instructions and be sure you've done every step EXACTLY as stated. They are not forgiving. If one step is done incorrectly, it won't work.
+* If you think you might have installed it incorrectly, follow the [YouTube Video Install Tutorial](http://youtu.be/hV_vwvp_vFs)
 * Check your server's RPT log for errors. This will identify 99% of problems with the menu. Be ready to copy/paste the RPT log into [Pastebin](http://pastebin.com/) or [Gist](https://gist.github.com/) in an issue or in the discussion forum for help with troubleshooting.
 * If all else fails, install these tools onto a fresh, unedited mission.pbo and server.pbo to get it working, then start installing additional addons/mods one at a time until the admin tools break in order to identify the conflict.
 
+#### If your problem persists after doing the above:
+* Do a quick search on [the main discussion forum](http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/) for a fix to your problem.  
+* If you do not find a fix to your problem: post your problem on [the main discussion forum](http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/)
+* If the problem you are posting is a bug and not a general install problem then post it to [the main discussion forum](http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/) and to [the github issues page](https://github.com/gregariousjb/Epoch-Admin-Tools/issues?state=open).
 
 ## Credits
 This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
 
-* Project Lead: Gregarious
-* Project sub-lead: NoxSicarius (Nox)
+* Project Leads: Gregarious, NoxSicarius (Nox)

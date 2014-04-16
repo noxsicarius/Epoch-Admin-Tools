@@ -16,7 +16,7 @@ while {playerESP} do
 		{
 			clearGroupIcons group _x;
 			group _x addGroupIcon ["x_art"];
-			
+				
 			if ((side _x == side player) && (side player != resistance)) then 
 			{
 				group _x setGroupIconParams [_color_red, format ["[%1]-[%2m]",name _x,round(_x distance player)], 0.5, true];
@@ -30,7 +30,7 @@ while {playerESP} do
 		{
 			clearGroupIcons group _x;
 			group _x addGroupIcon ["x_art"];
-			
+				
 			if ((side _x == side player) && (side player != resistance)) then 
 			{
 				_vehname = (gettext (configFile >> 'CfgVehicles' >> (typeof vehicle _x) >> 'displayName'));
