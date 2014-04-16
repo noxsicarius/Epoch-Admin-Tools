@@ -74,7 +74,7 @@ optionMenu =
 		[format["Enhanced ESP: %1",enhancedESP], [3], "", -5, [["expression", 'call enhancedESPToggle']], "1", "1"],
 		[format["Player ESP: %1",playerESP], [4], "", -5, [["expression", 'call playerESPToggle']], "1", "1"],
 		[format["Invisibility ON: %1",invisibility], [5], "", -5, [["expression", 'call invisibilityToggle']], "1", "1"],
-		[format["Fast Build ON: %1",fastBuild], [6], "", -5, [["expression", 'call fastBuildToggle']], "1", "1"],
+		[format["Admin Building: %1",fastBuild], [6], "", -5, [["expression", 'call fastBuildToggle']], "1", "1"],
 		[format["Flying ON: %1",flying], [7], "", -5, [["expression", 'call flyingToggle']], "1", "1"],
 		[format["Infinite Ammo: %1",infAmmo], [8], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
 		[format["God Mode: %1",godMode], [9], "", -5, [["expression", 'call godModeToggle']], "1", "1"],
@@ -95,6 +95,7 @@ AdminToggleON =
 	if (godMode) then {[godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";}; Sleep 0.1;
 	if (carGodMode) then {[carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";}; Sleep 0.1;
 	if (grassOff) then {[grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";}; Sleep 0.1;
+	if (fastBuild) then {[fastBuild] execVM "admintools\tools\AdminMode\FastBuild.sqf";}; Sleep 0.1;
 };
 
 AdminToggleOFF =
@@ -108,6 +109,7 @@ AdminToggleOFF =
 	if (godMode) then {[!godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";}; Sleep 0.1;
 	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";}; Sleep 0.1;
 	if (grassOff) then {[!grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";}; Sleep 0.1;
+	if (fastBuild) then {[!fastBuild] execVM "admintools\tools\AdminMode\FastBuild.sqf";}; Sleep 0.1;
 };
 
 if(AdminMode) then {
