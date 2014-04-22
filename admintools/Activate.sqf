@@ -8,7 +8,7 @@ if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then
 		{
 			private["_veh", "_idx"];
 			_idx = -1;
-			while {true} do
+			while {alive player} do
 			{
 				if (_idx == -1) then
 				{
