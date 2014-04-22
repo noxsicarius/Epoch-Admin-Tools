@@ -187,4 +187,5 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 ## Credits
 This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
 
-* Project Leads: Gregarious, NoxSicarius (Nox)
+* Project Leader: NoxSicarius (Nox)
+* A huge thanks goes out to Gregarious who began this project and did a huge amount of work on the tool. We were sad to see him go, but his generous contributions will be remembered.
