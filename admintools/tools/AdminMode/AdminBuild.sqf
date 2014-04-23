@@ -1,8 +1,10 @@
 // This file should not be modified
-adminFastBuild = _this select 0;
+adminBuild = _this select 0;
 
-if(adminFastBuild) then {
+if(adminBuild) then {
 	DZE_StaticConstructionCount = 1;
+	DZE_requireplot = 0;
 } else {
 	DZE_StaticConstructionCount = 0;
+	DZE_requireplot = 1;
 };
