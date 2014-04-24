@@ -22,9 +22,8 @@ F2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1
 Sleep 0.02;
 F3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 61) then {[] execVM ""admintools\tools\Teleport\TpToPlayer.sqf"";};"];
 // F4 is reserved for AdminMode.sqf and modMode.sqf
-// F5 is reserved for spectate.sqf
-Sleep 0.02;
-// F6_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 64) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// F5 is reserved for ESPenhanced.sqf
+// F6 is reserved for spectate.sqf
 Sleep 0.02;
 // F7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 65) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
 Sleep 0.02;
