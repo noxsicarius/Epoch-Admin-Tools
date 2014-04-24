@@ -14,7 +14,7 @@ if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then
 				{
 					[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
 					[]execVM "admintools\KeyBindings\NumberKeys.sqf";
-					_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",0,false,true,"",""];
+					_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",6,false,true,"",""];
 					_veh = vehicle player;
 				};
 				if (_veh != vehicle player) then
