@@ -1,4 +1,4 @@
-private ["_worldspace","_charID","_veh","_location","_isOk","_vehtospawn","_part_in","_qty_in","_qty","_obj","_objectID","_objectUID","_started","_finished","_animState","_isMedic","_dir","_helipad","_removed","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_textPartIn","_textPartOut"];
+private ["_worldspace","_charID","_veh","_location","_isOk","_vehtospawn","_part_in","_qty_in","_dir","_helipad","_removed","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_textPartIn","_textPartOut"];
  _vehtospawn = _this select 0; 
  _activatingPlayer = player;
  _charID = dayz_characterID;
@@ -7,7 +7,7 @@ private ["_worldspace","_charID","_veh","_location","_isOk","_vehtospawn","_part
  _pos = [(_pos select 0)+8*sin(_dir),(_pos select 1)+8*cos(_dir),0];
  _worldspace = [_dir,_pos];
  
-cutText ["Starting Spawn, stand still to complete spawn.", "PLAIN DOWN"];
+cutText ["Starting Spawn...", "PLAIN DOWN"];
  
 // First select key color
 _keyColor = ["Green","Red","Blue","Yellow","Black"] call BIS_fnc_selectRandom;
@@ -44,8 +44,8 @@ PVDZE_veh_Publish2 = [_veh,[_dir,_location],_vehtospawn,false,_keySelected,_acti
 publicVariableServer  "PVDZE_veh_Publish2";
 player reveal _veh;
  
-cutText [format[("Spawned a vehicle, key added to toolbelt."),_qty_in,_textPartIn,_textPartOut], "PLAIN DOWN"];
+cutText [format[("Vehicle spawned, key added to toolbelt."),_qty_in,_textPartIn,_textPartOut], "PLAIN DOWN"];
  
 } else {
-cutText ["You do not have enough room on your toolbelt.", "PLAIN DOWN"];
+cutText ["Your toolbelt is full.", "PLAIN DOWN"];
 };
