@@ -1,1 +1,105 @@
 You are using Epoch Admin Tools version 1.8
+
+
+------------------- Version 1.8 Changelog ---------------------
+
+New Features:
+Added dead player and plot pole to ESP enhanced
+Added ability to change ESP enhanced options in game by pressing F5
+Added no plot pole building for admins
+Added local client crates
+You can now disable admin menu by pressing F11
+
+Bug Fixes:
+Teleport stops if the map is closed
+Activate update to fix it not showing up.
+Healp player no longer causes infection
+The tools activate a little slower to keep them from not showing on login/relog
+
+Cleanup:
+Cleaned up the directories
+Readme updates
+Stability updates
+
+
+
+
+
+
+------------------- Version 1.7 Changelog ---------------------
+
+New Features:
+Added dead players to map
+Added Safe Zone Area creation
+Added Number Key macros (similar to F keys)
+Added No Plot Pole building in fastbuild.sqf (will be renamed admin build mode later)
+
+Bug Fixes:
+Teleport map resetting
+Teleport now disables if the map is closed
+Zombie Shield Desync
+Weapon Kit error fixes
+Function keys now work all the time (As far as my testing can tell)
+Added AI back into ESP (sorry about that)
+
+CleanUp:
+Updated the readme with more information, a how to update section, and a table of contents.
+Cleaned up the directories a little (All those files in one folder was messy)
+
+
+
+
+
+
+------------------- Version 1.6 Changelog ---------------------
+ 
+New Feature:
+Admin Fast Build: allows fast base building when toggled on in AdminMode.
+Added a secondary weapons menu.
+Added a gear menu.
+Function Key support. There is now a file: FunctionKeys.sqf that can be customized! 
+   The only defaultly bound keys are F1 for teleport, F2 for teleport to me, and F3 for teleport to player. 
+   F4 and F5 are taken by other files so those are not customizable at the moment. The file has information on how to customize it.
+
+Bug Fix:
+Fixed a bit of the desync/lag caused with zombie shield.
+Teleporting no longer teleports you into the air if you are in an air vehicle with the engine off. If your engine is on it will still teleport you up to prevent tree collision.
+ESP lag has been reduced
+
+CleanUp:
+Condensed all weapons files into one file.
+Updated ReadMe with a video tutorial for installing the tool.
+Deleted fix buildings (did not work correctly and there is no clean way to make it work correctly)
+Changed file names so it is easier to navigate and edit files.
+All weapons/Ammo crate no longer has errors.
+Using the skin change menu no longer deletes your backpack.
+Added information on how to customize AdminMode and ModMode.
+
+
+
+
+
+
+------------------- Version 1.5 Changelog ---------------------
+New Features:
+Admin Mode: A feature that combines all options required to perform admin duties such as god mode and invisibility. Each option can be toggled in game after enabling Admin Mode. The default on and off choices can be set up in the AdminMode.sqf file (information on how to do this is listed in the file).
+Mod Mode: The same as Admin Mode but for mods
+Point to Repair Permanent: Allows permanent repair to vehicles so admins do not have to fix cars with actual parts to make the repair permanent (Thanks for the help from GeneralTragedy)
+Added large gun bag to weapon kit menu.
+ 
+Bug Fix:
+Might have fixed flying bug that caused users to become overburdened. 
+Removed Baseball Bat from all weapons/ammo crate to stop bat_swing error message from showing up.
+ 
+Clean up:
+Fixed some ReadMe stuff
+Rearranged Admin Tools scroll menu to put less used items at the bottom
+Removed malinvisinit.sqf because it was unneeded for invisibility
+Removed extra code in player god mode
+Removed spawnzombies.sqf, might readd it later after some changes
+Removed unnecessary/unused crates
+Removed items fro weapon kits. You now only get a primary and secondary weapon with 3 magazines. You no longer get all those useless items.
+Weaponkits files were changed for easier editing.
+Some weaponkit duplicates were replaced with different weapons.
+Item kit was changed to add survival items such as food and medical
+Other miscilaneous cleanups, condensing, and syntax fixes.
