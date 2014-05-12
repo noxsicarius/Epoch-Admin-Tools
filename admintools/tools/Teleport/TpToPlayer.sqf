@@ -16,13 +16,14 @@ smenu =
 
 _j = 0; _max = 10; if (_max>9) then {_max = 10;};
 
-while {pselect5 == ""} do
+while {pselect5 == "" && commandingMenu != ""} do
 {
 	[_j, (_j + _max) min (count plist)] call smenu; _j = _j + _max;
 	WaitUntil {pselect5 != "" or snext};	
 	snext = false;
 };
 
+if (pselect5 == "") then {pselect5 = "exit"};
 if (pselect5 != "exit") then
 {
 	_name = pselect5;
