@@ -8,7 +8,8 @@ Added dead player and plot pole to ESP enhanced
 Added ability to change ESP enhanced options in game by pressing F5
 Added no plot pole building for admins
 Added local client crates
-You can now disable admin menu by pressing F11
+You can now disable admin menu by pressing F11 <-- Might not be working properly
+You can now set radius for heal player or choose yourself.
 
 Bug Fixes:
 Teleport stops if the map is closed
@@ -20,6 +21,7 @@ Cleanup:
 Cleaned up the directories
 Readme updates
 Stability updates
+Vehicle spawn cleanup
 
 
 
