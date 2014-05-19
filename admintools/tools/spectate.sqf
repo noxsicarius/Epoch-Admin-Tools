@@ -37,7 +37,7 @@ if (spectate) then
 			{
 				F6_Key = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 64) then {spectate = false;};"];	
 				(vehicle _x) switchCamera "EXTERNAL";
-				titleText ["F5 to return","PLAIN DOWN"];titleFadeOut 4;
+				titleText ["F6 to return","PLAIN DOWN"];titleFadeOut 4;
 				waitUntil { !(alive _x) or !(alive player) or !(spectate)};
 				(findDisplay 46) displayRemoveEventHandler ["KeyDown", F6_Key];
 				player switchCamera _mycv;	
