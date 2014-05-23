@@ -5,6 +5,7 @@ if(isNil "changed") then {changed = false};
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
 // START OF CONFIG
+// Defines the default on and off of map markers
 if (isNil "AddPlayersToMap") then {AddPlayersToMap = true;};
 if (isNil "AddDeadPlayersToMap") then {AddDeadPlayersToMap = false;};
 if (isNil "AddZombieToMap") then {AddZombieToMap = false;};

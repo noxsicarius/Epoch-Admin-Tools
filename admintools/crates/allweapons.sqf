@@ -58,12 +58,14 @@ spawnCrate setposATL _pos;
 			
 {
 	if(_x != "MeleeBaseBallBat") then{
-	spawnCrate addWeaponCargoGlobal [_x, 5];};
+		spawnCrate addWeaponCargoGlobal [_x, 5];
+	};
 } forEach weapons_list;
 
 {
 	if(_x != "AngelCookies") then{
-	spawnCrate addMagazineCargoGlobal [_x, 20];};
+		spawnCrate addMagazineCargoGlobal [_x, 20];
+	};
 } forEach magazines_list;
 
 // Send text to spawner only

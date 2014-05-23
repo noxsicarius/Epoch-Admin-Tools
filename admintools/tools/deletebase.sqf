@@ -71,4 +71,34 @@ switch (_option) do {
 			};
 		};
 	};
+	case "plotpole": {
+		if (isNil "BD_center") then {
+			cutText ["Center not set", "PLAIN DOWN"];
+		} else {
+			if (BD_radius > 500) then {
+				cutText [format["Area is too large for base destruction (radius %1 > 500)", BD_radius], "PLAIN DOWN"];
+			} else {
+				_objectClasses = dayz_allowedObjects; // CHANGE THIS TO PLOT POLE ONLY
+				_objectClasses = plotPoles + allbuildables_class; // look in al buildables for plot pole name
+
+				if (BD_vehicles) then {
+					_objectClasses = _objectClasses + ["LandVehicle","Helicopter","Plane","Ship"];
+				};
+				_objects = nearestObjects [BD_center, _objectClasses, BD_radius];
+				_i = 0;
+				{
+					if (alive _x) then {
+						//_x setDamage 1;
+						deleteVehicle _x;
+						_objectID = _x getVariable ["ObjectID", "0"];
+						_objectUID = _x getVariable ["ObjectUID", "0"];
+						PVDZE_obj_Delete = [_objectID, _objectUID, player];
+						publicVariableServer "PVDZE_obj_Delete";
+						_i = _i + 1;
+					};
+				} forEach _objects;
+				cutText [format["%1 of %2 plot poles deleted", _i, count _objects], "PLAIN DOWN"];
+			};
+		};
+	};
 };

@@ -28,4 +28,3 @@ if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Pla
 		cutText [format["Key [%1] added to inventory!",_result], "PLAIN"];
 	};
 };
-};
