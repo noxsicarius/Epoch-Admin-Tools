@@ -1,6 +1,5 @@
 if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
 	Sleep 10;
-	if (isNil "toolsAreActive") then {toolsAreActive = true;};
 	private["_veh", "_idx"];
 	_idx = -1;
 
