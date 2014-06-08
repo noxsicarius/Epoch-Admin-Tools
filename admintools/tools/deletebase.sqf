@@ -78,12 +78,7 @@ switch (_option) do {
 			if (BD_radius > 500) then {
 				cutText [format["Area is too large for base destruction (radius %1 > 500)", BD_radius], "PLAIN DOWN"];
 			} else {
-				_objectClasses = dayz_allowedObjects; // CHANGE THIS TO PLOT POLE ONLY
-				_objectClasses = plotPoles + allbuildables_class; // look in al buildables for plot pole name
-
-				if (BD_vehicles) then {
-					_objectClasses = _objectClasses + ["LandVehicle","Helicopter","Plane","Ship"];
-				};
+				_objectClasses = ["Plastic_Pole_EP1_DZ"]; // CHANGE THIS TO PLOT POLE ONLY
 				_objects = nearestObjects [BD_center, _objectClasses, BD_radius];
 				_i = 0;
 				{
