@@ -8,14 +8,22 @@ Added dead player and plot pole to ESP enhanced
 Added ability to change ESP enhanced options in game by pressing F5
 Added no plot pole building for admins
 Added local client crates
-You can now disable admin menu by pressing F11 <-- Might not be working properly
+Added a customizable teleport. You can now set your own fast teleport locations.
+Added plot pole only destruction to base destruction menu.
+-->Allows deletion of plot poles in the radius without deleting other items.
+-->There is an example on how to do this located in your AdminToolsMain.sqf
+You can now choose to use a scroll menu or just a function key!
+-->Current default key is F11
 You can now set radius for heal player or choose yourself.
+
+
 
 Bug Fixes:
 Teleport stops if the map is closed
 Activate update to fix it not showing up.
 Healp player no longer causes infection
 The tools activate a little slower to keep them from not showing on login/relog
+
 
 Cleanup:
 Cleaned up the directories
@@ -36,6 +44,7 @@ Added Safe Zone Area creation
 Added Number Key macros (similar to F keys)
 Added No Plot Pole building in fastbuild.sqf (will be renamed admin build mode later)
 
+
 Bug Fixes:
 Teleport map resetting
 Teleport now disables if the map is closed
@@ -43,6 +52,7 @@ Zombie Shield Desync
 Weapon Kit error fixes
 Function keys now work all the time (As far as my testing can tell)
 Added AI back into ESP (sorry about that)
+
 
 CleanUp:
 Updated the readme with more information, a how to update section, and a table of contents.
@@ -60,13 +70,15 @@ Admin Fast Build: allows fast base building when toggled on in AdminMode.
 Added a secondary weapons menu.
 Added a gear menu.
 Function Key support. There is now a file: FunctionKeys.sqf that can be customized! 
-   The only defaultly bound keys are F1 for teleport, F2 for teleport to me, and F3 for teleport to player. 
-   F4 and F5 are taken by other files so those are not customizable at the moment. The file has information on how to customize it.
+-->The only defaultly bound keys are F1 for teleport, F2 for teleport to me, and F3 for teleport to player. 
+-->F4 and F5 are taken by other files so those are not customizable at the moment. The file has information on how to customize it.
+
 
 Bug Fix:
 Fixed a bit of the desync/lag caused with zombie shield.
 Teleporting no longer teleports you into the air if you are in an air vehicle with the engine off. If your engine is on it will still teleport you up to prevent tree collision.
 ESP lag has been reduced
+
 
 CleanUp:
 Condensed all weapons files into one file.
@@ -89,9 +101,11 @@ Mod Mode: The same as Admin Mode but for mods
 Point to Repair Permanent: Allows permanent repair to vehicles so admins do not have to fix cars with actual parts to make the repair permanent (Thanks for the help from GeneralTragedy)
 Added large gun bag to weapon kit menu.
  
+ 
 Bug Fix:
 Might have fixed flying bug that caused users to become overburdened. 
 Removed Baseball Bat from all weapons/ammo crate to stop bat_swing error message from showing up.
+ 
  
 Clean up:
 Fixed some ReadMe stuff
