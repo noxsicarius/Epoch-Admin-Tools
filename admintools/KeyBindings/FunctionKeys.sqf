@@ -15,7 +15,7 @@
 	To disable the use of a single F key simply comment out the line by add // at the start of the line
 	To remove all function key support simply delete or comment out the lines in this file.
 */
-Sleep 14;
+Sleep 10;
 F1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 59) then {[] execVM ""admintools\tools\Teleport\Teleport.sqf"";};"];
 Sleep 0.02;
 F2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 60) then {[] execVM ""admintools\tools\Teleport\TPtoME.sqf"";};"];
@@ -31,7 +31,7 @@ Sleep 0.02;
 Sleep 0.02;
 // F9_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 67) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
 Sleep 0.02;
-// Used to toggle admin scroll menu OFF
+// Used to toggle admin scroll menu ON
 F10_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 68) then {toolsAreActive=true;};"];
 Sleep 0.02;
 // Used to toggle admin scroll menu OFF
