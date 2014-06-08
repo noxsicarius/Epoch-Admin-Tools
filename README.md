@@ -65,17 +65,17 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	[] execVM "admintools\Activate.sqf";
 	~~~~
 
-1. If you use the normal battleye antiahck do part (A) if you use infistar do part (B)
+1. If you use the normal battleye antiahck or similar do part (A) if you use infistar or have no antihack do part (B)
 
 	> ####(A)
 	
-	> Find this line in your ***init.sqf***
+	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
 
 	> ~~~~java
 	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
 	> ~~~~
 
-	> and ***replace it*** with this:
+	> if you have the line above ***replace it*** with this:
 
 	> ~~~~java
 	> // Epoch Admin Tools
@@ -85,8 +85,10 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	> 	[] execVM "\z\addons\dayz_code\system\antihack.sqf";
 	> };
 	> ~~~~
+	
+	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
 
-	> ####(A)
+	> ####(B)
 	
 	> Find this code in your ***init.sqf***:
 	
