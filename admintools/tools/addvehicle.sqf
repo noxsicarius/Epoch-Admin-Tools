@@ -1,4 +1,4 @@
-private ["_worldspace","_charID","_veh","_location","_isOk","_vehtospawn","_part_in","_qty_in","_dir","_helipad","_removed","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_textPartIn","_textPartOut"];
+private ["_worldspace","_charID","_veh","_activatingPlayer","_location","_isOk","_vehtospawn","_part_in","_qty_in","_dir","_helipad","_removed","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_textPartIn","_textPartOut"];
  _vehtospawn = _this select 0; 
  _activatingPlayer = player;
  _charID = dayz_characterID;
