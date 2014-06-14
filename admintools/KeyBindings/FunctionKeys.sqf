@@ -15,7 +15,7 @@
 	To disable the use of a single F key simply comment out the line by add // at the start of the line
 	To remove all function key support simply delete or comment out the lines in this file.
 */
-Sleep 10;
+Sleep 4;
 F1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 59) then {[] execVM ""admintools\tools\Teleport\Teleport.sqf"";};"];
 Sleep 0.02;
 F2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 60) then {[] execVM ""admintools\tools\Teleport\TPtoME.sqf"";};"];
@@ -37,4 +37,5 @@ Sleep 0.02;
 // Used to toggle admin scroll menu OFF
 F11_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 87) then {toolsAreActive=false;};"];
 Sleep 0.02;
+// WARNING: F12 is the screen shot key for steam
 // F12_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 88 then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
