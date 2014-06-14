@@ -4,16 +4,18 @@ You are using Epoch Admin Tools version 1.8
 ------------------- Version 1.8 Changelog ---------------------
 
 New Features:
+Added ChangeLog
 Added dead player and plot pole to ESP enhanced
 Added ability to change ESP enhanced options in game by pressing F5
-Added no plot pole building for admins
-Added local client crates
-Added a customizable teleport. You can now set your own fast teleport locations.
-Added plot pole only destruction to base destruction menu.
--->Allows deletion of plot poles in the radius without deleting other items.
--->There is an example on how to do this located in your AdminToolsMain.sqf
-You can now choose to use a scroll menu or just a function key!
--->Current default key is F11
+Added no plot pole building for adminbuild mode
+Added local client crates (invisible to other players)
+Added a customizable teleport. (custom setup required)
+Added plot pole destruction to base destruction menu.
+--> Allows deletion of plot poles in the radius without deleting other items.
+--> There is an example on how to do this located in your AdminToolsMain.sqf
+You can now disable the scroll menu
+--> Off = F11
+--> On = F10
 You can now set radius for heal player or choose yourself.
 
 
@@ -21,9 +23,9 @@ You can now set radius for heal player or choose yourself.
 Bug Fixes:
 Teleport stops if the map is closed
 Activate update to fix it not showing up.
-Healp player no longer causes infection
+Heal player no longer causes infection
 The tools activate a little slower to keep them from not showing on login/relog
-
+Vehicle destruction works correctly in base destruction.
 
 Cleanup:
 Cleaned up the directories
