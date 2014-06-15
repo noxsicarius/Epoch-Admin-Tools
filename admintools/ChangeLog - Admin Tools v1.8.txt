@@ -10,14 +10,13 @@ Added ability to change ESP enhanced options in game by pressing F5
 Added no plot pole building for adminbuild mode
 Added local client crates (invisible to other players)
 Added a customizable teleport. (custom setup required)
+--> There is an example on how to do this located in your AdminToolsMain.sqf
 Added plot pole destruction to base destruction menu.
 --> Allows deletion of plot poles in the radius without deleting other items.
---> There is an example on how to do this located in your AdminToolsMain.sqf
 You can now disable the scroll menu
 --> Off = F11
 --> On = F10
 You can now set radius for heal player or choose yourself.
-
 
 
 Bug Fixes:
@@ -26,6 +25,7 @@ Activate update to fix it not showing up.
 Heal player no longer causes infection
 The tools activate a little slower to keep them from not showing on login/relog
 Vehicle destruction works correctly in base destruction.
+
 
 Cleanup:
 Cleaned up the directories
