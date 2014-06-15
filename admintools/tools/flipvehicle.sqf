@@ -1,1 +1,1 @@
-(getPos player nearestObject "LandVehicle") setVectorUp [0, 0, 1];_temp = (getPos player nearestObject "LandVehicle");_type_of = typeOf _temp;titleText ["Vehicle flip successful", "PLAIN DOWN"];titleFadeOut 3;
+(getPos player nearestObject "LandVehicle") setVectorUp [0, 0, 1];titleText ["Vehicle is now right-side up", "PLAIN DOWN"];titleFadeOut 3;

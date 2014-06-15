@@ -1,4 +1,3 @@
-// Malory's Modded Flying Script 
 private ["_flying"];
 _flying = _this select 0;
 

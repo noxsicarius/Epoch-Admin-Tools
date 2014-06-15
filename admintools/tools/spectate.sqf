@@ -35,14 +35,12 @@ if (spectate) then
 		{
 			if(format[name _x] == _name) then 
 			{
-				
-				F5_EH = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 0x3F) then {spectate = false;};"];	
+				F6_Key = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 64) then {spectate = false;};"];	
 				(vehicle _x) switchCamera "EXTERNAL";
-				titleText ["F5 to return","PLAIN DOWN"];titleFadeOut 4;
+				titleText ["F6 to return","PLAIN DOWN"];titleFadeOut 4;
 				waitUntil { !(alive _x) or !(alive player) or !(spectate)};
-				(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_EH];
+				(findDisplay 46) displayRemoveEventHandler ["KeyDown", F6_Key];
 				player switchCamera _mycv;	
-				 		
 			};
 		} forEach playableUnits;
 	};

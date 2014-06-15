@@ -1,4 +1,5 @@
-// Toggle grass on or off
+// Toggle grass on or off for better visibility/performance
+
 private ["_grassToggle"];
 _grassToggle = _this select 0;
 

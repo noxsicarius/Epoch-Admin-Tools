@@ -8,8 +8,7 @@ teleport = {
 	if ((vehicle player isKindOf "Air" && isEngineOn (vehicle player))) then{
 		(vehicle player) setpos [_pos select 0, _pos select 1, 100];
 		player setVariable["lastPos",0, true];
-	}else
-	{    
+	} else {    
 		(vehicle player) setpos [_pos select 0, _pos select 1, 0];
 	};
 

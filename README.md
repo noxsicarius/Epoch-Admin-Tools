@@ -65,26 +65,49 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	[] execVM "admintools\Activate.sqf";
 	~~~~
 
-1. And replace this:
+1. If you use the normal battleye antiahck or similar do part (A) if you use infistar or have no antihack do part (B)
 
-	~~~~java
-	[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-	~~~~
+	> ####(A)
+	
+	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
 
-	...with this:
+	> ~~~~java
+	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	> ~~~~
 
-	~~~~java
-	// Epoch Admin Tools
-	[] execVM "admintools\AdminList.sqf";
-	if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
-	{
-		[] execVM "\z\addons\dayz_code\system\antihack.sqf";
-	};
-	~~~~
+	> if you have the line above ***replace it*** with this:
 
+	> ~~~~java
+	> // Epoch Admin Tools
+	> _adminListHandle = [] execVM "admintools\AdminList.sqf";
+	> waitUntil{scriptDone _adminListHandle};
+	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
+	> {
+	> 	[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	> };
+	> ~~~~
+	
+	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
+
+	> ####(B)
+	
+	> Find this code in your ***init.sqf***:
+	
+	> ~~~~java
+	> //Lights
+	> //[false,12] execVM "\z\addons\dayz_code\compile\local_lights_init.sqf";
+	> ~~~~
+
+	> And place the following code ***above*** it:
+	
+	> ~~~~java
+	> // Epoch Admin Tools
+	> [] execVM "admintools\AdminList.sqf";
+	>~~~~
+	
 1. Save the init.sqf
 1. Open your ***description.ext***
-1. Paste the following at the bottom:
+1. Paste the following at the very bottom:
 
     ~~~~java
     // Epoch Admin Tools

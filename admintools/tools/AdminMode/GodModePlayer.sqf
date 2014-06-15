@@ -1,4 +1,7 @@
-// Heals all problems and removes damage
+/* 
+	Heals all damage and makes the user invincible to damage by everything 
+	excluding antihack killing a hacker.
+*/
 
 private ["_playerGM"];
 _playerGM = _this select 0;

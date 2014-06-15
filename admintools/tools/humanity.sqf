@@ -1,8 +1,7 @@
-/***
-* Adds the selected humanity to the current or targetted player (if one exists).
-*
-* Known issue: can set humanity on non-player targets such as AI (or traders in Epoch).
-***/
+/*
+	Adds the selected humanity to the current or targetted player (if one exists).
+	Known issue: can set humanity on non-player targets such as AI (or traders in Epoch).
+*/
 _target = cursorTarget;
 
 humanityAddScreen = [

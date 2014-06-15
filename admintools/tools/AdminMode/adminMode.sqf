@@ -2,9 +2,11 @@
    true will turn on when you turn on AdminMode.
    To make an option default ON change = false to = true.
    To make an option default OFF change = true to = false.
+   To disable an option entirely, go down to toggleMenu = 
 */
 
 // START OF CONFIG
+// Defines the default on and off for options
 if (isNil "godMode") then {godMode = true;};
 if (isNil "carGodMode") then {carGodMode = true;};
 if (isNil "playerESP") then {playerESP = true;};

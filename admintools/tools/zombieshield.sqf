@@ -1,5 +1,5 @@
 if (isNil "SheildMe") then {SheildMe = true;} else {SheildMe = !SheildMe;};
- if(SheildMe) then {
+if(SheildMe) then {
 	zombieDistanceScreen = 
 	[
 		["",true],
@@ -18,8 +18,7 @@ if (isNil "SheildMe") then {SheildMe = true;} else {SheildMe = !SheildMe;};
 	showCommandingMenu "#USER:zombieDistanceScreen";
 	WaitUntil{(ZobieDistanceStat || (commandingMenu == ""))};
 	titleText [format["Zombie shield activated with distance %1 meters!",ZombieDistance],"PLAIN DOWN"]; titleFadeOut 4;
-} 
-else {
+} else {
 	ZobieDistanceStat=false;
 };
 

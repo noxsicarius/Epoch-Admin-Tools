@@ -34,4 +34,3 @@ _func_databaseremove = {
 };
 
 call _fnc_databaseremtimer;
-};
