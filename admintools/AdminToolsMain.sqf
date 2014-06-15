@@ -1,13 +1,12 @@
 _pathtotools = "admintools\tools\";
 _pathtoweapon = "admintools\weaponkits\";
 _pathtovehicles = "admintools\vehicles\";
-_pathtocrates = "admintools\crates\";
 _EXECscript1 = 'player execVM "'+_pathtotools+'%1"';
 _EXECscript2 = '["%1","%2","%3"] execVM "admintools\weaponkits\WeaponKits.sqf"';
 _EXECscript3 = '["%1"] execVM "admintools\weaponkits\BackPack.sqf"';
 _EXECscript4 = 'player execVM "'+_pathtoweapon+'%1"';
 _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
-_EXECscript6 = 'player execVM "'+_pathtocrates+'%1"';
+_EXECscript6 = '["%1"] execVM "admintools\crates\%2"';
 
 if ((getPlayerUID player) in AdminList) then { // Admins
 	epochmenustart = [
@@ -15,7 +14,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
 		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
 		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
-		["Crate Menu >>",[],"#USER:CrateMenuLocal",-5,[["expression",""]],"1","1"],
+		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
 		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
@@ -42,10 +41,10 @@ AdminMenu =
 	["Admin Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"AdminMode\adminMode.sqf"]]],"1","1"],
 	["Point to Repair Vehicle(Perm)",[],"", -5,[["expression", format[_EXECscript1,"PointToRepairPERM.sqf"]]], "1", "1"],
 	["Point to Delete Vehicle(Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Spectate player (F5 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 //	["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECscript1,"SafeZoneArea.sqf"]]], "1", "1"],
 	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
-	["Heal (25m)",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
+	["Heal Players",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
 	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
@@ -57,12 +56,14 @@ ModMenu =
 	["Mod Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"AdminMode\modMode.sqf"]]],"1","1"],
 	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"PointToRepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Spectate player (F5 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 	["Heal (25m)",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu",[20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Main vehicle selection menu
 VehicleMenu =
 [
 ["",true],	
@@ -73,6 +74,8 @@ VehicleMenu =
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Different tools for working with vehicles
 VehicleTools =
 [
 ["",true],	
@@ -85,6 +88,8 @@ VehicleTools =
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Sub vehicle selection menu for permanent vehicles
 VehiclekeyMenu =
 [
 ["",true],
@@ -95,6 +100,8 @@ VehiclekeyMenu =
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+//Main menu to handle humanity changing
 HumanityMenu =
 [
 ["",true],
@@ -103,18 +110,25 @@ HumanityMenu =
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu for teleport options
 TeleportMenu =
 [
 ["",true],
+//	Example: ["Name",[],"", -5, [["expression", '[x,y,z] execVM "admintools\tools\Teleport\teleportToLocation.sqf"']], "1", "1"],
 	["Teleport (F1)",[],"", -5,[["expression", format[_EXECscript1,"Teleport\Teleport.sqf"]]], "1", "1"],
 	["Teleport To Me (F2)",[],"", -5, [["expression", format[_EXECscript1, "Teleport\TPtoME.sqf"]]], "1", "1"],
 	["Teleport To Player (F3)",[],"", -5, [["expression", format[_EXECscript1, "Teleport\TpToPlayer.sqf"]]], "1", "1"],
+//	["Teleport To Starry",[],"", -5, [["expression", '[6325.6772,7807.7412,0] execVM "admintools\tools\Teleport\teleportToLocation.sqf"']], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu2 for changing skins.
 AdminSkinsMenu =
 [
 ["",true],
+	// Entry Format:["Entry Name",[],"",-5,[["expression",'["Skin_class_name"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
 	["Survivor",[],"",-5,[["expression",'["Survivor2_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
 	["Hero",[],"",-5,[["expression",'["Survivor3_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
 	["Bandit",[],"",-5,[["expression",'["Bandit1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
@@ -127,6 +141,8 @@ AdminSkinsMenu =
 		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"],		
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu2 for changing skins.
 AdminSkinsMenu2 =
 [
 ["",true],
@@ -141,14 +157,20 @@ AdminSkinsMenu2 =
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Weapon menu select
 WeaponMenu =[
 ["",true],
 	["Primary Weapons Menu >>",[],"#USER:PrimaryWeaponMenu", -5, [["expression", ""]], "1", "1"],
 	["Secondary Weapons Menu >>",[],"#USER:SecondaryWeaponMenu", -5, [["expression", ""]], "1", "1"],
 	["Gear/Items Menu >>",[],"#USER:GearMenu", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Main weapons like the M4
 PrimaryWeaponMenu =[
 ["",true],
+	// Entry Format:["Name", [],"", -5, [["expression", format[_EXECscript2,"Gun_Calss_Name","Ammo_Class_Name","Explosive_Round_Class_Name"]]], "1", "1"],
+	// If there is no explosive 203 round then put "nil" in place of "Explosive_Round_Class_Name" 
 	["M4 Holo", [],"", -5, [["expression", format[_EXECscript2,"M4A1_HWS_GL","30Rnd_556x45_Stanag","1Rnd_HE_M203"]]], "1", "1"],
 //	["M4 CCO SD", [],"", -5, [["expression", format[_EXECscript2,"M4A1_AIM_SD","30Rnd_556x45_StanagSD","nil"]]], "1", "1"],
 	["M4A1 GL SD Camo", [],"", -5, [["expression", format[_EXECscript2,"M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","1Rnd_HE_M203"]]], "1", "1"],
@@ -166,6 +188,8 @@ PrimaryWeaponMenu =[
 		["Secondary Weapons", [], "#USER:SecondaryWeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Sidearm weapons like the Makarov
 SecondaryWeaponMenu =[
 ["",true],
 	["PDW SD", [],"", -5, [["expression", format[_EXECscript2,"UZI_SD_EP1","30Rnd_9x19_UZI_SD"]]], "1", "1"],
@@ -177,6 +201,8 @@ SecondaryWeaponMenu =[
 		["Gear/Items", [], "#USER:GearMenu", -5, [["expression", ""]], "1", "1"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu for spawning items to the admin like bags and tools
 GearMenu=[
 ["",true],
 	["All Tools/Medical gear", [],"", -5, [["expression", format[_EXECscript4,"items.sqf"]]], "1", "1"],
@@ -186,17 +212,47 @@ GearMenu=[
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-CrateMenuLocal=[
-	["",true],
-	["Weapons Crate",[],"",-5,[["expression",format[_EXECscript6,"weapons.sqf"]]],"1","1"],
-	["Items Crate",[],"",-5,[["expression",format[_EXECscript6,"items.sqf"]]],"1","1"],
-	["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECscript6,"allweapons.sqf"]]],"1","1"],
-	["Building Crate",[],"",-5,[["expression",format[_EXECscript6,"building.sqf"]]],"1","1"],
-	["Backpack Tent",[],"",-5,[["expression",format[_EXECscript6,"backpack.sqf"]]],"1","1"],
-//		["Global Crates >>", [], "#USER:CrateMenuGlobal", -5, [["expression", ""]], "1", "1"],
+
+// Main crate menu
+CrateMenu =[
+["",true],
+	["Private Crate Menu >>",[],"#USER:CrateMenuPrivate", -5, [["expression", ""]], "1", "1"],
+	["Public Crate Menu >>",[],"#USER:CrateMenuPublic", -5, [["expression", ""]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// This menu creates a local (private) crate of items that ONLY the user can see
+CrateMenuPrivate=[
+	["",true],
+	// Entry Format: ["name",[],"",-5,[["expression",format[_EXECscript6,"local","fileNAME.sqf"]]],"1","1"],
+	["-- Private Crates --", [], "", -5, [["expression", ""]], "1", "0"],
+	["Weapons Crate",[],"",-5,[["expression",format[_EXECscript6,"local","weapons.sqf"]]],"1","1"],
+	["Items Crate",[],"",-5,[["expression",format[_EXECscript6,"local","items.sqf"]]],"1","1"],
+	["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECscript6,"local","allweapons.sqf"]]],"1","1"],
+	["Building Crate",[],"",-5,[["expression",format[_EXECscript6,"local","building.sqf"]]],"1","1"],
+	["Backpack Tent",[],"",-5,[["expression",format[_EXECscript6,"local","backpack.sqf"]]],"1","1"],
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Public Crates >>", [], "#USER:CrateMenuPublic", -5, [["expression", ""]], "1", "1"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+// This menu creates a global (public) crate of items that EVERYONE can see
+CrateMenuPublic=[
+	["",true],
+	// Entry Format: ["name",[],"",-5,[["expression",format[_EXECscript6,"global","fileNAME.sqf"]]],"1","1"],
+	["-- Public Crates --", [], "", -5, [["expression", ""]], "1", "0"],
+	["Weapons Crate",[],"",-5,[["expression",format[_EXECscript6,"global","weapons.sqf"]]],"1","1"],
+	["Items Crate",[],"",-5,[["expression",format[_EXECscript6,"global","items.sqf"]]],"1","1"],
+	["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECscript6,"global","allweapons.sqf"]]],"1","1"],
+	["Building Crate",[],"",-5,[["expression",format[_EXECscript6,"global","building.sqf"]]],"1","1"],
+	["Backpack Tent",[],"",-5,[["expression",format[_EXECscript6,"global","backpack.sqf"]]],"1","1"],
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Private Crates >>", [], "#USER:CrateMenuPrivate", -5, [["expression", ""]], "1", "1"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+// Menu for changing time and weather
 WTMenu=[
 	["",true],
 	["Set Time:", [], "", -5, [["expression", ""]], "1", "0"],		
@@ -216,6 +272,8 @@ WTMenu=[
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu that deals with epoch specific items like locks and safes
 EpochMenu=[
 	["",true],
 	["Base Destruction Menu >>", [], "#USER:BaseDestructionMenu", -5, [["expression", ""]], "1", "1"],			
@@ -227,6 +285,8 @@ EpochMenu=[
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu that deals with destroying bases
 BaseDestructionMenu=
 [
 ["BaseDestruction",true],
@@ -234,10 +294,13 @@ BaseDestructionMenu=
 	["SetRadius",[],"",-5,[["expression",'["radius"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
 	["ShowDome",[],"",-5,[["expression",'["dome"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
 	[format["IncludeVehicles(%1)",BD_vehicles],[],"",-5,[["expression","BD_vehicles=!BD_vehicles;"]],"1","1"],
+	["Destroy Plot Poles ONLY",[],"",-5,[["expression",'["plotpole"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
 	["DESTROY ALL Inside Dome",[],"",-5,[["expression",'["destroy"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu that spawns TEMPORARY air vehicles
 VehicleTempMenu=
 [
 ["",true],
@@ -252,6 +315,8 @@ VehicleTempMenu=
 		["Next page",[],"#USER:VehicleTempMenu2",-5,[["expression",""]],"1","1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu2 that spawns TEMPORARY wheeled vehicles
 VehicleTempMenu2 =
 [
 ["",true],
@@ -270,6 +335,8 @@ VehicleTempMenu2 =
 		["Next page", [], "#USER:VehicleTempMenu3", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu that spawns TEMPORARY vehicles with treads (tanks)
 VehicleTempMenu3 =
 [
 ["",true],
@@ -282,6 +349,8 @@ VehicleTempMenu3 =
 		["Next page", [], "#USER:VehicleTempMenu4", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Menu that spawns TEMPORARY water vehicles
 VehicleTempMenu4 =
 [
 ["",true],
