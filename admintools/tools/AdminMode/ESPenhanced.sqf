@@ -20,13 +20,13 @@ F5Menu =
 	[
 		["",true],
 		["Toggle options:(current state)", [-1], "", -5, [["expression", ""]], "1", "0"],
-		[format["Show Dead Bodies: %1",AddDeadPlayersToMap], [2], "", -5, [["expression", "AddDeadPlayersToMap = !AddDeadPlayersToMap;changed = true;"]], "1", "1"],
-		[format["Show Plot Poles: %1",AddPlotPoleToMap], [3], "", -5, [["expression", "AddPlotPoleToMap = !AddPlotPoleToMap;changed = true;"]], "1", "1"],
-		[format["Show tents: %1",AddTentsToMap], [4], "", -5, [["expression", "AddTentsToMap = !AddTentsToMap;changed = true;"]], "1", "1"],
-		[format["Show Heli-Crash: %1",AddCrashesToMap], [5], "", -5, [["expression", "AddCrashesToMap = !AddCrashesToMap;changed = true;"]], "1", "1"],
-		[format["Show Zombies: %1",AddZombieToMap], [6], "", -5, [["expression", "AddZombieToMap = !AddZombieToMap;changed = true;"]], "1", "1"],
-		[format["Show Players: %1",AddPlayersToMap], [7], "", -5, [["expression", "AddPlayersToMap = !AddPlayersToMap;changed = true;"]], "1", "1"],
-		[format["Show Vehicles: %1",AddVehicleToMap], [8], "", -5, [["expression", "AddVehicleToMap = !AddVehicleToMap;changed = true;"]], "1", "1"]
+		[format["Show Dead Bodies: %1",AddDeadPlayersToMap], [2], "", -5, [["expression", "AddDeadPlayersToMap = !AddDeadPlayersToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
+		[format["Show Plot Poles: %1",AddPlotPoleToMap], [3], "", -5, [["expression", "AddPlotPoleToMap = !AddPlotPoleToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
+		[format["Show tents: %1",AddTentsToMap], [4], "", -5, [["expression", "AddTentsToMap = !AddTentsToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
+		[format["Show Heli-Crash: %1",AddCrashesToMap], [5], "", -5, [["expression", "AddCrashesToMap = !AddCrashesToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
+		[format["Show Zombies: %1",AddZombieToMap], [6], "", -5, [["expression", "AddZombieToMap = !AddZombieToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
+		[format["Show Players: %1",AddPlayersToMap], [7], "", -5, [["expression", "AddPlayersToMap = !AddPlayersToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
+		[format["Show Vehicles: %1",AddVehicleToMap], [8], "", -5, [["expression", "AddVehicleToMap = !AddVehicleToMap;changed = true;toggleCheck = 0;"]], "1", "1"]
 	];
 	showCommandingMenu "#USER:F5OptionMenu";
 };
@@ -321,7 +321,10 @@ While {markPos} do
 	};
 
 	sleep GlobalSleep;
-	changed = false;
+	toggleCheck = toggleCheck + 1;
+	if(toggleCheck == 2) then {
+		changed = false;
+	};
 
 	{
 		clearGroupIcons (group _x);
