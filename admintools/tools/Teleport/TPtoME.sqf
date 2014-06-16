@@ -12,21 +12,17 @@ smenu =
 	_pmenu set [(_this select 1) + 3, ["Exit", [13], "", -5, [["expression", "pselect5 = 'exit';"]], "1", "1"]];
 	showCommandingMenu "#USER:_pmenu";
 };
-
 _j = 0; _max = 10; if (_max>9) then {_max = 10;};
-
-menuActive = true;
-while {pselect5 == "" && menuActive} do
+while {pselect5 == ""} do
 {
 	[_j, (_j + _max) min (count plist)] call smenu; _j = _j + _max;
-	WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
-	if(commandingMenu == "") then {menuActive = false;};
+	WaitUntil {pselect5 != "" or snext};	
 	snext = false;
 };
 
 tempList = nil;
 
-if (pselect5 != "exit" && pselect5 != "" ) then
+if (pselect5 != "exit") then
 {
 	_name = pselect5;
 	
