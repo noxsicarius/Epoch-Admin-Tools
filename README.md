@@ -43,7 +43,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 
 # Installation
 
-###  Each installation step is CRITICAL to installing this tool. ANY deviation from the following steps WILL break it. 99% of reported errors are due to users not following these instructions PERFECTLY!
+###  IMPORTANT: I suggest you use Arma 2: OA BETA version 103718 on your server. Failure to use this version can result in the breaking of this mod as well as many others.
 
 
 #### [DayZ Epoch Admin Tools Video Install Tutorial](http://youtu.be/hV_vwvp_vFs)
