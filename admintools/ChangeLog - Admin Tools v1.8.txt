@@ -3,6 +3,9 @@ You are using Epoch Admin Tools version 1.8
 
 ------------------- Version 1.8 Changelog ---------------------
 
+IMPORTANT: You must use the new adminlist.sqf for this release or the 
+tool will not work. Remember to copy over your UID.
+
 New Features:
 Added ChangeLog
 Added dead player and plot pole to ESP enhanced
@@ -17,6 +20,7 @@ You can now disable the scroll menu
 --> Off = F11
 --> On = F10
 You can now set radius for heal player or choose yourself.
+--> Healing radius does not heal you, only those around you.
 
 
 Bug Fixes:
