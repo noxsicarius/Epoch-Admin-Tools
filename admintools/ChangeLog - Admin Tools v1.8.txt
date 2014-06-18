@@ -25,6 +25,7 @@ Activate update to fix it not showing up.
 Heal player no longer causes infection
 The tools activate a little slower to keep them from not showing on login/relog
 Vehicle destruction works correctly in base destruction.
+Flying loop and undefined variable bug fix by T-Max
 
 
 Cleanup:
