@@ -1,5 +1,4 @@
-private ["_flying"];
-_flying = _this select 0;
+flying = _this select 0;
 
 forwardAndBackward = 4; 
 leftAndRight = 2;     
@@ -117,9 +116,9 @@ else
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyHover];
 };
 
-while {_flying} do
+while {flying} do
 {
-    if (hovering) then
+    if (!isNil "hovering") then
     {
 		(vehicle player) setvelocity [0,0,0.2];
     };
