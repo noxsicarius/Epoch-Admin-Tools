@@ -95,7 +95,7 @@ toggle_hover =
     };
 };
 
-if (_flying) then 
+if (flying) then 
 {
     keyForward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 17) then {call move_forward;}"];     //W - Forward
     keyLeft = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 30) then {call move_left;}"];         //A - Left
