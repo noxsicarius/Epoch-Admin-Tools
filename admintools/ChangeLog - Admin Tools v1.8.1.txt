@@ -5,6 +5,7 @@ You are using Epoch Admin Tools version 1.8.1
 Bug Fixes:
 TP2Me (teleport player to admin) works again
 Vehicle key spawning works better
+Flying fixed
 
 
 ------------------- Version 1.8 Changelog ---------------------
