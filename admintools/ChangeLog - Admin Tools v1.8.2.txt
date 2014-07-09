@@ -1,11 +1,16 @@
-You are using Epoch Admin Tools version 1.8.1
+You are using Epoch Admin Tools version 1.8.2
+
+
+------------------- Version 1.8.2 Changelog ---------------------
+Bug Fixes:
+Fixed the incorrect commit of vehicle key spawning, it works fine now.
+Flying fixed
 
 
 ------------------- Version 1.8.1 Changelog ---------------------
 Bug Fixes:
 TP2Me (teleport player to admin) works again
 Vehicle key spawning works better
-Flying fixed
 
 
 ------------------- Version 1.8 Changelog ---------------------
