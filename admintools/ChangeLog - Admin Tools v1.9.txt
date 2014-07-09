@@ -1,4 +1,18 @@
-You are using Epoch Admin Tools version 1.8.2
+You are using Epoch Admin Tools version 1.9
+
+
+------------------- Version 1.9 Changelog ---------------------
+New Features:
+Tool use broadcast to all players
+
+
+Bug Fixes:
+Teleport no longer teleports vehicles into walls or buildings
+Crates no longer delete at the wrong time if you spawn two or more different crates.
+
+
+CleanUp:
+
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
