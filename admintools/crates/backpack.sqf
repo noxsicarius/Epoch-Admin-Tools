@@ -1,4 +1,4 @@
-private ["LocalOrGlobal","spawnCrate"];
+private ["LocalOrGlobal","backPackCrate"];
 LocalOrGlobal = _this select 0;
 
 // Name of this crate
@@ -13,26 +13,26 @@ _pos = getposATL player;
 _pos = [(_pos select 0)+1*sin(_dir),(_pos select 1)+1*cos(_dir), (_pos select 2)];
 
 if(LocalOrGlobal == "local") then {
-	spawnCrate = _classname createVehicleLocal _pos;	
+	backPackCrate = _classname createVehicleLocal _pos;	
 } else {
-	spawnCrate = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
+	backPackCrate = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
 };
 
-spawnCrate setDir _dir;
-spawnCrate setposATL _pos;
+backPackCrate setDir _dir;
+backPackCrate setposATL _pos;
 
 // Remove default items/weapons from current crate before adding custom gear
-clearWeaponCargoGlobal spawnCrate;
-clearMagazineCargoGlobal spawnCrate;
-clearBackpackCargoGlobal spawnCrate;
+clearWeaponCargoGlobal backPackCrate;
+clearMagazineCargoGlobal backPackCrate;
+clearBackpackCargoGlobal backPackCrate;
 
-spawnCrate addBackpackCargoGlobal ["DZ_Backpack_EP1", 1];
-spawnCrate addBackpackCargoGlobal ["DZ_British_ACU", 1];
-spawnCrate addBackpackCargoGlobal ["DZ_CivilBackpack_EP1", 1];
-spawnCrate addBackpackCargoGlobal ["DZ_CompactPack_EP1", 1];
-spawnCrate addBackpackCargoGlobal ["DZ_GunBag_EP1", 1];
-spawnCrate addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 1];
-spawnCrate addBackpackCargoGlobal ["DZ_TK_Assault_Pack_EP1", 1];
+backPackCrate addBackpackCargoGlobal ["DZ_Backpack_EP1", 1];
+backPackCrate addBackpackCargoGlobal ["DZ_British_ACU", 1];
+backPackCrate addBackpackCargoGlobal ["DZ_CivilBackpack_EP1", 1];
+backPackCrate addBackpackCargoGlobal ["DZ_CompactPack_EP1", 1];
+backPackCrate addBackpackCargoGlobal ["DZ_GunBag_EP1", 1];
+backPackCrate addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 1];
+backPackCrate addBackpackCargoGlobal ["DZ_TK_Assault_Pack_EP1", 1];
 
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;
@@ -61,7 +61,7 @@ if(selectDelayPack != 0) then {
 	titleText [format[_crateName + " will disappear in %1 seconds.",selectDelayPack],"PLAIN DOWN"]; titleFadeOut 4;
 	sleep selectDelayPack;
 	// Delete crate after selectDelayPack seconds
-	deletevehicle spawnCrate;
+	deletevehicle backPackCrate;
 	titleText [format[_crateName + " disappeared."],"PLAIN DOWN"]; titleFadeOut 4;
 } else {
 	titleText [format[_crateName + " has no timer. Shoot it to destroy."],"PLAIN DOWN"]; titleFadeOut 4;
