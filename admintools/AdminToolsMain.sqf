@@ -33,7 +33,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 			["", [], "", -5, [["expression", ""]], "1", "0"],
 				["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
 		];
-	}
+	};
 };
 AdminMenu =
 [
