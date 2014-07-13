@@ -1,18 +1,20 @@
-You are using Epoch Admin Tools version 1.9
+You are using Epoch Admin Tools version 1.9 TEST
 
 
-------------------- Version 1.9 Changelog ---------------------
+------------------- Version 1.9 TEST Changelog ---------------------
 New Features:
-Tool use broadcast to all players
+Now broadcasts tool usage to all players (if enabled)
 
 
 Bug Fixes:
 Teleport no longer teleports vehicles into walls or buildings
+Teleport to me should allow for vehicle teleport (needs testing)
+-> Still needs work to stop and shut off vehicles.
 Crates no longer delete at the wrong time if you spawn two or more different crates.
 
 
 CleanUp:
-
+Changed vehicle god mode. It is now much more effective.
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
