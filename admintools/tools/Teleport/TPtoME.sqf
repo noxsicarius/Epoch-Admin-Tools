@@ -38,9 +38,22 @@ if (pselect5 != "exit") then
 			];
 			
 			hint format ["Teleporting %1", _name];
-			_x attachTo [vehicle player, [2, 2, 0]];
-			sleep 0.25;
-			detach _x;
+			
+			// This if allows teleporting players in vehicles to you
+			// Still needs testing
+			if((vehicle _x) != _x) then {
+				_pos = getpos player;
+				_location = [_pos select 0, _pos select 1] findEmptyPosition [0,10];
+				if (count _location < 1) then {
+					cutText["Not enough room nearby.","PLAIN DOWN"];
+				} else {
+					(vehicle _x) setpos _location;
+				};
+			} else {
+				_x attachTo [vehicle player, [2, 2, 0]];
+				sleep 0.25;
+				detach _x;
+			};
 			
 			_tempException = nil;
 			tempList = [];
