@@ -14,7 +14,8 @@ Crates no longer delete at the wrong time if you spawn two or more different cra
 
 
 CleanUp:
-Changed vehicle god mode. It is now much more effective.
+Changed how vehicle god mode works. It is now much more effective.
+Keyed vehicle spawn made a little better: f3cuk
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
