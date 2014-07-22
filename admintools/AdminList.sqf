@@ -13,14 +13,22 @@ ModList = [
 	Base deletion variable. Default true.
 	Determines default true or false for deleting all vehicles
 	inside the base delete dome. Can be changed in game.
+	Default: true
 */
 BD_vehicles = true;
 
 
+/*
+	Broadcasts a message to the entire server when the admin tools are used.
+	If you are a playing admin keep this on so players know there is no abuse.
+	Default: true
+*/
+broadcastToolUse = true;
+
 
 
 // DO NOT MODIFY ANYTHING BEYOND THIS POINT
-tempList = []; 
+if(isNil "tempList") then {tempList = [];}; 
 
 /*
 	Determines default on or off for admin tools menu
