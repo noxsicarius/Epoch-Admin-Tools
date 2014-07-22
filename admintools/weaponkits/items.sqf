@@ -10,7 +10,7 @@ GearAdd addWeapon 'Binocular_Vector';
 GearAdd addWeapon 'NVGoggles';
 GearAdd addWeapon 'ItemGPS';
 GearAdd addWeapon 'ItemWatch';
-GearAdd addWeapon 'ItemHatchet';
+GearAdd addWeapon 'ItemHatchet_DZE';
 GearAdd addWeapon 'ItemKnife';
 GearAdd addWeapon 'ItemMatchbox';
 GearAdd addWeapon 'ItemEtool';
