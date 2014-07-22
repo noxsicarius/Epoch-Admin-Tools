@@ -1,5 +1,5 @@
+Sleep 7;
 if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
-	Sleep 5;
 	private["_veh", "_idx"];
 	_idx = -1;
 
