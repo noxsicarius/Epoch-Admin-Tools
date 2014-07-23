@@ -1,7 +1,6 @@
 // Wait for adminlist before starting
 Sleep 5;
-if(isNil "adminListLoaded") then {adminListLoaded = false;};
-waitUntil{adminListLoaded};
+waitUntil{!isNil "adminListLoaded"};
 
 // Load key macros
 []execVM "admintools\KeyBindings\FunctionKeys.sqf";
