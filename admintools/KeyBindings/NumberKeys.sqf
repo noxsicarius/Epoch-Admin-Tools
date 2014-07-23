@@ -14,7 +14,9 @@
 	To disable the use of a single key simply comment out the line by add // at the start of the line
 	To remove all function key support simply delete or comment out the lines in this file.
 */
-Sleep 10;
+if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
+
+Sleep 15;
 // 1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 2) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
 Sleep 0.02;
 // 2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 3) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
@@ -34,3 +36,6 @@ Sleep 0.02;
 // 9_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 10) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
 Sleep 0.02;
 // 0_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 11) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+
+};
+diag_log("Admin Tools: NumberKeys.sqf Loaded");

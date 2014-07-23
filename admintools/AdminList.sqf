@@ -38,4 +38,6 @@ if(isNil "tempList") then {tempList = [];};
 */
 if (isNil "toolsAreActive") then {toolsAreActive = true;};
 
-adminToolHandle = true;
+adminListLoaded = true;
+
+diag_log("Admin Tools: AdminList.sqf loaded");
