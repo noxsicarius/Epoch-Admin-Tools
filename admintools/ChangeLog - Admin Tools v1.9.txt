@@ -11,11 +11,16 @@ Teleport no longer teleports vehicles into walls or buildings
 Teleport to me should allow for vehicle teleport (needs testing)
 -> Still needs work to stop and shut off vehicles.
 Crates no longer delete at the wrong time if you spawn two or more different crates.
+Wrong file called for a few vehicle spawns @f3cuk
+Wrong hatchet type in items.sqf @Onefox
+Wrong hatchet in crates
+Wrong variable types used in crates
 
 
 CleanUp:
 Changed how vehicle god mode works. It is now much more effective.
-Keyed vehicle spawn made a little better: f3cuk
+Keyed vehicle spawn made a little better @f3cuk
+Crate enhancements
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
