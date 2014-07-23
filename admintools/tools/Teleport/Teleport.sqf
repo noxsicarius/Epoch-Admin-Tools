@@ -10,15 +10,14 @@ teleport = {
 		(vehicle player) setpos [_pos select 0, _pos select 1, 1000];
 		player setVariable["lastPos",0, true];
 	} else {
-		if ((vehicle player) != player) then {
+		if ((vehicle player) != player && !((vehicle player) isKindOf "Sea")) then {
 			_location = [_pos select 0, _pos select 1] findEmptyPosition [0,10];
 			if (count _location < 1) then {
 				cutText["Unable to teleport here.","PLAIN DOWN"];
 			} else {
 				(vehicle player) setpos _location;
 			};
-		};
-		if (((vehicle player) == player)) then {
+		} else {
 			(vehicle player) setpos [_pos select 0, _pos select 1, 0];
 		};
 	};
