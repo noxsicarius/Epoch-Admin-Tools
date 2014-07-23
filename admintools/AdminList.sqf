@@ -37,3 +37,5 @@ if(isNil "tempList") then {tempList = [];};
 	Leave this as True for now, it is under construction.
 */
 if (isNil "toolsAreActive") then {toolsAreActive = true;};
+
+adminToolHandle = true;
