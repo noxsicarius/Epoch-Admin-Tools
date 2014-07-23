@@ -8,13 +8,12 @@ Now broadcasts tool usage to all players (if enabled)
 
 Bug Fixes:
 Teleport no longer teleports vehicles into walls or buildings
-Teleport to me should allow for vehicle teleport (needs testing)
--> Still needs work to stop and shut off vehicles.
 Crates no longer delete at the wrong time if you spawn two or more different crates.
 Wrong file called for a few vehicle spawns @f3cuk
 Wrong hatchet type in items.sqf @Onefox
 Wrong hatchet in crates
 Wrong variable types used in crates
+Enhanced ESP only showed one epoch mission crash
 
 
 CleanUp:
