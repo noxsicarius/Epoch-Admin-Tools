@@ -1,7 +1,7 @@
 // Wait for adminlist before starting
 Sleep 5;
 if(isNil "adminToolHandle") then {adminToolHandle = false;};
-waitUntil{Sleep 1; adminToolHandle;};
+waitUntil{Sleep 1; adminToolHandle};
 
 // Start of tool activation
 if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
