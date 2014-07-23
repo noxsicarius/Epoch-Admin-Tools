@@ -78,7 +78,7 @@ F5Menu =
 		[format["Show Dead Bodies: %1",AddDeadPlayersToMap], [2], "", -5, [["expression", "AddDeadPlayersToMap = !AddDeadPlayersToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
 		[format["Show Plot Poles: %1",AddPlotPoleToMap], [3], "", -5, [["expression", "AddPlotPoleToMap = !AddPlotPoleToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
 		[format["Show tents: %1",AddTentsToMap], [4], "", -5, [["expression", "AddTentsToMap = !AddTentsToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
-		[format["Show Heli-Crash: %1",AddCrashesToMap], [5], "", -5, [["expression", "AddCrashesToMap = !AddCrashesToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
+		[format["Show Epoch Missions: %1",AddCrashesToMap], [5], "", -5, [["expression", "AddCrashesToMap = !AddCrashesToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
 		[format["Show Zombies: %1",AddZombieToMap], [6], "", -5, [["expression", "AddZombieToMap = !AddZombieToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
 		[format["Show Players: %1",AddPlayersToMap], [7], "", -5, [["expression", "AddPlayersToMap = !AddPlayersToMap;changed = true;toggleCheck = 0;"]], "1", "1"],
 		[format["Show Vehicles: %1",AddVehicleToMap], [8], "", -5, [["expression", "AddVehicleToMap = !AddVehicleToMap;changed = true;toggleCheck = 0;"]], "1", "1"]
@@ -248,7 +248,7 @@ While {markPos} do
 		
 		If (AddCrashesToMap) then 
 		{
-			crashList = allmissionobjects "UH1Wreck_DZ";
+			crashList = allmissionobjects "UH1Wreck_DZ" + allmissionobjects "UH60Wreck_DZ" + allmissionobjects "UH60_NAVY_Wreck_DZ" + allmissionobjects "UH60_ARMY_Wreck_DZ" + allmissionobjects "UH60_NAVY_Wreck_burned_DZ" + allmissionobjects "UH60_ARMY_Wreck_burned_DZ" + allmissionobjects "Mass_grave_DZ" + allmissionobjects "Supply_Crate_DZE";
 			j2 = count crashList;
 			i2 = 0;
 
