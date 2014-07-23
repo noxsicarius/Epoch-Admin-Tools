@@ -1,5 +1,5 @@
-private ["LocalOrGlobal","allWeaponsCrate"];
-LocalOrGlobal = _this select 0;
+private ["_LocalOrGlobal","_allWeaponsCrate","_crateName","_weapon","_wpn_type","_mag_type","_magazine","_pos","_classname","_dir","_DelaySelected","_SelectDelay"];
+_LocalOrGlobal = _this select 0;
 
 // Name of this crate
 _crateName = "ALL Weapons/Items Crate";
@@ -47,24 +47,24 @@ _dir = getdir player;
 _pos = getposATL player;
 _pos = [(_pos select 0)+1*sin(_dir),(_pos select 1)+1*cos(_dir), (_pos select 2)];
 
-if(LocalOrGlobal == "local") then {
-	allWeaponsCrate = _classname createVehicleLocal _pos;	
+if(_LocalOrGlobal == "local") then {
+	_allWeaponsCrate = _classname createVehicleLocal _pos;	
 } else {
-	allWeaponsCrate = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
+	_allWeaponsCrate = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
 };
 
-allWeaponsCrate setDir _dir;
-allWeaponsCrate setposATL _pos;
+_allWeaponsCrate setDir _dir;
+_allWeaponsCrate setposATL _pos;
 			
 {
 	if(_x != "MeleeBaseBallBat") then{
-		allWeaponsCrate addWeaponCargoGlobal [_x, 5];
+		_allWeaponsCrate addWeaponCargoGlobal [_x, 5];
 	};
 } forEach weapons_list;
 
 {
 	if(_x != "AngelCookies") then{
-		allWeaponsCrate addMagazineCargoGlobal [_x, 20];
+		_allWeaponsCrate addMagazineCargoGlobal [_x, 20];
 	};
 } forEach magazines_list;
 
@@ -77,22 +77,27 @@ delaymenu =
 	["",true],
 	["Select delay", [-1], "", -5, [["expression", ""]], "1", "0"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"],
-	["30 seconds", [], "", -5, [["expression", "SelectDelay=30;DelaySelected=true;"]], "1", "1"],
-	["1 min", [], "", -5, [["expression", "SelectDelay=60;DelaySelected=true;"]], "1", "1"],
-	["3 min", [], "", -5, [["expression", "SelectDelay=180;DelaySelected=true;"]], "1", "1"],
-	["5 min", [], "", -5, [["expression", "SelectDelay=300;DelaySelected=true;"]], "1", "1"],
-	["10 min", [], "", -5, [["expression", "SelectDelay=600;DelaySelected=true;"]], "1", "1"],
-	["30 min", [], "", -5, [["expression", "SelectDelay=1800;DelaySelected=true;"]], "1", "1"],
+	["30 seconds", [], "", -5, [["expression", "_SelectDelay=30;"]], "1", "1"],
+	["1 min", [], "", -5, [["expression", "_SelectDelay=60;"]], "1", "1"],
+	["3 min", [], "", -5, [["expression", "_SelectDelay=180;"]], "1", "1"],
+	["5 min", [], "", -5, [["expression", "_SelectDelay=300;"]], "1", "1"],
+	["10 min", [], "", -5, [["expression", "_SelectDelay=600;"]], "1", "1"],
+	["30 min", [], "", -5, [["expression", "_SelectDelay=1800;"]], "1", "1"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"],
-	["No timer", [], "", -5, [["expression", "DelaySelected=false;"]], "1", "1"],
+	["No timer", [], "", -5, [["expression", "_SelectDelay=0;"]], "1", "1"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"]
 ];
-showCommandingMenu "#USER:delaymenu";
-WaitUntil{DelaySelected};
-DelaySelected=false;
-titleText [format[_crateName + " will disappear in %1 seconds.",SelectDelay],"PLAIN DOWN"]; titleFadeOut 4;
-sleep SelectDelay;
 
-// Delete crate after SelectDelay seconds
-deletevehicle allWeaponsCrate;
-titleText [format[_crateName + " disappeared."],"PLAIN DOWN"]; titleFadeOut 4;
+showCommandingMenu "#USER:delaymenu";
+WaitUntil{commandingMenu == ""};
+
+if(_SelectDelay != 0) then {
+	titleText [format[_crateName + " will disappear in %1 seconds.",_SelectDelay],"PLAIN DOWN"]; titleFadeOut 4;
+	sleep _SelectDelay;
+
+	// Delete crate after _SelectDelay seconds
+	deletevehicle _allWeaponsCrate;
+	titleText [format[_crateName + " disappeared."],"PLAIN DOWN"]; titleFadeOut 4;
+} else {
+	titleText [format[_crateName + " has no timer. Shoot it to destroy."],"PLAIN DOWN"]; titleFadeOut 4;
+};
