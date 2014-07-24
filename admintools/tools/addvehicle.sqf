@@ -31,7 +31,7 @@ if (_isOk and _isKeyOK) then {
 	if(count _helipad > 0) then {
 		_location = (getPosATL (_helipad select 0));
 	} else {
-		_location = position player findEmptyPosition [5,20,_vehtospawn];
+		_location = position player findEmptyPosition [2,20,_vehtospawn];
 	};
 	
 	if(count _location != 0) then {
