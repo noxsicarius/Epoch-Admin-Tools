@@ -5,6 +5,21 @@ _bagType = typeOf _unitBag;
 _bagWeapons = getWeaponCargo _unitBag;
 _bagMagazines = getMagazineCargo _unitBag;
 
+// Tool use logger
+if(logMinorTool & !logMajorTool) then {
+	usageLogger = name player + " " + getPlayerUID player + " -- " + "has changed skins to  " + _skin;
+	publicVariable "usageLogger";
+} else {
+	if(logMajorTool) then {
+		if(_skin == "Survivor1_DZ") then {
+			usageLogger = format["%1 %2 -- has ENABLED invisibility",name player,getPlayerUID player];
+		} else {
+			usageLogger = name player + " " + getPlayerUID player + " -- " + "has changed skins to  " + _skin;
+		};
+		publicVariable "usageLogger";
+	};
+};
+
 removeBackpack (vehicle player);
 [dayz_playerUID,dayz_characterID,_skin] spawn player_humanityMorph;
 sleep 0.3;
