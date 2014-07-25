@@ -47,7 +47,7 @@ if (_isOk and _isKeyOK) then {
 
 		// Tool use logger
 		if(logMajorTool) then {
-			usageLogger = name player + " " + getPlayerUID player + " -- " + "has spawned a permanent vehicle: " + _vehtospawn;
+			usageLogger = format["%1 %2 -- has spawned a permanent vehicle: %3",name player,getPlayerUID player,_vehtospawn];
 			publicVariable "usageLogger";
 		};
 	} else {

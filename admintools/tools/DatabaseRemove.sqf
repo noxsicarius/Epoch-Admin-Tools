@@ -7,6 +7,7 @@ _cnt 			= 0;
 if (!isNull _obj) then {
 	_objectID = _obj getVariable["ObjectID","0"];
 	_objectUID = _obj getVariable["ObjectUID","0"];
+};
 
 	_fnc_databaseremtimer = {
 		_cnt = 5;
@@ -23,8 +24,8 @@ if (!isNull _obj) then {
 
 	_func_databaseremove = {
 		// Tool use logger
-		if(logMinorTool) then {
-			usageLogger = name player + " " + getPlayerUID player + " -- " + "has deleted object: " + _obj + " with ID: " + _objectID + " and UID: " + _objectID + " from database";
+		if(logMinorTool && !isNull _obj) then {
+			usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name player,getPlayerUID player,_obj,_objectID,_objectUID];
 			publicVariable "usageLogger";
 		};
 
@@ -39,6 +40,3 @@ if (!isNull _obj) then {
 	};
 
 	call _fnc_databaseremtimer;
-} else {
-	cutText ["Invalid Object", "PLAIN DOWN",1];
-};

@@ -71,9 +71,14 @@ switch (_option) do {
 				
 				// Tool use logger
 				if(logMajorTool) then {
-					usageLogger = name player + " " + getPlayerUID player + " -- " + "has deleted" + _i + " base items";
+					usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name player,getPlayerUID player,_i];
 					publicVariable "usageLogger";
 				};
+		if(logMinorTool && !isNull _obj) then {
+			usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name player,getPlayerUID player,_obj,_objectID,_objectUID];
+			publicVariable "usageLogger";
+		};
+
 			};
 		};
 	};
@@ -105,6 +110,10 @@ switch (_option) do {
 					usageLogger = name player + " " + getPlayerUID player + " -- " + "has deleted" + _i + " base plot poles";
 					publicVariable "usageLogger";
 				};
+		if(logMinorTool && !isNull _obj) then {
+			usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name player,getPlayerUID player,_obj,_objectID,_objectUID];
+			publicVariable "usageLogger";
+		};
 			};
 		};
 	};
