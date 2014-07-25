@@ -31,7 +31,7 @@ ModList = [
 		
 		Default: true
 	*/
-	logMinorTool = false;
+	logMinorTool = true;
 
 
 /*
