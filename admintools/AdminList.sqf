@@ -10,12 +10,28 @@ ModList = [
 ];
 
 /*
-	Base deletion variable. Default true.
-	Determines default true or false for deleting all vehicles
-	inside the base delete dome. Can be changed in game.
-	Default: true
+	Log admin tool usage by your admins?
+	This creates a log in your server\EpochAdminToolLogs\toolUsageLog.txt
+	You MUST have the EpochAdminToolsUsageLogger.dll in the root server
+	directory or this will not work. The tool will still work either way.
+	This is divided into two categories.
 */
-BD_vehicles = true;
+
+	/*
+		A major tool is a strong tool with high possibility for exploiting:
+		Teleport, god mode, ESP, infinite ammo, invisibility
+		
+		Default: true
+	*/
+	logMajorTool = true;
+
+	/*
+		A minor tool is a weak tool with low possibility for exploiting:
+		grass off, skin change, 
+		
+		Default: true
+	*/
+	logMinorTool = false;
 
 
 /*
@@ -25,6 +41,14 @@ BD_vehicles = true;
 */
 broadcastToolUse = true;
 
+
+/*
+	Base deletion variable.
+	Determines default true or false for deleting all vehicles
+	inside the base delete dome. Can be changed in game.
+	Default: true
+*/
+BD_vehicles = true;
 
 
 // DO NOT MODIFY ANYTHING BEYOND THIS POINT
@@ -41,3 +65,11 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 adminListLoaded = true;
 
 diag_log("Admin Tools: AdminList.sqf loaded");
+
+if(logMajorTool || logMinorTool) then {
+	"usageLogger" addPublicVariableEventHandler {
+		private["_logText"];
+		_logText = _this select 1;
+		call compile ("EpochAdminToolsUsageLogger" callExtension (_logText));
+	};
+};

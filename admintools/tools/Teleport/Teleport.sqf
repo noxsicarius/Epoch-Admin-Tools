@@ -1,4 +1,4 @@
-private ["_done","_location"];
+private ["_done","_location","_done","_locOK","_pos"];
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 _done = false;
 _locOK = true;
@@ -10,7 +10,7 @@ teleport = {
 		(vehicle player) setpos [_pos select 0, _pos select 1, 1000];
 		player setVariable["lastPos",0, true];
 	} else {
-		if ((vehicle player) != player && !((vehicle player) isKindOf "Sea")) then {
+		if ((vehicle player) != player && !((vehicle player) isKindOf "Ship")) then {
 			_location = [_pos select 0, _pos select 1] findEmptyPosition [0,10];
 			if (count _location < 1) then {
 				cutText["Unable to teleport here.","PLAIN DOWN"];
@@ -25,6 +25,12 @@ teleport = {
 	openMap [false, false];
 	TitleText [format[""], "PLAIN DOWN"];
 	_done = true;
+
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has teleported to " + _pos select 0 + "_" + _pos select 1;
+		publicVariable "usageLogger";
+	};
 };
 
 closedialog 0;

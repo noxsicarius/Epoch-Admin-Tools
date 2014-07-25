@@ -1,6 +1,12 @@
 private ["_speedToggle"];
 _speedToggle = _this select 0;
 if (_speedToggle) then {
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED speed boost";
+		publicVariable "usageLogger";
+	};
+
 	waituntil {!isnull (finddisplay 46)};
 	SPEED_UP =(findDisplay 46) displayAddEventHandler ["KeyDown","_this select 1 call MY_KEYDOWN_FNC;false;"];
 
@@ -32,5 +38,11 @@ if (_speedToggle) then {
 	};
 }
 else{
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED speed boost";
+		publicVariable "usageLogger";
+	};
+
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", SPEED_UP];
 };

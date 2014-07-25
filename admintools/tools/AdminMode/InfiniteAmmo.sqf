@@ -7,6 +7,21 @@
 */
 	
 infAmmo = _this select 0;
+
+if(infAmmo) then {
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has turned ON infinite ammo";
+		publicVariable "usageLogger";
+	};
+} else {
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has turned OFF infinite ammo";
+		publicVariable "usageLogger";
+	};
+};
+
 while {alive (vehicle player) && infAmmo} do
 {
 	vehicle player setVehicleAmmo 1;

@@ -3,6 +3,7 @@ private ["_kindOf", "_filter", "_cfgvehicles","_dialog","_vehicle"];
 PermDialogSelected = -1;
 TempDialogSelected = -1;
 AdminDialogList = 13000;
+
 if (isNil "vhnlist") then
 {
 	vhnlist = [];

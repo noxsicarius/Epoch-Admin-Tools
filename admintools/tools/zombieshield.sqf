@@ -22,6 +22,20 @@ if(SheildMe) then {
 	ZobieDistanceStat=false;
 };
 
+if(SheildMe && ZobieDistanceStat) then {
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name player,getPlayerUID player,ZombieDistance];
+		publicVariable "usageLogger";
+	};
+} else {
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has disabled zombie shield",name player,getPlayerUID player];
+		publicVariable "usageLogger";
+	};
+};
+
  while {SheildMe && ZobieDistanceStat} do 
 {
 	_pos = getPos player;

@@ -8,6 +8,20 @@ Cars will not be damaged by crashes, but will be by rockets.
 private ["vehicleGod","playerVehicle"];
 vehicleGod = _this select 0;
 
+if(vehicleGod) then {
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED vehicle god mode";
+		publicVariable "usageLogger";
+	};
+} else {
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED Player ESP ";
+		publicVariable "usageLogger";
+	};
+};
+
 while{alive (vehicle player) && vehicleGod} do
 {
 	waitUntil{player != (vehicle player)};

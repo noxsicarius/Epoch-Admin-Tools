@@ -68,6 +68,12 @@ switch (_option) do {
 					};
 				} forEach _objects;
 				cutText [format["%1 of %2 objects deleted", _i, count _objects], "PLAIN DOWN"];
+				
+				// Tool use logger
+				if(logMajorTool) then {
+					usageLogger = name player + " " + getPlayerUID player + " -- " + "has deleted" + _i + " base items";
+					publicVariable "usageLogger";
+				};
 			};
 		};
 	};
@@ -93,6 +99,12 @@ switch (_option) do {
 					};
 				} forEach _objects;
 				cutText [format["%1 of %2 plot poles deleted", _i, count _objects], "PLAIN DOWN"];
+
+				// Tool use logger
+				if(logMajorTool) then {
+					usageLogger = name player + " " + getPlayerUID player + " -- " + "has deleted" + _i + " base plot poles";
+					publicVariable "usageLogger";
+				};
 			};
 		};
 	};

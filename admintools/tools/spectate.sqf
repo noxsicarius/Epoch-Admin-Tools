@@ -41,6 +41,12 @@ if (spectate) then
 				waitUntil { !(alive _x) or !(alive player) or !(spectate)};
 				(findDisplay 46) displayRemoveEventHandler ["KeyDown", F6_Key];
 				player switchCamera _mycv;	
+
+				// Tool use logger
+				if(logMajorTool) then {
+					usageLogger = format["%1 %2 -- has begun spectating %3",name player,getPlayerUID player,_name];
+					publicVariable "usageLogger";
+				};
 			};
 		} forEach playableUnits;
 	};
@@ -49,4 +55,10 @@ if (spectate) then
 if (!spectate) then 
 {	
 	titleText ["Spectate done","PLAIN DOWN"];titleFadeOut 4;
+
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has stopped spectating %3",name player,getPlayerUID player,_name];
+		publicVariable "usageLogger";
+	};
 };

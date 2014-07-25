@@ -17,7 +17,7 @@ humanityRemoveScreen = [
 ];
 
 showCommandingMenu "#USER:humanityRemoveScreen";
-waitUntil{selector};
+waitUntil{selector || commandingMenu == ""};
 
 if(selector) then
 {
@@ -28,12 +28,24 @@ if(selector) then
 		player setVariable["humanity", _humanity + humanityGain, true];
 		
 		cutText [format["%1 humanity has been removed (total: %2) for player %3", humanityGain, _humanity + humanityGain, name player],"PLAIN DOWN"]; titleFadeOut 10;
+
+		// Tool use logger
+		if(logMinorTool) then {
+			usageLogger = format["%1 %2 -- has removed %3 to their humanity (total %4)",name player,getPlayerUID player,humanityGain,_humanity + humanityGain];
+			publicVariable "usageLogger";
+		};
 	} else {
 		if(_target isKindOf "Man") then {
 			_humanity = _target getVariable["humanity", 0];
 			_target setVariable["humanity", _humanity + humanityGain, true];
 			
 			cutText [format["%1 humanity has been removed (total: %2) for player %3", humanityGain, _humanity + humanityGain, name _target],"PLAIN DOWN"]; titleFadeOut 10;
+
+			// Tool use logger
+			if(logMinorTool) then {
+				usageLogger = format["%1 %2 -- has removed %3 to %4's humanity (total %5)",name player,getPlayerUID player,humanityGain,name _target,_humanity + humanityGain];
+				publicVariable "usageLogger";
+			};
 		};
 	};
 };

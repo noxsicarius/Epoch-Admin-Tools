@@ -92,7 +92,15 @@ if(markPos) then {
 	dList = []; //List of dead bodies
 	dListMarkers = []; //List of Dead player markers
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
+
+	// Tool use logger
+	if(logToolUse) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED enhanced ESP ";
+		publicVariable "usageLogger";
+	};
+
 };
+
 While {markPos} do 
 {	
 	If (AddPlayersToMap) then 
@@ -348,6 +356,12 @@ Sleep GlobalSleep;
 if(!markPos) then 
 {
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
+
+	// Tool use logger
+	if(logToolUse) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED enhanced ESP ";
+		publicVariable "usageLogger";
+	};
 
 	If (AddDeadPlayersToMap) then 
 	{

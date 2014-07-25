@@ -7,6 +7,12 @@ private ["_playerGM"];
 _playerGM = _this select 0;
 if (_playerGM) then
 {
+	// Tool use logger
+	if(logToolUse) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED player god mode";
+		publicVariable "usageLogger";
+	};
+
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
 	fnc_usec_unconscious = {};
@@ -39,6 +45,12 @@ if (_playerGM) then
 }
 else
 {
+	// Tool use logger
+	if(logToolUse) then {
+		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED player god mode";
+		publicVariable "usageLogger";
+	};
+
 	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
 	fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
 	fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";	

@@ -128,15 +128,15 @@ TeleportMenu =
 AdminSkinsMenu =
 [
 ["",true],
-	// Entry Format:["Entry Name",[],"",-5,[["expression",'["Skin_class_name"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Survivor",[],"",-5,[["expression",'["Survivor2_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Hero",[],"",-5,[["expression",'["Survivor3_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Bandit",[],"",-5,[["expression",'["Bandit1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Soldier",[],"",-5,[["expression",'["Soldier1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Ghillie",[],"",-5,[["expression",'["Sniper1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Special Forces",[],"",-5,[["expression",'["CZ_Special_Forces_GL_DES_EP1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Pilot",[],"",-5,[["expression",'["Pilot_EP1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	// Entry Format:["Entry Name",[],"",-5,[["expression",'["Skin_class_name"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Survivor",[],"",-5,[["expression",'["Survivor2_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Hero",[],"",-5,[["expression",'["Survivor3_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Bandit",[],"",-5,[["expression",'["Bandit1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Soldier",[],"",-5,[["expression",'["Soldier1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Ghillie",[],"",-5,[["expression",'["Sniper1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Special Forces",[],"",-5,[["expression",'["CZ_Special_Forces_GL_DES_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Pilot",[],"",-5,[["expression",'["Pilot_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"],		
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -146,14 +146,14 @@ AdminSkinsMenu =
 AdminSkinsMenu2 =
 [
 ["",true],
-	["Camo",[],"",-5,[["expression",'["Camo1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Bodyguard",[],"",-5,[["expression",'["Soldier_Bodyguard_AA12_PMC_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Officer",[],"",-5,[["expression",'["Rocket_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Alejandria",[],"",-5,[["expression",'["SurvivorWcombat_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Savannah",[],"",-5,[["expression",'["SurvivorWdesert_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Melly",[],"",-5,[["expression",'["SurvivorWpink_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Bandit Jane",[],"",-5,[["expression",'["BanditW2_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
-	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\skins\Skins.sqf"']],"1","1"],
+	["Camo",[],"",-5,[["expression",'["Camo1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Bodyguard",[],"",-5,[["expression",'["Soldier_Bodyguard_AA12_PMC_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Officer",[],"",-5,[["expression",'["Rocket_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Alejandria",[],"",-5,[["expression",'["SurvivorWcombat_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Savannah",[],"",-5,[["expression",'["SurvivorWdesert_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Melly",[],"",-5,[["expression",'["SurvivorWpink_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Bandit Jane",[],"",-5,[["expression",'["BanditW2_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];

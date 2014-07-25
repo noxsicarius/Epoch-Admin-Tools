@@ -7,6 +7,12 @@ _crateName = "Items Crate";
 // Crate type
 _classname = "USOrdnanceBox";
 
+// Tool use logger
+if(logToolUse) then {
+	usageLogger = format["%1 %2 -- has spawned a %3 %4",name player,getPlayerUID player,_LocalOrGlobal,_crateName];
+	publicVariable "usageLogger";
+};
+
 // Location of player and crate
 _dir = getdir player;
 _pos = getposATL player;

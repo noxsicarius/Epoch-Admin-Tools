@@ -57,6 +57,13 @@ if (pselect5 != "exit") then
 			
 			_tempException = nil;
 			tempList = [];
+
+			// Tool use logger
+			if(logMajorTool) then {
+				usageLogger = name player + " " + getPlayerUID player + " -- " + "has teleported " + _name + "_" + _x + " to them";
+				publicVariable "usageLogger";
+			};
+
 		};
 	} forEach entities "CAManBase";
 };

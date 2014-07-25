@@ -17,12 +17,12 @@ _keyNumber = (floor(random 2500)) + 1;
  
 // Combine to key (eg.ItemKeyYellow2494) classname
 _keySelected = format[("ItemKey%1%2"),_keyColor,_keyNumber]; 
- 
-_isKeyOK =  isClass(configFile >> "CfgWeapons" >> _keySelected);
- 
+_isKeyOK =  isClass(configFile >> "CfgWeapons" >> _keySelected); 
 _config = _keySelected;
 _isOk = [player,_config] call BIS_fnc_invAdd;
+
 waitUntil {!isNil "_isOk"};
+
 if (_isOk and _isKeyOK) then {
  
 	_dir = round(random 360); 
@@ -38,12 +38,18 @@ if (_isOk and _isKeyOK) then {
 		//place vehicle spawn marker (local)
 		_veh = createVehicle ["Sign_arrow_down_large_EP1", _location, [], 0, "CAN_COLLIDE"]; 
 		_location = (getPosATL _veh);
-		 
+ 
 		PVDZE_veh_Publish2 = [_veh,[_dir,_location],_vehtospawn,false,_keySelected,_activatingPlayer];
 		publicVariableServer  "PVDZE_veh_Publish2";
 		player reveal _veh;
-		 
+		
 		cutText ["Vehicle spawned, key added to toolbelt.", "PLAIN DOWN"];
+
+		// Tool use logger
+		if(logMajorTool) then {
+			usageLogger = name player + " " + getPlayerUID player + " -- " + "has spawned a permanent vehicle: " + _vehtospawn;
+			publicVariable "usageLogger";
+		};
 	} else {
 		_removeitem = [player, _config] call BIS_fnc_invRemove;
 		cutText ["Could not find an area to spawn vehicle.", "PLAIN DOWN"];

@@ -29,11 +29,17 @@ if (pselect5 != "exit") then
 	
 	{
 		if(name _x == _name) then
-		{			
+		{
 			titleText[format["Teleporting to %1", _name],"PLAIN DOWN"];
 			(vehicle player) attachTo [_x, [2, 2, 0]];
 			sleep 0.25;
 			detach (vehicle player);
+
+			// Tool use logger
+			if(logMajorTool) then {
+				usageLogger = name player + " " + getPlayerUID player + " -- " + "has teleported to" + _name + "_" + _x;
+				publicVariable "usageLogger";
+			};
 		};
 	} forEach entities "CAManBase";
 };
