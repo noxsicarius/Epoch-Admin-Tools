@@ -98,8 +98,8 @@ toggle_hover =
 if (flying) then 
 {
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED flying";
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED flying",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 
@@ -112,8 +112,8 @@ if (flying) then
     keyHover = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 57) then {call toggle_hover;}"];     //SpaceBar - Toggle Hover
 } else {
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED flying";
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED flying",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 

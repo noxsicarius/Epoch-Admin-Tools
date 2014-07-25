@@ -6,8 +6,8 @@ if(adminBuild) then {
 	DZE_requireplot = 0;
 
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED admin build";
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED admin build",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 
@@ -16,9 +16,8 @@ if(adminBuild) then {
 	DZE_requireplot = 1;
 	
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED admin build ";
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED	admin build",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
-
 };

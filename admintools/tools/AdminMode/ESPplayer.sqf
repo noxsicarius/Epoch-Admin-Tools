@@ -11,8 +11,8 @@ if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
 if(playerESP) then {
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED player ESP ";
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED player ESP",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 };
@@ -77,8 +77,8 @@ while {playerESP} do
 
 if(!playerESP) then {
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED player ESP ";
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED player ESP",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 };

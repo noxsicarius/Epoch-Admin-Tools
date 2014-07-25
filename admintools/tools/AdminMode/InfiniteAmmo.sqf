@@ -11,13 +11,7 @@ infAmmo = _this select 0;
 if(infAmmo) then {
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has turned ON infinite ammo";
-		publicVariable "usageLogger";
-	};
-} else {
-	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has turned OFF infinite ammo";
+		usageLogger = format["%1 %2 -- has turned ON infinite ammo",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 };
@@ -29,3 +23,8 @@ while {alive (vehicle player) && infAmmo} do
 	sleep 0.1;
 };
 vehicle player setUnitRecoilCoefficient 1;
+// Tool use logger
+if(logMajorTool) then {
+	usageLogger = format["%1 %2 -- has turned OFF infinite ammo",name player,getPlayerUID player];
+	publicVariable "usageLogger";
+};

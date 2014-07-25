@@ -53,16 +53,16 @@ if (pselect5 != "exit") then
 				_x attachTo [vehicle player, [2, 2, 0]];
 				sleep 0.25;
 				detach _x;
+
+				// Tool use logger
+				if(logMajorTool) then {
+					usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_x];
+					publicVariable "usageLogger";
+				};
 			};
 			
 			_tempException = nil;
 			tempList = [];
-
-			// Tool use logger
-			if(logMajorTool) then {
-				usageLogger = name player + " " + getPlayerUID player + " -- " + "has teleported " + _name + "_" + _x + " to them";
-				publicVariable "usageLogger";
-			};
 
 		};
 	} forEach entities "CAManBase";

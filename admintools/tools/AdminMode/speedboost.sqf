@@ -3,7 +3,7 @@ _speedToggle = _this select 0;
 if (_speedToggle) then {
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED speed boost";
+		usageLogger = format["%1 %2 -- has ENABLED speed boost",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 
@@ -40,7 +40,7 @@ if (_speedToggle) then {
 else{
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED speed boost";
+		usageLogger = format["%1 %2 -- has DISABLED speed boost",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 

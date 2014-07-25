@@ -11,13 +11,7 @@ vehicleGod = _this select 0;
 if(vehicleGod) then {
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED vehicle god mode";
-		publicVariable "usageLogger";
-	};
-} else {
-	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED Player ESP ";
+		usageLogger = format["%1 %2 -- has ENABLED vehicle god mode",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 };
@@ -56,3 +50,9 @@ while{alive (vehicle player) && vehicleGod} do
     fnc_usec_damageVehicle = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandlerVehicle.sqf";
     vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
     vehicle_handleKilled = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleKilled.sqf";
+
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED vehicle god mode",name player,getPlayerUID player];
+		publicVariable "usageLogger";
+	};

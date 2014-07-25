@@ -1,7 +1,8 @@
-private ["_done","_location","_done","_locOK","_pos"];
+private ["_done","_location","_done","_locOK","_pos","_worked"];
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 _done = false;
 _locOK = true;
+_worked = false;
 
 teleport = {
 	_pos = [_this select 0, _this select 1,_this select 2];
@@ -9,6 +10,7 @@ teleport = {
 	if ((vehicle player) isKindOf "Air" && isEngineOn (vehicle player) && (speed (vehicle player)) > 20) then{
 		(vehicle player) setpos [_pos select 0, _pos select 1, 1000];
 		player setVariable["lastPos",0, true];
+		_worked = true;
 	} else {
 		if ((vehicle player) != player && !((vehicle player) isKindOf "Ship")) then {
 			_location = [_pos select 0, _pos select 1] findEmptyPosition [0,10];
@@ -16,9 +18,11 @@ teleport = {
 				cutText["Unable to teleport here.","PLAIN DOWN"];
 			} else {
 				(vehicle player) setpos _location;
+				_worked = true;
 			};
 		} else {
 			(vehicle player) setpos [_pos select 0, _pos select 1, 0];
+			_worked = true;
 		};
 	};
 
@@ -27,8 +31,8 @@ teleport = {
 	_done = true;
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has teleported to " + _pos select 0 + "_" + _pos select 1;
+	if(logMajorTool && _worked) then {
+		usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 };

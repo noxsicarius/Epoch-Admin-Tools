@@ -8,8 +8,8 @@ _playerGM = _this select 0;
 if (_playerGM) then
 {
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED player god mode";
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED player god mode",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 
@@ -46,8 +46,8 @@ if (_playerGM) then
 else
 {
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED player god mode";
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED player god mode",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 

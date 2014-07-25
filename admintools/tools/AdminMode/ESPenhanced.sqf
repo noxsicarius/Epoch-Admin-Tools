@@ -94,11 +94,10 @@ if(markPos) then {
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
 
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has ENABLED enhanced ESP ";
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
-
 };
 
 While {markPos} do 
@@ -358,8 +357,8 @@ if(!markPos) then
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
 
 	// Tool use logger
-	if(logToolUse) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has DISABLED enhanced ESP ";
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
 

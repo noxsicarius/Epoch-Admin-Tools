@@ -10,15 +10,14 @@ if(count _location != 0) then {
 	_veh setVariable ["MalSar",1,true];
 	clearMagazineCargoGlobal _veh;
 	clearWeaponCargoGlobal _veh;
-	 
+	
 	cutText ["Spawned a vehicle.", "PLAIN DOWN"];
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = name player + " " + getPlayerUID player + " -- " + "has spawned a temporary vehicle: " + _vehtospawn;
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has spawned a temporary vehicle: %3",name player,getPlayerUID player,_vehtospawn];
 		publicVariable "usageLogger";
 	};
-
 } else {
 	cutText ["Could not find an area to spawn vehicle.", "PLAIN DOWN"];
 };
