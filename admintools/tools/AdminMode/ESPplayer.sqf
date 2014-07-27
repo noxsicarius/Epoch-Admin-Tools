@@ -51,7 +51,7 @@ while {playerESP} do
 				_crew7 =		", "+(name (crew (vehicle _x) select 6));
 				_crew8 =		", "+(name (crew (vehicle _x) select 7));
 				_crew9 =		", "+(name (crew (vehicle _x) select 8));
-				_crew10 =	", "+(name (crew (vehicle _x) select 9));
+				_crew10 =		", "+(name (crew (vehicle _x) select 9));
 				group _x setGroupIconParams [_color_blue, format ["[%2]-[%3%4%5%6%7%8%9%10%11]-[%1m]",round(_x distance player),_vehname,_crew,_crew2,_crew3,_crew4,_crew5,_crew6,_crew7,_crew8,_crew9,_crew10], 0.5, true];
 			} 
 			else 
@@ -66,7 +66,7 @@ while {playerESP} do
 				_crew7 =		", "+(name (crew (vehicle _x) select 6));
 				_crew8 =		", "+(name (crew (vehicle _x) select 7));
 				_crew9 =		", "+(name (crew (vehicle _x) select 8));
-				_crew10 =	", "+(name (crew (vehicle _x) select 9));
+				_crew10 =		", "+(name (crew (vehicle _x) select 9));
 				group _x setGroupIconParams [_color_red, format ["[%2]-[%3%4%5%6%7%8%9%10%11]-[%1m]",round(_x distance player),_vehname,_crew,_crew2,_crew3,_crew4,_crew5,_crew6,_crew7,_crew8,_crew9,_crew10], 0.5, true];
 			};
 		};

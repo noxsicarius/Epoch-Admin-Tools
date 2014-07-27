@@ -5,7 +5,7 @@ a better solution is found. DOES NOT interfere with normal god mode.
 Air vehicles will explode if hit with a rocket or when crashing.
 Cars will not be damaged by crashes, but will be by rockets.
 */
-private ["vehicleGod","playerVehicle"];
+private ["_playerVehicle"];
 vehicleGod = _this select 0;
 
 if(vehicleGod) then {
@@ -18,34 +18,33 @@ if(vehicleGod) then {
 
 while{alive (vehicle player) && vehicleGod} do
 {
-	waitUntil{player != (vehicle player)};
-	playerVehicle = (vehicle player);
+	waitUntil{Sleep 1; player != (vehicle player)};
+	_playerVehicle = (vehicle player);
+	_playerVehicle setfuel 1;
+	_playerVehicle setdammage 0;
 	
-	playerVehicle setfuel 1;
-	playerVehicle setdammage 0;
-	
-	playerVehicle removeAllEventHandlers "handleDamage";
-    playerVehicle addEventHandler ["handleDamage", {false}];
-    playerVehicle allowDamage false;
+	_playerVehicle removeAllEventHandlers "handleDamage";
+    _playerVehicle addEventHandler ["handleDamage", {false}];
+    _playerVehicle allowDamage false;
  
     fnc_usec_damageVehicle ={};
     vehicle_handleDamage ={};
     vehicle_handleKilled ={};
 	
-	waitUntil{player == (vehicle player)};
+	waitUntil{Sleep 1; player == (vehicle player)};
 
-    playerVehicle removeAllEventHandlers "handleDamage";
-    playerVehicle addEventHandler ["handleDamage", {_this select 2}];
-    playerVehicle allowDamage true;
+    _playerVehicle removeAllEventHandlers "handleDamage";
+    _playerVehicle addEventHandler ["handleDamage", {_this select 2}];
+    _playerVehicle allowDamage true;
 	
     fnc_usec_damageVehicle = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandlerVehicle.sqf";
     vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
     vehicle_handleKilled = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleKilled.sqf";	
 };
 
-    playerVehicle removeAllEventHandlers "handleDamage";
-    playerVehicle addEventHandler ["handleDamage", {_this select 2}];
-    playerVehicle allowDamage true;
+    _playerVehicle removeAllEventHandlers "handleDamage";
+    _playerVehicle addEventHandler ["handleDamage", {_this select 2}];
+    _playerVehicle allowDamage true;
 
     fnc_usec_damageVehicle = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandlerVehicle.sqf";
     vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
