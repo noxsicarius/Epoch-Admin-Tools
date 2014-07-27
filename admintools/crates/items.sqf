@@ -8,7 +8,7 @@ _crateName = "Items Crate";
 _classname = "USOrdnanceBox";
 
 // Tool use logger
-if(logToolUse) then {
+if(logMajorTool) then {
 	usageLogger = format["%1 %2 -- has spawned a %3 %4",name player,getPlayerUID player,_LocalOrGlobal,_crateName];
 	publicVariable "usageLogger";
 };
