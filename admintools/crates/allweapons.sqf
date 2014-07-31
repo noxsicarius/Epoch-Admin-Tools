@@ -1,4 +1,4 @@
-private ["_LocalOrGlobal","_allWeaponsCrate","_crateName","_weapon","_wpn_type","_mag_type","_magazine","_pos","_classname","_dir","_DelaySelected","_SelectDelay"];
+private ["_LocalOrGlobal","_spawnCrate","_crateName","_weapon","_wpn_type","_mag_type","_magazine","_pos","_classname","_dir","_selectDelay"];
 _LocalOrGlobal = _this select 0;
 
 // Name of this crate
@@ -55,55 +55,56 @@ _pos = getposATL player;
 _pos = [(_pos select 0)+1*sin(_dir),(_pos select 1)+1*cos(_dir), (_pos select 2)];
 
 if(_LocalOrGlobal == "local") then {
-	_allWeaponsCrate = _classname createVehicleLocal _pos;	
+	_spawnCrate = _classname createVehicleLocal _pos;	
 } else {
-	_allWeaponsCrate = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
+	_spawnCrate = createVehicle [_classname, _pos, [], 0, "CAN_COLLIDE"];
 };
 
-_allWeaponsCrate setDir _dir;
-_allWeaponsCrate setposATL _pos;
+_spawnCrate setDir _dir;
+_spawnCrate setposATL _pos;
 			
 {
 	if(_x != "MeleeBaseBallBat") then{
-		_allWeaponsCrate addWeaponCargoGlobal [_x, 5];
+		_spawnCrate addWeaponCargoGlobal [_x, 5];
 	};
 } forEach weapons_list;
 
 {
 	if(_x != "AngelCookies") then{
-		_allWeaponsCrate addMagazineCargoGlobal [_x, 20];
+		_spawnCrate addMagazineCargoGlobal [_x, 20];
 	};
 } forEach magazines_list;
 
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;
 
+selectDelay = 0;
 // Run delaymenu
 delaymenu = 
 [
 	["",true],
 	["Select delay", [-1], "", -5, [["expression", ""]], "1", "0"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"],
-	["30 seconds", [], "", -5, [["expression", "_SelectDelay=30;"]], "1", "1"],
-	["1 min", [], "", -5, [["expression", "_SelectDelay=60;"]], "1", "1"],
-	["3 min", [], "", -5, [["expression", "_SelectDelay=180;"]], "1", "1"],
-	["5 min", [], "", -5, [["expression", "_SelectDelay=300;"]], "1", "1"],
-	["10 min", [], "", -5, [["expression", "_SelectDelay=600;"]], "1", "1"],
-	["30 min", [], "", -5, [["expression", "_SelectDelay=1800;"]], "1", "1"],
+	["30 seconds", [], "", -5, [["expression", "selectDelay=30;"]], "1", "1"],
+	["1 min", [], "", -5, [["expression", "selectDelay=60;"]], "1", "1"],
+	["3 min", [], "", -5, [["expression", "selectDelay=180;"]], "1", "1"],
+	["5 min", [], "", -5, [["expression", "selectDelay=300;"]], "1", "1"],
+	["10 min", [], "", -5, [["expression", "selectDelay=600;"]], "1", "1"],
+	["30 min", [], "", -5, [["expression", "selectDelay=1800;"]], "1", "1"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"],
-	["No timer", [], "", -5, [["expression", "_SelectDelay=0;"]], "1", "1"],
+	["No timer", [], "", -5, [["expression", "selectDelay=0;"]], "1", "1"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"]
 ];
-
 showCommandingMenu "#USER:delaymenu";
+
 WaitUntil{commandingMenu == ""};
+_selectDelay = selectDelay; //Makes the timer local per script call
 
-if(_SelectDelay != 0) then {
-	titleText [format[_crateName + " will disappear in %1 seconds.",_SelectDelay],"PLAIN DOWN"]; titleFadeOut 4;
-	sleep _SelectDelay;
-
-	// Delete crate after _SelectDelay seconds
-	deletevehicle _allWeaponsCrate;
+if(selectDelay != 0) then {
+	titleText [format[_crateName + " will disappear in %1 seconds.",selectDelay],"PLAIN DOWN"]; titleFadeOut 4;
+	sleep _selectDelay;
+	// Delete crate after selectDelay seconds
+	deletevehicle _spawnCrate;
 	titleText [format[_crateName + " disappeared."],"PLAIN DOWN"]; titleFadeOut 4;
 } else {
 	titleText [format[_crateName + " has no timer. Shoot it to destroy."],"PLAIN DOWN"]; titleFadeOut 4;

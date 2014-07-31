@@ -1,4 +1,4 @@
-private ["_LocalOrGlobal","_spawnCrate","_crateName","_pos","_classname","_dir","_DelaySelected","_selectDelay"];
+private ["_LocalOrGlobal","_spawnCrate","_crateName","_pos","_classname","_dir","_selectDelay"];
 _LocalOrGlobal = _this select 0;
 
 // Name of this crate
@@ -48,30 +48,32 @@ _spawnCrate addBackpackCargoGlobal ["DZ_Backpack_EP1", 1];
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;
 
-_selectDelay=0;
+selectDelay=0;
 // Run delaymenu
 delaymenu = 
 [
 	["",true],
 	["Select delay", [-1], "", -5, [["expression", ""]], "1", "0"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"],
-	["30 seconds", [], "", -5, [["expression", "_selectDelay=30;"]], "1", "1"],
-	["1 min", [], "", -5, [["expression", "_selectDelay=60;"]], "1", "1"],
-	["3 min", [], "", -5, [["expression", "_selectDelay=180;"]], "1", "1"],
-	["5 min", [], "", -5, [["expression", "_selectDelay=300;"]], "1", "1"],
-	["10 min", [], "", -5, [["expression", "_selectDelay=600;"]], "1", "1"],
-	["30 min", [], "", -5, [["expression", "_selectDelay=1800;"]], "1", "1"],
+	["30 seconds", [], "", -5, [["expression", "selectDelay=30;"]], "1", "1"],
+	["1 min", [], "", -5, [["expression", "selectDelay=60;"]], "1", "1"],
+	["3 min", [], "", -5, [["expression", "selectDelay=180;"]], "1", "1"],
+	["5 min", [], "", -5, [["expression", "selectDelay=300;"]], "1", "1"],
+	["10 min", [], "", -5, [["expression", "selectDelay=600;"]], "1", "1"],
+	["30 min", [], "", -5, [["expression", "selectDelay=1800;"]], "1", "1"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"],
-	["No timer", [], "", -5, [["expression", "_selectDelay=0;"]], "1", "1"],
+	["No timer", [], "", -5, [["expression", "selectDelay=0;"]], "1", "1"],
 	["", [-1], "", -5, [["expression", ""]], "1", "0"]
 ];
 showCommandingMenu "#USER:delaymenu";
-WaitUntil{commandingMenu == ""};
 
-if(_selectDelay != 0) then {
-	titleText [format[_crateName + " will disappear in %1 seconds.",_selectDelay],"PLAIN DOWN"]; titleFadeOut 4;
+WaitUntil{commandingMenu == ""};
+_selectDelay = selectDelay;
+
+if(selectDelay != 0) then {
+	titleText [format[_crateName + " will disappear in %1 seconds.",selectDelay],"PLAIN DOWN"]; titleFadeOut 4;
 	sleep _selectDelay;
-	// Delete crate after _selectDelay seconds
+	// Delete crate after selectDelay seconds
 	deletevehicle _spawnCrate;
 	titleText [format[_crateName + " disappeared."],"PLAIN DOWN"]; titleFadeOut 4;
 } else {
