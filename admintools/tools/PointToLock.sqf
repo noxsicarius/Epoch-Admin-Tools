@@ -12,12 +12,11 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	s_player_lockUnlock_crtl = 1;
 
 	PVDZE_veh_Lock = [_obj,true];
-	if(player distance _obj < 10) then {		
-		if (local _obj) then {
-			PVDZE_veh_Lock spawn local_lockUnlock
-		} else {
-			publicVariable "PVDZE_veh_Lock";
-		};
+
+	if (local _obj) then {
+		PVDZE_veh_Lock spawn local_lockUnlock
+	} else {
+		publicVariable "PVDZE_veh_Lock";
 	};
 	
 	s_player_lockUnlock_crtl = -1;
