@@ -57,7 +57,7 @@ ModMenu =
 	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"PointToRepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
-	["Heal (25m)",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
+	["Heal Players",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu",[20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -280,8 +280,8 @@ EpochMenu=[
 	["Point to Delete Item",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Point to display code",[],"",-5,[["expression",format[_EXECscript1,"gimmecode.sqf"]]],"1","1"],
 	["Point to make new key",[],"",-5,[["expression",format[_EXECscript1,"givekey.sqf"]]],"1","1"],
-	["Point to lock vehicle",[],"",-5,[["expression",format[_EXECscript1,"vehicle_lock.sqf"]]],"1","1"],
-	["Point to unlock vehicle",[],"",-5,[["expression",format[_EXECscript1,"vehicle_unlock.sqf"]]],"1","1"],
+	["Point to lock object",[],"",-5,[["expression",format[_EXECscript1,"PointToLock.sqf"]]],"1","1"],
+	["Point to unlock object",[],"",-5,[["expression",format[_EXECscript1,"PointToUnlock.sqf"]]],"1","1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
