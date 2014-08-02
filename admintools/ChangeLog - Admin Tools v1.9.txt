@@ -3,23 +3,37 @@ You are using Epoch Admin Tools version 1.9 TEST
 
 ------------------- Version 1.9 TEST Changelog ---------------------
 New Features:
-Now broadcasts tool usage to all players (if enabled)
+Now broadcasts tool usage to all players (if enabled) -- currently has some issues
+Base copy/paste Code by maca134 with some edits
+Broadcast tool use
+--> Broadcasts major uses of the tool to all players, off by default
+Lock/Unlock upgrade
+--> Now locks and unlocks doors and safes as well as cars
+Added all epoch events to ESP
 
 
 Bug Fixes:
 Teleport no longer teleports vehicles into walls or buildings
-Crates no longer delete at the wrong time if you spawn two or more different crates.
+Crates no longer delete at the wrong time if you spawn two or more.
 Wrong file called for a few vehicle spawns @f3cuk
 Wrong hatchet type in items.sqf @Onefox
 Wrong hatchet in crates
 Wrong variable types used in crates
 Enhanced ESP only showed one epoch mission crash
+ESP zero devisor (client only) @f3cuk
+Fuel pump fix
+adminlist and macros not loading
+--> All fixed with help from @f3cuk
+Temporary vehicle spawns fixed up
 
 
 CleanUp:
 Changed how vehicle god mode works. It is now much more effective.
 Keyed vehicle spawn made a little better @f3cuk
 Crate enhancements
+Lock/unlock
+ESP @f3cuk
+Teleport updates to fix teleporting into walls.
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
