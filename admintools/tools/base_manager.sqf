@@ -93,7 +93,9 @@ BCBaseList = [
 	]
 ];
 
-
+BD_Buildables = true;
+BD_PlotPoles = true;
+BD_vehicles = true;
 
 if (isNil "BCCurrentBase") then {
 	BCCurrentBase = [];
@@ -264,10 +266,10 @@ fn_BCPaste = {
 fn_BCDelete = {
 	BaseDestruction = [
 		["What should delete?",true],
-			["Finish",[2],"",-5.[["expression","[] spawn fn_BCConfirmDelete"]],"1","1"],
-			[format["Vehicles(%1)",BD_vehicles], [3], "", -5, [["expression", "BD_vehicles=!BD_vehicles;"]], "1", "1"],
-			[format["PlotPoles(%1)",BD_PlotPoles], [4], "", -5, [["expression", "BD_PlotPoles=!BD_PlotPoles;"]], "1", "1"],
-			[format["Buildables(%1)",BD_Buildables], [5], "", -5, [["expression", "BD_Buildables=!BD_Buildables;"]], "1", "1"]
+			["Finish",[2],"",-5,[["expression","[] spawn fn_BCConfirmDelete"]],"1","1"],
+			[format["Vehicles(%1)",BD_vehicles], [3], "", -5, [["expression", "BD_vehicles = !BD_vehicles;"]], "1", "1"],
+			[format["PlotPoles(%1)",BD_PlotPoles], [4], "", -5, [["expression", "BD_PlotPoles = !BD_PlotPoles;"]], "1", "1"],
+			[format["Buildables(%1)",BD_Buildables], [5], "", -5, [["expression", "BD_Buildables = !BD_Buildables;"]], "1", "1"]
 	];
 	showCommandingMenu "#USER:BaseDestruction";
 };
@@ -356,8 +358,7 @@ fn_BCCancelBase = {
 };
 
 fn_BCCenter = {
-	private ["_objects", "_ax", "_ay", "_az", "_total"];
-	_objects = [];
+	private ["_ax", "_ay", "_az", "_total"];
 	_ax = 0;
 	_ay = 0;
 	_az = 0;
