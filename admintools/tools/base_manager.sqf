@@ -511,14 +511,14 @@ BCMainMenu =
 [
 	["Base Manager",true],
 	["Insert", 		[2], "", -5, [["expression", "[] spawn fn_BCInsert"]], "1", "1"],
-	["========", 	[3], "", -5, [["expression", ""]], "1", "1"],
+	["========", 	[3], "", -5, [["expression", ""]], "1", "0"],
 	["Set Center", 	[4], "", -5, [["expression", "[] spawn fn_BCSetCenter"]], "1", "1"],
 	["Set Radius", 	[5], "", -5, [["expression", "[] spawn fn_BCSetRadius"]], "1", "1"],
-	["========", 	[6], "", -5, [["expression", ""]], "1", "1"],
+	["========", 	[6], "", -5, [["expression", ""]], "1", "0"],
 	["Copy",		[7], "", -5, [["expression", "[] spawn fn_BCCopy"]], "1", "1"],
 	["Paste", 		[8], "", -5, [["expression", "[] spawn fn_BCPaste"]], "1", "1"],
 	["Delete", 		[9], "", -5, [["expression", "[] spawn fn_BCDelete"]], "1", "1"],
-	["========", 	[10], "", -5, [["expression", ""]], "1", "1"],
+	["========", 	[10], "", -5, [["expression", ""]], "1", "0"],
 	["Exit", 		[11], "", -5, [["expression", ""]], "1", "1"]
 ];
 
