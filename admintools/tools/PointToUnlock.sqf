@@ -26,6 +26,13 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		usageLogger = format["%1 %2 -- has unlocked vehicle: %3 with ID:%4",name player,getPlayerUID player,_obj,_objectID];
 		publicVariable "usageLogger";
 	};
+	// Tool use broadcaster
+	if(broadcastToolUse) then {
+		{
+			systemChat "Admin -- has unlocked a car";
+		} forEach playableUnits;
+	};
+
 } else {
 	// Unlock Safe/Lock_Box
 	if(_objType in DZE_LockedStorage) then {
@@ -101,6 +108,12 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 			usageLogger = format["%1 %2 -- has unlocked a safe - ID:%3 UID:%4",name player,getPlayerUID player,_objectID,_ownerID];
 			publicVariable "usageLogger";
 		};
+		// Tool use broadcaster
+		if(broadcastToolUse) then {
+			{
+				systemChat "Admin -- has unlocked a safe";
+			} forEach playableUnits;
+		};
 
 	} else {
 
@@ -118,6 +131,11 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 			usageLogger = format["%1 %2 -- has unlocked a door - ID:%3 Combo:%4",name player,getPlayerUID player,_objectID,_objectCharacterID];
 			publicVariable "usageLogger";
 		};
-		
+		// Tool use broadcaster
+		if(broadcastToolUse) then {
+			{
+				systemChat "Admin -- has unlocked a door";
+			} forEach playableUnits;
+		};		
 	};
 };

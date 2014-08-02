@@ -14,6 +14,13 @@ if(infAmmo) then {
 		usageLogger = format["%1 %2 -- has turned ON infinite ammo",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
+	// Tool use broadcaster
+	if(broadcastToolUse) then {
+		{
+			systemChat "Admin -- has used infinite ammo";
+		} forEach playableUnits;
+	};
+
 };
 
 while {alive (vehicle player) && infAmmo} do

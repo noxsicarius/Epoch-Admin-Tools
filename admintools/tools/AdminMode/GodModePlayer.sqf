@@ -12,6 +12,12 @@ if (_playerGM) then
 		usageLogger = format["%1 %2 -- has ENABLED player god mode",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
+	// Tool use broadcaster
+	if(broadcastToolUse) then {
+		{
+			systemChat "Admin -- has used god mode";
+		} forEach playableUnits;
+	};
 
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};

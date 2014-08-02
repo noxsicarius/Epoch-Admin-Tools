@@ -40,6 +40,12 @@ if (pselect5 != "exit") then
 				usageLogger = format["%1 %2 -- has teleported to %3_%4",name player,getPlayerUID player,_name,_x];
 				publicVariable "usageLogger";
 			};
+			// Tool use broadcaster
+			if(broadcastToolUse) then {
+				{
+					systemChat "Admin -- has used teleport";
+				} forEach playableUnits;
+			};	
 		};
 	} forEach entities "CAManBase";
 };

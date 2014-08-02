@@ -15,6 +15,13 @@ if(playerESP) then {
 		usageLogger = format["%1 %2 -- has ENABLED player ESP",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
+	// Tool use broadcaster
+	if(broadcastToolUse) then {
+		{
+			systemChat "Admin -- has used player ESP";
+		} forEach playableUnits;
+	};
+
 };
 
 while {playerESP} do

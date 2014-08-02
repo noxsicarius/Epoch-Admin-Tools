@@ -98,6 +98,13 @@ if(markPos) then {
 		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
+	// Tool use broadcaster
+	if(broadcastToolUse) then {
+		{
+			systemChat "Admin -- has used Enhanced ESP";
+		} forEach playableUnits;
+	};
+
 };
 
 While {markPos} do 

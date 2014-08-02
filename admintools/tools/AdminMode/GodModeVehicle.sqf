@@ -15,6 +15,12 @@ if(vehicleGod) then {
 		publicVariable "usageLogger";
 	};
 };
+// Tool use broadcaster
+if(broadcastToolUse) then {
+	{
+		systemChat "Admin -- has used vehicle god mode";
+	} forEach playableUnits;
+};
 
 while{alive (vehicle player) && vehicleGod} do
 {

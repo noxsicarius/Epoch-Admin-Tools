@@ -37,10 +37,9 @@ ModList = [
 /*
 	Broadcasts a message to the entire server when the admin tools are used.
 	If you are a playing admin keep this on so players know there is no abuse.
-	Default: true
+	Default: false
 */
-broadcastToolUse = true;
-
+broadcastToolUse = false;
 
 /*
 	Base deletion variable.

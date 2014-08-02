@@ -50,6 +50,13 @@ if (_isOk and _isKeyOK) then {
 			usageLogger = format["%1 %2 -- has spawned a permanent vehicle: %3",name player,getPlayerUID player,_vehtospawn];
 			publicVariable "usageLogger";
 		};
+		// Tool use broadcaster
+		if(broadcastToolUse) then {
+			{
+				systemChat "Admin -- has spawned a permanent vehicle";
+			} forEach playableUnits;
+		};
+
 	} else {
 		_removeitem = [player, _config] call BIS_fnc_invRemove;
 		cutText ["Could not find an area to spawn vehicle.", "PLAIN DOWN"];

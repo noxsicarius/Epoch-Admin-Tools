@@ -74,6 +74,12 @@ switch (_option) do {
 					usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name player,getPlayerUID player,_i];
 					publicVariable "usageLogger";
 				};
+				// Tool use broadcaster
+				if(broadcastToolUse) then {
+					{
+						systemChat "Admin -- has deleted base items";
+					} forEach playableUnits;
+				};
 			};
 		};
 	};
@@ -104,6 +110,12 @@ switch (_option) do {
 				if(logMajorTool) then {
 					usageLogger = name player + " " + getPlayerUID player + " -- " + "has deleted" + _i + " base plot poles";
 					publicVariable "usageLogger";
+				};
+				// Tool use broadcaster
+				if(broadcastToolUse) then {
+					{
+						systemChat "Admin -- has deleted base items";
+					} forEach playableUnits;
 				};
 			};
 		};

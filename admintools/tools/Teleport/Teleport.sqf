@@ -35,6 +35,13 @@ teleport = {
 		usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
 		publicVariable "usageLogger";
 	};
+	// Tool use broadcaster
+	if(broadcastToolUse) then {
+		{
+			systemChat "Admin -- has used teleport";
+		} forEach playableUnits;
+	};
+
 };
 
 closedialog 0;
