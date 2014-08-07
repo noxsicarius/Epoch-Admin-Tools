@@ -35,7 +35,7 @@ TheThicknessOfThePointPlayer=0.7;
 
 //--------------------#Dead Players#------------------------
 DeadPlayersMarkerSize=[2,2];
-DeadPlayersMarkerType="waypoint";
+DeadPlayersMarkerType=""DestroyedVehicle"";
 DeadPlayerMarkerColor="ColorBlack";//two in the fourth degree is equal to sixteen, so there are 16 colors
 //--------------------#Dead Players#------------------------
 
