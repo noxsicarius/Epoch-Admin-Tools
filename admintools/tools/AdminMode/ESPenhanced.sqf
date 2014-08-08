@@ -2,8 +2,7 @@ markPos = _this select 0;
 
 if(isNil "markers") then { markers = []};
 if(isNil "changed") then {changed = false};
-if(isNil "toggleCheck") then {toggleCheck = -1};
-
+if(isNil "toggleCheck") then {toggleCheck = 2};
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
 
@@ -344,13 +343,14 @@ While {markPos} do
 
 	sleep GlobalSleep;
 
-	if(toggleCheck != -1) then {
+	// Makes sure items have correctly turned off
+	if(toggleCheck != 2) then {
 		toggleCheck = toggleCheck + 1;
 		if(toggleCheck == 2) then {
 			changed = false;
-			toggleCheck = -1;
 		};
 	};
+
 	
 	{
 		clearGroupIcons (group _x);
