@@ -1,5 +1,5 @@
 // Wait for adminlist before starting
-Sleep 5;
+call compile preprocessFileLineNumbers "admintools\AdminList.sqf";
 waitUntil{!isNil "adminListLoaded"};
 
 // Load key macros
