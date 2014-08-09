@@ -1,15 +1,22 @@
 You are using Epoch Admin Tools version 1.9 TEST
+by NoxSicarius
 
 
 ------------------- Version 1.9 TEST Changelog ---------------------
+First a thanks to F3cuk for helping fix up the tool and catching my mistakes.
+
 New Features:
-Now broadcasts tool usage to all players (if enabled) -- currently has some issues
-Base copy/paste Code by maca134 with some edits
+Base copy/paste Code by maca134 with some edits by me
+--> Thanks to him for this great addition. If you like it, please send a donation his way.
+Tool logging
+--> Logs are now created for the admin tool usage (with date and time stamp)
 Broadcast tool use
 --> Broadcasts major uses of the tool to all players, off by default
 Lock/Unlock upgrade
 --> Now locks and unlocks doors and safes as well as cars
 Added all epoch events to ESP
+New vehicle god mode
+--> Vehicles now impervious to rockets too (air vehicles still explode on crash)
 
 
 Bug Fixes:
@@ -22,9 +29,10 @@ Wrong variable types used in crates
 Enhanced ESP only showed one epoch mission crash
 ESP zero devisor (client only) @f3cuk
 Fuel pump fix
-adminlist and macros not loading
---> All fixed with help from @f3cuk
+adminlist and macros not loading fixed
+--> with help from @f3cuk
 Temporary vehicle spawns fixed up
+Client side RPT error in vehicle god mode and a few other files.
 
 
 CleanUp:
@@ -33,7 +41,11 @@ Keyed vehicle spawn made a little better @f3cuk
 Crate enhancements
 Lock/unlock
 ESP @f3cuk
-Teleport updates to fix teleporting into walls.
+Updated the dead player marker to work a little better.
+Split the items gear kit into two parts -> medical & tools
+ReadMe updates
+delete base has been integrated with maca's base copy
+AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
