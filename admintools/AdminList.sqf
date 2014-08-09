@@ -59,7 +59,7 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 // load event handlers for logging
 if(isDedicated) then {
 	"usageLogger" addPublicVariableEventHandler {
-		"EpochAdminToolsUsageLogger" callExtension (_this select 1);
+		"EATusageLogger" callExtension (_this select 1);
 	};
 	"useBroadcaster" addPublicVariableEventHandler {
 		toClient = (_this select 1);
