@@ -19,8 +19,8 @@ humanityAddScreen = [
 showCommandingMenu "#USER:humanityAddScreen";
 waitUntil{selector || commandingMenu == ""};
 
-if(selector) then
-{
+if(selector) then {
+
 	selector = false;
 	
 	if(isNull(_target)) then {
@@ -32,7 +32,7 @@ if(selector) then
 		// Tool use logger
 		if(logMinorTool) then {
 			usageLogger = format["%1 %2 -- has added %3 to their humanity (total %4)",name player,getPlayerUID player,humanityGain,_humanity + humanityGain];
-			publicVariable "usageLogger";
+			[] spawn {publicVariable "usageLogger";};
 		};
 
 	} else {
@@ -45,7 +45,7 @@ if(selector) then
 			// Tool use logger
 			if(logMinorTool) then {
 				usageLogger = format["%1 %2 -- has added %3 to %4's humanity (total %5)",name player,getPlayerUID player,humanityGain,name _target,_humanity + humanityGain];
-				publicVariable "usageLogger";
+				[] spawn {publicVariable "usageLogger";};
 			};
 		};
 	};

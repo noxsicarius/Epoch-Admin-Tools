@@ -16,7 +16,7 @@ if(count _location != 0) then {
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has spawned a temporary vehicle: %3",name player,getPlayerUID player,_vehtospawn];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 } else {
 	cutText ["Could not find an area to spawn vehicle.", "PLAIN DOWN"];

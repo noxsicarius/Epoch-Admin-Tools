@@ -11,5 +11,5 @@ cutText ["Repaired until next server restart.", "PLAIN DOWN"];
 // Tool use logger
 if(logMinorTool) then {
 	usageLogger = format["%1 %2 -- has temporarily repaired/refueld %3",name player,getPlayerUID player,_ct];
-	publicVariable "usageLogger";
+	[] spawn {publicVariable "usageLogger";};
 };

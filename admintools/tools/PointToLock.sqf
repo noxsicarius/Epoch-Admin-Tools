@@ -24,50 +24,50 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has locked a vehicle: %3",name player,getPlayerUID player,_obj];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 } else {
 	//Lock Safe/Lock_box
 	if(_objType == "VaultStorage") then {
-	_lockedClass = getText (configFile >> "CfgVehicles" >> _objType >> "lockedClass");
-	_obj setVariable["packing",1];
-	_dir = direction _obj;
-	_pos = _obj getVariable["OEMPos",(getposATL _obj)];
-	_ownerID = _obj getVariable["CharacterID","0"];
+		_lockedClass = getText (configFile >> "CfgVehicles" >> _objType >> "lockedClass");
+		_obj setVariable["packing",1];
+		_dir = direction _obj;
+		_pos = _obj getVariable["OEMPos",(getposATL _obj)];
+		_ownerID = _obj getVariable["CharacterID","0"];
 
-	//log lock
-	PVDZE_log_lockUnlock = [player, _obj,true];
-	publicVariableServer "PVDZE_log_lockUnlock";
-	
-	//place locked vault
-	_holder = createVehicle [_lockedClass,_pos,[], 0, "CAN_COLLIDE"];
-	_holder setdir _dir;
-	_holder setPosATL _pos;
-	player reveal _holder;
-	
-	//set locked vault variables
-	_holder setVariable["CharacterID",_ownerID,true];
-	_holder setVariable["ObjectID",_objectID,true];
-	_holder setVariable["ObjectUID",_objectUID,true];
-	_holder setVariable ["OEMPos", _pos, true];
+		//log lock
+		PVDZE_log_lockUnlock = [player, _obj,true];
+		publicVariableServer "PVDZE_log_lockUnlock";
+		
+		//place locked vault
+		_holder = createVehicle [_lockedClass,_pos,[], 0, "CAN_COLLIDE"];
+		_holder setdir _dir;
+		_holder setPosATL _pos;
+		player reveal _holder;
+		
+		//set locked vault variables
+		_holder setVariable["CharacterID",_ownerID,true];
+		_holder setVariable["ObjectID",_objectID,true];
+		_holder setVariable["ObjectUID",_objectUID,true];
+		_holder setVariable ["OEMPos", _pos, true];
 
-	_weapons = getWeaponCargo _obj;
-	_magazines = getMagazineCargo _obj;
-	_backpacks = getBackpackCargo _obj;
+		_weapons = getWeaponCargo _obj;
+		_magazines = getMagazineCargo _obj;
+		_backpacks = getBackpackCargo _obj;
 
-	// remove vault
-	deleteVehicle _obj;
+		// remove vault
+		deleteVehicle _obj;
 
-	// Fill variables with loot
-	_holder setVariable ["WeaponCargo", _weapons, true];
-	_holder setVariable ["MagazineCargo", _magazines, true];
-	_holder setVariable ["BackpackCargo", _backpacks, true];
-	
-	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name player,getPlayerUID player,_objectID,_ownerID];
-		publicVariable "usageLogger";
-	};
+		// Fill variables with loot
+		_holder setVariable ["WeaponCargo", _weapons, true];
+		_holder setVariable ["MagazineCargo", _magazines, true];
+		_holder setVariable ["BackpackCargo", _backpacks, true];
+		
+		// Tool use logger
+		if(logMajorTool) then {
+			usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name player,getPlayerUID player,_objectID,_ownerID];
+			[] spawn {publicVariable "usageLogger";};
+		};
 
 	} else {
 		//Lock Door
@@ -84,7 +84,7 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		// Tool use logger
 		if(logMajorTool) then {
 			usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name player,getPlayerUID player,_objectID,_objectCharacterID];
-			publicVariable "usageLogger";
+			[] spawn {publicVariable "usageLogger";};
 		};
 	};
 };

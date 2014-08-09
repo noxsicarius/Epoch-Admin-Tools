@@ -57,7 +57,7 @@ if (pselect5 != "exit") then
 				// Tool use logger
 				if(logMajorTool) then {
 					usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_x];
-					publicVariable "usageLogger";
+					[] spawn {publicVariable "usageLogger";};
 				};
 			};
 			

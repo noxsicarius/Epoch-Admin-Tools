@@ -9,6 +9,6 @@ if (_ct isKindOf "LandVehicle" || _ct isKindOf "Air" || _ct isKindOf "Ship") the
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has temporarily refueld %3",name player,getPlayerUID player,_ct];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 };

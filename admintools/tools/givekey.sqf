@@ -20,13 +20,11 @@ if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Pla
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has generated %3 for a %4",name player,getPlayerUID player,_result,_ct];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has generated a key";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has generated a car key";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
-
 };

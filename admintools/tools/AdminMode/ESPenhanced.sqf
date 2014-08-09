@@ -95,15 +95,13 @@ if(markPos) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has used Enhanced ESP";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has used Enhanced ESP";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
-
 };
 
 While {markPos} do 
@@ -366,7 +364,7 @@ if(!markPos) then
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 
 	If (AddDeadPlayersToMap) then 

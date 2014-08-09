@@ -14,14 +14,12 @@ if(playerESP) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED player ESP",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
-	
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has used player ESP";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has used player ESP";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };
 
@@ -86,6 +84,6 @@ if(!playerESP) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has DISABLED player ESP",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 };

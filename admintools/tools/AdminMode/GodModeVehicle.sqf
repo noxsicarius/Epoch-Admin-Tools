@@ -12,14 +12,13 @@ if(vehicleGod) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED vehicle god mode",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
-};
-// Tool use broadcaster
-if(broadcastToolUse) then {
-	{
-		systemChat "Admin -- has used vehicle god mode";
-	} forEach playableUnits;
+	// Tool use broadcaster
+	if(broadcastToolUse) then {
+		useBroadcaster = "Admin -- has used vehicle god mode";
+		[] spawn {publicVariableServer "useBroadcaster";};
+	};
 };
 
 while{alive (vehicle player) && vehicleGod} do
@@ -71,5 +70,5 @@ if(!isNil "_playerVehicle") then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has DISABLED vehicle god mode",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};

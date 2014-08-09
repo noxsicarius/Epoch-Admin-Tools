@@ -31,17 +31,17 @@ teleport = {
 	_done = true;
 
 	// Tool use logger
-	if(logMajorTool && _worked) then {
-		usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+	if(_worked) then {
+		if(logMajorTool) then {
+			usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
+			[] spawn {publicVariable "usageLogger";};
+		};
+		// Tool use broadcaster
+		if(broadcastToolUse) then {
+			useBroadcaster = "Admin -- has used teleport";
+			[] spawn {publicVariableServer "useBroadcaster";};
+		};
 	};
-	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has used teleport";
-		} forEach playableUnits;
-	};
-
 };
 
 closedialog 0;

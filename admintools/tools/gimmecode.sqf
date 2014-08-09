@@ -6,13 +6,12 @@ if(_ownerID != "0") then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name player,getPlayerUID player,_ownerID];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has viewed a locked item code";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has viewed a locked item code";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 } else {
 	cutText [format["Not a valid target.",_ownerID], "PLAIN DOWN"];

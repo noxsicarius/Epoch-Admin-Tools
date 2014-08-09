@@ -4,7 +4,7 @@ if (_speedToggle) then {
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED speed boost",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 
 	waituntil {!isnull (finddisplay 46)};
@@ -41,7 +41,7 @@ else{
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has DISABLED speed boost",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", SPEED_UP];

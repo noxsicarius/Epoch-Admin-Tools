@@ -100,7 +100,7 @@ if (flying) then
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED flying",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 
     keyForward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 17) then {call move_forward;}"];     //W - Forward
@@ -114,7 +114,7 @@ if (flying) then
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has DISABLED flying",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyForward];

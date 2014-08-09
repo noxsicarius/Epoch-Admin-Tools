@@ -26,7 +26,7 @@ if (!isNull _obj) then {
 		// Tool use logger
 		if(logMinorTool && !isNull _obj) then {
 			usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name player,getPlayerUID player,_obj,_objectID,_objectUID];
-			publicVariable "usageLogger";
+			[] spawn {publicVariable "usageLogger";};
 		};
 
 		cutText ["Object deleted from database", "PLAIN DOWN",1];

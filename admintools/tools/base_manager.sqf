@@ -251,16 +251,15 @@ fn_BCPaste = {
 
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has placed a copied base",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		usageLogger = format["%1 %2 -- has pasted a copied base",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has placed a base";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has placed a base";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
-
+	
 };
 
 fn_BCDelete = {
@@ -318,13 +317,12 @@ fn_BCConfirmDelete = {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name player,getPlayerUID player,count _objects];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has deleted base items";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has deleted base items";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };
 
@@ -338,13 +336,12 @@ fn_BCSaveToDb = {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has placed a saved base",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has placed a base";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has placed a base";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 
 };

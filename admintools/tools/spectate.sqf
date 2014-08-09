@@ -44,7 +44,7 @@ if (selecteditem!= "exitscript") then
 			// Tool use logger
 			if(logMajorTool) then {
 				usageLogger = format["%1 %2 -- has begun spectating %3",name player,getPlayerUID player,_name];
-				publicVariable "usageLogger";
+				[] spawn {publicVariable "usageLogger";};
 			};
 		};
 	} forEach playableUnits;
@@ -57,6 +57,6 @@ if (!spectate && selecteditem != "exitscript") then
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has stopped spectating %3",name player,getPlayerUID player,_name];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 };

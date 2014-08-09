@@ -32,7 +32,7 @@ if(selector) then
 		// Tool use logger
 		if(logMinorTool) then {
 			usageLogger = format["%1 %2 -- has removed %3 to their humanity (total %4)",name player,getPlayerUID player,humanityGain,_humanity + humanityGain];
-			publicVariable "usageLogger";
+			[] spawn {publicVariable "usageLogger";};
 		};
 	} else {
 		if(_target isKindOf "Man") then {
@@ -44,7 +44,7 @@ if(selector) then
 			// Tool use logger
 			if(logMinorTool) then {
 				usageLogger = format["%1 %2 -- has removed %3 to %4's humanity (total %5)",name player,getPlayerUID player,humanityGain,name _target,_humanity + humanityGain];
-				publicVariable "usageLogger";
+				[] spawn {publicVariable "usageLogger";};
 			};
 		};
 	};

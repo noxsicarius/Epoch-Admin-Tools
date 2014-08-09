@@ -7,13 +7,12 @@ _crateName = "ALL Weapons/Items Crate";
 // Tool use logger
 if(logMajorTool) then {
 	usageLogger = format["%1 %2 -- has spawned a %3 %4",name player,getPlayerUID player,_LocalOrGlobal,_crateName];
-	publicVariable "usageLogger";
+	[] spawn {publicVariable "usageLogger";};
 };
 // Tool use broadcaster
 if(broadcastToolUse) then {
-	{
-		systemChat format["Admin -- has spawned a %3 %4",_LocalOrGlobal,_crateName];
-	} forEach playableUnits;
+	useBroadcaster = format["Admin -- has spawned a %1 %2",_LocalOrGlobal,_crateName];
+	[] spawn {publicVariableServer "useBroadcaster";};
 };
 
 

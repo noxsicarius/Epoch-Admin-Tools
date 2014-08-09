@@ -7,7 +7,7 @@ if (_grassToggle) then {
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has turned grass off",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 
 	setterraingrid 50;
@@ -15,7 +15,7 @@ if (_grassToggle) then {
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has turned grass back on",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 
 	setterraingrid 25;

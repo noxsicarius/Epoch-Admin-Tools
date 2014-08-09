@@ -8,7 +8,7 @@ _bagMagazines = getMagazineCargo _unitBag;
 // Tool use logger
 if(logMinorTool && !logMajorTool) then {
 	usageLogger = name player + " " + getPlayerUID player + " -- " + "has changed skins to  " + _skin;
-	publicVariable "usageLogger";
+	[] spawn {publicVariable "usageLogger";};
 } else {
 	if(logMajorTool) then {
 		if(_skin == "Survivor1_DZ") then {
@@ -16,7 +16,7 @@ if(logMinorTool && !logMajorTool) then {
 		} else {
 			usageLogger = name player + " " + getPlayerUID player + " -- " + "has changed skins to  " + _skin;
 		};
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 };
 

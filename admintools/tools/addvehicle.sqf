@@ -48,13 +48,12 @@ if (_isOk and _isKeyOK) then {
 		// Tool use logger
 		if(logMajorTool) then {
 			usageLogger = format["%1 %2 -- has spawned a permanent vehicle: %3",name player,getPlayerUID player,_vehtospawn];
-			publicVariable "usageLogger";
+			[] spawn {publicVariable "usageLogger";};
 		};
 		// Tool use broadcaster
 		if(broadcastToolUse) then {
-			{
-				systemChat "Admin -- has spawned a permanent vehicle";
-			} forEach playableUnits;
+			useBroadcaster = "Admin -- has spawned a permanent vehicle";
+			[] spawn {publicVariableServer "useBroadcaster";};
 		};
 
 	} else {

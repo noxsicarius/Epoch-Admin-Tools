@@ -12,15 +12,13 @@ if(infAmmo) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has turned ON infinite ammo",name player,getPlayerUID player];
-		publicVariable "usageLogger";
+		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(broadcastToolUse) then {
-		{
-			systemChat "Admin -- has used infinite ammo";
-		} forEach playableUnits;
+		useBroadcaster = "Admin -- has used infinite ammo";
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
-
 };
 
 while {alive (vehicle player) && infAmmo} do
@@ -33,5 +31,5 @@ vehicle player setUnitRecoilCoefficient 1;
 // Tool use logger
 if(logMajorTool) then {
 	usageLogger = format["%1 %2 -- has turned OFF infinite ammo",name player,getPlayerUID player];
-	publicVariable "usageLogger";
+	[] spawn {publicVariable "usageLogger";};
 };
