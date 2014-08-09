@@ -58,16 +58,27 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	> Note: "Your_Mission.pbo" is a placeholder name. Your mission might be called "DayZ_Epoch_11.Chernarus", "DayZ_Epoch_13.Tavi", or "dayz_mission" depending on hosting and chosen map.
 
 1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of your mission folder.
-1. Open the ***init.sqf*** in the root of your mission folder and paste the following at the bottom:
+1. Open the ***init.sqf*** in the root of your mission folder and paste the following above if(!isDedicated):
 
 	~~~~java
-	// Epoch Admin Tools
-	[] execVM "admintools\Activate.sqf";
+	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
 
-1. If you use the normal battleye antiahck or similar do part (A) if you use infistar or have no antihack do part (B)
+	> It should look like this:
 
-	> ####(A)
+	> ~~~~java
+	> if (isServer) then {
+	> 	..............
+	> };
+	>
+	> [] execVM "admintools\Activate.sqf"; // Epoch admin tools
+	>
+	> if (!isDedicated) then {
+	> 	..............
+	> };	
+	> ~~~~
+	
+1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
 	
 	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
 
@@ -79,31 +90,14 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 
 	> ~~~~java
 	> // Epoch Admin Tools
-	> [] execVM "admintools\AdminList.sqf";
 	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
 	> {
-	> 	[] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	> 	[] execVM "\z\addons\dayz_code\system\antihack.sqf"; // Epoch Antihack
 	> };
 	> ~~~~
 	
 	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
 
-	> ####(B)
-	
-	> Find this code in your ***init.sqf***:
-	
-	> ~~~~java
-	> //Lights
-	> //[false,12] execVM "\z\addons\dayz_code\compile\local_lights_init.sqf";
-	> ~~~~
-
-	> And place the following code ***above*** it:
-	
-	> ~~~~java
-	> // Epoch Admin Tools
-	> [] execVM "admintools\AdminList.sqf";
-	>~~~~
-	
 1. Save the init.sqf
 1. Open your ***description.ext***
 1. Paste the following at the very bottom:
