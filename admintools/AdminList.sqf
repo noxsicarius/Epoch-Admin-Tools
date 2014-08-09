@@ -9,30 +9,6 @@ ModList = [
 "999999999" // <Moderator In-Game Name>
 ];
 
-/*
-	Log admin tool usage by your admins?
-	This creates a log in your server\EpochAdminToolLogs\toolUsageLog.txt
-	You MUST have the EpochAdminToolsUsageLogger.dll in the root server
-	directory or this will not work. The tool will still work either way.
-	This is divided into two categories.
-*/
-
-	/*
-		A major tool is a strong tool with high possibility for exploiting:
-		Teleport, god mode, ESP, infinite ammo, invisibility
-		
-		Default: true
-	*/
-	logMajorTool = true;
-
-	/*
-		A minor tool is a weak tool with low possibility for exploiting:
-		grass off, skin change, 
-		
-		Default: true
-	*/
-	logMinorTool = true;
-
 
 /*
 	Broadcasts a message to the entire server when the admin tools are used.
@@ -41,13 +17,31 @@ ModList = [
 */
 broadcastToolUse = false;
 
+
 /*
-	Base deletion variable.
-	Determines default true or false for deleting all vehicles
-	inside the base delete dome. Can be changed in game.
-	Default: true
+	Log admin tool usage by your admins?
+	This creates a log in your server\EpochAdminToolLogs\toolUsageLog.txt
+	You MUST have the EpochAdminToolsUsageLogger.dll in the root server
+	directory or this will not work. The tool will still work either way.
+	This is divided into two categories.
 */
-BD_vehicles = true;
+	/*
+		A major tool is a strong tool with high possibility for exploiting:
+		Teleport, god mode, ESP, infinite ammo, invisibility, crate spawns, unlocking items
+		
+		Default: true
+	*/
+	logMajorTool = true;
+
+	/*
+		A minor tool is a weak tool with low possibility for exploiting:
+		grass off, skin change, weapon kits, flying
+		
+		Default: true
+	*/
+	logMinorTool = true;
+
+
 
 
 // DO NOT MODIFY ANYTHING BEYOND THIS POINT
@@ -61,14 +55,23 @@ if(isNil "tempList") then {tempList = [];};
 */
 if (isNil "toolsAreActive") then {toolsAreActive = true;};
 
-adminListLoaded = true;
 
-diag_log("Admin Tools: AdminList.sqf loaded");
-
-if(logMajorTool || logMinorTool) then {
+// load event handlers for logging
+if(isDedicated) then {
 	"usageLogger" addPublicVariableEventHandler {
-		private["_logText"];
-		_logText = _this select 1;
-		call compile ("EpochAdminToolsUsageLogger" callExtension (_logText));
+		"EpochAdminToolsUsageLogger" callExtension (_this select 1);
+	};
+	"useBroadcaster" addPublicVariableEventHandler {
+		toClient = (_this select 1);
+		{(owner _x) publicVariableClient "toClient";} forEach entities "CAManBase";
 	};
 };
+
+// log display to users
+"toClient" addPublicVariableEventHandler {
+	systemChat (_this select 1);
+};
+
+// Show the admin list has loaded
+adminListLoaded = true;
+diag_log("Admin Tools: AdminList.sqf loaded");
