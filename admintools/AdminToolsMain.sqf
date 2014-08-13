@@ -7,6 +7,7 @@ _EXECscript3 = '["%1"] execVM "admintools\weaponkits\BackPack.sqf"';
 _EXECscript4 = 'player execVM "'+_pathtoweapon+'%1"';
 _EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
 _EXECscript6 = '["%1"] execVM "admintools\crates\%2"';
+_EXECscript7 = '["%1"] execVM "admintools\tools\adminBuild.sqf"';
 
 if ((getPlayerUID player) in AdminList) then { // Admins
 	epochmenustart = [
@@ -15,6 +16,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
 		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
 		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
+		["Admin Build Menu >> ",[],"#USER:BuildMenu", -5,[["expression",""]],"1","1"],
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
 		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
@@ -207,8 +209,8 @@ GearMenu=[
 ["",true],
 	["ToolBelt gear", [],"", -5, [["expression", format[_EXECscript4,"toolBeltItems.sqf"]]], "1", "1"],
 	["Medical gear", [],"", -5, [["expression", format[_EXECscript4,"medical.sqf"]]], "1", "1"],
-	["Large Gun Bag", [],"", -5, [["expression", format[_EXECscript3,"DZ_LargeGunBag_EP1"]]], "1", "1"],
 	["Alice Pack", [],"", -5, [["expression", format[_EXECscript3,"DZ_ALICE_Pack_EP1"]]], "1", "1"],
+	["Large Gun Bag", [],"", -5, [["expression", format[_EXECscript3,"DZ_LargeGunBag_EP1"]]], "1", "1"],
 	["Delete all gear", [],"", -5, [["expression", format[_EXECscript4,"removeGear.sqf"]]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -277,7 +279,7 @@ WTMenu=[
 // Menu that deals with epoch specific items like locks and safes
 EpochMenu=[
 	["",true],
-	["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECscript1,"base_manager.sqf"]]], "1", "1"],			
+	["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECscript1,"base_manager.sqf"]]], "1", "1"],	
 	["Point to Delete Item",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Point to display code",[],"",-5,[["expression",format[_EXECscript1,"gimmecode.sqf"]]],"1","1"],
 	["Point to make new key",[],"",-5,[["expression",format[_EXECscript1,"givekey.sqf"]]],"1","1"],
@@ -286,21 +288,123 @@ EpochMenu=[
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-
-// Menu that deals with destroying bases
-BaseDestructionMenu=
+BaseItems =
 [
-["BaseDestruction",true],
-	["SetCenter",[],"",-5,[["expression",'["center"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
-	["SetRadius",[],"",-5,[["expression",'["radius"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
-	["ShowDome",[],"",-5,[["expression",'["dome"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
-	[format["IncludeVehicles(%1)",BD_vehicles],[],"",-5,[["expression","BD_vehicles=!BD_vehicles;"]],"1","1"],
-	["Destroy Plot Poles ONLY",[],"",-5,[["expression",'["plotpole"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
-	["DESTROY ALL Inside Dome",[],"",-5,[["expression",'["destroy"] execVM "admintools\tools\deletebase.sqf"']],"1","1"],
-		["", [], "", -5, [["expression", ""]], "1", "0"],
+["",true],
+	["Rebuild last item",[],"", -5,[["expression",format[_EXECscript7,"rebuild"]]],"1","1"],
+	["Cinder >>",[],"#USER:BuildablesCinder", -5,[["expression",""]],"1","1"],
+	["Wood >>",[],"#USER:BuildablesWood", -5,[["expression",""]],"1","1"],
+	["Other >>",[],"#USER:BuildablesOther", -5,[["expression",""]],"1","1"],
+	["Floor",[],"#USER:", -5,[["expression",""]],"1","1"],
+//	["Upgrade >>",[],"#USER:BuildablesUpgrade", -5,[["expression",""]],"1","1"],
+//	["Floor",[],"", -5,[["expression",format[_EXECscript7,"MetalFloor_DZ"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+BuildablesWood = [
+["",true],
+	["Floor (Full)",[],"", -5,[["expression",format[_EXECscript7,"WoodFloor_DZ"]]],"1","1"],
+	["Floor (1/2)",[],"", -5,[["expression",format[_EXECscript7,"WoodFloorHalf_DZ"]]],"1","1"],
+	["Floor (1/4)",[],"", -5,[["expression",format[_EXECscript7,"WoodFloorQuarter_DZ"]]],"1","1"],
+	["Wall (Large)",[],"", -5,[["expression",format[_EXECscript7,"WoodLargeWall_DZ"]]],"1","1"],
+	["Wall (Small)",[],"", -5,[["expression",format[_EXECscript7,"WoodSmallWall_DZ"]]],"1","1"],
+	["Wall (1/3)",[],"", -5,[["expression",format[_EXECscript7,"WoodSmallWallThird_DZ"]]],"1","1"],
+	["Wall /w Window (Large)",[],"", -5,[["expression",format[_EXECscript7,"WoodLargeWallWin_DZ"]]],"1","1"],
+	["Wall /w Window (Small)",[],"", -5,[["expression",format[_EXECscript7,"WoodSmallWallWin_DZ"]]],"1","1"],
+	["Garage Doorway",[],"", -5,[["expression",format[_EXECscript7,"WoodLargeWallDoor_DZ"]]],"1","1"],
+	["Normal Doorway",[],"", -5,[["expression",format[_EXECscript7,"WoodSmallWallDoor_DZ"]]],"1","1"],
+	["Stairs",[],"", -5,[["expression",format[_EXECscript7,"WoodStairsSans_DZ"]]],"1","1"],
+	["Stairs /w Rails",[],"", -5,[["expression",format[_EXECscript7,"WoodStairsRails_DZ"]]],"1","1"],
+	["Stairs /w Stilts",[],"", -5,[["expression",format[_EXECscript7,"WoodStairs_DZ"]]],"1","1"],
+	["Ramp",[],"", -5,[["expression",format[_EXECscript7,"WoodRamp_DZ"]]],"1","1"],	
+	["Ladder",[],"", -5,[["expression",format[_EXECscript7,"WoodLadder_DZ"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+BuildablesCinder = [
+["",true],
+	["Wall (Full)",[],"", -5,[["expression",format[_EXECscript7,"CinderWall_DZ"]]],"1","1"],	
+	["Wall (Half)",[],"", -5,[["expression",format[_EXECscript7,"CinderWallHalf_DZ"]]],"1","1"],	
+	["Garage Doorway",[],"", -5,[["expression",format[_EXECscript7,"CinderWallDoorway_DZ"]]],"1","1"],	
+	["Normal Doorway",[],"", -5,[["expression",format[_EXECscript7,"CinderWallSmallDoorway_DZ"]]],"1","1"],	
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+BuildablesOther = [
+["",true],
+	["Metal Floor",[],"", -5,[["expression",format[_EXECscript7,"MetalFloor_DZ"]]],"1","1"],
+	["Metal Panel",[],"", -5,[["expression",format[_EXECscript7,"MetalPanel_DZ"]]],"1","1"],
+	["Wire Fence",[],"", -5,[["expression",format[_EXECscript7,"Fort_RazorWire"]]],"1","1"],
+	["Plot Pole",[],"", -5,[["expression",format[_EXECscript7,"Plastic_Pole_EP1_DZ"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+BuildablesUpgrade = [
+["",true],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 
+BuildStorage =
+[
+["",true],
+	["Wooden Shed",[],"", -5,[["expression",format[_EXECscript7,"Wooden_shed_DZ"]]],"1","1"],
+	["Wooden Shack",[],"", -5,[["expression",format[_EXECscript7,"WoodShack_DZ"]]],"1","1"],
+	["Storage Shed",[],"", -5,[["expression",format[_EXECscript7,"StorageShed_DZ"]]],"1","1"],
+	["Wood Crate",[],"", -5,[["expression",format[_EXECscript7,"WoodCrate_DZ"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+BuildSandbag =
+[
+["",true],
+	["Sandbag Fence",[],"", -5,[["expression",format[_EXECscript7,"Sandbag1_DZ"]]],"1","1"],	
+	["Sandbag Fence (round)",[],"", -5,[["expression",format[_EXECscript7,"BagFenceRound_DZ"]]],"1","1"],	
+	["H-barrier Cube",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier1_DZ"]]],"1","1"],
+	["H-barrier (short)",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier3_DZ"]]],"1","1"],
+	["H-barrier (long)",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier5_DZ"]]],"1","1"],
+	["Sandbag Nest",[],"", -5,[["expression",format[_EXECscript7,"SandNest_DZ"]]],"1","1"],
+	["M240 Nest",[],"", -5,[["expression",format[_EXECscript7,"M240Nest_DZ"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+BuildNetting =
+[
+["",true],
+	["Camo Net (Desert)",[],"", -5,[["expression",format[_EXECscript7,"DesertCamoNet_DZ"]]],"1","1"],
+	["Camo Net (Forest)",[],"", -5,[["expression",format[_EXECscript7,"ForestCamoNet_DZ"]]],"1","1"],
+	["Camo Net Large (Desert)",[],"", -5,[["expression",format[_EXECscript7,"DesertLargeCamoNet_DZ"]]],"1","1"],
+	["Camo Net Large (Forest)",[],"", -5,[["expression",format[_EXECscript7,"ForestLargeCamoNet_DZ"]]],"1","1"],
+	["Canvas Hut",[],"", -5,[["expression",format[_EXECscript7,"CanvasHut_DZ"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+BuildExtras =
+[
+["",true],
+	["Fire Barrel",[],"", -5,[["expression",format[_EXECscript7,"FireBarrel_DZ"]]],"1","1"],
+	["Tank Trap",[],"", -5,[["expression",format[_EXECscript7,"Hedgehog_DZ"]]],"1","1"],	
+	["Workbench",[],"", -5,[["expression",format[_EXECscript7,"WorkBench_DZ"]]],"1","1"],	
+	["Generator",[],"", -5,[["expression",format[_EXECscript7,"Generator_DZ"]]],"1","1"],	
+	["Fuel Pump",[],"", -5,[["expression",format[_EXECscript7,"FuelPump_DZ"]]],"1","1"],	
+	["Deer Stand",[],"", -5,[["expression",format[_EXECscript7,"DeerStand_DZ"]]],"1","1"],
+	["Park Bench",[],"", -5,[["expression",format[_EXECscript7,"ParkBench_DZ"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+BuildMenu =
+[
+["",true],
+	["Base Materials",[],"#USER:BaseItems", -5,[["expression",""]],"1","1"],
+	["Storage",[],"#USER:BuildStorage", -5,[["expression",""]],"1","1"],
+	["Netting",[],"#USER:BuildNetting", -5,[["expression",""]],"1","1"],
+	["Sandbags",[],"#USER:BuildSandbag", -5,[["expression",""]],"1","1"],
+	["Extras",[],"#USER:BuildExtras", -5,[["expression",""]],"1","1"],
+	["Barracks",[],"", -5,[["expression",'["Land_Mil_Barracks_L"] execVM "admintools\tools\AdminMode\buildTemp.sqf"']],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
 // Menu that spawns TEMPORARY air vehicles
 VehicleTempMenu=
 [
