@@ -1,17 +1,25 @@
-// Wait for adminlist before starting
+// Load adminlist.sqf
 call compile preprocessFileLineNumbers "admintools\AdminList.sqf";
-waitUntil{!isNil "adminListLoaded"};
-
-// Load key macros
-[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
-[]execVM "admintools\KeyBindings\NumberKeys.sqf";
-
+waitUntil{!isNil "adminListLoaded"}; // Wait for adminlist before starting
 
 // Start of tool activation
 if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
 	private["_veh", "_idx"];
 	_idx = -1;
+
+	// Wait for the character to load all required items
+	waitUntil {!isNil "dayz_animalCheck"}; 
+
+	// Load key macros
+	[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
+	[]execVM "admintools\KeyBindings\NumberKeys.sqf";
 	
+	// Tool use logger
+	if(logMajorTool || logMinorTool) then {
+		usageLogger = format["Epoch Admin Tools loaded for player -- %1  %2",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
+
 	while {alive player} do
 	{
 		if(toolsAreActive) then
