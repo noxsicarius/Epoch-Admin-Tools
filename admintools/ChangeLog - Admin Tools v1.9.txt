@@ -6,7 +6,7 @@ by NoxSicarius
 
 
 ------------------- Version 1.9 TEST Changelog ---------------------
-First a thanks to F3cuk for helping fix up the tool and catching my mistakes.
+First a thanks to F3cuk for helping fix up the tool and testing.
 
 New Features:
 Base copy/paste Code by maca134 with some edits by me
@@ -24,7 +24,7 @@ Added an enhanced admin build
 --> Build any epoch item instantly and without plot pole 
 --> Upgrade buildable items
 --> Downgrade buildable items
---> Maintain buildable items
+--> Maintain base
 
 
 Bug Fixes:
@@ -36,7 +36,7 @@ Wrong hatchet in crates
 Wrong variable types used in crates
 Enhanced ESP only showed one epoch mission crash
 ESP zero devisor (client only) @f3cuk
-Fuel pump fix
+Fuel pump error fix
 adminlist and macros not loading fixed
 --> with help from @f3cuk
 Temporary vehicle spawns fixed up
@@ -54,6 +54,7 @@ Split the items gear kit into two parts -> medical & tools
 ReadMe updates
 delete base has been integrated with maca's base copy
 AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
+
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
