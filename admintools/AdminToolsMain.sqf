@@ -398,7 +398,7 @@ BuildMenu =
 	["Extras >>",[],"#USER:BuildExtras", -5,[["expression",""]],"1","1"],
 	["Point To Upgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToUpgrade.sqf"]]],"1","1"],
 	["Point To Downgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToDowngrade.sqf"]]],"1","1"],
-	["Point To Maintain",[],"", -5,[["expression",format[_EXECscript8,"pointToMaintain.sqf"]]],"1","1"],
+	["Maintain Base",[],"", -5,[["expression",format[_EXECscript8,"maintainArea.sqf"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
