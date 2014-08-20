@@ -5,7 +5,6 @@ _isWater = 		dayz_isSwimming;
 _cancel = false;
 _reason = "";
 _canBuildOnPlot = false;
-
 _vehicle = vehicle player;
 _inVehicle = (_vehicle != player);
 
@@ -37,9 +36,10 @@ if((_this select 0) == "rebuild") then {
 } else {
 	_item =	_this select 0;
 	adminRebuildItem = _item;
+	isBuilding = ((_this select 1) == "building");
 };
 
-_classname = 	_item;
+_classname = _item;
 _classnametmp = _classname;
 _text = 		getText (configFile >> "CfgVehicles" >> _classname >> "displayName");
 _ghost = getText (configFile >> "CfgVehicles" >> _classname >> "ghostpreview");
@@ -56,7 +56,11 @@ if(isNumber (configFile >> "CfgVehicles" >> _classname >> "nounderground")) then
 
 _offset = 	getArray (configFile >> "CfgVehicles" >> _classname >> "offset");
 if((count _offset) <= 0) then {
-	_offset = [0,1.5,0];
+	if(isBuilding) then {
+		_offset = [0,10,1];
+	} else {
+		_offset = [0,2,0];
+	};
 };
 
 _isPole = (_classname == "Plastic_Pole_EP1_DZ");
@@ -316,15 +320,16 @@ if(!_cancel) then {
 		publicVariableServer "PVDZE_obj_Publish";
 		cutText [format[(localize "str_epoch_player_140"),_combinationDisplay,_text], "PLAIN DOWN", 5];
 	} else {
-		_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
-
+		if(!isBuilding) then {
+			_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
+		
 		// fire?
 		if(_tmpbuilt isKindOf "Land_Fire_DZ") then {
 			_tmpbuilt spawn player_fireMonitor;
 		} else {
 			PVDZE_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location],_classname];
 			publicVariableServer "PVDZE_obj_Publish";
-		};
+		};};
 	};
 	
 	// Tool use logger
@@ -343,4 +348,3 @@ if(!_cancel) then {
 
 	cutText [(localize "str_epoch_player_46") , "PLAIN DOWN"];
 };
-

@@ -14,7 +14,6 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
 		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
 		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
-		["Admin Build Menu >> ",[],"#USER:BuildMenu", -5,[["expression",""]],"1","1"],
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
 		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
@@ -277,6 +276,7 @@ WTMenu=[
 // Menu that deals with epoch specific items like locks and safes
 EpochMenu=[
 	["",true],
+	["Admin Build Menu >> ",[],"#USER:BuildMenu", -5,[["expression",""]],"1","1"],
 	["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECscript1,"base_manager.sqf"]]], "1", "1"],	
 	["Point to Delete Item",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Point to display code",[],"",-5,[["expression",format[_EXECscript1,"gimmecode.sqf"]]],"1","1"],
@@ -289,13 +289,9 @@ EpochMenu=[
 BaseItems =
 [
 ["",true],
-	["Rebuild last item",[],"", -5,[["expression",format[_EXECscript7,"rebuild"]]],"1","1"],
 	["Cinder >>",[],"#USER:BuildablesCinder", -5,[["expression",""]],"1","1"],
 	["Wood >>",[],"#USER:BuildablesWood", -5,[["expression",""]],"1","1"],
 	["Other >>",[],"#USER:BuildablesOther", -5,[["expression",""]],"1","1"],
-	["Point To Upgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToUpgrade.sqf"]]],"1","1"],
-	["Point To Downgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToDowngrade.sqf"]]],"1","1"],
-	["Point To Maintain",[],"", -5,[["expression",format[_EXECscript8,"pointToMaintain.sqf"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -394,12 +390,15 @@ BuildExtras =
 BuildMenu =
 [
 ["",true],
-	["Base Materials",[],"#USER:BaseItems", -5,[["expression",""]],"1","1"],
-	["Storage",[],"#USER:BuildStorage", -5,[["expression",""]],"1","1"],
-	["Netting",[],"#USER:BuildNetting", -5,[["expression",""]],"1","1"],
-	["Sandbags",[],"#USER:BuildSandbag", -5,[["expression",""]],"1","1"],
-	["Extras",[],"#USER:BuildExtras", -5,[["expression",""]],"1","1"],
-	["Barracks",[],"", -5,[["expression",'["Land_Mil_Barracks_L"] execVM "admintools\tools\AdminMode\buildTemp.sqf"']],"1","1"],
+	["Rebuild last item",[],"", -5,[["expression",format[_EXECscript7,"rebuild"]]],"1","1"],
+	["Base Materials >>",[],"#USER:BaseItems", -5,[["expression",""]],"1","1"],
+	["Storage >>",[],"#USER:BuildStorage", -5,[["expression",""]],"1","1"],
+	["Netting >>",[],"#USER:BuildNetting", -5,[["expression",""]],"1","1"],
+	["Sandbags >>",[],"#USER:BuildSandbag", -5,[["expression",""]],"1","1"],
+	["Extras >>",[],"#USER:BuildExtras", -5,[["expression",""]],"1","1"],
+	["Point To Upgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToUpgrade.sqf"]]],"1","1"],
+	["Point To Downgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToDowngrade.sqf"]]],"1","1"],
+	["Point To Maintain",[],"", -5,[["expression",format[_EXECscript8,"pointToMaintain.sqf"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
