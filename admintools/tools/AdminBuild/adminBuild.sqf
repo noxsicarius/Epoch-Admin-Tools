@@ -1,9 +1,5 @@
 private ["_location","_dir","_classname","_item","_hasrequireditem","_missing","_hastoolweapon","_cancel","_reason","_started","_finished","_animState","_isMedic","_dis","_sfx","_hasbuilditem","_tmpbuilt","_onLadder","_isWater","_require","_text","_offset","_IsNearPlot","_isOk","_location1","_location2","_counter","_limit","_proceed","_num_removed","_position","_object","_canBuildOnPlot","_friendlies","_nearestPole","_ownerID","_findNearestPoles","_findNearestPole","_distance","_classnametmp","_ghost","_isPole","_needText","_lockable","_zheightchanged","_rotate","_combination_1","_combination_2","_combination_3","_combination_4","_combination","_combination_1_Display","_combinationDisplay","_zheightdirection","_abort","_isNear","_need","_needNear","_vehicle","_inVehicle","_requireplot","_objHDiff","_isLandFireDZ","_isTankTrap"];
 
-if(DZE_ActionInProgress) exitWith { cutText [(localize "str_epoch_player_40") , "PLAIN DOWN"]; };
-DZE_ActionInProgress = true;
-
-
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		dayz_isSwimming;
 _cancel = false;
@@ -31,26 +27,16 @@ DZE_cancelBuilding = false;
 call gear_ui_init;
 closeDialog 1;
 
-if (_isWater) exitWith {DZE_ActionInProgress = false; cutText [localize "str_player_26", "PLAIN DOWN"];};
-if (_inVehicle) exitWith {DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_42"), "PLAIN DOWN"];};
-if (_onLadder) exitWith {DZE_ActionInProgress = false; cutText [localize "str_player_21", "PLAIN DOWN"];};
-if (player getVariable["combattimeout", 0] >= time) exitWith {DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_43"), "PLAIN DOWN"];};
+if (_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
+if (_inVehicle) exitWith {cutText [(localize "str_epoch_player_42"), "PLAIN DOWN"];};
+if (_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
 
 if((_this select 0) == "rebuild") then {
-	if(isNil "adminRebuildItem") exitWith {DZE_ActionInProgress = false; systemChat "You have not selected a buildable item yet"};
+	if(isNil "adminRebuildItem") exitWith {systemChat "You have not selected a buildable item yet"};
 	_item =	adminRebuildItem;
 } else {
 	_item =	_this select 0;
 	adminRebuildItem = _item;
-};
-
-// Need Near Requirements
-_abort = false;
-_reason = "";
-
-if(_abort) exitWith {
-	cutText [format[(localize "str_epoch_player_135"),_reason,_distance], "PLAIN DOWN"];
-	DZE_ActionInProgress = false;
 };
 
 _classname = 	_item;
@@ -61,11 +47,6 @@ _ghost = getText (configFile >> "CfgVehicles" >> _classname >> "ghostpreview");
 _lockable = 0;
 if(isNumber (configFile >> "CfgVehicles" >> _classname >> "lockable")) then {
 	_lockable = getNumber(configFile >> "CfgVehicles" >> _classname >> "lockable");
-};
-
-_requireplot = DZE_requireplot;
-if(isNumber (configFile >> "CfgVehicles" >> _classname >> "requireplot")) then {
-	_requireplot = getNumber(configFile >> "CfgVehicles" >> _classname >> "requireplot");
 };
 
 _isAllowedUnderGround = 1;
@@ -101,7 +82,7 @@ _findNearestPole = [];
 _IsNearPlot = count (_findNearestPole);
 
 // If item is plot pole && another one exists within 45m
-if(_isPole && _IsNearPlot > 0) exitWith {  DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_44") , "PLAIN DOWN"]; };
+if(_isPole && _IsNearPlot > 0) exitWith {cutText [(localize "str_epoch_player_44") , "PLAIN DOWN"]; };
 
 _missing = "";
 
@@ -235,7 +216,7 @@ while {_isOk} do {
 		deleteVehicle _object;
 	};
 
-	if(_location1 distance _location2 > 10) exitWith {
+	if(_location1 distance _location2 > 15) exitWith {
 		_isOk = false;
 		_cancel = true;
 		_reason = "You've moved to far away from where you started building (within 10 meters)";
@@ -246,14 +227,6 @@ while {_isOk} do {
 		_isOk = false;
 		_cancel = true;
 		_reason = "Cannot move up || down more than 20 meters";
-		detach _object;
-		deleteVehicle _object;
-	};
-
-	if (player getVariable["combattimeout", 0] >= time) exitWith {
-		_isOk = false;
-		_cancel = true;
-		_reason = (localize "str_epoch_player_43");
 		detach _object;
 		deleteVehicle _object;
 	};
@@ -353,6 +326,12 @@ if(!_cancel) then {
 			publicVariableServer "PVDZE_obj_Publish";
 		};
 	};
+	
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has used admin build to place: %3",name player,getPlayerUID player,_item];
+		[] spawn {publicVariable "usageLogger";};
+	};
 } else {
 	r_interrupt = false;
 	if (vehicle player == player) then {
@@ -365,4 +344,3 @@ if(!_cancel) then {
 	cutText [(localize "str_epoch_player_46") , "PLAIN DOWN"];
 };
 
-DZE_ActionInProgress = false;

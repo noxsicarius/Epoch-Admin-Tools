@@ -1,5 +1,8 @@
+==================================================
 You are using Epoch Admin Tools version 1.9 TEST
 by NoxSicarius
+==================================================
+
 
 
 ------------------- Version 1.9 TEST Changelog ---------------------
@@ -17,6 +20,11 @@ Lock/Unlock upgrade
 Added all epoch events to ESP
 New vehicle god mode
 --> Vehicles now impervious to rockets too (air vehicles still explode on crash)
+Added an enhanced admin build
+--> Build any epoch item instantly and without plot pole 
+--> Upgrade buildable items
+--> Downgrade buildable items
+--> Maintain buildable items
 
 
 Bug Fixes:

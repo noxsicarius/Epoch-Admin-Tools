@@ -1,13 +1,11 @@
-_pathtotools = "admintools\tools\";
-_pathtoweapon = "admintools\weaponkits\";
-_pathtovehicles = "admintools\vehicles\";
-_EXECscript1 = 'player execVM "'+_pathtotools+'%1"';
+_EXECscript1 = 'player execVM "admintools\tools\%1"';
 _EXECscript2 = '["%1","%2","%3"] execVM "admintools\weaponkits\WeaponKits.sqf"';
 _EXECscript3 = '["%1"] execVM "admintools\weaponkits\BackPack.sqf"';
-_EXECscript4 = 'player execVM "'+_pathtoweapon+'%1"';
-_EXECscript5 = 'player execVM "'+_pathtovehicles+'%1"';
+_EXECscript4 = 'player execVM "admintools\weaponkits\%1"';
+_EXECscript5 = 'player execVM "admintools\vehicles\%1"';
 _EXECscript6 = '["%1"] execVM "admintools\crates\%2"';
-_EXECscript7 = '["%1"] execVM "admintools\tools\adminBuild.sqf"';
+_EXECscript7 = '["%1"] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
+_EXECscript8 = 'player execVM "admintools\tools\AdminBuild\%1"';
 
 if ((getPlayerUID player) in AdminList) then { // Admins
 	epochmenustart = [
@@ -295,9 +293,9 @@ BaseItems =
 	["Cinder >>",[],"#USER:BuildablesCinder", -5,[["expression",""]],"1","1"],
 	["Wood >>",[],"#USER:BuildablesWood", -5,[["expression",""]],"1","1"],
 	["Other >>",[],"#USER:BuildablesOther", -5,[["expression",""]],"1","1"],
-	["Floor",[],"#USER:", -5,[["expression",""]],"1","1"],
-//	["Upgrade >>",[],"#USER:BuildablesUpgrade", -5,[["expression",""]],"1","1"],
-//	["Floor",[],"", -5,[["expression",format[_EXECscript7,"MetalFloor_DZ"]]],"1","1"],
+	["Point To Upgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToUpgrade.sqf"]]],"1","1"],
+	["Point To Downgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToDowngrade.sqf"]]],"1","1"],
+	["Point To Maintain",[],"", -5,[["expression",format[_EXECscript8,"pointToMaintain.sqf"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
