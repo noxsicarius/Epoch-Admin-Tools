@@ -3,6 +3,10 @@ markPos = _this select 0;
 if(isNil "markers") then { markers = []};
 if(isNil "changed") then {changed = false};
 if(isNil "toggleCheck") then {toggleCheck = 2};
+if (isNil "polelist") then {polelist = [];};
+if (isNil "tentlist") then {tentlist = [];};
+if (isNil "crashlist") then {crashlist = [];};
+
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
 
@@ -34,7 +38,7 @@ TheThicknessOfThePointPlayer=0.7;
 
 //--------------------#Dead Players#------------------------
 DeadPlayersMarkerSize=[2,2];
-DeadPlayersMarkerType=""DestroyedVehicle"";
+DeadPlayersMarkerType="DestroyedVehicle";
 DeadPlayerMarkerColor="ColorBlack";//two in the fourth degree is equal to sixteen, so there are 16 colors
 //--------------------#Dead Players#------------------------
 
@@ -85,23 +89,21 @@ F5Menu =
 	showCommandingMenu "#USER:F5OptionMenu";
 };
 
-
-
 if(markPos) then { 
 	dList = []; //List of dead bodies
 	dListMarkers = []; //List of Dead player markers
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
-	};
+//	if(logMajorTool) then {
+//		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
+//		[] spawn {publicVariable "usageLogger";};
+//	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has used Enhanced ESP";
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
+//	if(broadcastToolUse) then {
+//		useBroadcaster = "Admin -- has used Enhanced ESP";
+//		[] spawn {publicVariableServer "useBroadcaster";};
+//	};
 };
 
 While {markPos} do 
@@ -130,7 +132,6 @@ While {markPos} do
 					};
 				};
 			};
-			
 			ParamsPlayersMarkers=[true,AddPlayersToScreen];
 			setGroupIconsVisible ParamsPlayersMarkers;
 		} forEach allUnits;
@@ -157,23 +158,20 @@ While {markPos} do
 		If (AddZombieToMap) then {
 			_pos = getPos player;
 			_zombies = _pos nearEntities ["zZombie_Base",ZombieVisibleDistance];
-			_zmcount= count _zombies;
 			k=0;
-
-			_markcount = count markers;
-			for "k" from 0 to (_markcount -1) do
 			{
 				deleteMarkerLocal ("zmMarker"+ (str k));
-			};
-
-			for "k" from 0 to _zmcount do 
+				k=k+1;
+			}forEach markers;
+			
+			k=0;
 			{
 				_text = format ["zmMarker%1", k];
 				markers set [k, _text];
-				zm = _zombies select k;
-				if(alive zm) then 
+
+				if(alive _x) then 
 				{
-					pos = position zm;
+					pos = position _x;
 					deleteMarkerLocal ("zmMarker"+ (str k));
 					MarkerZm = "zmMarker" + (str k);
 					ParamsZm=[MarkerZm,pos];
@@ -183,22 +181,19 @@ While {markPos} do
 					MarkerZm setMarkerPosLocal (pos);
 					MarkerZm setMarkerColorLocal(ZombieMarkerColor);
 					MarkerZm setMarkerTextLocal ZombieName;
+					k=k+1;
 				};
-			};
+
+			}forEach _zombies;
 		};
 
 		If (AddVehicleToMap) then 
 		{
 			vehList = allmissionobjects "LandVehicle" + allmissionobjects "Air" + allmissionobjects "Boat";
-			j = count vehList;
 			i = 0;
-
-			for "i" from 0 to j do
 			{
-				veh = vehList select i;
-				_name = gettext (configFile >> "CfgVehicles" >> (typeof veh) >> "displayName");
-
-				pos = position veh;
+				_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+				pos = position _x;
 				deleteMarkerLocal ("vehMarker"+ (str i));
 				MarkerVeh = "vehMarker" + (str i);
 				ParamsVeh=[MarkerVeh,pos];
@@ -208,20 +203,17 @@ While {markPos} do
 				MarkerVeh setMarkerPosLocal (pos);
 				MarkerVeh setMarkerColorLocal(VehicleMarkerColor);
 				MarkerVeh setMarkerTextLocal format ["%1",_name];
-			};
+				i=i+1;
+			} forEach vehList;
 		};
 		
 		If(AddPlotPoleToMap) then
 		{
 			poleList = allMissionObjects "Plastic_Pole_EP1_DZ";
-			j0 = count poleList;
 			i0 = 0;
-
-			for "i0" from 0 to j0 do
 			{
-				pole = poleList select i0;
-				_name = gettext (configFile >> "CfgVehicles" >> (typeof pole) >> "displayName");
-				pos = position pole;
+				_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+				pos = position _x;
 				deleteMarkerLocal ("poleMarker"+ (str i0));
 				MarkerPole = "poleMarker" + (str i0);
 				ParamsPole=[MarkerPole,pos];
@@ -231,20 +223,17 @@ While {markPos} do
 				MarkerPole setMarkerPosLocal (pos);
 				MarkerPole setMarkerColorLocal(PlotPoleMarkerColor);
 				MarkerPole setMarkerTextLocal format ["%1",_name];
-			};
+				i0=i0+1;
+			}forEach poleList;
 		};	
 		
 		If (AddTentsToMap) then 
 		{
 			tentList = allmissionobjects "Land_A_tent";
-			j1 = count tentList;
 			i1 = 0;
-
-			for "i1" from 0 to j1 do
 			{
-				tent = tentList select i1;
-				_name = gettext (configFile >> "CfgVehicles" >> (typeof tent) >> "displayName");
-				pos = position tent;
+				_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+				pos = position _x;
 				deleteMarkerLocal ("tentMarker"+ (str i1));
 				MarkerTent = "tentMarker" + (str i1);
 				ParamsTent=[MarkerTent,pos];
@@ -254,20 +243,18 @@ While {markPos} do
 				MarkerTent setMarkerPosLocal (pos);
 				MarkerTent setMarkerColorLocal(TentsMarkerColor);
 				MarkerTent setMarkerTextLocal format ["%1",_name];
-			};
+
+				i1=i1+1;
+			}forEach tentList;
 		};
 		
 		If (AddCrashesToMap) then 
 		{
 			crashList = allmissionobjects "UH1Wreck_DZ" + allmissionobjects "UH60Wreck_DZ" + allmissionobjects "UH60_NAVY_Wreck_DZ" + allmissionobjects "UH60_ARMY_Wreck_DZ" + allmissionobjects "UH60_NAVY_Wreck_burned_DZ" + allmissionobjects "UH60_ARMY_Wreck_burned_DZ" + allmissionobjects "Mass_grave_DZ" + allmissionobjects "Supply_Crate_DZE";
-			j2 = count crashList;
 			i2 = 0;
-
-			for "i2" from 0 to j2 do
 			{
-				crash = crashList select i2;
-				_name = gettext (configFile >> "CfgVehicles" >> (typeof crash) >> "displayName");
-				pos = position crash;
+				_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+				pos = position _x;
 				deleteMarkerLocal ("crashMarker"+ (str i2));
 				MarkerCrash = "crashMarker" + (str i2);
 				ParamsCrash=[MarkerCrash,pos];
@@ -277,7 +264,9 @@ While {markPos} do
 				MarkerCrash setMarkerPosLocal (pos);
 				MarkerCrash setMarkerColorLocal(CrashesMarkerColor);
 				MarkerCrash setMarkerTextLocal format ["%1",_name];
-			};
+
+				i2=i2+1;
+			}forEach crashList;
 		};		
 	};
 
@@ -285,58 +274,55 @@ While {markPos} do
 	{
 		{
 			deleteMarkerLocal _x;
-		}Foreach dListMarkers;
+		}forEach dListMarkers;
 		dListMarkers = [];
 	};
 	
 	If (!AddZombieToMap && changed) then 
 	{
-		_count = count markers;
-		for "k" from 0 to (_count -1) do
+		k=0;
 		{
 			deleteMarkerLocal ("zmMarker"+ (str k));
-		};
+			k=k+1;
+		}forEach markers;
 		markers = [];
 	};
 
 	If (!AddVehicleToMap && changed) then 
 	{
-		for "i" from 0 to j do
+		i=0;
 		{
-			veh = vehList select i;
 			deleteMarkerLocal ("vehMarker"+ (str i));
-		};
-		j=0;
+			i=i+1;
+		}forEach vehList;
 	};
 
 	If (!AddPlotPoleToMap && changed) then 
 	{
-		for "i0" from 0 to j0 do
+		i0=0;
 		{
-			pole = poleList select i0;
 			deleteMarkerLocal ("poleMarker"+ (str i0));
-		};
-		j0=0;
+			i0=i0+1;
+		}forEach poleList;
 	};
 		
 	If (!AddTentsToMap && changed) then 
 	{
-		for "i1" from 0 to j1 do
+		i1=0;
 		{
-			tent = tentList select i1;
 			deleteMarkerLocal ("tentMarker"+ (str i1));
-		};
-		j1=0;
+			i1=i1+1;
+		}forEach tentList;
 	};
 
 	If (!AddCrashesToMap && changed) then 
 	{
-		for "i2" from 0 to j2 do
+		i2=0;
 		{
-			crash = crashList select i2;
 			deleteMarkerLocal ("crashMarker"+ (str i2));
-		};
-		j2=0;
+
+			i2=i2+1;
+		}forEach crashList;
 	};
 
 	sleep GlobalSleep;
@@ -349,7 +335,6 @@ While {markPos} do
 		};
 	};
 
-	
 	{
 		clearGroupIcons (group _x);
 	} forEach allUnits;
@@ -362,10 +347,10 @@ if(!markPos) then
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
-	};
+//	if(logMajorTool) then {
+//		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
+//		[] spawn {publicVariable "usageLogger";};
+//	};
 
 	If (AddDeadPlayersToMap) then 
 	{
@@ -376,47 +361,53 @@ if(!markPos) then
 	
 	If (AddZombieToMap) then 
 	{
-		_count = count markers;
-		for "k" from 0 to (_count -1) do
+		k=0;
 		{
 			deleteMarkerLocal ("zmMarker"+ (str k));
-		};
+			k=k+1;
+		}forEach markers;
 	};
 
 	If (AddVehicleToMap) then 
 	{
-		for "i" from 0 to j do
+		i=0;
 		{
-			veh = vehList select i;
 			deleteMarkerLocal ("vehMarker"+ (str i));
-		};
+
+			i=i+1;
+		}forEach vehList;
 	};
 
 	If (AddPlotPoleToMap) then 
 	{
-		for "i0" from 0 to j0 do
+
+		i0=0;
 		{
-			pole = poleList select i0;
 			deleteMarkerLocal ("poleMarker"+ (str i0));
-		};
+
+			i0=i0+1;
+		}forEach poleList;
 	};
 	
 	If (AddTentsToMap) then 
 	{
-		for "i1" from 0 to j1 do
+		i1=0;
 		{
-			tent = tentList select i1;
 			deleteMarkerLocal ("tentMarker"+ (str i1));
-		};
+
+			i1=i1+1;
+		}forEach tentList;
 	};
 
 	If (AddCrashesToMap) then 
 	{
-		for "i2" from 0 to j2 do
+
+		i2=0;
 		{
-			crash = crashList select i2;
 			deleteMarkerLocal ("crashMarker"+ (str i2));
-		};
+
+			i2=i2+1;
+		}forEach crashList;
 	};
 	sleep 0.5;
 };
