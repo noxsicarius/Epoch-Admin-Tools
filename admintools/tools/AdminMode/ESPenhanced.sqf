@@ -95,15 +95,15 @@ if(markPos) then {
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
 
 	// Tool use logger
-//	if(logMajorTool) then {
-//		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
-//		[] spawn {publicVariable "usageLogger";};
-//	};
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
 	// Tool use broadcaster
-//	if(broadcastToolUse) then {
-//		useBroadcaster = "Admin -- has used Enhanced ESP";
-//		[] spawn {publicVariableServer "useBroadcaster";};
-//	};
+	if(broadcastToolUse) then {
+		useBroadcaster = "Admin -- has used Enhanced ESP";
+		[] spawn {publicVariableServer "useBroadcaster";};
+	};
 };
 
 While {markPos} do 
@@ -347,10 +347,10 @@ if(!markPos) then
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
 
 	// Tool use logger
-//	if(logMajorTool) then {
-//		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
-//		[] spawn {publicVariable "usageLogger";};
-//	};
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
 
 	If (AddDeadPlayersToMap) then 
 	{
