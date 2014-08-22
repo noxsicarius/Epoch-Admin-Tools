@@ -20,11 +20,13 @@ Lock/Unlock upgrade
 Added all epoch events to ESP
 New vehicle god mode
 --> Vehicles now impervious to rockets too (air vehicles still explode on crash)
-Added an enhanced admin build
+Added an enhanced admin build (can't rotate properly yet)
 --> Build any epoch item instantly and without plot pole 
 --> Upgrade buildable items
 --> Downgrade buildable items
 --> Maintain base
+--> Build Arma/DayZ buildings (TESTING)
+Added zombie spawner
 
 
 Bug Fixes:
@@ -54,6 +56,7 @@ Split the items gear kit into two parts -> medical & tools
 ReadMe updates
 delete base has been integrated with maca's base copy
 AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
+
 
 
 
