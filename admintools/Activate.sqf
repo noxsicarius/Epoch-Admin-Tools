@@ -16,7 +16,7 @@ if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then
 	
 	// Tool use logger
 	if(logMajorTool || logMinorTool) then {
-		usageLogger = format["Epoch Admin Tools loaded for player -- %1  %2",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has logged on",name player,getPlayerUID player];
 		[] spawn {publicVariable "usageLogger";};
 	};
 
