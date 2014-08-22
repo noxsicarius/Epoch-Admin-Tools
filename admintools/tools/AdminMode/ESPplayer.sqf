@@ -16,11 +16,6 @@ if(playerESP) then {
 		usageLogger = format["%1 %2 -- has ENABLED player ESP",name player,getPlayerUID player];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has used player ESP";
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 };
 
 
