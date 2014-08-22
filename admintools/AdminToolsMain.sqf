@@ -4,7 +4,7 @@ _EXECscript3 = '["%1"] execVM "admintools\weaponkits\BackPack.sqf"';
 _EXECscript4 = 'player execVM "admintools\weaponkits\%1"';
 _EXECscript5 = 'player execVM "admintools\vehicles\%1"';
 _EXECscript6 = '["%1"] execVM "admintools\crates\%2"';
-_EXECscript7 = '["%1"] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
+_EXECscript7 = '["%1","%2"] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
 _EXECscript8 = 'player execVM "admintools\tools\AdminBuild\%1"';
 
 if ((getPlayerUID player) in AdminList) then { // Admins
@@ -43,6 +43,7 @@ AdminMenu =
 	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
 //	["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECscript1,"SafeZoneArea.sqf"]]], "1", "1"],
 	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
+	["Zombie Spawner", [], "", -5, [["expression", format[_EXECscript1,"zombieSpawn.sqf"]]], "1", "1"],
 	["Heal Players",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
 	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
@@ -286,6 +287,26 @@ EpochMenu=[
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Base menu for Admin Build functions
+BuildMenu =
+[
+["",true],
+	["Rebuild last item",[],"", -5,[["expression",format[_EXECscript7,"rebuild"]]],"1","1"],
+	["Base Materials >>",[],"#USER:BaseItems", -5,[["expression",""]],"1","1"],
+	["Buildings >>",[],"#USER:BuildingsTemp", -5,[["expression",""]],"1","1"],
+	["Storage >>",[],"#USER:BuildStorage", -5,[["expression",""]],"1","1"],
+	["Netting >>",[],"#USER:BuildNetting", -5,[["expression",""]],"1","1"],
+	["Sandbags >>",[],"#USER:BuildSandbag", -5,[["expression",""]],"1","1"],
+	["Extras >>",[],"#USER:BuildExtras", -5,[["expression",""]],"1","1"],
+	["Point To Upgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToUpgrade.sqf"]]],"1","1"],
+	["Point To Downgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToDowngrade.sqf"]]],"1","1"],
+	["Maintain Base",[],"", -5,[["expression",format[_EXECscript8,"maintainArea.sqf"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+// Standard base building epoch items
 BaseItems =
 [
 ["",true],
@@ -295,6 +316,8 @@ BaseItems =
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Wood epoch base items
 BuildablesWood = [
 ["",true],
 	["Floor (Full)",[],"", -5,[["expression",format[_EXECscript7,"WoodFloor_DZ"]]],"1","1"],
@@ -315,6 +338,8 @@ BuildablesWood = [
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Cinder epoch base items
 BuildablesCinder = [
 ["",true],
 	["Wall (Full)",[],"", -5,[["expression",format[_EXECscript7,"CinderWall_DZ"]]],"1","1"],	
@@ -324,21 +349,20 @@ BuildablesCinder = [
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Anything that does not fit into the BaseItems categories
 BuildablesOther = [
 ["",true],
 	["Metal Floor",[],"", -5,[["expression",format[_EXECscript7,"MetalFloor_DZ"]]],"1","1"],
 	["Metal Panel",[],"", -5,[["expression",format[_EXECscript7,"MetalPanel_DZ"]]],"1","1"],
+	["Tank Trap",[],"", -5,[["expression",format[_EXECscript7,"Hedgehog_DZ"]]],"1","1"],	
 	["Wire Fence",[],"", -5,[["expression",format[_EXECscript7,"Fort_RazorWire"]]],"1","1"],
 	["Plot Pole",[],"", -5,[["expression",format[_EXECscript7,"Plastic_Pole_EP1_DZ"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
-BuildablesUpgrade = [
-["",true],
-	["", [], "", -5,[["expression", ""]], "1", "0"],
-		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
-];
 
+// Storage items for base
 BuildStorage =
 [
 ["",true],
@@ -349,6 +373,8 @@ BuildStorage =
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Any buildable dealing with sand bags
 BuildSandbag =
 [
 ["",true],
@@ -357,11 +383,14 @@ BuildSandbag =
 	["H-barrier Cube",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier1_DZ"]]],"1","1"],
 	["H-barrier (short)",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier3_DZ"]]],"1","1"],
 	["H-barrier (long)",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier5_DZ"]]],"1","1"],
+	["H-Barrier (Huge)",[],"", -5,[["expression",format[_EXECscript7,"Base_WarfareBBarrier10xTall","building"]]],"1","1"],
 	["Sandbag Nest",[],"", -5,[["expression",format[_EXECscript7,"SandNest_DZ"]]],"1","1"],
 	["M240 Nest",[],"", -5,[["expression",format[_EXECscript7,"M240Nest_DZ"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Cloth nets/huts
 BuildNetting =
 [
 ["",true],
@@ -373,11 +402,12 @@ BuildNetting =
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+// Anything that does not fall into the other categories
 BuildExtras =
 [
 ["",true],
 	["Fire Barrel",[],"", -5,[["expression",format[_EXECscript7,"FireBarrel_DZ"]]],"1","1"],
-	["Tank Trap",[],"", -5,[["expression",format[_EXECscript7,"Hedgehog_DZ"]]],"1","1"],	
 	["Workbench",[],"", -5,[["expression",format[_EXECscript7,"WorkBench_DZ"]]],"1","1"],	
 	["Generator",[],"", -5,[["expression",format[_EXECscript7,"Generator_DZ"]]],"1","1"],	
 	["Fuel Pump",[],"", -5,[["expression",format[_EXECscript7,"FuelPump_DZ"]]],"1","1"],	
@@ -387,21 +417,248 @@ BuildExtras =
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 
-BuildMenu =
+// Full buildings like a house
+BuildingsTemp =
 [
 ["",true],
-	["Rebuild last item",[],"", -5,[["expression",format[_EXECscript7,"rebuild"]]],"1","1"],
-	["Base Materials >>",[],"#USER:BaseItems", -5,[["expression",""]],"1","1"],
-	["Storage >>",[],"#USER:BuildStorage", -5,[["expression",""]],"1","1"],
-	["Netting >>",[],"#USER:BuildNetting", -5,[["expression",""]],"1","1"],
-	["Sandbags >>",[],"#USER:BuildSandbag", -5,[["expression",""]],"1","1"],
-	["Extras >>",[],"#USER:BuildExtras", -5,[["expression",""]],"1","1"],
-	["Point To Upgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToUpgrade.sqf"]]],"1","1"],
-	["Point To Downgrade",[],"", -5,[["expression",format[_EXECscript8,"pointToDowngrade.sqf"]]],"1","1"],
-	["Maintain Base",[],"", -5,[["expression",format[_EXECscript8,"maintainArea.sqf"]]],"1","1"],
+	["Residential >>",[],"#USER:ResidentialBildings", -5,[["expression",""]],"1","1"],
+	["Industrial >>",[],"#USER:IndustrialBuildings", -5,[["expression",""]],"1","1"],
+	["Military >>",[],"#USER:MilitaryBuildings", -5,[["expression",""]],"1","1"],
+	["Religious >>",[],"#USER:ReligiousBildings", -5,[["expression",""]],"1","1"],
+	["Farm >>",[],"#USER:FarmBuildings", -5,[["expression",""]],"1","1"],
+	["Ore Veins >>",[],"#USER:OreVein", -5,[["expression",""]],"1","1"],
+	["Graves >>",[],"#USER:Graves", -5,[["expression",""]],"1","1"],
+	["Other >>",[],"#USER:OtherBuildings", -5,[["expression",""]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
+
+OtherBuildings =
+[
+["",true],
+	["OutHouse",[],"", -5,[["expression",format[_EXECscript7,"Land_KBud","building"]]],"1","1"],
+	["Statue Soldiers",[],"", -5,[["expression",format[_EXECscript7,"Land_A_statue01","building"]]],"1","1"],
+	["Statue Tank",[],"", -5,[["expression",format[_EXECscript7,"Land_A_statue02","building"]]],"1","1"],
+	["Archway",[],"", -5,[["expression",format[_EXECscript7,"Land_brana02nodoor","building"]]],"1","1"],
+	["Sandbag Nest Big",[],"", -5,[["expression",format[_EXECscript7,"Land_fortified_nest_big","building"]]],"1","1"],
+	["Red Marker Archway",[],"", -5,[["expression",format[_EXECscript7,"Sign_circle_EP1","building"]]],"1","1"],
+	["Concrete Ramp Tall",[],"", -5,[["expression",format[_EXECscript7,"Land_ConcreteRamp","building"]]],"1","1"],
+	["Concrete Ramp Short",[],"", -5,[["expression",format[_EXECscript7,"RampConcrete","building"]]],"1","1"],
+	["Wood Ramp Small",[],"", -5,[["expression",format[_EXECscript7,"Land_WoodenRamp","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+
+OreVein =
+[
+["",true],
+	["Gold Vein",[],"", -5,[["expression",format[_EXECscript7,"Gold_Vein_DZE","building"]]],"1","1"],
+	["Silver Vein",[],"", -5,[["expression",format[_EXECscript7,"Silver_Vein_DZE","building"]]],"1","1"],
+	["Iron Vein",[],"", -5,[["expression",format[_EXECscript7,"Iron_Vein_DZE","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+IndustrialBuildings =
+[
+["",true],
+	["1 Red Cargo Crate (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_Misc_Cargo1Bo","building"]]],"1","1"],
+	["2 Red Cargo Crates (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_Misc_Cargo2D","building"]]],"1","1"],
+	["Open Cargo Crate",[],"", -5,[["expression",format[_EXECscript7,"Land_Misc_Cargo1D","building"]]],"1","1"],
+	["Military Cargo Crate",[],"", -5,[["expression",format[_EXECscript7,"US_WarfareBVehicleServicePoint_Base_EP1","building"]]],"1","1"],
+	["Metal Overhang",[],"", -5,[["expression",format[_EXECscript7,"Land_Ind_Shed_02_main","building"]]],"1","1"],
+	["Metal Arch",[],"", -5,[["expression",format[_EXECscript7,"Land_Ind_Shed_01_end","building"]]],"1","1"],
+	["RoadcCheck Station",[],"", -5,[["expression",format[_EXECscript7,"Land_Hlidac_budka","building"]]],"1","1"],
+	["2 Story Sandbag /w Net",[],"", -5,[["expression",format[_EXECscript7,"Land_Fort_Watchtower","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+MilitaryBuildings =
+[
+["",true],
+	["L-Barracks",[],"", -5,[["expression",format[_EXECscript7,"Land_Mil_Barracks_L","building"]]],"1","1"],
+	["Depot",[],"", -5,[["expression",format[_EXECscript7,"WarfareBDepot","building"]]],"1","1"],
+	["Field Hospital",[],"", -5,[["expression",format[_EXECscript7,"INS_WarfareBFieldhHospital","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+ResidentialBildings =
+[
+["",true],
+	["Houses >>",[],"#USER:ResidentialHouse", -5,[["expression",""]],"1","1"],
+	["Offices >>",[],"#USER:ResidentialOffice", -5,[["expression",""]],"1","1"],
+	["Sheds >>",[],"#USER:ResidentialShed", -5,[["expression",""]],"1","1"],
+	["Pub",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Pub_01","building"]]],"1","1"],
+	["Hospital",[],"", -5,[["expression",format[_EXECscript7,"land_a_hospital","building"]]],"1","1"],
+	["Supermarket 1",[],"", -5,[["expression",format[_EXECscript7,"Land_A_GeneralStore_01a","building"]]],"1","1"],
+	["Supermarket 2",[],"", -5,[["expression",format[_EXECscript7,"Land_A_GeneralStore_01","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+Graves =
+[
+["",true],
+	["Grave",[],"", -5,[["expression",format[_EXECscript7,"Grave","building"]]],"1","1"],
+	["Grave Cross 1",[],"", -5,[["expression",format[_EXECscript7,"GraveCross1","building"]]],"1","1"],
+	["Grave Cross 2",[],"", -5,[["expression",format[_EXECscript7,"GraveCross2","building"]]],"1","1"],
+	["Grave Cross Helmet",[],"", -5,[["expression",format[_EXECscript7,"GraveCrossHelmet","building"]]],"1","1"],
+	["Mass Grave",[],"", -5,[["expression",format[_EXECscript7,"Mass_grave_DZ","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+ResidentialShed =
+[
+["",true],
+	["Nice Wood (Open)",[],"", -5,[["expression",format[_EXECscript7,"Land_Shed_Wooden","building"]]],"1","1"],
+	["Rickety Wood (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_kulna","building"]]],"1","1"],
+	["Old Large Wood (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_Shed_W4","building"]]],"1","1"],
+	["Patchwork Wood (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_Shed_W03","building"]]],"1","1"],
+	["Old Metal (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_Shed_m03","building"]]],"1","1"],
+	["Grey Wood (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_Shed_W02","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+ResidentialHouse =
+[
+["",true],
+	["Yellow Modern House (Open)",[],"", -5,[["expression",format[_EXECscript7,"Land_sara_domek_zluty","building"]]],"1","1"],
+	[" Orange/Green (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_3I1","building"]]],"1","1"],
+	["Damaged Red Brick",[],"", -5,[["expression",format[_EXECscript7,"land_r_housev2_04","building"]]],"1","1"],
+	["Large orange brick (Open)",[],"", -5,[["expression",format[_EXECscript7,"Land_Housev2_02_Interier","building"]]],"1","1"],
+	["Orange/Red (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_1I1","building"]]],"1","1"],
+	["Barn (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_3I4","building"]]],"1","1"],
+	["Yellow (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_1T","building"]]],"1","1"],
+	["Red Brick (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_2I","building"]]],"1","1"],
+	["Wood (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_1I3","building"]]],"1","1"],
+	["Green (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_1L1","building"]]],"1","1"],
+	["Wood Yellow (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_1I2","building"]]],"1","1"],
+	["Yellow Stone",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_2L","building"]]],"1","1"],
+	["Bage Wood (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_2T1","building"]]],"1","1"],
+	["Wood Yellow (Open)",[],"", -5,[["expression",format[_EXECscript7,"land_housev_3i3","building"]]],"1","1"],
+	["Green Wood (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_2T2","building"]]],"1","1"],
+	["Green wood/concrete (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseV_3I2","building"]]],"1","1"],
+	["Shanty",[],"", -5,[["expression",format[_EXECscript7,"Land_MBG_Shanty_BIG","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Next 20", [20], "#USER:ResidentialHouse2", -5, [["expression", ""]], "1", "1"]
+];
+
+ResidentialHouse2 =
+[
+["",true],
+	["Burgandy (Open)",[],"", -5,[["expression",format[_EXECscript7,"land_housev_1l2","building"]]],"1","1"],
+	["Middle-East 1",[],"", -5,[["expression",format[_EXECscript7,"Land_House_C_11_EP1","building"]]],"1","1"],
+	["Middle-East 2",[],"", -5,[["expression",format[_EXECscript7,"Land_House_C_12_EP1","building"]]],"1","1"],
+	["Old Stone 1",[],"", -5,[["expression",format[_EXECscript7,"Land_House_K_3_EP1","building"]]],"1","1"],
+	["Old Stone 2",[],"", -5,[["expression",format[_EXECscript7,"Land_House_K_7_EP1","building"]]],"1","1"],
+	["Old Stone 3",[],"", -5,[["expression",format[_EXECscript7,"Land_House_L_7_EP1","building"]]],"1","1"],
+	["Old Stone 4",[],"", -5,[["expression",format[_EXECscript7,"Land_House_L_6_EP1","building"]]],"1","1"],
+	["Old Stone 5",[],"", -5,[["expression",format[_EXECscript7,"Land_House_K_8_EP1","building"]]],"1","1"],
+	["Old Stone 6",[],"", -5,[["expression",format[_EXECscript7,"Land_House_K_5_EP1","building"]]],"1","1"],
+	["Old Stone 7",[],"", -5,[["expression",format[_EXECscript7,"Land_House_K_1_EP1","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Next 20", [20], "#USER:ResidentialHouse3", -5, [["expression", ""]], "1", "1"]
+];
+
+ResidentialHouse3 =
+[
+["",true],
+	["Old Stone 8",[],"", -5,[["expression",format[_EXECscript7,"Land_House_L_1_EP1","building"]]],"1","1"],
+	["Old Stone 9",[],"", -5,[["expression",format[_EXECscript7,"Land_House_L_3_EP1","building"]]],"1","1"],
+	["Old Stone 10",[],"", -5,[["expression",format[_EXECscript7,"Land_House_L_4_EP1","building"]]],"1","1"],
+	["Old Stone 11",[],"", -5,[["expression",format[_EXECscript7,"Land_House_L_8_EP1","building"]]],"1","1"],
+	["Old Stone Ruined",[],"", -5,[["expression",format[_EXECscript7,"Land_House_L_9_EP1","building"]]],"1","1"],
+	["Ruined House",[],"", -5,[["expression",format[_EXECscript7,"Land_ruin_01","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+ResidentialHouse4 =
+[
+["",true],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+ResidentialHouseBlock =
+[
+["",true],
+	["House Block 1",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1","building"]]],"1","1"],	
+	["House Block 2",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1_2","building"]]],"1","1"],	
+	["House Block 3",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A2","building"]]],"1","1"],	
+	["House Block 4",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A2_1","building"]]],"1","1"],	
+	["House Block 5",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A3","building"]]],"1","1"],	
+	["House Block 6",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B1","building"]]],"1","1"],	
+	["House Block 7",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B2","building"]]],"1","1"],	
+	["House Block 8",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B3","building"]]],"1","1"],	
+	["House Block 9",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B4","building"]]],"1","1"],	
+	["House Block 10",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B5","building"]]],"1","1"],	
+	["House Block 11",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B6","building"]]],"1","1"],	
+	["House Block 12",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C1","building"]]],"1","1"],	
+	["House Block 13",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C2","building"]]],"1","1"],	
+	["House Block 14",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C3","building"]]],"1","1"],	
+	["House Block 15",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C4","building"]]],"1","1"],	
+	["House Block 16",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C5","building"]]],"1","1"],	
+	["House Block 17",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1_1","building"]]],"1","1"],
+	["Apartment 1",[],"", -5,[["expression",format[_EXECscript7,"Land_MBG_ApartmentsOne_W","building"]]],"1","1"],
+	["Apartment 2",[],"", -5,[["expression",format[_EXECscript7,"Land_MBG_ApartmentsTwo_P","building"]]],"1","1"],
+	["Apartment 3",[],"", -5,[["expression",format[_EXECscript7,"Land_MBG_ApartmentsTwo_G","building"]]],"1","1"],
+	["Apartment 4",[],"", -5,[["expression",format[_EXECscript7,"Land_MBG_ApartmentsTwo_B","building"]]],"1","1"],
+	["Apartment 5",[],"", -5,[["expression",format[_EXECscript7,"land_mbg_apartments_big_04","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+ResidentialOffice =
+[
+["",true],
+	["International Hotel",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseB_Tenement","building"]]],"1","1"],
+	["Apartments Red Short",[],"", -5,[["expression",format[_EXECscript7,"Land_Panelak","building"]]],"1","1"],
+	["Apartments Red Tall",[],"", -5,[["expression",format[_EXECscript7,"Land_Panelak2","building"]]],"1","1"],
+	["Very tall apartments",[],"", -5,[["expression",format[_EXECscript7,"land_panelak3","building"]]],"1","1"],
+	["Municipal Office",[],"", -5,[["expression",format[_EXECscript7,"Land_A_MunicipalOffice","building"]]],"1","1"],
+	["School",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Office01","building"]]],"1","1"],
+	["Apartments Grey (Closed)",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Office02","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+CastleBuildings =
+[
+["",true],
+	["Bergfrit",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Castle_Bergfrit","building"]]],"1","1"],
+	["Stairs",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Castle_Stairs_A","building"]]],"1","1"],
+	["Gate",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Castle_Gate","building"]]],"1","1"],
+
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+ReligiousBildings =
+[
+["",true],
+	["Church Orange",[],"", -5,[["expression",format[_EXECscript7,"Land_Church_01","building"]]],"1","1"],
+	["Church Closed",[],"", -5,[["expression",format[_EXECscript7,"Land_Church_02","building"]]],"1","1"],
+	["Church Open",[],"", -5,[["expression",format[_EXECscript7,"Land_Church_03","building"]]],"1","1"],
+	["Church Destroyed",[],"", -5,[["expression",format[_EXECscript7,"Land_Church_05R","building"]]],"1","1"],
+	["Mosque Large",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Mosque_big_hq_EP1","building"]]],"1","1"],
+	["Mosque Addon",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Mosque_big_addon_EP1","building"]]],"1","1"],
+	["Mosque Wall",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Mosque_big_wall_EP1","building"]]],"1","1"],
+	["Mosque Medium",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Mosque_small_1_EP1","building"]]],"1","1"],
+	["Mosque Small",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Mosque_small_2_EP1","building"]]],"1","1"],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+FarmBuildings =
+[
+["",true],
+	["", [], "", -5,[["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+
 // Menu that spawns TEMPORARY air vehicles
 VehicleTempMenu=
 [

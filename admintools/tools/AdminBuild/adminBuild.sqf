@@ -25,7 +25,7 @@ DZE_cancelBuilding = false;
 
 call gear_ui_init;
 closeDialog 1;
-
+if(isNil 'isBuilding') then {isBuilding = false};
 if (_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
 if (_inVehicle) exitWith {cutText [(localize "str_epoch_player_42"), "PLAIN DOWN"];};
 if (_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
@@ -36,7 +36,7 @@ if((_this select 0) == "rebuild") then {
 } else {
 	_item =	_this select 0;
 	adminRebuildItem = _item;
-	isBuilding = ((_this select 1) == "building");
+	if((_this select 1) == "building") then {isBuilding = true;} else {isBuilding = false;};
 };
 
 _classname = _item;
@@ -57,7 +57,7 @@ if(isNumber (configFile >> "CfgVehicles" >> _classname >> "nounderground")) then
 _offset = 	getArray (configFile >> "CfgVehicles" >> _classname >> "offset");
 if((count _offset) <= 0) then {
 	if(isBuilding) then {
-		_offset = [0,10,1];
+		_offset = [0,10,2];
 	} else {
 		_offset = [0,2,0];
 	};
@@ -323,13 +323,14 @@ if(!_cancel) then {
 		if(!isBuilding) then {
 			_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
 		
-		// fire?
-		if(_tmpbuilt isKindOf "Land_Fire_DZ") then {
-			_tmpbuilt spawn player_fireMonitor;
-		} else {
-			PVDZE_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location],_classname];
-			publicVariableServer "PVDZE_obj_Publish";
-		};};
+			// fire?
+			if(_tmpbuilt isKindOf "Land_Fire_DZ") then {
+				_tmpbuilt spawn player_fireMonitor;
+			} else {
+				PVDZE_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location],_classname];
+				publicVariableServer "PVDZE_obj_Publish";
+			};
+		};
 	};
 	
 	// Tool use logger
@@ -339,12 +340,6 @@ if(!_cancel) then {
 	};
 } else {
 	r_interrupt = false;
-	if (vehicle player == player) then {
-		[objNull, player, rSwitchMove,""] call RE;
-		player playActionNow "stop";
-	};
-
-	deleteVehicle _tmpbuilt;
-
+	
 	cutText [(localize "str_epoch_player_46") , "PLAIN DOWN"];
 };
