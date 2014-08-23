@@ -3,9 +3,9 @@ markPos = _this select 0;
 if(isNil "markers") then { markers = []};
 if(isNil "changed") then {changed = false};
 if(isNil "toggleCheck") then {toggleCheck = 2};
-if (isNil "polelist") then {polelist = [];};
-if (isNil "tentlist") then {tentlist = [];};
-if (isNil "crashlist") then {crashlist = [];};
+if (isNil "poleList") then {poleList = [];};
+if (isNil "tentList") then {tentList = [];};
+if (isNil "crashList") then {crashList = [];};
 
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 
@@ -136,6 +136,7 @@ While {markPos} do
 			setGroupIconsVisible ParamsPlayersMarkers;
 		} forEach allUnits;
 	};
+
 	if (markPos && visibleMap) then
 	{
 		if (AddDeadPlayersToMap) then {
@@ -155,6 +156,7 @@ While {markPos} do
 				};
 			}Foreach AllDead;
 		};
+
 		If (AddZombieToMap) then {
 			_pos = getPos player;
 			_zombies = _pos nearEntities ["zZombie_Base",ZombieVisibleDistance];
@@ -380,7 +382,6 @@ if(!markPos) then
 
 	If (AddPlotPoleToMap) then 
 	{
-
 		i0=0;
 		{
 			deleteMarkerLocal ("poleMarker"+ (str i0));
@@ -401,7 +402,6 @@ if(!markPos) then
 
 	If (AddCrashesToMap) then 
 	{
-
 		i2=0;
 		{
 			deleteMarkerLocal ("crashMarker"+ (str i2));
