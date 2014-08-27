@@ -30,7 +30,7 @@ if (!isNull _obj) then {
 		};
 
 		cutText ["Object deleted from database", "PLAIN DOWN",1];
-		PVDZE_obj_Delete = [_objectID,_objectUID];
+		PVDZE_obj_Delete = [_objectID,_objectUID,(name player)];
 		publicVariableServer "PVDZE_obj_Delete";
 		if (isServer) then {
 			PVDZE_obj_Delete call server_deleteObj;

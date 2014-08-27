@@ -1,6 +1,9 @@
 _delobj = cursorTarget;
 deleteVehicle _delobj;
-cursorTarget setdamage 1;
+_objectID = _delobj getVariable ["ObjectID", "0"];
+_objectUID = _delobj getVariable ["ObjectUID", "0"];
+PVDZE_obj_Delete = [_objectID, _objectUID, (name player)];
+publicVariableServer "PVDZE_obj_Delete";
 
 _dotxt = format["%1 Destroyed and Deleted", _delobj];
 titleText [_dotxt,"PLAIN DOWN"]; titleFadeOut 4;

@@ -308,7 +308,7 @@ fn_BCConfirmDelete = {
 		deleteVehicle _x;
 		_objectID = _x getVariable ["ObjectID", "0"];
 		_objectUID = _x getVariable ["ObjectUID", "0"];
-		PVDZE_obj_Delete = [_objectID, _objectUID, _activatingPlayer];
+		PVDZE_obj_Delete = [_objectID, _objectUID, (name player)];
 		publicVariableServer "PVDZE_obj_Delete";
 	} forEach _objects;
 
