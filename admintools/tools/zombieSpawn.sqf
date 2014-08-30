@@ -43,11 +43,11 @@ amountMenu =
 ];
 
 showCommandingMenu "#USER:areaMenu";
-waitUntil{(area != 0)};
+waitUntil{(area != 0) || (commandingMenu == "")};
 if(area == -1) exitWith{};
 
 showCommandingMenu "#USER:amountMenu";
-waitUntil{(zCount != 0)};
+waitUntil{(zCount != 0) || (commandingMenu == "")};
 if(zCount == -1) exitWith{};
 
 if(logMajorTool) then {
@@ -61,7 +61,7 @@ for "_i" from 1 to zCount do {
 		zTypes = _this select 0;
 		_setZedType = zTypes call BIS_fnc_selectRandom;
 		_zCreate = createAgent [_setZedType, position player, [], area, "NONE"];
-		_zPos = getPosATL zCreate;
-		[_zPos,zCreate] execFSM "\z\addons\dayz_code\system\zombie_agent.fsm";
+		_zPos = getPosATL _zCreate;
+		[_zPos,_zCreate] execFSM "\z\addons\dayz_code\system\zombie_agent.fsm";
 	};
 };
