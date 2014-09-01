@@ -25,7 +25,7 @@ Added an enhanced admin build (can't rotate properly yet)
 --> Upgrade buildable items
 --> Downgrade buildable items
 --> Maintain base
---> Build Arma/DayZ buildings (TESTING)
+--> Build Arma/DayZ buildings (temporary only)
 Added zombie spawner
 
 
@@ -43,6 +43,10 @@ adminlist and macros not loading fixed
 --> with help from @f3cuk
 Temporary vehicle spawns fixed up
 Client side RPT error in vehicle god mode and a few other files.
+Fixed permanent repair @DeanReid
+HealPlayer UI fixes
+Toggling admin mode works better
+invisibility rpt error fixed
 
 
 CleanUp:
@@ -50,7 +54,7 @@ Changed how vehicle god mode works. It is now much more effective.
 Keyed vehicle spawn made a little better @f3cuk
 Crate enhancements
 Lock/unlock
-ESP @f3cuk
+ESP @f3cuk @Meowzors
 Updated the dead player marker to work a little better.
 Split the items gear kit into two parts -> medical & tools
 ReadMe updates
