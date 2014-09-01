@@ -39,14 +39,14 @@ Wrong variable types used in crates
 Enhanced ESP only showed one epoch mission crash
 ESP zero devisor (client only) @f3cuk
 Fuel pump error fix
-adminlist and macros not loading fixed
+Adminlist and macros not loading fixed
 --> with help from @f3cuk
 Temporary vehicle spawns fixed up
 Client side RPT error in vehicle god mode and a few other files.
 Fixed permanent repair @DeanReid
 HealPlayer UI fixes
 Toggling admin mode works better
-invisibility rpt error fixed
+Invisibility rpt errors fixed
 
 
 CleanUp:
