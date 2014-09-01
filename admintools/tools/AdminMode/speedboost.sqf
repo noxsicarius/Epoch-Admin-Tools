@@ -1,6 +1,6 @@
-private ["_speedToggle"];
-_speedToggle = _this select 0;
-if (_speedToggle) then {
+if(isNil "speedBoost2") then {speedBoost2 = true;} else {speedBoost2 = !speedBoost2};
+
+if (speedBoost2) then {
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED speed boost",name player,getPlayerUID player];

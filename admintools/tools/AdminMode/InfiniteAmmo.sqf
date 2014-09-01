@@ -5,10 +5,8 @@
 	The possibility of ammo loss after logging can be lessened by turning off the script 
 	before leaving.
 */
-	
-infAmmo = _this select 0;
-
-if(infAmmo) then {
+if(isNil "infAmmo2") then {infAmmo2 = true;} else {infAmmo2 = !infAmmo2};
+if(infAmmo2) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has turned ON infinite ammo",name player,getPlayerUID player];
@@ -21,7 +19,7 @@ if(infAmmo) then {
 	};
 };
 
-while {alive (vehicle player) && infAmmo} do
+while {alive (vehicle player) && infAmmo2} do
 {
 	vehicle player setVehicleAmmo 1;
 	vehicle player setUnitRecoilCoefficient 0;

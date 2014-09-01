@@ -2,10 +2,9 @@
 	Heals all damage and makes the user invincible to damage by everything 
 	excluding antihack killing a hacker.
 */
+if(isNil "playerGod2") then {playerGod2 = true;} else {playerGod2 = !playerGod2};
 
-private ["_playerGM"];
-_playerGM = _this select 0;
-if (_playerGM) then
+if (playerGod2) then
 {
 	// Tool use logger
 	if(logMajorTool) then {

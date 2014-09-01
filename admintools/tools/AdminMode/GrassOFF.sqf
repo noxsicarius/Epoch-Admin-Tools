@@ -1,9 +1,8 @@
 // Toggle grass on or off for better visibility/performance
 
-private ["_grassToggle"];
-_grassToggle = _this select 0;
+if(isNil "grassToggle") then {grassToggle = true;} else {grassToggle = !grassToggle};
 
-if (_grassToggle) then {
+if (grassToggle) then {
 	// Tool use logger
 	if(logMinorTool) then {
 		usageLogger = format["%1 %2 -- has turned grass off",name player,getPlayerUID player];

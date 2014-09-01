@@ -1,14 +1,12 @@
-markPos = _this select 0;
-
 if(isNil "markers") then { markers = []};
 if(isNil "changed") then {changed = false};
 if(isNil "toggleCheck") then {toggleCheck = 2};
-if (isNil "poleList") then {poleList = [];};
-if (isNil "tentList") then {tentList = [];};
-if (isNil "crashList") then {crashList = [];};
+if(isNil "poleList") then {poleList = [];};
+if(isNil "tentList") then {tentList = [];};
+if(isNil "crashList") then {crashList = [];};
 
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
-
+if(isNil "enhancedESP2") then {enhancedESP2 = true;} else {enhancedESP2 = !enhancedESP2};
 
 // START OF CONFIG
 // Defines the default on and off of map markers
@@ -89,7 +87,7 @@ F5Menu =
 	showCommandingMenu "#USER:F5OptionMenu";
 };
 
-if(markPos) then { 
+if(enhancedESP2) then { 
 	dList = []; //List of dead bodies
 	dListMarkers = []; //List of Dead player markers
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
@@ -106,7 +104,7 @@ if(markPos) then {
 	};
 };
 
-While {markPos} do 
+While {enhancedESP2} do 
 {	
 	If (AddPlayersToMap) then 
 	{
@@ -137,7 +135,7 @@ While {markPos} do
 		} forEach allUnits;
 	};
 
-	if (markPos && visibleMap) then
+	if (enhancedESP2 && visibleMap) then
 	{
 		if (AddDeadPlayersToMap) then {
 			{
@@ -344,7 +342,7 @@ While {markPos} do
 
 Sleep GlobalSleep;
 
-if(!markPos) then 
+if(!enhancedESP2) then 
 {
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
 

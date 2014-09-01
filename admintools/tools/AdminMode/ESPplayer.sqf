@@ -1,5 +1,3 @@
-playerESP = _this select 0;
-
 setGroupIconsVisible [true, true];
 _color = "";
 _color_green = [0,1,0,1];
@@ -9,8 +7,9 @@ _color_orange = [1,0.3,0,1];
 _color_red = [1,0,0,1];
 
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
+if(isNil "playerESP2") then {playerESP2 = true;} else {playerESP2 = !playerESP2};
 
-if(playerESP) then {
+if(playerESP2) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED player ESP",name player,getPlayerUID player];
@@ -19,7 +18,7 @@ if(playerESP) then {
 };
 
 
-while {playerESP} do
+while {playerESP2} do
 {
 	{
 		if (vehicle _x == _x) then 
@@ -75,7 +74,7 @@ while {playerESP} do
 };
 {clearGroupIcons group _x;} forEach playableUnits;
 
-if(!playerESP) then {
+if(!playerESP2) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has DISABLED player ESP",name player,getPlayerUID player];

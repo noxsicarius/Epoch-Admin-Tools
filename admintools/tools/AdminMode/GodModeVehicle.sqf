@@ -5,10 +5,9 @@ a better solution is found. DOES NOT interfere with normal god mode.
 Air vehicles will explode if hit with a rocket or when crashing.
 Cars will not be damaged by crashes, but will be by rockets.
 */
-private ["_playerVehicle"];
-vehicleGod = _this select 0;
+if(isNil "vehicleGod2") then {vehicleGod2 = true;} else {vehicleGod2 = !vehicleGod2};
 
-if(vehicleGod) then {
+if(vehicleGod2) then {
 	// Tool use logger
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has ENABLED vehicle god mode",name player,getPlayerUID player];
@@ -21,13 +20,13 @@ if(vehicleGod) then {
 	};
 };
 
-while{alive (vehicle player) && vehicleGod} do
+while{alive (vehicle player) && vehicleGod2} do
 {
 	// Wait until player gets in a vehicle or god mode is turned off
-	waitUntil{Sleep 1; ((player != (vehicle player)) || !vehicleGod)};
+	waitUntil{Sleep 1; ((player != (vehicle player)) || !vehicleGod2)};
 
 	// Enable god mode only if it hasn't been turned off
-	if(vehicleGod) then {
+	if(vehicleGod2) then {
 		_playerVehicle = (vehicle player);
 		_playerVehicle setfuel 1;
 		_playerVehicle setdammage 0;
@@ -42,7 +41,7 @@ while{alive (vehicle player) && vehicleGod} do
 	};
 
 	// Wait until player leaves vehicle or god mode is turned off
-	waitUntil{Sleep 1; ((player == (vehicle player)) || !vehicleGod)};
+	waitUntil{Sleep 1; ((player == (vehicle player)) || !vehicleGod2)};
 
 	// Disable god mode for a vehicle only if it was on
 	if(!isNil "_playerVehicle") then {

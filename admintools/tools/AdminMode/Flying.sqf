@@ -1,4 +1,4 @@
-flying = _this select 0;
+if(isNil "flying2") then {flying2 = true;} else {flying2 = !flying2};
 
 forwardAndBackward = 4; 
 leftAndRight = 2;     
@@ -95,7 +95,7 @@ toggle_hover =
     };
 };
 
-if (flying) then 
+if (flying2) then 
 {
 	// Tool use logger
 	if(logMinorTool) then {
@@ -126,7 +126,7 @@ if (flying) then
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyHover];
 };
 
-while {flying} do
+while {flying2} do
 {
     if (!isNil "hovering") then
     {
@@ -134,3 +134,5 @@ while {flying} do
     };
 	Sleep 0.01;
 };
+hovering = nil;
+hoverPos = nil;
