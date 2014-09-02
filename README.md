@@ -62,6 +62,9 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	
 	> Copy EATusageLogger.dll to your ROOT server folder (where arma2oaserver.exe and @DayZ_Epoch is located)
 	> This enables the ability to log tool use by your admins to be sure no abuse is occurring.
+
+	>> IMPORTANT: You may need to allow the dll through your antivirus because some antivirus block unknown dll's. I assure you it is safe.
+	 			  Windows may require you to unblock it by right clicking it, selecting properties, and selecting unblock
 	
 1. Open the ***init.sqf*** in the root of your mission folder and paste the following above if(!isDedicated):
 
