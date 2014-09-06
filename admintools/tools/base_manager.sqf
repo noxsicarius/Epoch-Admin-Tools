@@ -6,7 +6,7 @@
 	Also allows for deletion of bases and the items in them.
 */
 
-// Predefined structures
+/***************** add basses here *****************/
 BCBaseList = [
 	[
 		"base1",
@@ -90,7 +90,8 @@ BCBaseList = [
 			["CinderWallHalf_DZ",[-6.29492,-10.5371,3.37958],240.211],
 			["WoodStairsSans_DZ",[12.2749,-1.63672,-2.20044],149.947]
 		]
-	]
+	] // to add a base place a comma here. ex: ],
+	//add base from server/EpochAdminToolLogs/SavedBases here
 ];
 
 BD_Buildables = true;
@@ -197,8 +198,57 @@ fn_BCSetRadius = {
 		};
 
 		sleep 30;
-		{ deleteVehicle _x; true } count _objects;
+		{deleteVehicle _x; true } count _objects;
 	};
+};
+
+fn_BCExport = {
+	private ["_objects", "_position", "_distance", "_nearest_objects", "_export","_i"];
+	if (isNil "BC_Center" or isNil "BC_radius") exitWith
+	{
+		systemChat "Center not set";
+	};
+	_objects = [];
+	_export = "";
+	_position = BC_center;
+	_distance = BC_radius;
+	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
+	_objectCount = count _nearest_objects;
+	_i = 0;
+	{
+		private ["_obj_type", "_direction", "_obj_position", "_relative_position", "_row"];
+		_obj_type = typeOf _x;
+		_direction = getDir _x;
+		_obj_position = getPosASL _x;
+		_relative_position = [
+			(_obj_position select 0) - (_position select 0),
+			(_obj_position select 1) - (_position select 1),
+			(_obj_position select 2) - (_position select 2)
+		];
+		_row = [_obj_type, _relative_position, _direction];
+		if(_i < _objectCount) then {
+			_export = _export + str(_row) + ",$$";
+		} else {
+			_export = _export + str(_row);
+		};
+		_row set [count _row, _x];
+		_objects set [count _objects, _row];
+		true
+	} count _nearest_objects;
+	
+	baseExporter = _export;
+	publicVariableServer "baseExporter";
+
+	systemChat format["Exported base to server\EpochAdminTools\Bases.sqf"];
+	showCommandingMenu "#USER:BCMainMenu";
+
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has exported a base",name player,getPlayerUID player];
+		publicVariable "usageLogger";
+	};
+
+	_objects
 };
 
 fn_BCCopy = {
@@ -508,14 +558,15 @@ BCMainMenu =
 [
 	["Base Manager",true],
 	["Insert", 		[2], "", -5, [["expression", "[] spawn fn_BCInsert"]], "1", "1"],
-	["========", 	[3], "", -5, [["expression", ""]], "1", "0"],
+	["Export to sqf",		[7], "", -5, [["expression", "[] spawn fn_BCExport"]], "1", "1"],
+	["===========", 	[3], "", -5, [["expression", ""]], "1", "0"],
 	["Set Center", 	[4], "", -5, [["expression", "[] spawn fn_BCSetCenter"]], "1", "1"],
 	["Set Radius", 	[5], "", -5, [["expression", "[] spawn fn_BCSetRadius"]], "1", "1"],
-	["========", 	[6], "", -5, [["expression", ""]], "1", "0"],
+	["===========", 	[6], "", -5, [["expression", ""]], "1", "0"],
 	["Copy",		[7], "", -5, [["expression", "[] spawn fn_BCCopy"]], "1", "1"],
 	["Paste", 		[8], "", -5, [["expression", "[] spawn fn_BCPaste"]], "1", "1"],
 	["Delete", 		[9], "", -5, [["expression", "[] spawn fn_BCDelete"]], "1", "1"],
-	["========", 	[10], "", -5, [["expression", ""]], "1", "0"],
+	["===========", 	[10], "", -5, [["expression", ""]], "1", "0"],
 	["Exit", 		[11], "", -5, [["expression", ""]], "1", "1"]
 ];
 

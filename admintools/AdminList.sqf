@@ -59,11 +59,14 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 // load event handlers for logging
 if(isDedicated) then {
 	"usageLogger" addPublicVariableEventHandler {
-		"EATusageLogger" callExtension (_this select 1);
+		"EATadminLogger" callExtension (_this select 1);
 	};
 	"useBroadcaster" addPublicVariableEventHandler {
 		toClient = (_this select 1);
 		{(owner _x) publicVariableClient "toClient";} forEach entities "CAManBase";
+	};
+	"baseExporter" addPublicVariableEventHandler {
+		"EATbaseExporter" callExtension (_this select 1);
 	};
 };
 

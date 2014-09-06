@@ -60,11 +60,10 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of your mission folder.
 1. If you are allowed to use custom dll's (some hosts forbid it)
 	
-	> Copy EATusageLogger.dll to your ROOT server folder (where arma2oaserver.exe and @DayZ_Epoch is located)
-	> This enables the ability to log tool use by your admins to be sure no abuse is occurring.
+	> Copy all dll files to your ROOT server folder (where arma2oaserver.exe and @DayZ_Epoch is located)
 
-	>> IMPORTANT: You may need to allow the dll through your antivirus because some antivirus block unknown dll's. I assure you it is safe.
-	 			  Windows may require you to unblock it by right clicking it, selecting properties, and selecting unblock
+	>> IMPORTANT: You may need to allow the dll through your antivirus because some antivirus block unknown dll's.
+	 			  Windows may also require you to unblock it by right clicking it, selecting properties, and selecting unblock
 	
 1. Open the ***init.sqf*** in the root of your mission folder and paste the following above if(!isDedicated):
 
