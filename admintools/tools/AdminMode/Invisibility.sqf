@@ -8,3 +8,9 @@ sleep 0.1;
 processInitCommands;
 sleep 0.1;
 clearVehicleInit player;
+
+// Tool use broadcaster
+if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+	useBroadcaster = format["%1 -- has used vehicle god mode",name player];
+	[] spawn {publicVariableServer "useBroadcaster";};
+};

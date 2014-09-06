@@ -27,8 +27,8 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has forcibly unlocked a car";
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has forcibly unlocked a vehicle",name player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 

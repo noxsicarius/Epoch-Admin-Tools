@@ -45,5 +45,11 @@ cutText [format[(localize "STR_EPOCH_ACTIONS_4"), _count], "PLAIN DOWN", 5];
 PVDZE_maintainArea = [player,1,_target];
 publicVariableServer "PVDZE_maintainArea";	
 
+// Tool use logger
+if(logMinorTool) then {
+	usageLogger = format["%1 %2 -- has used admin build to maintain an area",name player,getPlayerUID player];
+	[] spawn {publicVariable "usageLogger";};
+};
+
 s_player_maintain_area = -1;
 s_player_maintain_area_preview = -1;

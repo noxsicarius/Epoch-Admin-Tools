@@ -136,7 +136,6 @@ AdminSkinsMenu =
 	["Ghillie",[],"",-5,[["expression",'["Sniper1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
 	["Special Forces",[],"",-5,[["expression",'["CZ_Special_Forces_GL_DES_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
 	["Pilot",[],"",-5,[["expression",'["Pilot_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"],		
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]

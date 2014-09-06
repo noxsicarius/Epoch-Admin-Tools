@@ -10,11 +10,10 @@ if(logMajorTool) then {
 	[] spawn {publicVariable "usageLogger";};
 };
 // Tool use broadcaster
-if(broadcastToolUse) then {
-	useBroadcaster = format["Admin -- has spawned a %1 %2",_LocalOrGlobal,_crateName];
+if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+	useBroadcaster = format["%1 -- has spawned a %2 %3",name player,_LocalOrGlobal,_crateName];
 	[] spawn {publicVariableServer "useBroadcaster";};
 };
-
 
 if (isNil "weapons_list") then
 {

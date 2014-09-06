@@ -46,6 +46,11 @@ if (selecteditem!= "exitscript") then
 				usageLogger = format["%1 %2 -- has begun spectating %3",name player,getPlayerUID player,_name];
 				[] spawn {publicVariable "usageLogger";};
 			};
+			// Tool use broadcaster
+			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+				useBroadcaster = format["%1 -- is spectating %2",name player,_name];
+				[] spawn {publicVariableServer "useBroadcaster";};
+			};
 		};
 	} forEach playableUnits;
 };

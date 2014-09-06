@@ -14,8 +14,8 @@ if(vehicleGod2) then {
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has used vehicle god mode";
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has enabled vehicle god mode",name player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };

@@ -51,8 +51,8 @@ if (_isOk and _isKeyOK) then {
 			[] spawn {publicVariable "usageLogger";};
 		};
 		// Tool use broadcaster
-		if(broadcastToolUse) then {
-			useBroadcaster = "Admin -- has spawned a permanent vehicle";
+		if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+			useBroadcaster = format["%1 -- has spawned a permanent vehicle",name player];
 			[] spawn {publicVariableServer "useBroadcaster";};
 		};
 

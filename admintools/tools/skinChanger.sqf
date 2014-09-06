@@ -6,18 +6,9 @@ _bagWeapons = getWeaponCargo _unitBag;
 _bagMagazines = getMagazineCargo _unitBag;
 
 // Tool use logger
-if(logMinorTool && !logMajorTool) then {
-	usageLogger = name player + " " + getPlayerUID player + " -- " + "has changed skins to  " + _skin;
+if(logMinorTool) then {
+	usageLogger = format["%1 %2 -- has changed skins to %3",name player,getPlayerUID player,_skin];
 	[] spawn {publicVariable "usageLogger";};
-} else {
-	if(logMajorTool) then {
-		if(_skin == "Survivor1_DZ") then {
-			usageLogger = format["%1 %2 -- has enabled invisibility",name player,getPlayerUID player];
-		} else {
-			usageLogger = name player + " " + getPlayerUID player + " -- " + "has changed skins to  " + _skin;
-		};
-		[] spawn {publicVariable "usageLogger";};
-	};
 };
 
 removeBackpack (vehicle player);

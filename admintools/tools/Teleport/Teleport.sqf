@@ -37,8 +37,8 @@ teleport = {
 			[] spawn {publicVariable "usageLogger";};
 		};
 		// Tool use broadcaster
-		if(broadcastToolUse) then {
-			useBroadcaster = "Admin -- has used teleport";
+		if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+			useBroadcaster = format["%1 -- has teleported",name player];
 			[] spawn {publicVariableServer "useBroadcaster";};
 		};
 	};

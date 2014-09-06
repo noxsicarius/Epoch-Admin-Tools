@@ -12,11 +12,6 @@ if(infAmmo2) then {
 		usageLogger = format["%1 %2 -- has turned ON infinite ammo",name player,getPlayerUID player];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has used infinite ammo";
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 };
 
 while {alive (vehicle player) && infAmmo2} do

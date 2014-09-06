@@ -98,8 +98,8 @@ if(enhancedESP2) then {
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has used Enhanced ESP";
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has enabled enhanced ESP",name player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };
@@ -350,6 +350,11 @@ if(!enhancedESP2) then
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
 		[] spawn {publicVariable "usageLogger";};
+	};
+	// Tool use broadcaster
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has disabled enhanced ESP",name player];
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 
 	If (AddDeadPlayersToMap) then 

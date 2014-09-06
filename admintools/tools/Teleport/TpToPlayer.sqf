@@ -41,8 +41,8 @@ if (pselect5 != "exit") then
 				[] spawn {publicVariable "usageLogger";};
 			};
 			// Tool use broadcaster
-			if(broadcastToolUse) then {
-				useBroadcaster = "Admin -- has used teleport";
+			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+				useBroadcaster = format["%1 -- has teleported to %2",name player,_name];
 				[] spawn {publicVariableServer "useBroadcaster";};
 			};
 		};

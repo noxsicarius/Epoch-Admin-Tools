@@ -9,8 +9,8 @@ if(_ownerID != "0") then {
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has viewed a locked item code";
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has viewed a locked item code",name player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 } else {

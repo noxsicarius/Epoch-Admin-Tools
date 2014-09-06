@@ -261,7 +261,6 @@ fn_BCCopy = {
 	_position = BC_center;
 	_distance = BC_radius;
 	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
-	diag_log "========= Copying Objects [start] =========";
 	{
 		private ["_obj_type", "_direction", "_obj_position", "_relative_position", "_row"];
 		_obj_type = typeOf _x;
@@ -273,15 +272,12 @@ fn_BCCopy = {
 			(_obj_position select 2) - (_position select 2)
 		];
 		_row = [_obj_type, _relative_position, _direction];
-		diag_log str(_row);
 		_row set [count _row, _x];
 		_objects set [count _objects, _row];
 		true
 	} count _nearest_objects;
 	systemChat format["Copied %1 items", count _nearest_objects];
-	diag_log "========= Copying Objects [end] =========";
 	BCCopiedBase = _objects;
-	["<t size='0.6'>Base copied to logs</t>",0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 	showCommandingMenu "#USER:BCMainMenu";
 	_objects
 };
@@ -370,8 +366,8 @@ fn_BCConfirmDelete = {
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has deleted base items";
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has deleted base items",name player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };
@@ -389,8 +385,8 @@ fn_BCSaveToDb = {
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has placed a base";
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has placed a base",name player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 

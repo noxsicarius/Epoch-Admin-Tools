@@ -39,26 +39,19 @@ if (pselect5 != "exit") then
 			
 			hint format ["Teleporting %1", _name];
 			
-			// This if allows teleporting players in vehicles to you
-			// Still needs testing
-			if((vehicle _x) != _x) then {
-				_pos = getpos player;
-				_location = [_pos select 0, _pos select 1] findEmptyPosition [0,10];
-				if (count _location < 1) then {
-					cutText["Not enough room nearby.","PLAIN DOWN"];
-				} else {
-					(vehicle _x) setpos _location;
-				};
-			} else {
-				_x attachTo [vehicle player, [2, 2, 0]];
-				sleep 0.25;
-				detach _x;
+			_x attachTo [vehicle player, [2, 2, 0]];
+			sleep 0.25;
+			detach _x;
 
-				// Tool use logger
-				if(logMajorTool) then {
-					usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_x];
-					[] spawn {publicVariable "usageLogger";};
-				};
+			// Tool use logger
+			if(logMajorTool) then {
+				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_x];
+				[] spawn {publicVariable "usageLogger";};
+			};
+			// Tool use broadcaster
+			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+				useBroadcaster = format["%1 -- has teleported %2 to them",name player, _name];
+				[] spawn {publicVariableServer "useBroadcaster";};
 			};
 			
 			_tempException = nil;
