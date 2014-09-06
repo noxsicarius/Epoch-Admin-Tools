@@ -32,15 +32,13 @@ broadcastToolUse = false;
 	/*
 		A major tool is a strong tool with high possibility for exploiting:
 		Teleport, god mode, ESP, infinite ammo, invisibility, crate spawns, unlocking items
-		
 		Default: true
 	*/
 	logMajorTool = true;
 
 	/*
 		A minor tool is a weak tool with low possibility for exploiting:
-		grass off, skin change, weapon kits, flying
-		
+		grass off, skin change, weapon kits, flying		
 		Default: true
 	*/
 	logMinorTool = true;

@@ -1,20 +1,21 @@
 ==================================================
-You are using Epoch Admin Tools version 1.9 TEST
+You are using Epoch Admin Tools version 1.9
 by NoxSicarius
 ==================================================
 
 
 
-------------------- Version 1.9 TEST Changelog ---------------------
+------------------- Version 1.9 Changelog ---------------------
 First a thanks to F3cuk for helping fix up the tool and testing.
 
 New Features:
-Base copy/paste Code by maca134 with some edits by me
---> Thanks to him for this great addition. If you like it, please send a donation his way.
+Base copy/paste 
+--> Origiinal code/concept by maca134
+--> Fixes, upgrades, and dll export by NoxSicarius
 Tool logging
 --> Logs are now created for the admin tool usage (with date and time stamp)
 Broadcast tool use
---> Broadcasts major uses of the tool to all players, off by default
+--> Broadcasts major uses of the tool to super admins, off by default
 Lock/Unlock upgrade
 --> Now locks and unlocks doors and safes as well as cars
 Added all epoch events to ESP
@@ -47,6 +48,8 @@ Fixed permanent repair @DeanReid
 HealPlayer UI fixes
 Toggling admin mode works better
 Invisibility rpt errors fixed
+Humanity change rpt errors fixed
+Key binding rpt errors fixed
 
 
 CleanUp:
@@ -60,7 +63,7 @@ Split the items gear kit into two parts -> medical & tools
 ReadMe updates
 delete base has been integrated with maca's base copy
 AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
-
+Cleaned up all Admin Mode files for better execution
 
 
 
