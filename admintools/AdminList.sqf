@@ -13,8 +13,6 @@ ModList = [
 "999999999" // <Moderator In-Game Name>
 ];
 
-AdminList = AdminList + SuperAdminList;
-
 /*
 	Broadcasts a message to the super admins when the admin tools are used.
 	Default: false
@@ -31,14 +29,15 @@ broadcastToolUse = false;
 */
 	/*
 		A major tool is a strong tool with high possibility for exploiting:
-		Teleport, god mode, ESP, infinite ammo, invisibility, crate spawns, unlocking items
+		Teleport, god mode, ESP, infinite ammo, invisibility, crate spawns, 
+		unlocking items, displaying lock codes...
 		Default: true
 	*/
 	logMajorTool = true;
 
 	/*
 		A minor tool is a weak tool with low possibility for exploiting:
-		grass off, skin change, weapon kits, flying		
+		grass off, skin change, weapon kits, flying, maintain area, admin build
 		Default: true
 	*/
 	logMinorTool = true;
@@ -47,6 +46,7 @@ broadcastToolUse = false;
 
 
 // DO NOT MODIFY ANYTHING BEYOND THIS POINT
+AdminList = AdminList + SuperAdminList;
 if(isNil "tempList") then {tempList = [];}; 
 
 /*

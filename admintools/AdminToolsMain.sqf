@@ -12,14 +12,14 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 	["",true],
 		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
 		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
-		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],	
+		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],
 		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
-		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],			
+		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],
 		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-		["Weather/Time Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],			
+		["Weather/Time Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
-			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
+			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 	];
 } else {
 	if ((getPlayerUID player) in ModList) then { // Admin Level 3
@@ -27,10 +27,10 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["",true],
 			["-- Epoch Admin Tools (Level: Mod) --", [],"", -5, [["expression", ""]], "1", "0"],
 			["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
-			["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
+			["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],
 			["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 			["", [], "", -5, [["expression", ""]], "1", "0"],
-				["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]		
+				["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 		];
 	};
 };
@@ -40,11 +40,11 @@ AdminMenu =
 	["Admin Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"AdminMode\adminMode.sqf"]]],"1","1"],
 	["Point to Repair(Perm)",[],"", -5,[["expression", format[_EXECscript1,"PointToRepairPERM.sqf"]]], "1", "1"],
 	["Point to Delete(Perm)",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],
 //	["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECscript1,"SafeZoneArea.sqf"]]], "1", "1"],
 	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
 	["Zombie Spawner", [], "", -5, [["expression", format[_EXECscript1,"zombieSpawn.sqf"]]], "1", "1"],
-	["Heal Players",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],	
+	["Heal Players",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
 	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
@@ -56,7 +56,7 @@ ModMenu =
 	["Mod Mode (F4 for options)",[],"", -5,[["expression",format[_EXECscript1,"AdminMode\modMode.sqf"]]],"1","1"],
 	["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECscript1,"PointToRepair.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],	
+	["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECscript1,"spectate.sqf"]]], "1", "1"],
 	["Heal Players",[],"",-5,[["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
@@ -67,9 +67,9 @@ ModMenu =
 VehicleMenu =
 [
 ["",true],	
-	["Graphical Vehicle Menu", [],"", -5, [["expression", format[_EXECscript1,"addvehicleDialog.sqf"]]], "1", "1"],	
-	["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],		
-	["Locked Vehicle Menu >>", [], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],		
+	["Graphical Vehicle Menu", [],"", -5, [["expression", format[_EXECscript1,"addvehicleDialog.sqf"]]], "1", "1"],
+	["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],
+	["Locked Vehicle Menu >>", [], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],
 	["Vehicle Tools >>", [], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -81,10 +81,10 @@ VehicleTools =
 ["",true],	
 	["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToRepair.sqf"]]], "1", "1"],
 	["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECscript1,"PointToRepairPERM.sqf"]]], "1", "1"],
-	["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToDelete.sqf"]]], "1", "1"],		
+	["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToDelete.sqf"]]], "1", "1"],
 	["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
-	["Point to only Refuel (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToRefuel.sqf"]]], "1", "1"],		
-	["Flip Vehicle", [],"", -5, [["expression", format[_EXECscript1,"flipvehicle.sqf"]]], "1", "1"],		
+	["Point to only Refuel (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToRefuel.sqf"]]], "1", "1"],
+	["Flip Vehicle", [],"", -5, [["expression", format[_EXECscript1,"flipvehicle.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -94,7 +94,7 @@ VehiclekeyMenu =
 [
 ["",true],
 	["Neutral Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenuneutral.sqf"]]], "1", "1"],
-	["Friendly Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenufriendly.sqf"]]], "1", "1"],		
+	["Friendly Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenufriendly.sqf"]]], "1", "1"],
 	["Hero Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenuhero.sqf"]]], "1", "1"],
 	["Bandit Trader Menu", [],"", -5, [["expression", format[_EXECscript1,"malveh\malvehiclemenubandit.sqf"]]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
@@ -106,7 +106,7 @@ HumanityMenu =
 [
 ["",true],
 	["Add Humanity to self or target", [],"", -5, [["expression", format[_EXECscript1,"humanity.sqf"]]], "1", "1"],
-	["Remove Humanity from self or target", [],"", -5, [["expression", format[_EXECscript1,"humanity_remove.sqf"]]], "1", "1"],	
+	["Remove Humanity from self or target", [],"", -5, [["expression", format[_EXECscript1,"humanity_remove.sqf"]]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -137,7 +137,7 @@ AdminSkinsMenu =
 	["Special Forces",[],"",-5,[["expression",'["CZ_Special_Forces_GL_DES_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
 	["Pilot",[],"",-5,[["expression",'["Pilot_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"],		
+		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 
@@ -175,7 +175,7 @@ PrimaryWeaponMenu =[
 	["M4A1 GL SD Camo", [],"", -5, [["expression", format[_EXECscript2,"M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","1Rnd_HE_M203"]]], "1", "1"],
 	["Sa58V ACOG", [],"", -5, [["expression", format[_EXECscript2,"Sa58V_RCO_EP1","30Rnd_762x39_SA58","nil"]]], "1", "1"],
 //	["M16 ACOG", [],"", -5, [["expression", format[_EXECscript2,"m16a4_acg","30Rnd_556x45_Stanag","nil"]]], "1", "1"],
-	["Aks Kobra", [],"", -5, [["expression", format[_EXECscript2,"AKS_74_kobra","30Rnd_545x39_AK","nil"]]], "1", "1"],	
+	["Aks Kobra", [],"", -5, [["expression", format[_EXECscript2,"AKS_74_kobra","30Rnd_545x39_AK","nil"]]], "1", "1"],
 	["FN FAL", [],"", -5, [["expression", format[_EXECscript2,"FN_FAL","20Rnd_762x51_FNFAL","nil"]]], "1", "1"],
 //	["Pecheneg 50 cal", [],"", -5, [["expression", format[_EXECscript2,"Pecheneg_DZ","100Rnd_762x54_PK","nil"]]], "1", "1"],
 	["Mk 48", [],"", -5, [["expression", format[_EXECscript2,"Mk_48_DES_EP1","100Rnd_762x51_M240","nil"]]], "1", "1"],
@@ -255,20 +255,20 @@ CrateMenuPublic=[
 // Menu for changing time and weather
 WTMenu=[
 	["",true],
-	["Set Time:", [], "", -5, [["expression", ""]], "1", "0"],		
+	["Set Time:", [], "", -5, [["expression", ""]], "1", "0"],
 	["Midnight (no moon)",[],"",-5,[["expression",'setDate [2012, 1, 15, 0, 0]']],"1","1"],
 	["Midnight (full moon)",[],"",-5,[["expression",'setDate [2012, 6, 6, 0, 0]']],"1","1"],
 	["Noon",[],"",-5,[["expression",'setDate [2012, 6, 0, 12, 0]']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-	["Set Weather:", [], "", -5, [["expression", ""]], "1", "0"],		
+	["Set Weather:", [], "", -5, [["expression", ""]], "1", "0"],
 	["Clear",[],"",-5,[["expression",'3 setovercast 0']],"1","1"],
 	["Cloudy",[],"",-5,[["expression",'3 setovercast 0.5']],"1","1"],
 	["Storm",[],"",-5,[["expression",'3 setovercast 1']],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-	["Set Fog:", [], "", -5, [["expression", ""]], "1", "0"],		
-	["Off",[],"",-5,[["expression",'3 setfog 0']],"1","1"],		
-	["Medium",[],"",-5,[["expression",'3 setfog 0.5']],"1","1"],		
-	["Maximum",[],"",-5,[["expression",'3 setfog 1']],"1","1"],		
+	["Set Fog:", [], "", -5, [["expression", ""]], "1", "0"],
+	["Off",[],"",-5,[["expression",'3 setfog 0']],"1","1"],
+	["Medium",[],"",-5,[["expression",'3 setfog 0.5']],"1","1"],
+	["Maximum",[],"",-5,[["expression",'3 setfog 1']],"1","1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -277,7 +277,7 @@ WTMenu=[
 EpochMenu=[
 	["",true],
 	["Admin Build Menu >> ",[],"#USER:BuildMenu", -5,[["expression",""]],"1","1"],
-	["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECscript1,"base_manager.sqf"]]], "1", "1"],	
+	["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECscript1,"base_manager.sqf"]]], "1", "1"],
 	["Point to Delete Item",[],"", -5,[["expression",format[_EXECscript1,"DatabaseRemove.sqf"]]],"1","1"],
 	["Point to display code",[],"",-5,[["expression",format[_EXECscript1,"gimmecode.sqf"]]],"1","1"],
 	["Point to make new key",[],"",-5,[["expression",format[_EXECscript1,"givekey.sqf"]]],"1","1"],
@@ -332,7 +332,7 @@ BuildablesWood = [
 	["Stairs",[],"", -5,[["expression",format[_EXECscript7,"WoodStairsSans_DZ"]]],"1","1"],
 	["Stairs /w Rails",[],"", -5,[["expression",format[_EXECscript7,"WoodStairsRails_DZ"]]],"1","1"],
 	["Stairs /w Stilts",[],"", -5,[["expression",format[_EXECscript7,"WoodStairs_DZ"]]],"1","1"],
-	["Ramp",[],"", -5,[["expression",format[_EXECscript7,"WoodRamp_DZ"]]],"1","1"],	
+	["Ramp",[],"", -5,[["expression",format[_EXECscript7,"WoodRamp_DZ"]]],"1","1"],
 	["Ladder",[],"", -5,[["expression",format[_EXECscript7,"WoodLadder_DZ"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -341,10 +341,10 @@ BuildablesWood = [
 // Cinder epoch base items
 BuildablesCinder = [
 ["",true],
-	["Wall (Full)",[],"", -5,[["expression",format[_EXECscript7,"CinderWall_DZ"]]],"1","1"],	
-	["Wall (Half)",[],"", -5,[["expression",format[_EXECscript7,"CinderWallHalf_DZ"]]],"1","1"],	
-	["Garage Doorway",[],"", -5,[["expression",format[_EXECscript7,"CinderWallDoorway_DZ"]]],"1","1"],	
-	["Normal Doorway",[],"", -5,[["expression",format[_EXECscript7,"CinderWallSmallDoorway_DZ"]]],"1","1"],	
+	["Wall (Full)",[],"", -5,[["expression",format[_EXECscript7,"CinderWall_DZ"]]],"1","1"],
+	["Wall (Half)",[],"", -5,[["expression",format[_EXECscript7,"CinderWallHalf_DZ"]]],"1","1"],
+	["Garage Doorway",[],"", -5,[["expression",format[_EXECscript7,"CinderWallDoorway_DZ"]]],"1","1"],
+	["Normal Doorway",[],"", -5,[["expression",format[_EXECscript7,"CinderWallSmallDoorway_DZ"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -354,7 +354,7 @@ BuildablesOther = [
 ["",true],
 	["Metal Floor",[],"", -5,[["expression",format[_EXECscript7,"MetalFloor_DZ"]]],"1","1"],
 	["Metal Panel",[],"", -5,[["expression",format[_EXECscript7,"MetalPanel_DZ"]]],"1","1"],
-	["Tank Trap",[],"", -5,[["expression",format[_EXECscript7,"Hedgehog_DZ"]]],"1","1"],	
+	["Tank Trap",[],"", -5,[["expression",format[_EXECscript7,"Hedgehog_DZ"]]],"1","1"],
 	["Wire Fence",[],"", -5,[["expression",format[_EXECscript7,"Fort_RazorWire"]]],"1","1"],
 	["Plot Pole",[],"", -5,[["expression",format[_EXECscript7,"Plastic_Pole_EP1_DZ"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
@@ -377,8 +377,8 @@ BuildStorage =
 BuildSandbag =
 [
 ["",true],
-	["Sandbag Fence",[],"", -5,[["expression",format[_EXECscript7,"Sandbag1_DZ"]]],"1","1"],	
-	["Sandbag Fence (round)",[],"", -5,[["expression",format[_EXECscript7,"BagFenceRound_DZ"]]],"1","1"],	
+	["Sandbag Fence",[],"", -5,[["expression",format[_EXECscript7,"Sandbag1_DZ"]]],"1","1"],
+	["Sandbag Fence (round)",[],"", -5,[["expression",format[_EXECscript7,"BagFenceRound_DZ"]]],"1","1"],
 	["H-barrier Cube",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier1_DZ"]]],"1","1"],
 	["H-barrier (short)",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier3_DZ"]]],"1","1"],
 	["H-barrier (long)",[],"", -5,[["expression",format[_EXECscript7,"Land_HBarrier5_DZ"]]],"1","1"],
@@ -407,9 +407,9 @@ BuildExtras =
 [
 ["",true],
 	["Fire Barrel",[],"", -5,[["expression",format[_EXECscript7,"FireBarrel_DZ"]]],"1","1"],
-	["Workbench",[],"", -5,[["expression",format[_EXECscript7,"WorkBench_DZ"]]],"1","1"],	
-	["Generator",[],"", -5,[["expression",format[_EXECscript7,"Generator_DZ"]]],"1","1"],	
-	["Fuel Pump",[],"", -5,[["expression",format[_EXECscript7,"FuelPump_DZ"]]],"1","1"],	
+	["Workbench",[],"", -5,[["expression",format[_EXECscript7,"WorkBench_DZ"]]],"1","1"],
+	["Generator",[],"", -5,[["expression",format[_EXECscript7,"Generator_DZ"]]],"1","1"],
+	["Fuel Pump",[],"", -5,[["expression",format[_EXECscript7,"FuelPump_DZ"]]],"1","1"],
 	["Deer Stand",[],"", -5,[["expression",format[_EXECscript7,"DeerStand_DZ"]]],"1","1"],
 	["Park Bench",[],"", -5,[["expression",format[_EXECscript7,"ParkBench_DZ"]]],"1","1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],
@@ -583,22 +583,22 @@ ResidentialHouse4 =
 ResidentialHouseBlock =
 [
 ["",true],
-	["House Block 1",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1","building"]]],"1","1"],	
-	["House Block 2",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1_2","building"]]],"1","1"],	
-	["House Block 3",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A2","building"]]],"1","1"],	
-	["House Block 4",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A2_1","building"]]],"1","1"],	
-	["House Block 5",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A3","building"]]],"1","1"],	
-	["House Block 6",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B1","building"]]],"1","1"],	
-	["House Block 7",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B2","building"]]],"1","1"],	
-	["House Block 8",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B3","building"]]],"1","1"],	
-	["House Block 9",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B4","building"]]],"1","1"],	
-	["House Block 10",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B5","building"]]],"1","1"],	
-	["House Block 11",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B6","building"]]],"1","1"],	
-	["House Block 12",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C1","building"]]],"1","1"],	
-	["House Block 13",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C2","building"]]],"1","1"],	
-	["House Block 14",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C3","building"]]],"1","1"],	
-	["House Block 15",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C4","building"]]],"1","1"],	
-	["House Block 16",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C5","building"]]],"1","1"],	
+	["House Block 1",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1","building"]]],"1","1"],
+	["House Block 2",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1_2","building"]]],"1","1"],
+	["House Block 3",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A2","building"]]],"1","1"],
+	["House Block 4",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A2_1","building"]]],"1","1"],
+	["House Block 5",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A3","building"]]],"1","1"],
+	["House Block 6",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B1","building"]]],"1","1"],
+	["House Block 7",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B2","building"]]],"1","1"],
+	["House Block 8",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B3","building"]]],"1","1"],
+	["House Block 9",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B4","building"]]],"1","1"],
+	["House Block 10",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B5","building"]]],"1","1"],
+	["House Block 11",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_B6","building"]]],"1","1"],
+	["House Block 12",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C1","building"]]],"1","1"],
+	["House Block 13",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C2","building"]]],"1","1"],
+	["House Block 14",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C3","building"]]],"1","1"],
+	["House Block 15",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C4","building"]]],"1","1"],
+	["House Block 16",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_C5","building"]]],"1","1"],
 	["House Block 17",[],"", -5,[["expression",format[_EXECscript7,"Land_HouseBlock_A1_1","building"]]],"1","1"],
 	["Apartment 1",[],"", -5,[["expression",format[_EXECscript7,"Land_MBG_ApartmentsOne_W","building"]]],"1","1"],
 	["Apartment 2",[],"", -5,[["expression",format[_EXECscript7,"Land_MBG_ApartmentsTwo_P","building"]]],"1","1"],
@@ -629,7 +629,6 @@ CastleBuildings =
 	["Bergfrit",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Castle_Bergfrit","building"]]],"1","1"],
 	["Stairs",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Castle_Stairs_A","building"]]],"1","1"],
 	["Gate",[],"", -5,[["expression",format[_EXECscript7,"Land_A_Castle_Gate","building"]]],"1","1"],
-
 	["", [], "", -5,[["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
