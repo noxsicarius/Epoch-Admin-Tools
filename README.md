@@ -23,22 +23,23 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 * Spectate players
 * "Display code" for locked vaults/doors
 * "Create key" for vehicles with lost keys
-* Force lock and unlock vehicles without keys
-* Base Destruction - Destroy all buildables/vehicles within a customizable radius
-* Spawnable crates with weapons, items, and supplies
+* Base management - Copy/Paste/Export/Import/Delete bases
+* Spawn crates with weapons, items, and supplies
 * Spawn vehicles via the menu or a custom-made graphical vehicle menu ([screenshot](https://f.cloud.github.com/assets/204934/2233637/43153c0a-9b2c-11e3-8a03-40d11239e1cb.png)) (Thanks @Sandbird!)
+* Log admin tool use to combat possible abuse of the tool
 
 
 #### Other features:
 * Godmode
-* Teleport self (or others to you)
+* Teleport
 * Flying
 * Invisibility
 * Infinite Ammo / No recoil
 * Change skins
-* Delete, repair/refuel, or only refuel vehicle on crosshairs
-* Heal self and others within 25 meters
-* ESP - display players, zombies, safes, tents, vehicles, and AI on the map
+* Delete, repair/refuel vehicle
+* Heal players
+* ESP - display players and objects on the map
+* Spawn temporary buildings on the map
 * ...and more!
 
 
@@ -97,7 +98,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 
 	> ~~~~java
 	> // Epoch Admin Tools
-	> waitUntil{(!isNil 'ModList')};
+	> waitUntil{adminListLoaded};
 	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
 	> {
 	> 	[] execVM "\z\addons\dayz_code\system\antihack.sqf"; // Epoch Antihack
