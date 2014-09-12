@@ -1,5 +1,5 @@
 // Load adminlist.sqf
-call compile preprocessFileLineNumbers "admintools\AdminList.sqf";
+[] execVM "admintools\AdminList.sqf";
 waitUntil{!isNil "adminListLoaded"}; // Wait for adminlist before starting
 
 // Start of tool activation
