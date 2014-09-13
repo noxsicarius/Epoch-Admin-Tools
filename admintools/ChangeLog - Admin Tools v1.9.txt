@@ -1,4 +1,70 @@
-You are using Epoch Admin Tools version 1.8.2
+==================================================
+You are using Epoch Admin Tools version 1.9
+by NoxSicarius
+==================================================
+
+
+
+------------------- Version 1.9 Changelog ---------------------
+First a thanks to F3cuk for helping fix up the tool and testing.
+
+New Features:
+Base copy/paste 
+--> Origiinal code/concept by maca134
+--> Fixes, upgrades, and dll export by NoxSicarius
+Tool logging
+--> Logs are now created for the admin tool usage (with date and time stamp)
+Broadcast tool use
+--> Broadcasts major uses of the tool to super admins, off by default
+Lock/Unlock upgrade
+--> Now locks and unlocks doors and safes as well as cars
+Added all epoch events to ESP
+New vehicle god mode
+--> Vehicles now impervious to rockets too (air vehicles still explode on crash)
+Added an enhanced admin build (can't rotate properly yet)
+--> Build any epoch item instantly and without plot pole 
+--> Upgrade buildable items
+--> Downgrade buildable items
+--> Maintain base
+--> Build Arma/DayZ buildings (temporary only)
+Added zombie spawner
+
+
+Bug Fixes:
+Teleport no longer teleports vehicles into walls or buildings
+Crates no longer delete at the wrong time if you spawn two or more.
+Wrong file called for a few vehicle spawns @f3cuk
+Wrong hatchet type in items.sqf @Onefox
+Wrong hatchet in crates
+Wrong variable types used in crates
+Enhanced ESP only showed one epoch mission crash
+ESP zero devisor (client only) @f3cuk
+Fuel pump error fix
+Adminlist and macros not loading fixed
+--> with help from @f3cuk
+Temporary vehicle spawns fixed up
+Client side RPT error in vehicle god mode and a few other files.
+Fixed permanent repair @DeanReid
+HealPlayer UI fixes
+Toggling admin mode works better
+Invisibility rpt errors fixed
+Humanity change rpt errors fixed
+Key binding rpt errors fixed
+
+
+CleanUp:
+Changed how vehicle god mode works. It is now much more effective.
+Keyed vehicle spawn made a little better @f3cuk
+Crate enhancements
+Lock/unlock
+ESP @f3cuk @Meowzors
+Updated the dead player marker to work a little better.
+Split the items gear kit into two parts -> medical & tools
+ReadMe updates
+delete base has been integrated with maca's base copy
+AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
+Cleaned up all Admin Mode files for better execution
+
 
 
 ------------------- Version 1.8.2 Changelog ---------------------

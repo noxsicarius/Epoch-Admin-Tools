@@ -14,23 +14,25 @@
 	To disable the use of a single key simply comment out the line by add // at the start of the line
 	To remove all function key support simply delete or comment out the lines in this file.
 */
-Sleep 10;
-// 1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 2) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+
+// 1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 2) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 3) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 3) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 4) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 4) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 5) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 5) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 6) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 6) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 6_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 7) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 6_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 7) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 8) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 8) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 8_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 9) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 8_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 9) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 9_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 10) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 9_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 10) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// 0_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 11) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// 0_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 11) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
+
+diag_log("Admin Tools: NumberKeys.sqf Loaded");

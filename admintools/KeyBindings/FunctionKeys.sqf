@@ -15,21 +15,21 @@
 	To disable the use of a single F key simply comment out the line by add // at the start of the line
 	To remove all function key support simply delete or comment out the lines in this file.
 */
-Sleep 10;
-F1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 59) then {[] execVM ""admintools\tools\Teleport\Teleport.sqf"";};"];
+
+F1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 59) then {[] execVM ""admintools\tools\Teleport\Teleport.sqf"";true};"];
 Sleep 0.02;
-F2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 60) then {[] execVM ""admintools\tools\Teleport\TPtoME.sqf"";};"];
+F2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 60) then {[] execVM ""admintools\tools\Teleport\TPtoME.sqf"";true};"];
 Sleep 0.02;
-F3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 61) then {[] execVM ""admintools\tools\Teleport\TpToPlayer.sqf"";};"];
+F3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 61) then {[] execVM ""admintools\tools\Teleport\TpToPlayer.sqf"";true};"];
 // F4 is reserved for AdminMode.sqf and modMode.sqf
 // F5 is reserved for ESPenhanced.sqf
 // F6 is reserved for spectate.sqf
 Sleep 0.02;
-// F7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 65) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// F7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 65) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// F8_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 66) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// F8_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 66) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
-// F9_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 67) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// F9_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 67) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 Sleep 0.02;
 // Used to toggle admin scroll menu ON
 F10_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 68) then {toolsAreActive=true;};"];
@@ -38,4 +38,6 @@ Sleep 0.02;
 F11_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 87) then {toolsAreActive=false;};"];
 Sleep 0.02;
 // WARNING: F12 is the screen shot key for steam
-// F12_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 88 then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";};"];
+// F12_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 88 then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
+
+diag_log("Admin Tools: FunctionKeys.sqf Loaded");

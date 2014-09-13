@@ -1,4 +1,4 @@
-private ["_ct","_id","_result","_inventory","_backpack"];
+private ["_ct","_id","_result"];
 
 _ct = cursorTarget;
 if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Plane" OR _ct isKindOf "Ship") then
@@ -15,16 +15,16 @@ if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Pla
 	
 	cutText [format["id = %1, result = %2",_id,_result], "PLAIN"];
 
-	_inventory = (weapons player);
-	_backpack = ((getWeaponCargo unitbackpack player) select 0);
-	if (_result in (_inventory+_backpack)) then
-	{
-		if (_result in _inventory) then {cutText [format["Key [%1] already in your inventory!",_result], "PLAIN"];};
-		if (_result in _backpack) then {cutText [format["Key [%1] already in your backpack!",_result], "PLAIN"];};
-	}
-	else
-	{
-		player addweapon _result;
-		cutText [format["Key [%1] added to inventory!",_result], "PLAIN"];
+	player addweapon _result;
+	cutText [format["Key [%1] added to inventory!",_result], "PLAIN"];
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has generated %3 for a %4",name player,getPlayerUID player,_result,_ct];
+		[] spawn {publicVariable "usageLogger";};
+	};
+	// Tool use broadcaster
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has generated a car key",name player];
+		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };

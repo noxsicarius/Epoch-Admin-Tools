@@ -1,7 +1,24 @@
+// Load adminlist.sqf
+[] execVM "admintools\AdminList.sqf";
+waitUntil{!isNil "adminListLoaded"}; // Wait for adminlist before starting
+
+// Start of tool activation
 if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
-	Sleep 5;
 	private["_veh", "_idx"];
 	_idx = -1;
+
+	// Wait for the character to load all required items
+	waitUntil {!isNil "dayz_animalCheck"}; 
+
+	// Load key macros
+	[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
+	[]execVM "admintools\KeyBindings\NumberKeys.sqf";
+	
+	// Tool use logger
+	if(logMajorTool || logMinorTool) then {
+		usageLogger = format["%1 %2 -- has logged on",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
 
 	while {alive player} do
 	{
@@ -9,8 +26,6 @@ if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then
 		{
 			if (_idx == -1) then
 			{
-				[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
-				[]execVM "admintools\KeyBindings\NumberKeys.sqf";
 				_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",7,false,true,"",""];
 				_veh = vehicle player;
 			};
@@ -27,6 +42,7 @@ if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then
 		};
 		Sleep 2;
 	};
+	
 	_veh removeAction _idx;
 	_idx = -1;
 };

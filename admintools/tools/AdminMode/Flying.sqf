@@ -1,4 +1,4 @@
-flying = _this select 0;
+if(isNil "flying2") then {flying2 = true;} else {flying2 = !flying2};
 
 forwardAndBackward = 4; 
 leftAndRight = 2;     
@@ -95,8 +95,14 @@ toggle_hover =
     };
 };
 
-if (flying) then 
+if (flying2) then 
 {
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED flying",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
+
     keyForward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 17) then {call move_forward;}"];     //W - Forward
     keyLeft = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 30) then {call move_left;}"];         //A - Left
     keyBackward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 31) then {call move_backward;}"];     //S - Backward
@@ -104,9 +110,13 @@ if (flying) then
     keyUp = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 16) then {call move_up;}"];         //Q - Up
     keyDown = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 44) then {call move_down;}"];         //Z - Down
     keyHover = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 57) then {call toggle_hover;}"];     //SpaceBar - Toggle Hover
-}
-else
-{
+} else {
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED flying",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
+
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyForward];
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyLeft];
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyBackward];
@@ -116,7 +126,7 @@ else
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyHover];
 };
 
-while {flying} do
+while {flying2} do
 {
     if (!isNil "hovering") then
     {
@@ -124,3 +134,5 @@ while {flying} do
     };
 	Sleep 0.01;
 };
+hovering = nil;
+hoverPos = nil;

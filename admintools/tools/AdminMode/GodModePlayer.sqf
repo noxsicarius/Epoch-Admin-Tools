@@ -2,11 +2,21 @@
 	Heals all damage and makes the user invincible to damage by everything 
 	excluding antihack killing a hacker.
 */
+if(isNil "playerGod2") then {playerGod2 = true;} else {playerGod2 = !playerGod2};
 
-private ["_playerGM"];
-_playerGM = _this select 0;
-if (_playerGM) then
+if (playerGod2) then
 {
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED player god mode",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
+	// Tool use broadcaster
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has enabled god mode",name player];
+		[] spawn {publicVariableServer "useBroadcaster";};
+	};
+
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
 	fnc_usec_unconscious = {};
@@ -39,6 +49,17 @@ if (_playerGM) then
 }
 else
 {
+	// Tool use logger
+	if(logMajorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED player god mode",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
+	// Tool use broadcaster
+	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has DISABLED god mode",name player];
+		[] spawn {publicVariableServer "useBroadcaster";};
+	};
+
 	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
 	fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
 	fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";	

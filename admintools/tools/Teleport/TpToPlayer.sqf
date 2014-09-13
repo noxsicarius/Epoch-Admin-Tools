@@ -29,11 +29,22 @@ if (pselect5 != "exit") then
 	
 	{
 		if(name _x == _name) then
-		{			
+		{
 			titleText[format["Teleporting to %1", _name],"PLAIN DOWN"];
 			(vehicle player) attachTo [_x, [2, 2, 0]];
 			sleep 0.25;
 			detach (vehicle player);
+
+			// Tool use logger
+			if(logMajorTool) then {
+				usageLogger = format["%1 %2 -- has teleported to %3_%4",name player,getPlayerUID player,_name,_x];
+				[] spawn {publicVariable "usageLogger";};
+			};
+			// Tool use broadcaster
+			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
+				useBroadcaster = format["%1 -- has teleported to %2",name player,_name];
+				[] spawn {publicVariableServer "useBroadcaster";};
+			};
 		};
 	} forEach entities "CAManBase";
 };

@@ -5,8 +5,8 @@
 */
 
 // START OF CONFIG
-if (isNil "godMode") then {godMode = true;};
-if (isNil "carGodMode") then {carGodMode = true;};
+if (isNil "playerGod") then {playerGod = true;};
+if (isNil "vehicleGod") then {vehicleGod = true;};
 if (isNil "playerESP") then {playerESP = true;};
 if (isNil "grassOff") then {grassOff = true;};
 if (isNil "infAmmo") then {infAmmo = true;};
@@ -16,28 +16,28 @@ if (isNil "invisibility") then {invisibility = false;};
 if (isNil "modMode") then {modMode = true;}else{modMode = !modMode;};
 
 godModeToggle = {
-	godMode = !godMode;
-	[godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";
+	playerGod = !playerGod;
+	[] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";
 };
 carGodModeToggle = {
-	carGodMode = !carGodMode;
-	[carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";
+	vehicleGod = !vehicleGod;
+	[] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";
 };
 playerESPToggle = {
 	playerESP = !playerESP;
-	[playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";
+	[] execVM "admintools\tools\AdminMode\ESPplayer.sqf";
 };
 grassOffToggle = {
 	grassOff = !grassOff;
-	[grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";
+	[] execVM "admintools\tools\AdminMode\GrassOFF.sqf";
 };
 infAmmoToggle = {
 	infAmmo = !infAmmo;
-	[infAmmo] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";
+	[] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";
 };
 invisibilityToggle = {
 	invisibility = !invisibility;
-	[invisibility] execVM "admintools\tools\AdminMode\Invisibility.sqf";
+	[] execVM "admintools\tools\AdminMode\Invisibility.sqf";
 };
 
 // To disable an option for mods place a // in the front of the line below
@@ -51,8 +51,8 @@ optionMenu =
 		[format["Player ESP: %1",playerESP], [2], "", -5, [["expression", 'call playerESPToggle']], "1", "1"],
 		[format["Invisibility ON: %1",invisibility], [3], "", -5, [["expression", 'call invisibilityToggle']], "1", "1"],
 		[format["Infinite Ammo: %1",infAmmo], [4], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
-		[format["God Mode: %1",godMode], [5], "", -5, [["expression", 'call godModeToggle']], "1", "1"],
-		[format["Car God Mode: %1",carGodMode], [6], "", -5, [["expression", 'call carGodModeToggle']], "1", "1"],
+		[format["God Mode: %1",playerGod], [5], "", -5, [["expression", 'call godModeToggle']], "1", "1"],
+		[format["Car God Mode: %1",vehicleGod], [6], "", -5, [["expression", 'call carGodModeToggle']], "1", "1"],
 		[format["Grass Off: %1",grassOff], [7], "", -5, [["expression", 'call grassOffToggle']], "1", "1"]
 	];
 	showCommandingMenu "#USER:toggleMenu";
@@ -60,22 +60,22 @@ optionMenu =
 
 modToggleON =
 {
-	if (playerESP) then {[playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";};
-	if (invisibility) then {[invisibility] execVM "admintools\tools\AdminMode\Invisibility.sqf";};
-	if (infAmmo) then {[infAmmo] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";};
-	if (godMode) then {[godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";};
-	if (carGodMode) then {[carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";};
-	if (grassOff) then {[grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";};
+	if (playerESP) then {[] execVM "admintools\tools\AdminMode\ESPplayer.sqf";};
+	if (invisibility) then {[] execVM "admintools\tools\AdminMode\Invisibility.sqf";};
+	if (infAmmo) then {[] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";};
+	if (playerGod) then {[] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";};
+	if (vehicleGod) then {[] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";};
+	if (grassOff) then {[] execVM "admintools\tools\AdminMode\GrassOFF.sqf";};
 };
 
 modToggleOFF =
 {
-	if (playerESP) then {[!playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";};
-	if (invisibility) then {[!invisibility] execVM "admintools\tools\AdminMode\Invisibility.sqf";};
-	if (infAmmo) then {[!infAmmo] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";};
-	if (godMode) then {[!godMode] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";};
-	if (carGodMode) then {[!carGodMode] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";};
-	if (grassOff) then {[!grassOff] execVM "admintools\tools\AdminMode\GrassOFF.sqf";};
+	if (playerESP) then {[] execVM "admintools\tools\AdminMode\ESPplayer.sqf";};
+	if (invisibility) then {[] execVM "admintools\tools\AdminMode\Invisibility.sqf";};
+	if (infAmmo) then {[] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";};
+	if (playerGod) then {[] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";};
+	if (vehicleGod) then {[] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";};
+	if (grassOff) then {[] execVM "admintools\tools\AdminMode\GrassOFF.sqf";};
 };
 
 if(modMode) then {

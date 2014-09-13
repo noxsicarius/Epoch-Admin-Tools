@@ -5,6 +5,12 @@ _bagType = typeOf _unitBag;
 _bagWeapons = getWeaponCargo _unitBag;
 _bagMagazines = getMagazineCargo _unitBag;
 
+// Tool use logger
+if(logMinorTool) then {
+	usageLogger = format["%1 %2 -- has changed skins to %3",name player,getPlayerUID player,_skin];
+	[] spawn {publicVariable "usageLogger";};
+};
+
 removeBackpack (vehicle player);
 [dayz_playerUID,dayz_characterID,_skin] spawn player_humanityMorph;
 sleep 0.3;

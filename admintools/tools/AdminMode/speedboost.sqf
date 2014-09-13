@@ -1,6 +1,12 @@
-private ["_speedToggle"];
-_speedToggle = _this select 0;
-if (_speedToggle) then {
+if(isNil "speedBoost2") then {speedBoost2 = true;} else {speedBoost2 = !speedBoost2};
+
+if (speedBoost2) then {
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has ENABLED speed boost",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
+
 	waituntil {!isnull (finddisplay 46)};
 	SPEED_UP =(findDisplay 46) displayAddEventHandler ["KeyDown","_this select 1 call MY_KEYDOWN_FNC;false;"];
 
@@ -32,5 +38,11 @@ if (_speedToggle) then {
 	};
 }
 else{
+	// Tool use logger
+	if(logMinorTool) then {
+		usageLogger = format["%1 %2 -- has DISABLED speed boost",name player,getPlayerUID player];
+		[] spawn {publicVariable "usageLogger";};
+	};
+
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", SPEED_UP];
 };
