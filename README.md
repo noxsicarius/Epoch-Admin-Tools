@@ -61,7 +61,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of your mission folder.
 1. If you are allowed to use custom dll's (some hosts forbid it)
 	
-	> Copy all dll files to your ROOT server folder (where arma2oaserver.exe and @DayZ_Epoch is located)
+	> Copy all files ***inside the DLL folder*** (not the folder itself) to your ROOT server folder (where arma2oaserver.exe and @DayZ_Epoch is located)
 
 	>> IMPORTANT: You may need to allow the dll through your antivirus because some antivirus block unknown dll's.
 	 			  Windows may also require you to unblock it by right clicking it, selecting properties, and selecting unblock
