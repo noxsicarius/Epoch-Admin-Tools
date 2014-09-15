@@ -1,6 +1,7 @@
 // Load adminlist.sqf
+adminListLoaded = false;
 [] execVM "admintools\AdminList.sqf";
-waitUntil{!isNil "adminListLoaded"}; // Wait for adminlist before starting
+waitUntil{adminListLoaded}; // Wait for adminlist before starting
 
 // Start of tool activation
 if ((getPlayerUID player) in AdminList || (getPlayerUID player) in ModList) then {
