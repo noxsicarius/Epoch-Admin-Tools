@@ -5,7 +5,7 @@ _max = 10; snext = false; plist = []; pselect5 = "";
 
 smenu =
 {
-	_pmenu = [["",true]];
+	_pmenu = [["",true],["Teleport to Me:", [-1], "", -5, [["expression", ""]], "1", "0"]];
 	for "_i" from (_this select 0) to (_this select 1) do
 	{_arr = [format['%1', plist select (_i)], [12],  "", -5, [["expression", format ["pselect5 = plist select %1;", _i]]], "1", "1"]; _pmenu set [_i + 2, _arr];};
 	if (count plist > (_this select 1)) then {_pmenu set [(_this select 1) + 2, ["Next", [13], "", -5, [["expression", "snext = true;"]], "1", "1"]];}
