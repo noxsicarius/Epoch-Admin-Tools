@@ -1,5 +1,4 @@
 _max = 10; snext = false; plist = []; pselect5 = "";
-
 {if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach entities "CAManBase";
 {if ((count crew _x) > 0) then {{if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach crew _x;};} foreach (entities "LandVehicle" + entities "Air" + entities "Ship");
 
@@ -32,10 +31,8 @@ if (pselect5 != "exit") then
 	{
 		if(name _x == _name) then
 		{
-			_tempException = getPlayerUID _x;
-			tempList = [
-				"_tempException"
-			];
+			teleportFixServer = (getPlayerUID _x);
+			publicVariable "teleportFixServer";
 			
 			hint format ["Teleporting %1", _name];
 			
@@ -43,6 +40,11 @@ if (pselect5 != "exit") then
 			sleep 0.25;
 			detach _x;
 
+			Sleep 3;
+
+			teleportFixServer = (getPlayerUID _x);
+			[] spawn {publicVariable "teleportFixServer";
+			
 			// Tool use logger
 			if(logMajorTool) then {
 				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_x];
@@ -53,10 +55,6 @@ if (pselect5 != "exit") then
 				useBroadcaster = format["%1 -- has teleported %2 to them",name player, _name];
 				[] spawn {publicVariableServer "useBroadcaster";};
 			};
-			
-			_tempException = nil;
-			tempList = [];
-
 		};
 	} forEach entities "CAManBase";
 };

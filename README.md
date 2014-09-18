@@ -99,9 +99,9 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	> ~~~~java
 	> // Epoch Admin Tools
 	> waitUntil{!isNil "adminListLoaded"};
-	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
+	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
 	> {
-	> 	[] execVM "\z\addons\dayz_code\system\antihack.sqf"; // Epoch Antihack
+	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
 	> };
 	> ~~~~
 	

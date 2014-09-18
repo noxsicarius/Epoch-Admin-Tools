@@ -47,7 +47,7 @@ broadcastToolUse = false;
 
 // DO NOT MODIFY ANYTHING BEYOND THIS POINT
 AdminList = AdminList + SuperAdminList;
-if(isNil "tempList") then {tempList = [];}; 
+tempList = []; 
 
 /*
 	Determines default on or off for admin tools menu
@@ -58,7 +58,7 @@ if(isNil "tempList") then {tempList = [];};
 if (isNil "toolsAreActive") then {toolsAreActive = true;};
 
 
-// load event handlers for logging
+// load server public variables
 if(isDedicated) then {
 	"usageLogger" addPublicVariableEventHandler {
 		"EATadminLogger" callExtension (_this select 1);
@@ -70,13 +70,21 @@ if(isDedicated) then {
 	"baseExporter" addPublicVariableEventHandler {
 		"EATbaseExporter" callExtension (_this select 1);
 	};
+	"teleportFixServer" addPublicVariableEventHandler{
+		teleportFixClient = (_this select 1);
+		{(owner _x) publicVariableClient "teleportFixClient";} forEach entities "CAManBase";
+	};
 };
 
-// Display to super admins
+// Client public variables
 if ((getPlayerUID player) in SuperAdminList) then {
 	"toClient" addPublicVariableEventHandler {
 		systemChat (_this select 1);
 	};
+};
+
+"teleportFixClient" addPublicVariableEventHandler {
+	tempList = tempList + (_this select 1);
 };
 
 // Show the admin list has loaded
