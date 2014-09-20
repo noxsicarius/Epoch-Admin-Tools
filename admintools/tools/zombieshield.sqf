@@ -1,5 +1,6 @@
 if (isNil "SheildMe") then {SheildMe = true;} else {SheildMe = !SheildMe;};
 zombieShield = false;
+ZombieDistance = 0;
 
 if(SheildMe) then {
 	zombieDistanceScreen = 
