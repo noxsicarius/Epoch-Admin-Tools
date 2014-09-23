@@ -73,18 +73,21 @@ while {1 == 1} do {
 	while {((typeName player == "OBJECT") && {((player in playableUnits) || {(alive player)})})} do {
 		_curpos = getPosATL (vehicle player);
 		_curtime = diag_ticktime;
-		_acceptableDistance = if (_lastVehicle isKindOf "Plane") then { 15; } else { 10; };
 		
 		if((getPlayerUID player) in tempList) then {
+			_lastpos = _curpos;
+			_lastheight = _curheight;
 			_lasttime = _curtime;
 			_difftime = 0;
 			_distance = 0;
+			_acceptableDistance = 11000;
 		} else {
 			_difftime = _curtime - _lasttime;
 			_distance = _lastpos distance _curpos;
+			_acceptableDistance = if (_lastVehicle isKindOf "Plane") then { 15; } else { 10; };
 		};
 		
-		if ((_distance > _acceptableDistance) || {(_difftime > 1)}) then {
+		if (((_distance > _acceptableDistance) || {(_difftime > 1)}) && (!((getPlayerUID player) in tempList))) then {
 			_curheight = (ATLtoASL _curpos) select 2;
 			_speed = _distance / _difftime;
 			_topSpeed = if (_acceptableDistance == 15) then { 20; } else { 10; };

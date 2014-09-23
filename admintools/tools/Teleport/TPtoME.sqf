@@ -22,8 +22,6 @@ while {pselect5 == ""} do
 	snext = false;
 };
 
-tempList = nil;
-
 if (pselect5 != "exit") then
 {
 	_name = pselect5;
@@ -31,8 +29,10 @@ if (pselect5 != "exit") then
 	{
 		if(name _x == _name) then
 		{
-			teleportFixServer = (getPlayerUID _x);
-			publicVariable "teleportFixServer";
+			_UID = (getPlayerUID _x);
+			hint _UID;
+			teleportFixServer = ["add",_UID];
+			publicVariableServer "teleportFixServer";
 			
 			hint format ["Teleporting %1", _name];
 			
@@ -41,13 +41,12 @@ if (pselect5 != "exit") then
 			detach _x;
 
 			Sleep 3;
-
-			teleportFixServer = (getPlayerUID _x);
-			[] spawn {publicVariable "teleportFixServer";
+			teleportFixServer = ["remove",_UID];
+			[] spawn {publicVariableServer "teleportFixServer"};
 			
 			// Tool use logger
 			if(logMajorTool) then {
-				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_x];
+				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_UID];
 				[] spawn {publicVariable "usageLogger";};
 			};
 			// Tool use broadcaster

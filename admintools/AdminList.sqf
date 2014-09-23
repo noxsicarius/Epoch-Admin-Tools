@@ -47,7 +47,7 @@ broadcastToolUse = false;
 
 // DO NOT MODIFY ANYTHING BEYOND THIS POINT
 AdminList = AdminList + SuperAdminList;
-tempList = []; 
+tempList = [];
 
 /*
 	Determines default on or off for admin tools menu
@@ -84,7 +84,16 @@ if ((getPlayerUID player) in SuperAdminList) then {
 };
 
 "teleportFixClient" addPublicVariableEventHandler {
-	tempList = tempList + (_this select 1);
+	_array = (_this select 1);
+	_addRemove = (_array select 0);
+	//_count = count tempList;
+	if(_addRemove == "add") then {
+		_array = _array - ["add"];
+		tempList = tempList + _array;
+	} else {
+		_array = _array - ["remove"];
+		tempList = tempList - _array;
+	};
 };
 
 // Show the admin list has loaded
