@@ -68,13 +68,13 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	
 1. Open the ***init.sqf*** in the root of your mission folder and paste the following above if(!isDedicated):
 
-	~~~~java
+	~~~~sqf
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
 
 	> It should look like this:
 
-	> ~~~~java
+	> ~~~~SQF
 	> if (isServer) then {
 	> 	..............
 	> };
