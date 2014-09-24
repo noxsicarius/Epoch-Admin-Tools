@@ -68,13 +68,13 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	
 1. Open the ***init.sqf*** in the root of your mission folder and paste the following above if(!isDedicated):
 
-	~~~~sqf
+	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
 
 	> It should look like this:
 
-	> ~~~~sqf
+	> ~~~~java
 	> if (isServer) then {
 	> 	..............
 	> };
@@ -90,13 +90,13 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	
 	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
 
-	> ~~~~sqf
+	> ~~~~java
 	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
 	> ~~~~
 
 	> if you have the line above ***replace it*** with this:
 
-	> ~~~~sqf
+	> ~~~~java
 	> // Epoch Admin Tools
 	> waitUntil{!isNil "adminListLoaded"};
 	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
@@ -111,7 +111,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Open your ***description.ext***
 1. Paste the following at the very bottom:
 
-    ~~~~sqf
+    ~~~~java
     // Epoch Admin Tools
     #include "admintools\dialog.hpp"
     ~~~~
@@ -128,13 +128,13 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
 1. Open ***init/server_functions.sqf*** and replace this:
 
-    ~~~~sqf
+    ~~~~java
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
     ~~~~
     
 	...with this:
 
-    ~~~~sqf
+    ~~~~java
     	// Epoch Admin Tools
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
     ~~~~
@@ -144,14 +144,14 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Now open your ***compile/server_updateObject.sqf*** and place this:
 
 
-    ~~~~sqf
+    ~~~~java
     // Epoch Admin Tools
     if (_object getVariable "MalSar" == 1) exitWith {};
     ~~~~
 
     ...immediately above this:
 
-    ~~~~sqf
+    ~~~~java
     if (!_parachuteWest and !(locked _object)) then {
     ~~~~
 
