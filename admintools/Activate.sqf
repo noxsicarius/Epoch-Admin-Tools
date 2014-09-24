@@ -1,5 +1,4 @@
-// Load adminlist.sqf
-[] execVM "admintools\AdminList.sqf";
+
 waitUntil{!isNil "adminListLoaded"}; // Wait for adminlist before starting
 
 // Start of tool activation
