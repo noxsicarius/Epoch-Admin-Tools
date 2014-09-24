@@ -74,7 +74,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 
 	> It should look like this:
 
-	> ~~~~SQF
+	> ~~~~sqf
 	> if (isServer) then {
 	> 	..............
 	> };
@@ -90,13 +90,13 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	
 	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
 
-	> ~~~~java
+	> ~~~~sqf
 	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
 	> ~~~~
 
 	> if you have the line above ***replace it*** with this:
 
-	> ~~~~java
+	> ~~~~sqf
 	> // Epoch Admin Tools
 	> waitUntil{!isNil "adminListLoaded"};
 	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
@@ -111,7 +111,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Open your ***description.ext***
 1. Paste the following at the very bottom:
 
-    ~~~~java
+    ~~~~sqf
     // Epoch Admin Tools
     #include "admintools\dialog.hpp"
     ~~~~
@@ -128,13 +128,13 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
 1. Open ***init/server_functions.sqf*** and replace this:
 
-    ~~~~java
+    ~~~~sqf
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
     ~~~~
     
 	...with this:
 
-    ~~~~java
+    ~~~~sqf
     	// Epoch Admin Tools
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
     ~~~~
@@ -144,14 +144,14 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Now open your ***compile/server_updateObject.sqf*** and place this:
 
 
-    ~~~~java
+    ~~~~sqf
     // Epoch Admin Tools
     if (_object getVariable "MalSar" == 1) exitWith {};
     ~~~~
 
     ...immediately above this:
 
-    ~~~~java
+    ~~~~sqf
     if (!_parachuteWest and !(locked _object)) then {
     ~~~~
 
