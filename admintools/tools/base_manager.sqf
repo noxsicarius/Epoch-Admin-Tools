@@ -100,6 +100,12 @@ if(isNil "BD_PlotPoles") then {BD_PlotPoles = true;};
 if(isNil "BD_vehicles") then {BD_vehicles = true;};
 if(isNil "BCCurrentBase") then {BCCurrentBase = [];};
 
+// Temp variables to fix the trader dialogue issue
+private ["_TraderDialogLoadItemList","_TraderDialogShowPrices","_TraderDialogSell"];
+_TraderDialogLoadItemList = TraderDialogLoadItemList;
+_TraderDialogShowPrices = TraderDialogShowPrices;
+_TraderDialogSell = TraderDialogSell;
+
 TraderDialogLoadItemList = {};
 TraderDialogShowPrices = {};
 TraderDialogSell = {};
@@ -572,3 +578,7 @@ BCBaseSaveMenu = [
 ];
 
 showCommandingMenu "#USER:BCMainMenu";
+
+TraderDialogLoadItemList = _TraderDialogLoadItemList;
+TraderDialogShowPrices = _TraderDialogShowPrices;
+TraderDialogSell = _TraderDialogSell;
