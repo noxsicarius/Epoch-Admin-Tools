@@ -554,15 +554,15 @@ BCMainMenu =
 	["Base Manager",true],
 	["Insert", 		 [2], "", -5, [["expression", "[] spawn fn_BCInsert"]], "1", "1"],
 	["Export to sqf",[3], "", -5, [["expression", "[] spawn fn_BCExport"]], "1", "1"],
-	["===========",  [4], "", -5, [["expression", ""]], "1", "0"],
-	["Set Center", 	 [5], "", -5, [["expression", "[] spawn fn_BCSetCenter"]], "1", "1"],
-	["Set Radius", 	 [6], "", -5, [["expression", "[] spawn fn_BCSetRadius"]], "1", "1"],
-	["===========",  [7], "", -5, [["expression", ""]], "1", "0"],
-	["Copy",		 [8], "", -5, [["expression", "[] spawn fn_BCCopy"]], "1", "1"],
-	["Paste", 		 [9], "", -5, [["expression", "[] spawn fn_BCPaste"]], "1", "1"],
-	["Delete", 		 [10], "", -5, [["expression", "[] spawn fn_BCDelete"]], "1", "1"],
-	["===========",  [11], "", -5, [["expression", ""]], "1", "0"],
-	["Exit", 		 [12], "", -5, [["expression", ""]], "1", "1"]
+	["===========",  [], "", -5, [["expression", ""]], "1", "0"],
+	["Set Center", 	 [4], "", -5, [["expression", "[] spawn fn_BCSetCenter"]], "1", "1"],
+	["Set Radius", 	 [5], "", -5, [["expression", "[] spawn fn_BCSetRadius"]], "1", "1"],
+	["===========",  [], "", -5, [["expression", ""]], "1", "0"],
+	["Copy",		 [6], "", -5, [["expression", "[] spawn fn_BCCopy"]], "1", "1"],
+	["Paste", 		 [7], "", -5, [["expression", "[] spawn fn_BCPaste"]], "1", "1"],
+	["Delete", 		 [8], "", -5, [["expression", "[] spawn fn_BCDelete"]], "1", "1"],
+	["===========",  [], "", -5, [["expression", ""]], "1", "0"],
+	["Exit", 		 [9], "", -5, [["expression", ""]], "1", "1"]
 ];
 
 BCBaseSaveMenu = [

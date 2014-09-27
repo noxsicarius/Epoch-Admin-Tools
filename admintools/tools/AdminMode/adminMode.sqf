@@ -72,11 +72,11 @@ optionMenu =
 		[format["Enhanced ESP: %1",enhancedESP], [3], "", -5, [["expression", 'call enhancedESPToggle']], "1", "1"],
 		[format["Player ESP: %1",playerESP], [4], "", -5, [["expression", 'call playerESPToggle']], "1", "1"],
 		[format["Invisibility ON: %1",invisibility], [5], "", -5, [["expression", 'call invisibilityToggle']], "1", "1"],
-		[format["Flying ON: %1",flying], [7], "", -5, [["expression", 'call flyingToggle']], "1", "1"],
-		[format["Infinite Ammo: %1",infAmmo], [8], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
-		[format["God Mode: %1",playerGod], [9], "", -5, [["expression", 'call playerGodToggle']], "1", "1"],
-		[format["Car God Mode: %1",vehicleGod], [10], "", -5, [["expression", 'call vehicleGodToggle']], "1", "1"],
-		[format["Grass Off: %1",grassOff], [11], "", -5, [["expression", 'call grassOffToggle']], "1", "1"]
+		[format["Flying ON: %1",flying], [6], "", -5, [["expression", 'call flyingToggle']], "1", "1"],
+		[format["Infinite Ammo: %1",infAmmo], [7], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
+		[format["God Mode: %1",playerGod], [8], "", -5, [["expression", 'call playerGodToggle']], "1", "1"],
+		[format["Car God Mode: %1",vehicleGod], [9], "", -5, [["expression", 'call vehicleGodToggle']], "1", "1"],
+		[format["Grass Off: %1",grassOff], [10], "", -5, [["expression", 'call grassOffToggle']], "1", "1"]
 	];
 	showCommandingMenu "#USER:toggleMenu";
 };

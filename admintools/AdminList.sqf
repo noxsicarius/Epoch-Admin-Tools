@@ -115,15 +115,16 @@ if ((getPlayerUID player) in SuperAdminList) then {
 	setDate (_this select 1);
 };
 "EAT_setOvercastClient" addPublicVariableEventHandler {
+	drn_fnc_DynamicWeather_SetWeatherLocal = {};
 	5 setOvercast (_this select 1);
 };
 "EAT_setFogClient" addPublicVariableEventHandler {
+	drn_fnc_DynamicWeather_SetWeatherLocal = {};
 	5 setFog (_this select 1);
 };
 
 // overwrite epoch public variables
 "PVDZE_plr_SetDate" addPublicVariableEventHandler {};
-
 
 // Show the admin list has loaded
 adminListLoaded = true;
