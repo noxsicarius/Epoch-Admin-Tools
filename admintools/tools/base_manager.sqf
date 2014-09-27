@@ -236,8 +236,8 @@ fn_BCExport = {
 		true
 	} count _nearest_objects;
 	
-	baseExporter = _export;
-	publicVariableServer "baseExporter";
+	EAT_baseExporter = _export;
+	[] spawn {publicVariableServer "EAT_baseExporter"};
 
 	systemChat format["Exported base to server\EpochAdminTools\Bases.sqf"];
 	showCommandingMenu "#USER:BCMainMenu";

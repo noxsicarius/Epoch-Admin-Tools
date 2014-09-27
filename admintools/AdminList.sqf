@@ -65,25 +65,40 @@ if(isDedicated) then {
 	};
 	"useBroadcaster" addPublicVariableEventHandler {
 		toClient = (_this select 1);
-		{(owner _x) publicVariableClient "toClient";} forEach entities "CAManBase";
+		{(owner _x) publicVariableClient "EAT_toClient";} forEach entities "CAManBase";
 	};
-	"baseExporter" addPublicVariableEventHandler {
+	"EAT_baseExporter" addPublicVariableEventHandler {
 		"EATbaseExporter" callExtension (_this select 1);
 	};
-	"teleportFixServer" addPublicVariableEventHandler{
+	"EAT_teleportFixServer" addPublicVariableEventHandler{
 		teleportFixClient = (_this select 1);
 		{(owner _x) publicVariableClient "teleportFixClient";} forEach entities "CAManBase";
+	};
+	"EAT_SetDateServer" addPublicVariableEventHandler {
+		EAT_setDateClient = (_this select 1);
+		setDate EAT_setDateClient;
+		{(owner _x) publicVariableClient "EAT_setDateClient";} forEach entities "CAManBase";
+	};
+	"EAT_SetOvercastServer" addPublicVariableEventHandler {
+		EAT_setOvercastClient = (_this select 1);
+		5 setOvercast EAT_setOvercastClient;
+		{(owner _x) publicVariableClient "EAT_setOvercastClient";} forEach entities "CAManBase";
+	};
+	"EAT_SetFogServer" addPublicVariableEventHandler {
+		EAT_setFogClient = (_this select 1);
+		5 setFog EAT_setOvercastClient;
+		{(owner _x) publicVariableClient "EAT_setFogClient";} forEach entities "CAManBase";
 	};
 };
 
 // Client public variables
 if ((getPlayerUID player) in SuperAdminList) then {
-	"toClient" addPublicVariableEventHandler {
+	"EAT_toClient" addPublicVariableEventHandler {
 		systemChat (_this select 1);
 	};
 };
 
-"teleportFixClient" addPublicVariableEventHandler {
+"EAT_teleportFixClient" addPublicVariableEventHandler {
 	_array = (_this select 1);
 	_addRemove = (_array select 0);
 	//_count = count tempList;
@@ -95,6 +110,20 @@ if ((getPlayerUID player) in SuperAdminList) then {
 		tempList = tempList - _array;
 	};
 };
+
+"EAT_SetDateClient" addPublicVariableEventHandler {
+	setDate (_this select 1);
+};
+"EAT_setOvercastClient" addPublicVariableEventHandler {
+	5 setOvercast (_this select 1);
+};
+"EAT_setFogClient" addPublicVariableEventHandler {
+	5 setFog (_this select 1);
+};
+
+// overwrite epoch public variables
+"PVDZE_plr_SetDate" addPublicVariableEventHandler {};
+
 
 // Show the admin list has loaded
 adminListLoaded = true;
