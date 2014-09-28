@@ -72,7 +72,7 @@ if(isDedicated) then {
 	};
 	"EAT_teleportFixServer" addPublicVariableEventHandler{
 		teleportFixClient = (_this select 1);
-		{(owner _x) publicVariableClient "teleportFixClient";} forEach entities "CAManBase";
+		{(owner _x) publicVariableClient "EAT_teleportFixClient";} forEach entities "CAManBase";
 	};
 	"EAT_SetDateServer" addPublicVariableEventHandler {
 		EAT_setDateClient = (_this select 1);
