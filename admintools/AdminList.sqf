@@ -64,14 +64,14 @@ if(isDedicated) then {
 		"EATadminLogger" callExtension (_this select 1);
 	};
 	"useBroadcaster" addPublicVariableEventHandler {
-		toClient = (_this select 1);
+		EAT_toClient = (_this select 1);
 		{(owner _x) publicVariableClient "EAT_toClient";} forEach entities "CAManBase";
 	};
 	"EAT_baseExporter" addPublicVariableEventHandler {
 		"EATbaseExporter" callExtension (_this select 1);
 	};
 	"EAT_teleportFixServer" addPublicVariableEventHandler{
-		teleportFixClient = (_this select 1);
+		EAT_teleportFixClient = (_this select 1);
 		{(owner _x) publicVariableClient "EAT_teleportFixClient";} forEach entities "CAManBase";
 	};
 	"EAT_SetDateServer" addPublicVariableEventHandler {
@@ -86,7 +86,7 @@ if(isDedicated) then {
 	};
 	"EAT_SetFogServer" addPublicVariableEventHandler {
 		EAT_setFogClient = (_this select 1);
-		5 setFog EAT_setOvercastClient;
+		5 setFog EAT_setFogClient;
 		{(owner _x) publicVariableClient "EAT_setFogClient";} forEach entities "CAManBase";
 	};
 };
