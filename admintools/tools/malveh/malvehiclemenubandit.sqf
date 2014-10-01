@@ -21,7 +21,7 @@ MalHA =
 		["CH 47F", [2], "", -5, [["expression", '["CH_47F_EP1_DZ"] execVM "admintools\tools\addvehicle.sqf"']], "1", "1"],
 		["UH1H DZ", [3], "", -5, [["expression", '["UH1H_DZ"] execVM "admintools\tools\addvehicle.sqf"']], "1", "1"],
 		["MI17 DZ", [4], "", -5, [["expression", '["MI17_DZ"] execVM "admintools\tools\addvehicle.sqf"']], "1", "1"],
-		["UH60M DZ", [5], "", -5, [["expression", '["UH60M_EP1_DZ"] execVM "admintools\tools\addvehicle.sqf"']], "1", "1"],
+		["UH60M DZ", [5], "", -5, [["expression", '["UH60M_EP1_DZE"] execVM "admintools\tools\addvehicle.sqf"']], "1", "1"],
 		["UH1Y DZ", [6], "", -5, [["expression", '["UH1Y_DZ"] execVM "admintools\tools\addvehicle.sqf"']], "1", "1"],
 		["", [-1], "", -5, [["expression", ""]], "1", "0"],
 			["Back", [11], "#USER:Malvsm", -5, [["expression", ""]], "1", "1"],
