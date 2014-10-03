@@ -1,8 +1,31 @@
 ==================================================
-You are using Epoch Admin Tools version 1.9
+You are using Epoch Admin Tools version 1.9.1
 by NoxSicarius
 ==================================================
 
+
+
+------------------- Version 1.9 Changelog ---------------------
+
+New Features:
+Weather and Time changes are now server wide
+
+
+Bug Fixes:
+Teleport to Me works again
+Battleye filter kicks
+waituntil causing server load problems
+Heal player works again
+Vehicle God Mode turns off properly now
+Item Class updates @Evocation
+RPT error fixes
+--> adminListLoaded variable
+--> zombieshield variables
+--> TPtoMe
+--> TPtoPlayer
+BaseManager bugs fixed
+--> Delete base variable toggle
+--> Trader menus no longer adversely effected
 
 
 ------------------- Version 1.9 Changelog ---------------------

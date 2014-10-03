@@ -1,10 +1,8 @@
 /*
-Not 100% god mode. There is a chance the car can still be blown
-up, but the chance is small. This will be a good script until
-a better solution is found. DOES NOT interfere with normal god mode.
-Air vehicles will explode if hit with a rocket or when crashing.
-Cars will not be damaged by crashes, but will be by rockets.
+	Air vehicles will explode if hit with a rocket or when crashing.
 */
+private["_playerVehicle"];
+
 if(isNil "vehicleGod2") then {vehicleGod2 = true;} else {vehicleGod2 = !vehicleGod2};
 
 if(vehicleGod2) then {

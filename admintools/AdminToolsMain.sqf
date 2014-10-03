@@ -17,7 +17,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],
 		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-		["Weather/Time Menu (Local Only) >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],
+		["Weather/Time Menu >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 	];
@@ -253,26 +253,75 @@ CrateMenuPublic=[
 ];
 
 // Menu for changing time and weather
+// These are set every other hour to keep the menu short
 WTMenu=[
 	["",true],
-	["Set Time:", [], "", -5, [["expression", ""]], "1", "0"],
-	["Midnight (no moon)",[],"",-5,[["expression",'setDate [2012, 1, 15, 0, 0]']],"1","1"],
-	["Midnight (full moon)",[],"",-5,[["expression",'setDate [2012, 6, 6, 0, 0]']],"1","1"],
-	["Noon",[],"",-5,[["expression",'setDate [2012, 6, 0, 12, 0]']],"1","1"],
+	["Day Menu >>",[],"#USER:DayMenu",-5,[["expression",""]], "1", "1"],
+	["Full-Moon Nights Menu >>",[],"#USER:FullMoonNights",-5,[["expression",""]], "1", "1"],
+	["No-Moon Nights Menu >>",[],"#USER:NoMoonNights",-5,[["expression",""]], "1", "1"],
+	["Weather Menu >>",[],"#USER:WeatherMenu",-5,[["expression",""]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-	["Set Weather:", [], "", -5, [["expression", ""]], "1", "0"],
-	["Clear",[],"",-5,[["expression",'3 setovercast 0']],"1","1"],
-	["Cloudy",[],"",-5,[["expression",'3 setovercast 0.5']],"1","1"],
-	["Storm",[],"",-5,[["expression",'3 setovercast 1']],"1","1"],
-	["", [], "", -5, [["expression", ""]], "1", "0"],
-	["Set Fog:", [], "", -5, [["expression", ""]], "1", "0"],
-	["Off",[],"",-5,[["expression",'3 setfog 0']],"1","1"],
-	["Medium",[],"",-5,[["expression",'3 setfog 0.5']],"1","1"],
-	["Maximum",[],"",-5,[["expression",'3 setfog 1']],"1","1"],
-		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 
+NoMoonNights = [
+	["",true],
+	["No moon night:", [], "", -5, [["expression", ""]], "1", "0"],
+	["8pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 20, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["10pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 22, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["Midnight",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 0, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["2am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 2, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["4am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 4, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+FullMoonNights = [
+	["",true],
+	["Full moon night:", [], "", -5, [["expression", ""]], "1", "0"],
+	["8pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 20, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["10pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 22, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["Midnight",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 0, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["2am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 2, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["4am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 4, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+DayMenu = [
+	["",true],
+	["Set Day Time:", [], "", -5, [["expression", ""]], "1", "0"],
+	["5am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 5, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["7am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 7, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["9am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 9, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["11am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 11, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["Noon",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 12, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["1pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 13, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["3pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 15, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["5pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 17, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["7pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 19, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
+
+WeatherMenu = [
+	["",true],
+	["Set Weather:",[],"",-5,[["expression",""]],"1","0"],
+	["Clear Sky",[],"",-5,[["expression",'EAT_SetOvercastServer = 0; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
+	["Slightly Cloudy",[],"",-5,[["expression",'EAT_SetOvercastServer = 0.25; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
+	["Cloudy",[],"",-5,[["expression",'EAT_SetOvercastServer = 0.5; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
+	["Very Cloudy",[],"",-5,[["expression",'EAT_SetOvercastServer = 0.75; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
+	["Storm",[],"",-5,[["expression",'EAT_SetOvercastServer = 1; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
+	["", [], "", -5, [["expression", ""]], "1", "0"],
+	["Set Fog:", [], "", -5, [["expression", ""]], "1", "0"],
+	["Off",[],"",-5,[["expression",'EAT_SetFogServer = 0; publicVariableServer "EAT_SetFogServer"']],"1","1"],
+	["Thin",[],"",-5,[["expression",'EAT_SetFogServer = 0.25; publicVariableServer "EAT_SetFogServer"']],"1","1"],
+	["Medium",[],"",-5,[["expression",'EAT_SetFogServer = 0.5; publicVariableServer "EAT_SetFogServer"']],"1","1"],
+	["Thick",[],"",-5,[["expression",'EAT_SetFogServer = 0.75; publicVariableServer "EAT_SetFogServer"']],"1","1"],
+	["Maximum",[],"",-5,[["expression",'EAT_SetFogServer = 1; publicVariableServer "EAT_SetFogServer"']],"1","1"],
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+];
 // Menu that deals with epoch specific items like locks and safes
 EpochMenu=[
 	["",true],

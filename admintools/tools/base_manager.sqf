@@ -2,6 +2,7 @@
 	Base Manager
 	by maca134 
 	edits and base destruct integration by NoxSicarius
+	Export added by NoxSicarius for saving to sqf
 	Allows you to copy/paste, save structures and insert them into the game.
 	Also allows for deletion of bases and the items in them.
 */
@@ -94,17 +95,21 @@ BCBaseList = [
 	//add base from server/EpochAdminToolLogs/SavedBases here
 ];
 
-BD_Buildables = true;
-BD_PlotPoles = true;
-BD_vehicles = true;
+if(isNil "BD_Buildables") then {BD_Buildables = true;};
+if(isNil "BD_PlotPoles") then {BD_PlotPoles = true;};
+if(isNil "BD_vehicles") then {BD_vehicles = true;};
+if(isNil "BCCurrentBase") then {BCCurrentBase = [];};
 
-if (isNil "BCCurrentBase") then {
-	BCCurrentBase = [];
-};
+// Temp variables to fix the trader dialogue issue
+private ["_TraderDialogLoadItemList","_TraderDialogShowPrices","_TraderDialogSell"];
+_TraderDialogLoadItemList = TraderDialogLoadItemList;
+_TraderDialogShowPrices = TraderDialogShowPrices;
+_TraderDialogSell = TraderDialogSell;
 
 TraderDialogLoadItemList = {};
 TraderDialogShowPrices = {};
 TraderDialogSell = {};
+
 TraderDialogBuy = {
 	systemChat str [lbCurSel 12000, lbCurSel 12001];
 	[lbCurSel 12000, lbCurSel 12001] spawn {
@@ -236,8 +241,8 @@ fn_BCExport = {
 		true
 	} count _nearest_objects;
 	
-	baseExporter = _export;
-	publicVariableServer "baseExporter";
+	EAT_baseExporter = _export;
+	[] spawn {publicVariableServer "EAT_baseExporter"};
 
 	systemChat format["Exported base to server\EpochAdminTools\Bases.sqf"];
 	showCommandingMenu "#USER:BCMainMenu";
@@ -312,9 +317,9 @@ fn_BCDelete = {
 	BaseDestruction = [
 		["What should delete?",true],
 			["Finish",[2],"",-5,[["expression","[] spawn fn_BCConfirmDelete"]],"1","1"],
-			[format["Vehicles(%1)",BD_vehicles], [3], "", -5, [["expression", "BD_vehicles = !BD_vehicles;"]], "1", "1"],
-			[format["PlotPoles(%1)",BD_PlotPoles], [4], "", -5, [["expression", "BD_PlotPoles = !BD_PlotPoles;"]], "1", "1"],
-			[format["Buildables(%1)",BD_Buildables], [5], "", -5, [["expression", "BD_Buildables = !BD_Buildables;"]], "1", "1"]
+			[format["Vehicles(%1)",BD_vehicles], [3], "", -5, [["expression", "BD_vehicles = !BD_vehicles; [] spawn fn_BCDelete"]], "1", "1"],
+			[format["PlotPoles(%1)",BD_PlotPoles], [4], "", -5, [["expression", "BD_PlotPoles = !BD_PlotPoles; [] spawn fn_BCDelete"]], "1", "1"],
+			[format["Buildables(%1)",BD_Buildables], [5], "", -5, [["expression", "BD_Buildables = !BD_Buildables; [] spawn fn_BCDelete"]], "1", "1"]
 	];
 	showCommandingMenu "#USER:BaseDestruction";
 };
@@ -553,17 +558,17 @@ fn_BCGetDimensions = {
 BCMainMenu =
 [
 	["Base Manager",true],
-	["Insert", 		[2], "", -5, [["expression", "[] spawn fn_BCInsert"]], "1", "1"],
-	["Export to sqf",		[7], "", -5, [["expression", "[] spawn fn_BCExport"]], "1", "1"],
-	["===========", 	[3], "", -5, [["expression", ""]], "1", "0"],
-	["Set Center", 	[4], "", -5, [["expression", "[] spawn fn_BCSetCenter"]], "1", "1"],
-	["Set Radius", 	[5], "", -5, [["expression", "[] spawn fn_BCSetRadius"]], "1", "1"],
-	["===========", 	[6], "", -5, [["expression", ""]], "1", "0"],
-	["Copy",		[7], "", -5, [["expression", "[] spawn fn_BCCopy"]], "1", "1"],
-	["Paste", 		[8], "", -5, [["expression", "[] spawn fn_BCPaste"]], "1", "1"],
-	["Delete", 		[9], "", -5, [["expression", "[] spawn fn_BCDelete"]], "1", "1"],
-	["===========", 	[10], "", -5, [["expression", ""]], "1", "0"],
-	["Exit", 		[11], "", -5, [["expression", ""]], "1", "1"]
+	["Insert", 		 [2], "", -5, [["expression", "[] spawn fn_BCInsert"]], "1", "1"],
+	["Export to sqf",[3], "", -5, [["expression", "[] spawn fn_BCExport"]], "1", "1"],
+	["===========",  [], "", -5, [["expression", ""]], "1", "0"],
+	["Set Center", 	 [4], "", -5, [["expression", "[] spawn fn_BCSetCenter"]], "1", "1"],
+	["Set Radius", 	 [5], "", -5, [["expression", "[] spawn fn_BCSetRadius"]], "1", "1"],
+	["===========",  [], "", -5, [["expression", ""]], "1", "0"],
+	["Copy",		 [6], "", -5, [["expression", "[] spawn fn_BCCopy"]], "1", "1"],
+	["Paste", 		 [7], "", -5, [["expression", "[] spawn fn_BCPaste"]], "1", "1"],
+	["Delete", 		 [8], "", -5, [["expression", "[] spawn fn_BCDelete"]], "1", "1"],
+	["===========",  [], "", -5, [["expression", ""]], "1", "0"],
+	["Exit", 		 [9], "", -5, [["expression", ""]], "1", "1"]
 ];
 
 BCBaseSaveMenu = [
@@ -573,3 +578,7 @@ BCBaseSaveMenu = [
 ];
 
 showCommandingMenu "#USER:BCMainMenu";
+
+TraderDialogLoadItemList = _TraderDialogLoadItemList;
+TraderDialogShowPrices = _TraderDialogShowPrices;
+TraderDialogSell = _TraderDialogSell;

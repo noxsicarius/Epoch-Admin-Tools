@@ -66,7 +66,36 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	>> IMPORTANT: You may need to allow the dll through your antivirus because some antivirus block unknown dll's.
 	 			  Windows may also require you to unblock it by right clicking it, selecting properties, and selecting unblock
 	
-1. Open the ***init.sqf*** in the root of your mission folder and paste the following above if(!isDedicated):
+1. Open the ***init.sqf*** in the root of your mission folder.
+
+1. Paste the following 
+	
+	~~~~java
+	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	~~~~
+	
+	Directly under this:
+	
+	~~~~java
+	call compile preprocessFileLineNumbers "server_traders.sqf";
+	~~~~
+
+	So that it looks like this:
+	~~~~java
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
+	progressLoadingScreen 0.1;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
+	progressLoadingScreen 0.2;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
+	progressLoadingScreen 0.4;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
+	progressLoadingScreen 0.5;
+	call compile preprocessFileLineNumbers "server_traders.sqf";
+	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	progressLoadingScreen 1.0;
+	~~~~
+	
+1. Paste the following above if(!isDedicated):
 
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
@@ -98,10 +127,9 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 
 	> ~~~~java
 	> // Epoch Admin Tools
-	> waitUntil{!isNil "adminListLoaded"};
-	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList) && !((getPlayerUID player) in tempList)) then 
+	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
 	> {
-	> 	[] execVM "\z\addons\dayz_code\system\antihack.sqf"; // Epoch Antihack
+	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
 	> };
 	> ~~~~
 	
@@ -180,9 +208,84 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 
 	> If you are asked to replace any file then you did not delete everything correctly.
 
-1. Now go into the admintools folder and replace the AdminList.sqf in this folder with the one you saved to your desktop
+1. Open your ***init.sqf***, find and delete the Epoch Admin Tools edits
 
-	> You will be asked to overwrite the file, select yes.
+	> * [] execVM "admintools\Activate.sqf"; // Epoch admin tools
+	> * The epoch antihack edit inside the !isDedicated if statement. (Only if it exists
+	
+1. Paste the following 
+	
+	~~~~java
+	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	~~~~
+	
+	Directly under this:
+	
+	~~~~java
+	call compile preprocessFileLineNumbers "server_traders.sqf";
+	~~~~
+
+	So that it looks like this:
+	~~~~java
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
+	progressLoadingScreen 0.1;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
+	progressLoadingScreen 0.2;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
+	progressLoadingScreen 0.4;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
+	progressLoadingScreen 0.5;
+	call compile preprocessFileLineNumbers "server_traders.sqf";
+	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	progressLoadingScreen 1.0;
+	~~~~
+	
+1. Paste the following above if(!isDedicated):
+
+	~~~~java
+	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+	~~~~
+
+	> It should look like this:
+
+	> ~~~~java
+	> if (isServer) then {
+	> 	..............
+	> };
+	>
+	> [] execVM "admintools\Activate.sqf"; // Epoch admin tools
+	>
+	> if (!isDedicated) then {
+	> 	..............
+	> };	
+	> ~~~~
+	
+1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
+	
+	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
+
+	> ~~~~java
+	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	> ~~~~
+
+	> if you have the line above ***replace it*** with this:
+
+	> ~~~~java
+	> // Epoch Admin Tools
+	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
+	> {
+	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
+	> };
+	> ~~~~
+	
+	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
+	> If you do not have an antihack line at all ***DO NOT*** add this code, just skip this step.
+
+1. Save init.sqf
+1. Now go into the admintools folder and open AdminList.sqf
+1. Open the AdminList.sqf you coppied to your desktop.
+1. Copy all of the UIDs from the old Adminlist to your new one.
+1. Go
 	
 
 #### You have now successfully and correctly updated your tools.

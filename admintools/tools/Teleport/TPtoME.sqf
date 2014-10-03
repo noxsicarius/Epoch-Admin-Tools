@@ -1,11 +1,10 @@
 _max = 10; snext = false; plist = []; pselect5 = "";
-
 {if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach entities "CAManBase";
 {if ((count crew _x) > 0) then {{if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach crew _x;};} foreach (entities "LandVehicle" + entities "Air" + entities "Ship");
 
 smenu =
 {
-	_pmenu = [["",true]];
+	_pmenu = [["",true],["Teleport to Me:", [-1], "", -5, [["expression", ""]], "1", "0"]];
 	for "_i" from (_this select 0) to (_this select 1) do
 	{_arr = [format['%1', plist select (_i)], [12],  "", -5, [["expression", format ["pselect5 = plist select %1;", _i]]], "1", "1"]; _pmenu set [_i + 2, _arr];};
 	if (count plist > (_this select 1)) then {_pmenu set [(_this select 1) + 2, ["Next", [13], "", -5, [["expression", "snext = true;"]], "1", "1"]];}
@@ -23,8 +22,6 @@ while {pselect5 == ""} do
 	snext = false;
 };
 
-tempList = nil;
-
 if (pselect5 != "exit") then
 {
 	_name = pselect5;
@@ -32,10 +29,10 @@ if (pselect5 != "exit") then
 	{
 		if(name _x == _name) then
 		{
-			_tempException = getPlayerUID _x;
-			tempList = [
-				"_tempException"
-			];
+			_UID = (getPlayerUID _x);
+			hint _UID;
+			EAT_teleportFixServer = ["add",_UID];
+			publicVariableServer "EAT_teleportFixServer";
 			
 			hint format ["Teleporting %1", _name];
 			
@@ -43,9 +40,13 @@ if (pselect5 != "exit") then
 			sleep 0.25;
 			detach _x;
 
+			Sleep 3;
+			EAT_teleportFixServer = ["remove",_UID];
+			[] spawn {publicVariableServer "EAT_teleportFixServer"};
+			
 			// Tool use logger
 			if(logMajorTool) then {
-				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_x];
+				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_UID];
 				[] spawn {publicVariable "usageLogger";};
 			};
 			// Tool use broadcaster
@@ -53,10 +54,6 @@ if (pselect5 != "exit") then
 				useBroadcaster = format["%1 -- has teleported %2 to them",name player, _name];
 				[] spawn {publicVariableServer "useBroadcaster";};
 			};
-			
-			_tempException = nil;
-			tempList = [];
-
 		};
 	} forEach entities "CAManBase";
 };

@@ -50,7 +50,7 @@ _spawnCrate addWeaponCargoGlobal ["ItemHatchet_DZE", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemKeyKit", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemKnife", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemMap", 5];
-_spawnCrate addWeaponCargoGlobal ["ItemMatchbox", 5];
+_spawnCrate addWeaponCargoGlobal ["ItemMatchbox_DZE", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemRadio", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemSledge", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemToolbox", 5];

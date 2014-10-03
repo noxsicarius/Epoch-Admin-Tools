@@ -40,7 +40,7 @@ clearBackpackCargoGlobal _spawnCrate;
 _spawnCrate addWeaponCargoGlobal ["ItemCrowbar", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemEtool", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemHatchet_DZE", 5];
-_spawnCrate addWeaponCargoGlobal ["ItemMatchbox", 5];
+_spawnCrate addWeaponCargoGlobal ["ItemMatchbox_DZE", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemSledge", 5];
 _spawnCrate addWeaponCargoGlobal ["ItemToolbox", 5];
 
