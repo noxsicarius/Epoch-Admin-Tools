@@ -5,7 +5,7 @@ by NoxSicarius
 
 
 
-------------------- Version 1.9 Changelog ---------------------
+------------------- Version 1.9.1 Changelog ---------------------
 
 New Features:
 Weather and Time changes are now server wide
