@@ -22,15 +22,15 @@ if(_bagType == "CZ_VestPouch_EP1" || _bagType == "DZ_LargeGunBag_EP1" || _bagTyp
 
 	_array1 = _bagWeapons select 0;
 	_array2 = _bagWeapons select 1;
-	for [{_i=0}, {_i < count _array1}, {_i=_i+1}] do
+	
 	{
 		(unitBackpack player) addWeaponCargo [(_array1 select _i),(_array2 select _i)];
-	}forEach ARRAY;
+	}forEach _array1;
 		
 	_array1 = _bagMagazines select 0;
 	_array2 = _bagMagazines select 1;
-	for [{_i=0}, {_i < count _array1}, {_i=_i+1}] do
+
 	{
 		(unitBackpack player) addMagazineCargo [(_array1 select _i),(_array2 select _i)];
-	}forEach ARRAY;
+	}forEach _array1;
 };
