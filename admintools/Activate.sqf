@@ -1,5 +1,3 @@
-private["_player"];
-
 waitUntil {!isNil "adminListLoaded"}; // Wait for adminlist before starting
 waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
 
@@ -8,11 +6,11 @@ _player = player;
 // Give players action menu
 if((ActionMenuPlayers && !(((getPlayerUID _player) in AdminAndModList))) || (ActionMenuAdmins && ((getPlayerUID _player) in AdminAndModList))) then {
 	[] spawn {
-		private["_veh", "_idx"];
 		_idx = -1;
+		_player = player;
 		_veh = vehicle _player;
 
-		while {alive player} do {
+		while {alive _player} do {
 			if(_idx == -1) then {
 				_idx = (vehicle _player) addaction [("<t color=""#FE9A2E"">" + ("Action Menu") + "</t>"),"admintools\actionMenu\Actions_Menu.sqf","",-107,false,true,"",""];
 				_veh = vehicle _player;
@@ -29,10 +27,10 @@ if((ActionMenuPlayers && !(((getPlayerUID _player) in AdminAndModList))) || (Act
 
 
 // Give admins the admin menu
-if ((getPlayerUID player) in AdminAndModList) then {
+if ((getPlayerUID _player) in AdminAndModList) then {
 	[] spawn {
-		private["_veh", "_idx"];
 		_idx = -1;
+		_player = player;
 		_veh = vehicle _player;
 
 		// Load key macros
@@ -45,7 +43,7 @@ if ((getPlayerUID player) in AdminAndModList) then {
 			[] spawn {publicVariable "usageLogger";};
 		};
 
-		while {alive player} do
+		while {alive _player} do
 		{
 			if(toolsAreActive) then
 			{
