@@ -30,7 +30,7 @@ if (pselect5 != "exit") then
 		if(name _x == _name) then
 		{
 			_UID = (getPlayerUID _x);
-			hint _UID;
+
 			EAT_teleportFixServer = ["add",_UID];
 			publicVariableServer "EAT_teleportFixServer";
 			
