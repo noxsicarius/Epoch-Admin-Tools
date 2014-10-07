@@ -102,4 +102,4 @@ if ((getPlayerUID player) in SuperAdminList) then {
 
 // Show the admin list has loaded
 adminListLoaded = true;
-diag_log("Admin Tools: config.sqf loaded");
+diag_log("Admin Tools: variables.sqf loaded");
