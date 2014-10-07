@@ -71,7 +71,8 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Paste the following 
 	
 	~~~~java
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	~~~~
 	
 	Directly under this:
@@ -91,29 +92,16 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
 	progressLoadingScreen 0.5;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	progressLoadingScreen 1.0;
 	~~~~
 	
-1. Paste the following above if(!isDedicated):
+1. Paste the following at the bottom of the ***init***:
 
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
-
-	> It should look like this:
-
-	> ~~~~java
-	> if (isServer) then {
-	> 	..............
-	> };
-	>
-	> [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	>
-	> if (!isDedicated) then {
-	> 	..............
-	> };	
-	> ~~~~
 	
 1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
 	
