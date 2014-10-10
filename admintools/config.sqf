@@ -67,11 +67,12 @@ ActionMenuAdmins = false;
 //Allow player to build a bike?\
 AllowBuildBike = true;
 
-// This option requires players to have a toolbox to build a bike
+// This option requires players to have a toolbox to build a bike (consumes the toolbox)
 RequireToolBoxBike = true;
 
-// This option requires players to have the parts for building a bike
-RequirePartsBike = true;
+// This option requires players to have the parts for building a bike (consumes the parts)
+// Required parts: two wheels, one scrap metal
+RequirePartsBike = false;
 
 // This option dictates if players are allowed to repack a bike to get their items back
 AllowPackBike = true;
@@ -82,14 +83,15 @@ AllowPackBike = true;
 //Allow player to build a Mozzie?
 AllowBuildMozzie = true;
 
-// This option requires players to have a toolbox to build a Mozzie
-RequireToolBoxMozzie = true;
+// This option requires players to have a toolbox to build a Mozzie (consumes the toolbox)
+RequireToolBoxMozzie = false;
 
-// This option requires players to have the parts for building a Mozzie
+// This option requires players to have the parts for building a Mozzie (consumes the parts)
+// Required parts: main rotor, two scrap, one engine, one jerry can (full)
 RequirePartsMozzie = true;
 
 // This option dictates if players are allowed to repack a mozzie to get their items back
-AllowPackMozzie = false;
+AllowPackMozzie = true;
 
 
 /****** Misc ******/
@@ -103,7 +105,21 @@ AllowSuicide = true;
 // Allow players to use the movement menu (dance)
 AllowMovementMenu = true;
 
+/* 
+	Allow players to open a help ticket with the admins.
+	The help queue can be viewed via the admin menu.
+	The player can NOT spam the admins.
+*/
+AllowContactAdmin = true;
 
+/*
+	Stops spamming of the contact admin. If it is enabled and a user contacts an admin
+	the given number of times they will get a white screen for blindTime seconds and 
+	the contact feature will be disabled
+*/
+enableAntiSpam = true;
+antiSpamLimit = 15; // default 15 contacts
+blindTime = 30; // default 30 seconds
 
 
 diag_log("Admin Tools: config.sqf loaded");

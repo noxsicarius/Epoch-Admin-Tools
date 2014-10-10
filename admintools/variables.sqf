@@ -28,7 +28,17 @@ if(isDedicated) then {
 		"EATbaseExporter" callExtension (_this select 1);
 	};
 	"EAT_teleportFixServer" addPublicVariableEventHandler{
-		EAT_teleportFixClient = (_this select 1);
+		_array = (_this select 1);
+		_addRemove = (_array select 0);
+
+		if(_addRemove == "add") then {
+			_array = _array - ["add"];
+			tempList = tempList + _array;
+		} else {
+			_array = _array - ["remove"];
+			tempList = tempList - _array;
+		};
+		EAT_teleportFixClient = tempList;
 		{(owner _x) publicVariableClient "EAT_teleportFixClient";} forEach entities "CAManBase";
 	};
 	"EAT_SetDateServer" addPublicVariableEventHandler {
@@ -47,7 +57,17 @@ if(isDedicated) then {
 		{(owner _x) publicVariableClient "EAT_setFogClient";} forEach entities "CAManBase";
 	};
 	"EAT_contactAdminServer" addPublicVariableEventHandler {
-		EAT_contactAdminClient = (_this select 1);
+		_array = (_this select 1);
+		_addRemove = (_array select 0);
+
+		if(_addRemove == "add") then {
+			_array = _array - ["add"];
+			helpQueue = helpQueue + _array;
+		} else {
+			_array = _array - ["remove"];
+			helpQueue = helpQueue - _array;
+		};
+		EAT_contactAdminClient = helpQueue;
 		{(owner _x) publicVariableClient "EAT_contactAdminClient";} forEach entities "CAManBase";
 	};
 };
@@ -60,16 +80,7 @@ if ((getPlayerUID player) in SuperAdminList) then {
 };
 
 "EAT_teleportFixClient" addPublicVariableEventHandler {
-	_array = (_this select 1);
-	_addRemove = (_array select 0);
-
-	if(_addRemove == "add") then {
-		_array = _array - ["add"];
-		tempList = tempList + _array;
-	} else {
-		_array = _array - ["remove"];
-		tempList = tempList - _array;
-	};
+	tempList = (_this select 1);
 };
 
 "EAT_SetDateClient" addPublicVariableEventHandler {
@@ -85,15 +96,9 @@ if ((getPlayerUID player) in SuperAdminList) then {
 };
 
 "EAT_contactAdminClient" addPublicVariableEventHandler {
-	_array = (_this select 1);
-	_addRemove = (_array select 0);
-
-	if(_addRemove == "add") then {
-		_array = _array - ["add"];
-		helpQueue = helpQueue + _array;
-	} else {
-		_array = _array - ["remove"];
-		helpQueue = helpQueue - _array;
+	helpQueue = (_this select 1);
+	if((getPlayerUID) in AdminAndModList) then {
+		systemChat "****A player needs help****";
 	};
 };
 

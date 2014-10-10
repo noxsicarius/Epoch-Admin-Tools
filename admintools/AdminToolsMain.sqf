@@ -18,6 +18,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
 		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
 		["Weather/Time Menu >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],
+		["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECscript1,"contactAdminTickets.sqf"]]], "1", "1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 	];
@@ -29,6 +30,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 			["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
 			["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],
 			["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
+			["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECscript1,"contactAdminTickets.sqf"]]], "1", "1"],
 			["", [], "", -5, [["expression", ""]], "1", "0"],
 				["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 		];

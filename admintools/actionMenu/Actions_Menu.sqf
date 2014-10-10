@@ -11,6 +11,7 @@ _pathtoscripts = "admintools\actionMenu\";
 _EXECscript1 = 'player execVM "'+_pathtoscripts+'%1"';
 _EXECscript2 = '["%1"] execVM "admintools\actionMenu\FunMenu\morph.sqf"';
 _EXECscript3 = '["%1"] execVM "admintools\actionMenu\FunMenu\movements.sqf"';
+_EXECscript4 = '[%1] execVM "admintools\actionMenu\contactAdmin.sqf"';
 
 if((getPlayerUID player) in AdminList ||(getPlayerUID player) in ModList) then {
 
@@ -40,7 +41,8 @@ if((getPlayerUID player) in AdminList ||(getPlayerUID player) in ModList) then {
 		["Action Menu >>", [], "#USER:ActionsMenu", -5, [["expression", ""]], "1", "1"],
 		if(AllowMovementMenu) then {["Movement Menu >>",[],"#USER:MovementMenu", -5,[["expression",""]],"1","1"]},
 		["Server Rules", [], "", -5, [["expression", format[_EXECscript1,"serverRules.sqf"]]], "1", "1"],
-		["Contact an admin", [], "", -5, [["expression", format[_EXECscript1,"contactAdmin.sqf"]]], "1", "1"],
+		if(AllowContactAdmin) then {["Contact an Admin", [], "", -5, [["expression", format[_EXECscript4,false]]], "1", "1"]},
+		if(AllowContactAdmin) then {["Cancel Admin Ticket", [], "", -5, [["expression", format[_EXECscript4,true]]], "1", "1"]},
 			["", [], "", -5, [["expression", ""]], "1", "0"],
 			["Exit", [20], "", -5, [["expression", ""]], "1", "1"]
 	];
