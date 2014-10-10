@@ -97,7 +97,7 @@ if ((getPlayerUID player) in SuperAdminList) then {
 
 "EAT_contactAdminClient" addPublicVariableEventHandler {
 	helpQueue = (_this select 1);
-	if((getPlayerUID) in AdminAndModList) then {
+	if ((getPlayerUID player) in AdminAndModList) then {
 		systemChat "****A player needs help****";
 	};
 };
