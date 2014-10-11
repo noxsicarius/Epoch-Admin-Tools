@@ -95,25 +95,11 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	progressLoadingScreen 1.0;
 	~~~~
 	
-1. Paste the following above if(!isDedicated):
+1. Paste the following at the very bottom of the init:
 
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
-
-	> It should look like this:
-
-	> ~~~~java
-	> if (isServer) then {
-	> 	..............
-	> };
-	>
-	> [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	>
-	> if (!isDedicated) then {
-	> 	..............
-	> };	
-	> ~~~~
 	
 1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
 	
@@ -147,12 +133,10 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Open ***admintools\AdminList.sqf***
 1. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 1. The mission pbo is done. Repack it and upload it to your server (FTP or host's File Manager).
-1. Download the latest Epoch Server build from the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page) and open the archive.
-1. Find the ***Battleye*** folder inside the archive and extract the .txt files within to your server's Battleye folder (via FTP or host's File Manager), overwriting the existing .txt files. 
+1. Extract the .txt files from the ***Epoch-Admin-Tools/Battleye*** folder to your server's Battleye folder, overwriting the existing .txt files. 
 
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 	
-1. Return to the Epoch-Admin-Tools zip file (downloaded in step #1) and open the ***Battleye*** folder. Again, extract the .txt files from the ***Epoch-Admin-Tools/Battleye*** folder into the same Battleye folder in the previous step and overwrite everything when prompted.
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
 1. Open ***init/server_functions.sqf*** and replace this:
 
@@ -167,7 +151,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
     ~~~~
     
-	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
+	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `&& (vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
 
 1. Now open your ***compile/server_updateObject.sqf*** and place this:
 
@@ -240,26 +224,12 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	progressLoadingScreen 1.0;
 	~~~~
 	
-1. Paste the following above if(!isDedicated):
+1. Paste the following at the bottom of the init:
 
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
 
-	> It should look like this:
-
-	> ~~~~java
-	> if (isServer) then {
-	> 	..............
-	> };
-	>
-	> [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	>
-	> if (!isDedicated) then {
-	> 	..............
-	> };	
-	> ~~~~
-	
 1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
 	
 	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
@@ -282,11 +252,9 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	> If you do not have an antihack line at all ***DO NOT*** add this code, just skip this step.
 
 1. Save init.sqf
-1. Now go into the admintools folder and open AdminList.sqf
+1. Now go into the admintools folder and open ***AdminList.sqf***
 1. Open the AdminList.sqf you coppied to your desktop.
-1. Copy all of the UIDs from the old Adminlist to your new one.
-1. Go
-	
+1. Copy all of the UIDs from the old Adminlist to your new one. ***DO NOT simply replace the file. There are new edits in the AdminList.sqf***
 
 #### You have now successfully and correctly updated your tools.
 
@@ -315,7 +283,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 * If the problem you are posting is a bug and not a general install problem then post it to [the main discussion forum](http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/) and to [the github issues page](https://github.com/gregariousjb/Epoch-Admin-Tools/issues?state=open).
 
 ## Credits
-This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
+This project is based on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
 
 * Project Leader: NoxSicarius (Nox)
 * A huge thanks goes out to Gregarious who began this project and did a huge amount of work on the tool. We were sad to see him go, but his generous contributions will be remembered.
