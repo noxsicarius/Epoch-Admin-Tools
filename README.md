@@ -1,4 +1,4 @@
-Epoch-Admin-Tools
+Epoch Admin Tools V-1.9.2
 =================
 
 ![Admin Tools](http://i.imgur.com/j0bTHPB.png)
@@ -132,15 +132,13 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
     #include "admintools\dialog.hpp"
     ~~~~
 	
-1. Open ***admintools\AdminList.sqf***
+1. Open ***admintools\config.sqf***
 1. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 1. The mission pbo is done. Repack it and upload it to your server (FTP or host's File Manager).
-1. Download the latest Epoch Server build from the [Epoch Wiki](http://dayzepoch.com/wiki/index.php?title=Main_Page) and open the archive.
-1. Find the ***Battleye*** folder inside the archive and extract the .txt files within to your server's Battleye folder (via FTP or host's File Manager), overwriting the existing .txt files. 
+1. Extract the .txt files from the ***Epoch-Admin-Tools/Battleye*** folder to your server's Battleye folder, overwriting the existing .txt files. 
 
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 	
-1. Return to the Epoch-Admin-Tools zip file (downloaded in step #1) and open the ***Battleye*** folder. Again, extract the .txt files from the ***Epoch-Admin-Tools/Battleye*** folder into the same Battleye folder in the previous step and overwrite everything when prompted.
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
 1. Open ***init/server_functions.sqf*** and replace this:
 
@@ -199,12 +197,14 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Open your ***init.sqf***, find and delete the Epoch Admin Tools edits
 
 	> * [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	> * The epoch antihack edit inside the !isDedicated if statement. (Only if it exists
+	> * The epoch antihack edit inside the !isDedicated if statement. (Only if it exists)
+	> * The call compile lines showin in the step below that may belong to the tool
 	
 1. Paste the following 
 	
 	~~~~java
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	~~~~
 	
 	Directly under this:
@@ -224,29 +224,16 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
 	progressLoadingScreen 0.5;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	progressLoadingScreen 1.0;
 	~~~~
 	
-1. Paste the following above if(!isDedicated):
+1. Paste the following at the bottom of the ***init.sqf***:
 
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
-
-	> It should look like this:
-
-	> ~~~~java
-	> if (isServer) then {
-	> 	..............
-	> };
-	>
-	> [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	>
-	> if (!isDedicated) then {
-	> 	..............
-	> };	
-	> ~~~~
 	
 1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
 	
@@ -269,11 +256,10 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
 	> If you do not have an antihack line at all ***DO NOT*** add this code, just skip this step.
 
-1. Save init.sqf
-1. Now go into the admintools folder and open AdminList.sqf
-1. Open the AdminList.sqf you coppied to your desktop.
-1. Copy all of the UIDs from the old Adminlist to your new one.
-1. Go
+1. Save the init.sqf and close it
+1. Now go into the admintools folder and open ***config.sqf***
+1. Open the AdminList.sqf you copied to your desktop.
+1. Copy all of the UIDs from the old Adminlist to your new one. ***This version has many changes and no longer uses AdminList.sqf***
 	
 
 #### You have now successfully and correctly updated your tools.
@@ -283,7 +269,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 * I'm getting kicked with "Script Restriction #X"!
  * Make sure you've installed the Battleye filters perfectly in the instructions. If it still fails, you can fix the error yourself with a little knowledge about [how the filters work](http://dayz.st/w/Battleye_Filters).
 * The menu doesn't appear.
- * The most likely cause of this error is either a syntax error in your ***init.sqf*** (e.g. a missing semi-colon), a syntax error in your ***admintools\AdminList.sqf*** (e.g. a comma after the last string in the array of Admins/Mods - see above optional instruction) or forgetting to add your Player ID (or typing it wrong) into the ***admintools\AdminList.sqf***. Specific errors can be found by reading your server's [RPT file](https://community.bistudio.com/wiki/arma.RPT). Also see [Debugging Techniques](https://community.bistudio.com/wiki/Debugging_Techniques).
+ * The most likely cause of this error is either a syntax error in your ***init.sqf*** (e.g. a missing semi-colon), a syntax error in your ***admintools\config.sqf*** (e.g. a comma after the last string in the array of Admins/Mods - see above optional instruction) or forgetting to add your Player ID (or typing it wrong) into the ***admintools\config.sqf***. Specific errors can be found by reading your server's [RPT file](https://community.bistudio.com/wiki/arma.RPT). Also see [Debugging Techniques](https://community.bistudio.com/wiki/Debugging_Techniques).
 * I get stuck at the loading screen with the arma2oaserver.rpt error that I am missing files.
  * This is most often caused by a broken PBO packaging tool. Reinstall or use a different tool.
 * How do I add something to my personal tools?
