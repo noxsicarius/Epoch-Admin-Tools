@@ -64,7 +64,7 @@ ActionMenuAdmins = false;
 
 /****** Bike variables ******/
 
-//Allow player to build a bike?\
+//Allow player to build a bike?
 AllowBuildBike = true;
 
 // This option requires players to have a toolbox to build a bike (consumes the toolbox)
