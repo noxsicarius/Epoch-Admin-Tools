@@ -7,7 +7,10 @@ Epoch Admin Tools V-1.9.2
 
 This is an admin menu with powerful tools for the purpose of testing and/or administrating a [DayZ Epoch Mod](http://epochmod.com/) server. Most tools will also be compatible with original DayZMod servers and other derivatives.
 
-***You may use this script free of charge and modify for your own needs, however you MAY NOT distribute this code or any modified versions of it without my permission.*** If you have new features you think people may benefit from please open a pull request to have it added to this tool. The main reason for this is to be sure the tool is of the best possible quality and that harmful code is not distributed under the guise of my work.
+***You may use this script free of charge and modify for your own needs, however you MAY NOT distribute this code or any modified versions of it without my permission.*** If you have new features you think people may benefit from please open a pull request to have it added to this tool. The main reason for this is to be sure the tool is of the best possible quality and that harmful code is not distributed under the guise of my work. 
+If you are worried about the integrity of the dll files here is the MD5 of the current dll files:
+EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
 
 # Table of Contents:
 * [Features](https://github.com/noxsicarius/Epoch-Admin-Tools#features)

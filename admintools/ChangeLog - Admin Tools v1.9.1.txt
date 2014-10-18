@@ -1,9 +1,15 @@
 ==================================================
-You are using Epoch Admin Tools version 1.9.1
+You are using Epoch Admin Tools version 1.9.2 ALPHA
 by NoxSicarius
 ==================================================
 
+------------------- Version 1.9.2 ALPHA Changelog ---------------------
 
+MD5 hash for the dll files IN THIS VERSION:
+EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
+
+You can check the hash value of a file here: http://onlinemd5.com/
 
 ------------------- Version 1.9.1 Changelog ---------------------
 
@@ -26,6 +32,13 @@ RPT error fixes
 BaseManager bugs fixed
 --> Delete base variable toggle
 --> Trader menus no longer adversely effected
+
+
+MD5 hash for the dll files IN THIS VERSION:
+EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
+
+You can check the hash value of a file here: http://onlinemd5.com/
 
 
 ------------------- Version 1.9 Changelog ---------------------
@@ -88,6 +101,12 @@ delete base has been integrated with maca's base copy
 AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
 Cleaned up all Admin Mode files for better execution
 
+
+MD5 hash for the dll files IN THIS VERSION:
+EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
+
+You can check the hash value of a file here: http://onlinemd5.com/
 
 
 ------------------- Version 1.8.2 Changelog ---------------------
