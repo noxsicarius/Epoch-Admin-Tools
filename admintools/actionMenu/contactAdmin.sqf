@@ -4,7 +4,7 @@ _playerName = (name _player);
 _cancel = _this select 0;
 if(isNil "helpCount") then {helpCount = 0};
 
-if((!(_playerName in helpQueue)) && (!(_cancel)) && (helpCount < antiSpamLimit) then {
+if((!(_playerName in helpQueue)) && (!(_cancel)) && (helpCount < antiSpamLimit)) then {
 	EAT_contactAdminServer = ["add", _playerName];
 	[] spawn {publicVariable "EAT_contactAdminServer";};
 	cutText["An admin will be with you shortly", "PLAIN DOWN", 4];
