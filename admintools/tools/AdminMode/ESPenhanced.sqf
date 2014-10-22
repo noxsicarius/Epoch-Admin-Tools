@@ -247,6 +247,7 @@ While {enhancedESP2} do
 			{
 				storageList = storageList + allmissionobjects (_x);
 			} forEach storageObjects;
+			
 			i1 = 0;
 			{
 				_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
@@ -358,7 +359,6 @@ While {enhancedESP2} do
 		i2=0;
 		{
 			deleteMarkerLocal ("crashMarker"+ (str i2));
-
 			i2=i2+1;
 		}forEach crashList;
 	};
@@ -432,7 +432,6 @@ if(!enhancedESP2) then
 		i=0;
 		{
 			deleteMarkerLocal ("vehMarker"+ (str i));
-
 			i=i+1;
 		}forEach vehList;
 	};
@@ -442,7 +441,6 @@ if(!enhancedESP2) then
 		i0=0;
 		{
 			deleteMarkerLocal ("poleMarker"+ (str i0));
-
 			i0=i0+1;
 		}forEach poleList;
 	};
@@ -452,7 +450,6 @@ if(!enhancedESP2) then
 		i1=0;
 		{
 			deleteMarkerLocal ("storageMarker"+ (str i1));
-
 			i1=i1+1;
 		}forEach storageList;
 	};
@@ -462,7 +459,6 @@ if(!enhancedESP2) then
 		i2=0;
 		{
 			deleteMarkerLocal ("crashMarker"+ (str i2));
-
 			i2=i2+1;
 		}forEach crashList;
 	};
