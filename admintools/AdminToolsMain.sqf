@@ -81,6 +81,7 @@ VehicleMenu =
 VehicleTools =
 [
 ["",true],	
+	["Vehicle Locator",[],"",-5,[["expression", format[_EXECscript1,"vehicleLocator.sqf"]]], "1", "1"],
 	["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToRepair.sqf"]]], "1", "1"],
 	["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECscript1,"PointToRepairPERM.sqf"]]], "1", "1"],
 	["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECscript1,"PointToDelete.sqf"]]], "1", "1"],
