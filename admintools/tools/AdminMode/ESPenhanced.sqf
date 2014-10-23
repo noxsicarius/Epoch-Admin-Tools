@@ -1,4 +1,7 @@
 if(isNil "markers") then { markers = []};
+if(isNil "vehList") then { vehList = []};
+if(isNil "unlockedVehList") then { unlockedVehList = []};
+if(isNil "lockedVehList") then { lockedVehList = []};
 if(isNil "changed") then {changed = false};
 if(isNil "toggleCheck") then {toggleCheck = 0};
 if(isNil "delayTime") then {delayTime = 0};
@@ -17,7 +20,8 @@ if(isNil "enhancedESP2") then {enhancedESP2 = true;} else {enhancedESP2 = !enhan
 if (isNil "AddPlayersToMap") then {AddPlayersToMap = true;};
 if (isNil "AddDeadPlayersToMap") then {AddDeadPlayersToMap = false;};
 if (isNil "AddZombieToMap") then {AddZombieToMap = false;};
-if (isNil "AddVehicleToMap") then {AddVehicleToMap = true;};
+if (isNil "AddUnlockedVehiclesToMap") then {AddUnlockedVehiclesToMap = true;};
+if (isNil "AddLockedVehiclesToMap") then {AddLockedVehiclesToMap = true;};
 if (isNil "AddPlotPoleToMap") then {AddPlotPoleToMap = false;};
 if (isNil "AddStorageToMap") then {AddStorageToMap = false;};
 if (isNil "AddBuildablesToMap") then {AddBuildablesToMap = false;};
@@ -52,10 +56,15 @@ ZombieMarkerColor="ColorGreen";
 ZombieName="Zombie";
 //----------------------#Zombies#--------------------------
 
-//----------------------#Vehicles#-------------------------
-VehicleMarkerType="vehicle";
-VehicleMarkerColor="ColorBlue";
-//----------------------#Vehicles#-------------------------
+//----------------------#Unlocked-Vehicles#-------------------------
+UnlockedVehicleMarkerType="vehicle";
+UnlockedVehicleMarkerColor="ColorBlue";
+//----------------------#Unlocked-Vehicles#-------------------------
+
+//----------------------#Locked-Vehicles#-------------------------
+LockedVehicleMarkerType="vehicle";
+LockedVehicleMarkerColor="ColorRed";
+//----------------------#Locked-Vehicles#-------------------------
 
 //----------------------#PlottPole#-------------------------
 PlotPoleMarkerType="mil_triangle";
@@ -77,7 +86,7 @@ BuildablesMarkerSize = [0.5,0.5];
 
 //----------------------#Crashes#--------------------------
 CrashesMarkerType="vehicle";
-CrashesMarkerColor="ColorRed";
+CrashesMarkerColor="ColorBrown";
 //----------------------#Crashes#--------------------------
 
 //GLOBAL VARS END
@@ -96,7 +105,8 @@ F5Menu =
 		[format["Show Epoch Missions: %1",AddCrashesToMap], [5], "", -5, [["expression", "AddCrashesToMap = !AddCrashesToMap;changed = true;"]], "1", "1"],
 		[format["Show Zombies: %1",AddZombieToMap], [6], "", -5, [["expression", "AddZombieToMap = !AddZombieToMap;changed = true;"]], "1", "1"],
 		[format["Show Players: %1",AddPlayersToMap], [7], "", -5, [["expression", "AddPlayersToMap = !AddPlayersToMap;changed = true;"]], "1", "1"],
-		[format["Show Vehicles: %1",AddVehicleToMap], [8], "", -5, [["expression", "AddVehicleToMap = !AddVehicleToMap;changed = true;"]], "1", "1"]
+		[format["Show Locked Vehicles: %1",AddLockedVehiclesToMap], [8], "", -5, [["expression", "AddLockedVehiclesToMap = !AddLockedVehiclesToMap;changed = true;"]], "1", "1"],
+		[format["Show Unlocked Vehicles: %1",AddUnlockedVehiclesToMap], [8], "", -5, [["expression", "AddUnlockedVehiclesToMap = !AddUnlockedVehiclesToMap;changed = true;"]], "1", "1"]
 	];
 	showCommandingMenu "#USER:F5OptionMenu";
 };
@@ -201,6 +211,7 @@ While {enhancedESP2} do
 			}forEach _zombies;
 		};
 
+		/*	Old vehicle ESP
 		If (AddVehicleToMap) then 
 		{
 			vehList = allmissionobjects "LandVehicle" + allmissionobjects "Air" + allmissionobjects "Boat";
@@ -219,7 +230,60 @@ While {enhancedESP2} do
 				MarkerVeh setMarkerTextLocal format ["%1",_name];
 				i=i+1;
 			} forEach vehList;
-		};	
+		};
+		*/
+
+		if(AddUnlockedVehiclesToMap || AddLockedVehiclesToMap) then {
+			vehList = allmissionobjects "LandVehicle" + allmissionobjects "Air" + allmissionobjects "Boat";
+			lockedVehList = [];
+			unlockedVehList = [];
+
+			{
+				if(locked _x) then {
+					lockedVehList = lockedVehList + [_x];
+				} else {
+					unlockedVehList = unlockedVehList + [_x];
+				};
+			} forEach vehList;
+			
+			If (AddUnlockedVehiclesToMap) then 
+			{
+				i = 0;
+				{
+					_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+					pos = position _x;
+					deleteMarkerLocal ("UvehMarker"+ (str i));
+					MarkerUVeh = "UvehMarker" + (str i);
+					ParamsUVeh=[MarkerUVeh,pos];
+					MarkerUVeh = createMarkerLocal ParamsUVeh;
+					MarkerUVeh setMarkerTypeLocal UnlockedVehicleMarkerType;
+					MarkerUVeh setMarkerSizeLocal GlobalMarkerSize;
+					MarkerUVeh setMarkerPosLocal (pos);
+					MarkerUVeh setMarkerColorLocal(UnlockedVehicleMarkerColor);
+					MarkerUVeh setMarkerTextLocal format ["%1",_name];
+					i=i+1;
+				} forEach unlockedVehList;
+			};
+
+			if (AddLockedVehiclesToMap) then 
+			{			
+				i4 = 0;
+				{
+					_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+					pos = position _x;
+					deleteMarkerLocal ("LvehMarker"+ (str i4));
+					MarkerLVeh = "LvehMarker" + (str i4);
+					ParamsLVeh=[MarkerLVeh,pos];
+					MarkerLVeh = createMarkerLocal ParamsLVeh;
+					MarkerLVeh setMarkerTypeLocal LockedVehicleMarkerType;
+					MarkerLVeh setMarkerSizeLocal GlobalMarkerSize;
+					MarkerLVeh setMarkerPosLocal (pos);
+					MarkerLVeh setMarkerColorLocal(LockedVehicleMarkerColor);
+					MarkerLVeh setMarkerTextLocal format ["%1",_name];
+					i4=i4+1;
+				} forEach lockedVehList;
+			};
+		};
 
 		If(AddPlotPoleToMap && (delayTime == 0 || changed)) then
 		{
@@ -327,13 +391,22 @@ While {enhancedESP2} do
 		markers = [];
 	};
 
-	If (!AddVehicleToMap && changed) then 
+	If (!AddUnlockedVehiclesToMap && changed) then
 	{
 		i=0;
 		{
-			deleteMarkerLocal ("vehMarker"+ (str i));
+			deleteMarkerLocal ("UvehMarker"+ (str i));
 			i=i+1;
-		}forEach vehList;
+		}forEach unlockedVehList;
+	};
+
+	If (!AddLockedVehiclesToMap && changed) then
+	{
+		i4=0;
+		{
+			deleteMarkerLocal ("LvehMarker"+ (str i4));
+			i4=i4+1;
+		}forEach lockedVehList;
 	};
 
 	If (!AddPlotPoleToMap && changed) then 
@@ -427,13 +500,22 @@ if(!enhancedESP2) then
 		}forEach markers;
 	};
 
-	If (AddVehicleToMap) then 
+	If (AddUnlockedVehiclesToMap) then 
 	{
 		i=0;
 		{
-			deleteMarkerLocal ("vehMarker"+ (str i));
+			deleteMarkerLocal ("UvehMarker"+ (str i));
 			i=i+1;
-		}forEach vehList;
+		}forEach unlockedVehList;
+	};
+
+	If (AddLockedVehiclesToMap) then 
+	{
+		i4=0;
+		{
+			deleteMarkerLocal ("LvehMarker"+ (str i4));
+			i4=i4+1;
+		}forEach lockedVehList;
 	};
 
 	If (AddPlotPoleToMap) then 

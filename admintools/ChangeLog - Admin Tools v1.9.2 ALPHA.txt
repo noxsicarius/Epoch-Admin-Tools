@@ -9,6 +9,7 @@ by NoxSicarius
 New Features:
 	Added epoch buildables to ESP
 	Added player storage to ESP
+	Added distinguish between locked/unlock vehicle to ESP
 	Added an optional action menu for players:
 		build bike/mozzie
 		view server rules
