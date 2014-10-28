@@ -219,7 +219,7 @@ fn_BCExport = {
 	_distance = BC_radius;
 	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
 	_objectCount = count _nearest_objects;
-	_i = 0;
+	_i = 1;
 	{
 		private ["_obj_type", "_direction", "_obj_position", "_relative_position", "_row"];
 		_obj_type = typeOf _x;
@@ -238,7 +238,7 @@ fn_BCExport = {
 		};
 		_row set [count _row, _x];
 		_objects set [count _objects, _row];
-		true
+		_i = _i + 1;
 	} count _nearest_objects;
 	
 	EAT_baseExporter = _export;

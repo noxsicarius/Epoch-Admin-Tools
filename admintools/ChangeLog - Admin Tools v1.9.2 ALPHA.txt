@@ -35,7 +35,7 @@ CleanUp:
 
 MD5 hash for the dll files IN THIS VERSION:
 	EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
-	EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
+	EATbaseExporter: 7E85058E271FB47D7E3885A50CC13719
 
 You can check the hash value of a file here: http://onlinemd5.com/
 
