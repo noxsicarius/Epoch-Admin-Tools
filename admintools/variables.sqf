@@ -22,7 +22,11 @@ if(isDedicated) then {
 	};
 	"useBroadcaster" addPublicVariableEventHandler {
 		EAT_toClient = (_this select 1);
-		{(owner _x) publicVariableClient "EAT_toClient";} forEach entities "CAManBase";
+		{
+			if ((getPlayerUID _x ) in SuperAdminList) then {
+				(owner _x) publicVariableClient "EAT_toClient";
+			};
+		} forEach entities "CAManBase";
 	};
 	"EAT_baseExporter" addPublicVariableEventHandler {
 		"EATbaseExporter" callExtension (_this select 1);
@@ -68,7 +72,11 @@ if(isDedicated) then {
 			helpQueue = helpQueue - _array;
 		};
 		EAT_contactAdminClient = helpQueue;
-		{(owner _x) publicVariableClient "EAT_contactAdminClient";} forEach entities "CAManBase";
+		{
+			if ((getPlayerUID _x) in AdminAndModList) then {	//check if the clientID(uniqueID) is an admin|mod
+				(owner _x) publicVariableClient "EAT_contactAdminClient";
+			};
+		} forEach entities "CAManBase";
 	};
 };
 
