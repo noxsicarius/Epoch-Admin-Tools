@@ -1,4 +1,4 @@
-
+private["_player","_playerName","_cancel"];
 _player = player;
 _playerName = (name _player);
 _cancel = _this select 0;

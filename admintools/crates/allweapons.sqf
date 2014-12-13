@@ -66,7 +66,7 @@ if(_LocalOrGlobal == "local") then {
 
 _spawnCrate setDir _dir;
 _spawnCrate setposATL _pos;
-			
+
 {
 	if(_x != "MeleeBaseBallBat") then{
 		_spawnCrate addWeaponCargoGlobal [_x, 5];

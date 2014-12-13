@@ -110,9 +110,24 @@ if ((getPlayerUID player) in SuperAdminList) then {
 	};
 };
 
+/**************************** Functions ****************************/
+
+fnc_actionAllowed = {
+	private["_player","_vehicle","_inVehicle","_onLadder","_canDo"];
+	_player = player; //Setting a local variable as player saves resources
+	_vehicle = vehicle _player;
+	_inVehicle = (_vehicle != _player);
+	_onLadder =	(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState _player) >> "onLadder")) == 1;
+	_canDo = (!r_drag_sqf && !r_player_unconscious && !_onLadder && !_inVehicle);
+
+_canDo
+};
+
 // overwrite epoch public variables
 "PVDZE_plr_SetDate" addPublicVariableEventHandler {};
 
 // Show the admin list has loaded
 adminListLoaded = true;
 diag_log("Admin Tools: variables.sqf loaded");
+
+
