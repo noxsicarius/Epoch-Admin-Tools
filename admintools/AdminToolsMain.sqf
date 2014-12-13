@@ -6,6 +6,11 @@ _EXECscript5 = 'player execVM "admintools\vehicles\%1"';
 _EXECscript6 = '["%1"] execVM "admintools\crates\%2"';
 _EXECscript7 = '["%1","%2"] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
 _EXECscript8 = 'player execVM "admintools\tools\AdminBuild\%1"';
+_EXECskins = '["%1"] execVM "admintools\tools\skinChanger.sqf"';
+_EXECdate = 'EAT_SetDateServer = [%1,%2,%3,%4,0]; publicVariableServer "EAT_SetDateServer"';
+_EXECcloud = 'EAT_SetOvercastServer = %1; publicVariableServer "EAT_SetOvercastServer"';
+_EXECfog = 'EAT_SetFogServer = %1; publicVariableServer "EAT_SetFogServer"';
+_EXECtempVeh = '["%1"] execVM "admintools\tools\addtempvehicle.sqf"';
 
 if ((getPlayerUID player) in AdminList) then { // Admins
 	epochmenustart = [
@@ -36,6 +41,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 		];
 	};
 };
+
 AdminMenu =
 [
 ["",true],
@@ -132,30 +138,29 @@ AdminSkinsMenu =
 [
 ["",true],
 	// Entry Format:["Entry Name",[],"",-5,[["expression",'["Skin_class_name"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Survivor",[],"",-5,[["expression",'["Survivor2_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Hero",[],"",-5,[["expression",'["Survivor3_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Bandit",[],"",-5,[["expression",'["Bandit1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Soldier",[],"",-5,[["expression",'["Soldier1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Ghillie",[],"",-5,[["expression",'["Sniper1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Special Forces",[],"",-5,[["expression",'["CZ_Special_Forces_GL_DES_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Pilot",[],"",-5,[["expression",'["Pilot_EP1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Survivor",[],"",-5,[["expression",format[_EXECskins,"Survivor2_DZ"]]],"1","1"],
+	["Hero",[],"",-5,[["expression",format[_EXECskins,"Survivor3_DZ"]]],"1","1"],
+	["Bandit",[],"",-5,[["expression",format[_EXECskins,"Bandit1_DZ"]]],"1","1"],
+	["Soldier",[],"",-5,[["expression",format[_EXECskins,"Soldier1_DZ"]]],"1","1"],
+	["Ghillie",[],"",-5,[["expression",format[_EXECskins,"Sniper1_DZ"]]],"1","1"],
+	["Special Forces",[],"",-5,[["expression",format[_EXECskins,"CZ_Special_Forces_GL_DES_EP1_DZ"]]],"1","1"],
+	["Pilot",[],"",-5,[["expression",format[_EXECskins,"Pilot_EP1_DZ"]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"],
-		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
+		["Next page", [], "#USER:AdminSkinsMenu2", -5, [["expression", ""]], "1", "1"]
 ];
 
 // Menu2 for changing skins.
 AdminSkinsMenu2 =
 [
 ["",true],
-	["Camo",[],"",-5,[["expression",'["Camo1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Bodyguard",[],"",-5,[["expression",'["Soldier_Bodyguard_AA12_PMC_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Officer",[],"",-5,[["expression",'["Rocket_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Alejandria",[],"",-5,[["expression",'["SurvivorWcombat_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Savannah",[],"",-5,[["expression",'["SurvivorWdesert_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Melly",[],"",-5,[["expression",'["SurvivorWpink_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Bandit Jane",[],"",-5,[["expression",'["BanditW2_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
-	["Invisible",[],"",-5,[["expression",'["Survivor1_DZ"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"],
+	["Camo",[],"",-5,[["expression",format[_EXECskins,"Camo1_DZ"]]],"1","1"],
+	["Bodyguard",[],"",-5,[["expression",format[_EXECskins,"Soldier_Bodyguard_AA12_PMC_DZ"]]],"1","1"],
+	["Officer",[],"",-5,[["expression",format[_EXECskins,"Rocket_DZ"]]],"1","1"],
+	["Alejandria",[],"",-5,[["expression",format[_EXECskins,"SurvivorWcombat_DZ"]]],"1","1"],
+	["Savannah",[],"",-5,[["expression",format[_EXECskins,"SurvivorWdesert_DZ"]]],"1","1"],
+	["Melly",[],"",-5,[["expression",format[_EXECskins,"SurvivorWpink_DZ"]]],"1","1"],
+	["Bandit Jane",[],"",-5,[["expression",format[_EXECskins,"BanditW2_DZ"]]],"1","1"],
+	["Invisible",[],"",-5,[["expression",format[_EXECskins,"Survivor1_DZ"]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -270,11 +275,11 @@ WTMenu=[
 NoMoonNights = [
 	["",true],
 	["No moon night:", [], "", -5, [["expression", ""]], "1", "0"],
-	["8pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 20, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["10pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 22, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["Midnight",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 0, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["2am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 2, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["4am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 19, 4, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["8pm",[],"",-5,[["expression",format[_EXECdate,2012, 6, 19, 20]]],"1","1"],
+	["10pm",[],"",-5,[["expression",format[_EXECdate,2012, 6, 19, 22]]],"1","1"],
+	["Midnight",[],"",-5,[["expression",format[_EXECdate,2012, 6, 19, 0]]],"1","1"],
+	["2am",[],"",-5,[["expression",format[_EXECdate,2012, 6, 19, 2]]],"1","1"],
+	["4am",[],"",-5,[["expression",format[_EXECdate,2012, 6, 19, 4]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -282,11 +287,11 @@ NoMoonNights = [
 FullMoonNights = [
 	["",true],
 	["Full moon night:", [], "", -5, [["expression", ""]], "1", "0"],
-	["8pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 20, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["10pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 22, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["Midnight",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 0, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["2am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 2, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["4am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 4, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["8pm",[],"",-5,[["expression",format[_EXECdate,2012,6,4,20]]],"1","1"],
+	["10pm",[],"",-5,[["expression",format[_EXECdate,2012,6,4,22]]],"1","1"],
+	["Midnight",[],"",-5,[["expression",format[_EXECdate,2012,6,4,4]]],"1","1"],
+	["2am",[],"",-5,[["expression",format[_EXECdate,2012,6,4,2]]],"1","1"],
+	["4am",[],"",-5,[["expression",format[_EXECdate,2012,6,4,4]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -294,15 +299,15 @@ FullMoonNights = [
 DayMenu = [
 	["",true],
 	["Set Day Time:", [], "", -5, [["expression", ""]], "1", "0"],
-	["5am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 5, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["7am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 7, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["9am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 9, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["11am",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 11, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["Noon",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 12, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["1pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 13, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["3pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 15, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["5pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 17, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
-	["7pm",[],"",-5,[["expression",'EAT_SetDateServer = [2012, 6, 4, 19, 0]; publicVariableServer "EAT_SetDateServer"']],"1","1"],
+	["5am",[],"",-5,[["expression",format[_EXECdate,2012,6,4,5]]],"1","1"],
+	["7am",[],"",-5,[["expression",format[_EXECdate,2012,6,4,7]]],"1","1"],
+	["9am",[],"",-5,[["expression",format[_EXECdate,2012,6,4,9]]],"1","1"],
+	["11am",[],"",-5,[["expression",format[_EXECdate,2012,6,4,11]]],"1","1"],
+	["Noon",[],"",-5,[["expression",format[_EXECdate,2012,6,4,12]]],"1","1"],
+	["1pm",[],"",-5,[["expression",format[_EXECdate,2012,6,4,13]]],"1","1"],
+	["3pm",[],"",-5,[["expression",format[_EXECdate,2012,6,4,15]]],"1","1"],
+	["5pm",[],"",-5,[["expression",format[_EXECdate,2012,6,4,17]]],"1","1"],
+	["7pm",[],"",-5,[["expression",format[_EXECdate,2012,6,4,19]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -310,18 +315,18 @@ DayMenu = [
 WeatherMenu = [
 	["",true],
 	["Set Weather:",[],"",-5,[["expression",""]],"1","0"],
-	["Clear Sky",[],"",-5,[["expression",'EAT_SetOvercastServer = 0; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
-	["Slightly Cloudy",[],"",-5,[["expression",'EAT_SetOvercastServer = 0.25; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
-	["Cloudy",[],"",-5,[["expression",'EAT_SetOvercastServer = 0.5; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
-	["Very Cloudy",[],"",-5,[["expression",'EAT_SetOvercastServer = 0.75; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
-	["Storm",[],"",-5,[["expression",'EAT_SetOvercastServer = 1; publicVariableServer "EAT_SetOvercastServer"']],"1","1"],
+	["Clear Sky",[],"",-5,[["expression",format[_EXECcloud,0]]],"1","1"],
+	["Slightly Cloudy",[],"",-5,[["expression",format[_EXECcloud,0.25]]],"1","1"],
+	["Cloudy",[],"",-5,[["expression",format[_EXECcloud,0.5]]],"1","1"],
+	["Very Cloudy",[],"",-5,[["expression",format[_EXECcloud,0.75]]],"1","1"],
+	["Storm",[],"",-5,[["expression",format[_EXECcloud,1]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 	["Set Fog:", [], "", -5, [["expression", ""]], "1", "0"],
-	["Off",[],"",-5,[["expression",'EAT_SetFogServer = 0; publicVariableServer "EAT_SetFogServer"']],"1","1"],
-	["Thin",[],"",-5,[["expression",'EAT_SetFogServer = 0.25; publicVariableServer "EAT_SetFogServer"']],"1","1"],
-	["Medium",[],"",-5,[["expression",'EAT_SetFogServer = 0.5; publicVariableServer "EAT_SetFogServer"']],"1","1"],
-	["Thick",[],"",-5,[["expression",'EAT_SetFogServer = 0.75; publicVariableServer "EAT_SetFogServer"']],"1","1"],
-	["Maximum",[],"",-5,[["expression",'EAT_SetFogServer = 1; publicVariableServer "EAT_SetFogServer"']],"1","1"],
+	["Off",[],"",-5,[["expression",format[_EXECfog,0]]],"1","1"],
+	["Thin",[],"",-5,[["expression",format[_EXECfog,0.25]]],"1","1"],
+	["Medium",[],"",-5,[["expression",format[_EXECfog,0.5]]],"1","1"],
+	["Thick",[],"",-5,[["expression",format[_EXECfog,0.75]]],"1","1"],
+	["Maximum",[],"",-5,[["expression",format[_EXECfog,1]]],"1","1"],
 		["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
@@ -714,12 +719,12 @@ VehicleTempMenu=
 [
 ["",true],
 	["Spawn Temporary Vehicle -- AIR",[],"",-5,[["expression",""]],"1","0"],
-	["MH-6J Little Bird",[],"",-5,[["expression",'["MH6J_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["UH-60M Black Hawk",[],"",-5,[["expression",'["UH60M_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["CH-47F Chinook",[],"",-5,[["expression",'["CH_47F_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["MV-22 Osprey",[],"",-5,[["expression",'["MV22"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["A-10",[],"",-5,[["expression",'["A10"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["C-130J Super Hercules",[],"",-5,[["expression",'["C130J"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
+	["MH-6J Little Bird",[],"",-5,[["expression",format[_EXECtempVeh,"MH6J_EP1"]]],"1","1"],
+	["UH-60M Black Hawk",[],"",-5,[["expression",format[_EXECtempVeh,"UH60M_EP1"]]],"1","1"],
+	["CH-47F Chinook",[],"",-5,[["expression",format[_EXECtempVeh,"CH_47F_EP1"]]],"1","1"],
+	["MV-22 Osprey",[],"",-5,[["expression",format[_EXECtempVeh,"MV22"]]],"1","1"],
+	["A-10 Jet",[],"",-5,[["expression",format[_EXECtempVeh,"A10"]]],"1","1"],
+	["C-130J Super Hercules",[],"",-5,[["expression",format[_EXECtempVeh,"C130J"]]],"1","1"],
 	["",[],"",-5,[["expression",""]],"1","0"],
 		["Next page",[],"#USER:VehicleTempMenu2",-5,[["expression",""]],"1","1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -730,16 +735,16 @@ VehicleTempMenu2 =
 [
 ["",true],
 	["Spawn Temporary Vehicle -- WHEELED",[],"",-5,[["expression",""]],"1","0"],
-	["SUV (Camo)",[],"",-5,[["expression",'["SUV_Camo"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["Armored SUV",[],"",-5,[["expression",'["ArmoredSUV_PMC_DZE"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["MTVR (Fuel)",[],"",-5,[["expression",'["MTVR_Refuel_DES_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["Ural Truck",[],"",-5,[["expression",'["Ural_TK_CIV_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["Ikarus Bus",[],"",-5,[["expression",'["Ikarus_TK_CIV_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["HMMWV (Ambulance)",[],"",-5,[["expression",'["HMMWV_Ambulance"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["Military Offroad Special",[],"",-5,[["expression",'["LandRover_Special_CZ_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["Mountain Bike",[],"",-5,[["expression",'["MMT_USMC"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["Motorcycle",[],"",-5,[["expression",'["M1030"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["ATV",[],"",-5,[["expression",'["ATV_US_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
+	["SUV (Camo)",[],"",-5,[["expression",format[_EXECtempVeh,"SUV_Camo"]]],"1","1"],
+	["Armored SUV",[],"",-5,[["expression",format[_EXECtempVeh,"ArmoredSUV_PMC_DZE"]]],"1","1"],
+	["MTVR (Fuel)",[],"",-5,[["expression",format[_EXECtempVeh,"MTVR_Refuel_DES_EP1"]]],"1","1"],
+	["Ural Truck",[],"",-5,[["expression",format[_EXECtempVeh,"Ural_TK_CIV_EP1"]]],"1","1"],
+	["Ikarus Bus",[],"",-5,[["expression",format[_EXECtempVeh,"Ikarus_TK_CIV_EP1"]]],"1","1"],
+	["HMMWV (Ambulance)",[],"",-5,[["expression",format[_EXECtempVeh,"HMMWV_Ambulance"]]],"1","1"],
+	["Military Offroad Special",[],"",-5,[["expression",format[_EXECtempVeh,"LandRover_Special_CZ_EP1"]]],"1","1"],
+	["Mountain Bike",[],"",-5,[["expression",format[_EXECtempVeh,"MMT_USMC"]]],"1","1"],
+	["Motorcycle",[],"",-5,[["expression",format[_EXECtempVeh,"M1030"]]],"1","1"],
+	["ATV",[],"",-5,[["expression",format[_EXECtempVeh,"ATV_US_EP1"]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Next page", [], "#USER:VehicleTempMenu3", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -750,10 +755,10 @@ VehicleTempMenu3 =
 [
 ["",true],
 	["Spawn Temporary Vehicle -- TRACKED",[],"",-5,[["expression",""]],"1","0"],
-	["M1A1",[],"",-5,[["expression",'["M1A1_US_DES_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["M1A2 TUSK",[],"",-5,[["expression",'["M1A2_US_TUSK_MG_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["M270 MLRS",[],"",-5,[["expression",'["MLRS_DES_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["T-34",[],"",-5,[["expression",'["T34_TK_EP1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
+	["M1A1",[],"",-5,[["expression",format[_EXECtempVeh,"M1A1_US_DES_EP1"]]],"1","1"],
+	["M1A2 TUSK",[],"",-5,[["expression",format[_EXECtempVeh,"M1A2_US_TUSK_MG_EP1"]]],"1","1"],
+	["M270 MLRS",[],"",-5,[["expression",format[_EXECtempVeh,"MLRS_DES_EP1"]]],"1","1"],
+	["T-34",[],"",-5,[["expression",format[_EXECtempVeh,"T34_TK_EP1"]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Next page", [], "#USER:VehicleTempMenu4", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
@@ -764,10 +769,10 @@ VehicleTempMenu4 =
 [
 ["",true],
 	["Spawn Temporary Vehicle -- WATER",[],"",-5,[["expression",""]],"1","0"],
-	["Fishing Boat",[],"",-5,[["expression",'["Fishing_Boat"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["PBX",[],"",-5,[["expression",'["PBX"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["RHIB",[],"",-5,[["expression",'["RHIB"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
-	["Small boat",[],"",-5,[["expression",'["Smallboat_1"] execVM "admintools\tools\addtempvehicle.sqf"']],"1","1"],
+	["Fishing Boat",[],"",-5,[["expression",format[_EXECtempVeh,"Fishing_Boat"]]],"1","1"],
+	["PBX",[],"",-5,[["expression",format[_EXECtempVeh,"PBX"]]],"1","1"],
+	["RHIB",[],"",-5,[["expression",format[_EXECtempVeh,"RHIB"]]],"1","1"],
+	["Small boat",[],"",-5,[["expression",format[_EXECtempVeh,"Smallboat_1"]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		// ["Next page", [], "#USER:VehicleTempMenu5", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
