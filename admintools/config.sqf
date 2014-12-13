@@ -122,4 +122,14 @@ antiSpamLimit = 15; // default 15 contacts
 blindTime = 30; // default 30 seconds
 
 
+/******* Crates *******/
+// This section has the items in each crate
+// Format: variable = [[ITEM,AMOUNT],[ITEM,AMOUNT] ......];
+
+//Backpack crate
+backpackCrateContents = [["DZ_Backpack_EP1", 1],["DZ_British_ACU", 1],["DZ_CivilBackpack_EP1", 1],["DZ_CompactPack_EP1", 1],["DZ_GunBag_EP1", 1],["DZ_LargeGunBag_EP1", 1],["DZ_TK_Assault_Pack_EP1", 1]];
+
+
+
+
 diag_log("Admin Tools: config.sqf loaded");

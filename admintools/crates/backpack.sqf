@@ -7,6 +7,7 @@ _crateName = "Backpack Tent";
 // Crate type
 _classname = "TentStorageDomed2";
 
+
 // Tool use logger
 if(logMajorTool) then {
 	usageLogger = format["%1 %2 -- has spawned a %3 %4",name player,getPlayerUID player,_LocalOrGlobal,_crateName];
@@ -37,13 +38,10 @@ clearWeaponCargoGlobal _spawnCrate;
 clearMagazineCargoGlobal _spawnCrate;
 clearBackpackCargoGlobal _spawnCrate;
 
-_spawnCrate addBackpackCargoGlobal ["DZ_Backpack_EP1", 1];
-_spawnCrate addBackpackCargoGlobal ["DZ_British_ACU", 1];
-_spawnCrate addBackpackCargoGlobal ["DZ_CivilBackpack_EP1", 1];
-_spawnCrate addBackpackCargoGlobal ["DZ_CompactPack_EP1", 1];
-_spawnCrate addBackpackCargoGlobal ["DZ_GunBag_EP1", 1];
-_spawnCrate addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 1];
-_spawnCrate addBackpackCargoGlobal ["DZ_TK_Assault_Pack_EP1", 1];
+// Add gear
+{
+	_spawnCrate addBackpackCargoGlobal _x;
+}forEach backpackCrateContents;
 
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;
