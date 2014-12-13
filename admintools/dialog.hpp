@@ -4,7 +4,7 @@
 
 // Control types
 
-class RscTextT
+class EAT_Veh_RscText
 {
 	access = 0;
 	type = 0;
@@ -22,7 +22,8 @@ class RscTextT
 	font = "Zeppelin32";
 	SizeEx = 0.03921;
 };
-class RscListBox
+
+class EAT_Veh_RscListBox
 {
 	access = 0;
 	type = 5;
@@ -39,6 +40,7 @@ class RscListBox
 	soundSelect[] = {"",0.1,1};
 	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
 	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+
 	class ScrollBar
 	{
 		color[] = {1,1,1,0.6};
@@ -50,6 +52,7 @@ class RscListBox
 		arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
 		border = "\ca\ui\data\ui_border_scroll_ca.paa";
 	};
+
 	style = 16;
 	font = "Zeppelin32";
 	shadow = 2;
@@ -61,11 +64,13 @@ class RscListBox
 	autoScrollDelay = 5;
 	autoScrollRewind = 0;
 };
-class RscShortcutButton
+
+class EAT_Veh_RscShortcutButton
 {
 	type = 16;
 	x = 0.1;
 	y = 0.1;
+
 	class HitZone
 	{
 		left = 0.004;
@@ -73,6 +78,7 @@ class RscShortcutButton
 		right = 0.004;
 		bottom = 0.029;
 	};
+
 	class ShortcutPos
 	{
 		left = 0.0145;
@@ -80,6 +86,7 @@ class RscShortcutButton
 		w = 0.0392157;
 		h = 0.0522876;
 	};
+
 	class TextPos
 	{
 		left = 0.05;
@@ -87,6 +94,7 @@ class RscShortcutButton
 		right = 0.005;
 		bottom = 0.005;
 	};
+
 	shortcuts[] = {};
 	textureNoShortcut = "#(argb,8,8,3)color(0,0,0,0)";
 	color[] = {0.8784,0.8471,0.651,1};
@@ -94,6 +102,7 @@ class RscShortcutButton
 	colorDisabled[] = {1,1,1,0.25};
 	colorBackground[] = {1,1,1,1};
 	colorBackground2[] = {1,1,1,0.4};
+
 	class Attributes
 	{
 		font = "Zeppelin32";
@@ -101,6 +110,7 @@ class RscShortcutButton
 		align = "left";
 		shadow = "true";
 	};
+
 	idc = -1;
 	style = 0;
 	default = 0;
@@ -125,6 +135,7 @@ class RscShortcutButton
 	soundClick[] = {"\ca\ui\data\sound\onclick",0.07,1};
 	soundEscape[] = {"\ca\ui\data\sound\onescape",0.09,1};
 	action = "";
+
 	class AttributesImage
 	{
 		font = "Zeppelin32";
@@ -132,13 +143,14 @@ class RscShortcutButton
 		align = "left";
 	};
 };
-class AdminDialog
+
+class EAT_Veh_AdminDialog
 {
 	idd = -1;
 	movingenable = 0;
 
 	class Controls {
-		class RscText_1000: RscTextT
+		class EAT_Veh_RscText_1000: EAT_Veh_RscText
 		{
 			idc = 1000;
 			x = 0.283646 * safezoneW + safezoneX;
@@ -147,7 +159,8 @@ class AdminDialog
 			h = 0.55016 * safezoneH;
 			colorBackground[] = {0,0,0,0.7};
 		};
-		class RscText_1001: RscTextT
+
+		class EAT_Veh_RscText_1001: EAT_Veh_RscText
 		{
 			idc = 1001;
 			text = "Pick a vehicle or select a category";
@@ -156,7 +169,8 @@ class AdminDialog
 			w = 0.170212 * safezoneW;
 			h = 0.0166935 * safezoneH;
 		};
-		class RscListbox_1500: RscListbox
+
+		class EAT_Veh_RscListBox_1500: EAT_Veh_RscListBox
 		{
 			idc = 13000;
 			x = 0.290407 * safezoneW + safezoneX;
@@ -164,7 +178,8 @@ class AdminDialog
 			w = 0.419186 * safezoneW;
 			h = 0.447636 * safezoneH;
 		};
-		class RscShortcutButton_1700: RscShortcutButton
+
+		class EAT_Veh_RscShortcutButton_1700: EAT_Veh_RscShortcutButton
 		{
 			idc = -1;
 			text = "Temp";
@@ -174,7 +189,8 @@ class AdminDialog
 			h = 0.0590864 * safezoneH;
 			onButtonClick = "TempDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
 		};
-		class RscShortcutButton_1701: RscShortcutButton
+
+		class EAT_Veh_RscShortcutButton_1701: EAT_Veh_RscShortcutButton
 		{
 			idc = -1;
 			text = "Perm";
@@ -184,7 +200,8 @@ class AdminDialog
 			h = 0.0590864 * safezoneH;
 			onButtonClick = "PermDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
 		};
-		class RscShortcutButton_1702: RscShortcutButton
+
+		class EAT_Veh_RscShortcutButton_1702: EAT_Veh_RscShortcutButton
 		{
 			idc = 12004;
 			text = "Air";
@@ -194,7 +211,8 @@ class AdminDialog
 			h = 0.0590864 * safezoneH;
 			onButtonClick="[""Air""] call LoadSpecificList;";
 		};
-		class RscShortcutButton_1704: RscShortcutButton
+
+		class EAT_Veh_RscShortcutButton_1704: EAT_Veh_RscShortcutButton
 		{
 			idc = 12005;
 			text = "Land";
@@ -204,7 +222,8 @@ class AdminDialog
 			h = 0.0590864 * safezoneH;
 			onButtonClick="[""LandVehicle""] call LoadSpecificList;";
 		};
-		class RscShortcutButton_1705: RscShortcutButton
+
+		class EAT_Veh_RscShortcutButton_1705: EAT_Veh_RscShortcutButton
 		{
 			idc = 12006;
 			text = "Sea";
@@ -214,7 +233,9 @@ class AdminDialog
 			h = 0.0590864 * safezoneH;
 			onButtonClick="[""Ship""] call LoadSpecificList;";
 		};
-		class RscShortcutButton_1710: RscShortcutButton
+
+
+		class EAT_Veh_RscShortcutButton_1710: EAT_Veh_RscShortcutButton
 		{
 			idc = -1;
 			text = "Close";

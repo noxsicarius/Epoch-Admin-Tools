@@ -28,7 +28,7 @@ if (isNil "vhnlist") then
 	titleText ["List is ready...","PLAIN DOWN"];titleFadeOut 2;
 };
 
-_dialog = createdialog "AdminDialog";
+_dialog = createdialog "EAT_Veh_AdminDialog";
 lbClear AdminDialogList;
 {
 	private ["_index", "_x","_image"];
