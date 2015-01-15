@@ -115,15 +115,15 @@ if(enhancedESP2) then {
 	dList = []; //List of dead bodies
 	dListMarkers = []; //List of Dead player markers
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
-
+	_player = player;
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
 	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has enabled enhanced ESP",name player];
+		useBroadcaster = format["%1 -- has enabled enhanced ESP",name _player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };
