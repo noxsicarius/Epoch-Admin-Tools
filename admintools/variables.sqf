@@ -124,7 +124,7 @@ _canDo
 };
 
 // overwrite epoch public variables
-"PVDZE_plr_SetDate" addPublicVariableEventHandler {};
+//"PVDZE_plr_SetDate" addPublicVariableEventHandler {};
 
 // Show the admin list has loaded
 adminListLoaded = true;
