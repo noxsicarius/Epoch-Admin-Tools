@@ -1,21 +1,18 @@
 waitUntil {!isNil "adminListLoaded"}; // Wait for adminlist before starting
 waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
 
-_player = player;
-
 // Give players action menu
-if((ActionMenuPlayers && !(((getPlayerUID _player) in AdminAndModList))) || (ActionMenuAdmins && ((getPlayerUID _player) in AdminAndModList))) then {
+if((ActionMenuPlayers && !(((getPlayerUID player) in AdminAndModList))) || (ActionMenuAdmins && ((getPlayerUID player) in AdminAndModList))) then {
 	[] spawn {
 		_idx = -1;
-		_player = player;
-		_veh = vehicle _player;
+		_veh = vehicle player;
 
-		while {alive _player} do {
+		while {alive player} do {
 			if(_idx == -1) then {
-				_idx = (vehicle _player) addaction [("<t color=""#FE9A2E"">" + ("Action Menu") + "</t>"),"admintools\actionMenu\Actions_Menu.sqf","",-107,false,true,"",""];
-				_veh = vehicle _player;
+				_idx = (vehicle player) addaction [("<t color=""#FE9A2E"">" + ("Action Menu") + "</t>"),"admintools\actionMenu\Actions_Menu.sqf","",-107,false,true,"",""];
+				_veh = vehicle player;
 			};
-			if (_veh != vehicle _player) then
+			if (_veh != vehicle player) then
 			{
 				_veh removeAction _idx;
 				_idx = -1;      
@@ -27,11 +24,10 @@ if((ActionMenuPlayers && !(((getPlayerUID _player) in AdminAndModList))) || (Act
 
 
 // Give admins the admin menu
-if ((getPlayerUID _player) in AdminAndModList) then {
+if ((getPlayerUID player) in AdminAndModList) then {
 	[] spawn {
 		_idx = -1;
-		_player = player;
-		_veh = vehicle _player;
+		_veh = vehicle player;
 
 		// Load key macros
 		[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
@@ -39,20 +35,20 @@ if ((getPlayerUID _player) in AdminAndModList) then {
 		
 		// Tool use logger
 		if(logMajorTool || logMinorTool) then {
-			usageLogger = format["%1 %2 -- has logged on",name _player,getPlayerUID _player];
+			usageLogger = format["%1 %2 -- has logged on",name player,getPlayerUID player];
 			[] spawn {publicVariable "usageLogger";};
 		};
 
-		while {alive _player} do
+		while {alive player} do
 		{
 			if(toolsAreActive) then
 			{
 				if (_idx == -1) then
 				{
-					_idx = (vehicle _player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",7,false,true,"",""];
-					_veh = vehicle _player;
+					_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",7,false,true,"",""];
+					_veh = vehicle player;
 				};
-				if (_veh != vehicle _player) then
+				if (_veh != vehicle player) then
 				{
 					_veh removeAction _idx;
 					_idx = -1;      

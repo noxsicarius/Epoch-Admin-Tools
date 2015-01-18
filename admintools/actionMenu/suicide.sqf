@@ -1,6 +1,7 @@
-private ["_Secondary","_onLadder","_canDo"];
+private ["_Secondary","_onLadder","_canDo","_player"];
 
-_Secondary = currentWeapon player;
+_player = player;
+_Secondary = currentWeapon _player;
 _canDo = call fnc_actionAllowed;
 
 suicide_answer=nil;
@@ -26,9 +27,9 @@ if (isNil 'suicide_answer') then {suicide_answer=false;};
 
 if (suicide_answer) then {
 	cutText["You have grown tired of this endless battle.","PLAIN DOWN"];
-	player playmove "ActsPercMstpSnonWpstDnon_suicide1B";
+	_player playmove "ActsPercMstpSnonWpstDnon_suicide1B";
 	sleep 8.4;
-	player fire _Secondary;
+	_player fire _Secondary;
 	_selection = "body";
-	player setHit["body",1];
+	_player setHit["body",1];
 };

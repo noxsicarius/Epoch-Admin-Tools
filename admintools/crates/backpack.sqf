@@ -1,5 +1,6 @@
-private ["_LocalOrGlobal","_spawnCrate","_crateName","_pos","_classname","_dir","_selectDelay"];
+private ["_LocalOrGlobal","_spawnCrate","_crateName","_pos","_classname","_dir","_selectDelay","_player"];
 _LocalOrGlobal = _this select 0;
+_player = player;
 
 // Name of this crate
 _crateName = "Backpack Tent";
@@ -7,21 +8,20 @@ _crateName = "Backpack Tent";
 // Crate type
 _classname = "TentStorageDomed2";
 
-
 // Tool use logger
 if(logMajorTool) then {
-	usageLogger = format["%1 %2 -- has spawned a %3 %4",name player,getPlayerUID player,_LocalOrGlobal,_crateName];
+	usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
 	[] spawn {publicVariable "usageLogger";};
 };
 // Tool use broadcaster
-if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-	useBroadcaster = format["%1 -- has spawned a %2 %3",name player,_LocalOrGlobal,_crateName];
+if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
+	useBroadcaster = format["%1 -- has spawned a %2 %3",name _player,_LocalOrGlobal,_crateName];
 	[] spawn {publicVariableServer "useBroadcaster";};
 };
 
 // Location of player and crate
-_dir = getdir player;
-_pos = getposATL player;
+_dir = getdir _player;
+_pos = getposATL _player;
 _pos = [(_pos select 0)+1*sin(_dir),(_pos select 1)+1*cos(_dir), (_pos select 2)];
 
 if(_LocalOrGlobal == "local") then {
@@ -39,9 +39,7 @@ clearMagazineCargoGlobal _spawnCrate;
 clearBackpackCargoGlobal _spawnCrate;
 
 // Add gear
-{
-	_spawnCrate addBackpackCargoGlobal _x;
-}forEach backpackCrateContents;
+{_spawnCrate addBackpackCargoGlobal _x;}forEach backpackCrateContents;
 
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;

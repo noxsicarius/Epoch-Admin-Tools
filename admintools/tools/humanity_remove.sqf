@@ -2,7 +2,10 @@
 	Remove the selected humanity from the current or targetted player (if one exists).
 	Known issue: can set humanity on non-player targets such as AI (or traders in Epoch).
 */
+private ["_target","_player"];
 _target = cursorTarget;
+_player = player;
+
 hmanityGain = -1;
 
 humanityRemoveScreen = [
@@ -22,14 +25,14 @@ waitUntil{(commandingMenu == "")};
 if((humanityGain == -1)) exitWith {};
 
 if(isNull(_target)) then {
-	_humanity = player getVariable["humanity", 0];
-	player setVariable["humanity", _humanity + humanityGain, true];
+	_humanity = _player getVariable["humanity", 0];
+	_player setVariable["humanity", _humanity + humanityGain, true];
 		
-	cutText [format["%1 humanity has been removed (total: %2) for player %3", humanityGain, _humanity + humanityGain, name player],"PLAIN DOWN"]; titleFadeOut 10;
+	cutText [format["%1 humanity has been removed (total: %2) for player %3", humanityGain, _humanity + humanityGain, name _player],"PLAIN DOWN"]; titleFadeOut 10;
 
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has removed %3 to their humanity (total %4)",name player,getPlayerUID player,humanityGain,_humanity + humanityGain];
+		usageLogger = format["%1 %2 -- has removed %3 to their humanity (total %4)",name _player,getPlayerUID _player,humanityGain,_humanity + humanityGain];
 		[] spawn {publicVariable "usageLogger";};
 	};
 } else {
@@ -41,7 +44,7 @@ if(isNull(_target)) then {
 
 		// Tool use logger
 		if(logMinorTool) then {
-			usageLogger = format["%1 %2 -- has removed %3 to %4's humanity (total %5)",name player,getPlayerUID player,humanityGain,name _target,_humanity + humanityGain];
+			usageLogger = format["%1 %2 -- has removed %3 to %4's humanity (total %5)",name _player,getPlayerUID _player,humanityGain,name _target,_humanity + humanityGain];
 			[] spawn {publicVariable "usageLogger";};
 		};
 	};

@@ -1,7 +1,8 @@
-private ["_obj","_objectID","_objectUID","_cnt","_locationPlayer"];
+private ["_obj","_objectID","_objectUID","_cnt","_locationPlayer","_player"];
 
 _obj = cursorTarget;
-_locationPlayer = player modeltoworld [0,0,0];
+_player = player;
+_locationPlayer = _player modeltoworld [0,0,0];
 _cnt 			= 0;
 
 if (!isNull _obj) then {
@@ -25,7 +26,7 @@ if (!isNull _obj) then {
 	_func_databaseremove = {
 		// Tool use logger
 		if(logMinorTool && !isNull _obj) then {
-			usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name player,getPlayerUID player,_obj,_objectID,_objectUID];
+			usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name _player,getPlayerUID _player,_obj,_objectID,_objectUID];
 			[] spawn {publicVariable "usageLogger";};
 		};
 

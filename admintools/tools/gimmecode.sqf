@@ -1,5 +1,6 @@
-private ["_combo","_owner","_ct"];
+private ["_combo","_owner","_ct","_player"];
 _ct = cursorTarget;
+_player = player;
 _combo = _ct getVariable ["CharacterID","0"];
 
 if(_combo != "0") then {
@@ -16,12 +17,12 @@ if(_combo != "0") then {
 	
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name player,getPlayerUID player,_combo];
+		usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name _player,getPlayerUID _player,_combo];
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has viewed a locked item code",name player];
+	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has viewed a locked item code",name _player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 } else {

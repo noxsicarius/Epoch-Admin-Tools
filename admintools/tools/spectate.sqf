@@ -1,14 +1,16 @@
-private ["_mycv","_n2sh","_n2c","_pmenu","_name"];
+private ["_mycv","_n2sh","_n2c","_pmenu","_name","_player"];
 
 _mycv = cameraView;
 _n2sh = 10;  
 _n2c = "Select Player:";
+_player = player;
+
 shnext = false;
 nlist = [];  
 selecteditem = "";
 spectate = true;
 
-{if (_x != player) then {nlist set [count nlist, name _x];};} forEach playableUnits;
+{if (_x != _player) then {nlist set [count nlist, name _x];};} forEach playableUnits;
 		
 shnmenu = 
 {
@@ -43,12 +45,12 @@ if (selecteditem!= "exitscript") then
 
 			// Tool use logger
 			if(logMajorTool) then {
-				usageLogger = format["%1 %2 -- has begun spectating %3",name player,getPlayerUID player,_name];
+				usageLogger = format["%1 %2 -- has begun spectating %3",name _player,getPlayerUID _player,_name];
 				[] spawn {publicVariable "usageLogger";};
 			};
 			// Tool use broadcaster
-			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-				useBroadcaster = format["%1 -- is spectating %2",name player,_name];
+			if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
+				useBroadcaster = format["%1 -- is spectating %2",name _player,_name];
 				[] spawn {publicVariableServer "useBroadcaster";};
 			};
 		};
@@ -61,7 +63,7 @@ if (!spectate && selecteditem != "exitscript") then
 
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has stopped spectating %3",name player,getPlayerUID player,_name];
+		usageLogger = format["%1 %2 -- has stopped spectating %3",name _player,getPlayerUID _player,_name];
 		[] spawn {publicVariable "usageLogger";};
 	};
 };

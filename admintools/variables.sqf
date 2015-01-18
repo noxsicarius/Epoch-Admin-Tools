@@ -3,6 +3,7 @@
 AdminList = AdminList + SuperAdminList; // add SuperAdmin to Admin
 AdminAndModList = AdminList + ModList; // Add all admin/mod into one list for easy call
 
+/***** Set variables *****/
 tempList = []; // Initialize templist
 helpQueue = []; // Initialize help queue
 
@@ -129,5 +130,3 @@ _canDo
 // Show the admin list has loaded
 adminListLoaded = true;
 diag_log("Admin Tools: variables.sqf loaded");
-
-

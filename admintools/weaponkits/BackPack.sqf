@@ -1,4 +1,5 @@
-private["_bag"];
+private["_bag","_player"];
 _bag = _this select 0;
-removebackpack player;
-player addBackpack _bag;
+_player = player;
+removebackpack _player;
+_player addBackpack _bag;

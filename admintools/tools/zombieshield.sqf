@@ -1,6 +1,7 @@
 if (isNil "SheildMe") then {SheildMe = true;} else {SheildMe = !SheildMe;};
 zombieShield = false;
 ZombieDistance = 0;
+_player = player;
 
 if(SheildMe) then {
 	zombieDistanceScreen = 
@@ -28,20 +29,20 @@ if(SheildMe) then {
 if(SheildMe && zombieShield) then {
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name player,getPlayerUID player,ZombieDistance];
+		usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name _player,getPlayerUID _player,ZombieDistance];
 		[] spawn {publicVariable "usageLogger";};
 	};
 } else {
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has disabled zombie shield",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has disabled zombie shield",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
 };
 
  while {SheildMe && zombieShield} do 
 {
-	_pos = getPos player;
+	_pos = getPos _player;
 	_zombies = _pos nearEntities ["zZombie_Base",ZombieDistance];
 	_count = count _zombies;
 

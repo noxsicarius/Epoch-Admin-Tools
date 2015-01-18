@@ -1,9 +1,10 @@
-private ["_veh","_location","_dist","_vehtospawn","_dir"];
+private ["_veh","_location","_dist","_vehtospawn","_dir","_player"];
  
 _vehtospawn = _this select 0; 
 _dist = 10;
-_dir = getDir vehicle player;
-_location = position player findEmptyPosition [2,20,_vehtospawn];
+_player = player;
+_dir = getDir vehicle _player;
+_location = position _player findEmptyPosition [2,20,_vehtospawn];
 
 if(count _location != 0) then {
 	_veh = createVehicle [_vehtospawn, _location, [], 0, "CAN_COLLIDE"];
@@ -15,7 +16,7 @@ if(count _location != 0) then {
 
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has spawned a temporary vehicle: %3",name player,getPlayerUID player,_vehtospawn];
+		usageLogger = format["%1 %2 -- has spawned a temporary vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
 		[] spawn {publicVariable "usageLogger";};
 	};
 } else {

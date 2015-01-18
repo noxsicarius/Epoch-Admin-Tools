@@ -1,8 +1,9 @@
-private["_zCreate","_zPos","_setZedType","_zSpawnFnc","_zSpawnFnc"];
+private["_zCreate","_zPos","_setZedType","_zSpawnFnc","_zSpawnFnc","_player"];
 zTypes = ["zZombie_Base","z_villager1","z_villager2","z_villager3","z_suit1","z_suit2","z_worker1","z_worker2","z_worker3","z_soldier","z_soldier_heavy","z_soldier_pilot","z_policeman","z_teacher","z_doctor","z_hunter","z_priest"];
 
 area = 0;
 zCount = 0;
+_player = player;
 
 areaMenu =
 [
@@ -51,7 +52,7 @@ waitUntil{(zCount != 0) || (commandingMenu == "")};
 if(zCount == -1) exitWith{};
 
 if(logMajorTool) then {
-	usageLogger = format["%1 %2 -- has spawned %3 zombies",name player,getPlayerUID player,zCount];
+	usageLogger = format["%1 %2 -- has spawned %3 zombies",name _player,getPlayerUID _player,zCount];
 	[] spawn {publicVariable "usageLogger";};
 };
 

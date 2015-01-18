@@ -1,6 +1,7 @@
-private ["_ct","_id","_result"];
-
+private ["_ct","_id","_result","_player"];
 _ct = cursorTarget;
+_player = player;
+
 if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Plane" OR _ct isKindOf "Ship") then
 {
 	_id = _ct getVariable ["CharacterID","0"];
@@ -15,16 +16,16 @@ if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Pla
 	
 	cutText [format["id = %1, result = %2",_id,_result], "PLAIN"];
 
-	player addweapon _result;
+	_player addweapon _result;
 	cutText [format["Key [%1] added to inventory!",_result], "PLAIN"];
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has generated %3 for a %4",name player,getPlayerUID player,_result,_ct];
+		usageLogger = format["%1 %2 -- has generated %3 for a %4",name _player,getPlayerUID _player,_result,_ct];
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has generated a car key",name player];
+	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has generated a car key",name _player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };
