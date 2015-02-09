@@ -23,15 +23,23 @@ if((ActionMenuPlayers && !(((getPlayerUID player) in AdminAndModList))) || (Acti
 };
 
 
-// Give admins the admin menu
-if ((getPlayerUID player) in AdminAndModList) then {
+// Give admins the admin menu (Can be modified to only give the menu to super admin/admin but not moderatos ect) 
+if ((getPlayerUID player) in SuperAdminList && (name player) in SuperAdminNameList || (getPlayerUID player) in AdminList && (name player) in AdminNameList || (getPlayerUID player) in ModList && (name player) in ModNameList) then {
 	[] spawn {
 		_idx = -1;
 		_veh = vehicle player;
 
-		// Load key macros
-		[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
-		[]execVM "admintools\KeyBindings\NumberKeys.sqf";
+		// Load key macros for admin
+		if ((getPlayerUID player) in SuperAdminList && (name player) in SuperAdminNameList || (getPlayerUID player) in AdminList && (name player) in AdminNameList) then {
+			[]execVM "admintools\KeyBindings\AdminFunctionKeys.sqf";
+			[]execVM "admintools\KeyBindings\AdminNumberKeys.sqf";
+		};
+		
+		// Load key macros for moderators
+		if ((getPlayerUID player) in ModList && (name player) in ModNameList) then {
+			[]execVM "admintools\KeyBindings\ModFunctionKeys.sqf";
+			[]execVM "admintools\KeyBindings\ModNumberKeys.sqf";
+		};
 		
 		// Tool use logger
 		if(logMajorTool || logMinorTool) then {
