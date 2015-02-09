@@ -40,4 +40,8 @@ Sleep 0.02;
 // WARNING: F12 is the screen shot key for steam
 // F12_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 88 then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 
+// Used to delete target objects
+Del_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 211) then {[] execVM ""admintools\tools\DatabaseRemove.sqf"";true};"];
+Sleep 0.02;
+
 diag_log("Admin Tools: FunctionKeys.sqf Loaded");
