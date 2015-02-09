@@ -74,14 +74,14 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	} else {
 		//Lock Door
 		
-		_objectCharacterID 	= _obj getVariable ["CharacterID","0"];
+		_objectCharacterID = _obj getVariable ["CharacterID","0"];
 		
-		if(_obj animationPhase "Open_hinge" == 1) then {
-			_obj animate ["Open_hinge", 0];
-		};
-		if(_obj animationPhase "Open_latch" == 1) then {
-			_obj animate ["Open_latch", 0];
-		};
+		if(_obj animationPhase "Open_hinge" == 1) then {_obj animate ["Open_hinge", 0];};
+		if(_obj animationPhase "Open_latch" == 1) then {_obj animate ["Open_latch", 0];};
+		if(_obj animationPhase "Open_door" == 1) then {_obj animate ["Open_door", 0];};
+		if(_obj animationPhase "DoorR" == 1) then {_obj animate ["DoorR", 0];};
+		if(_obj animationPhase "LeftShutter" == 1) then {_obj animate ["LeftShutter", 0];};
+		if(_obj animationPhase "RightShutter" == 1) then {_obj animate ["RightShutter", 0];};
 		
 		// Tool use logger
 		if(logMajorTool) then {
