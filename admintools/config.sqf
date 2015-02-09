@@ -1,19 +1,18 @@
 
 /************** Epoch Admin Tools Variables **************/
 
-//Replace 111111111 with your ID. 
-SuperAdminList = [
-"111111111", // <Your In-Game Name here>
-"999999999" // <S-Admin In-Game Name>
-];
-AdminList = [
-"999999999", // <Admin In-Game Name>
-"999999999" // <Admin In-Game Name>
-];
-ModList = [
-"999999999", // <Moderator In-Game Name>
-"999999999" // <Moderator In-Game Name>
-];
+// Replace 111111111 with your ID. Replace Name1 with your admin name
+// This allows users to use a single GUID and login as either an admin, moderator or regular player.
+// Users can quickly re-log in oder to change their privileges
+ 
+SuperAdminList = ["1111111111111111","22222222222222222"];
+AdminNameList = ["Name1","Name2"];
+
+AdminList = ["1111111111111111","22222222222222222"];
+AdminNameList = ["Name1","Name2"];
+
+ModList = ["1111111111111111","22222222222222222"];
+ModNameList = ["Name1","Name2"];
 
 /*
 	Broadcasts a message to the super admins when the admin tools are used.
@@ -45,6 +44,15 @@ broadcastToolUse = false;
 	logMinorTool = true;
 
 
+/************** Admin Highlight Tool **************/
+
+// This tool still needs some further development
+
+// This places a red arrow above any admin that has any of the selected admin tools enabled
+AdminHighlightToolUsage = true;
+
+// This is a list of the admin tools which will cause the admin to be highlighted with an arrow (If AdminHighlightToolUsage = true)
+HighlightedAdminToolList = ["AdminGodMode","VehicleGodMode","VehicleBoost","InfiniteAmmo","ZombieShield"];
 
 
 /************** Action Menu Variables **************/
