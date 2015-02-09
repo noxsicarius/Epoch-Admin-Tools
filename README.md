@@ -1,7 +1,13 @@
-Epoch Admin Tools V-1.9.2
+Epoch Admin Tools V-2.0
 =================
 
 ![Admin Tools](http://i.imgur.com/j0bTHPB.png)
+
+Alpha GUI
+
+<a href="http://imgur.com/Odbbd0D"><img src="http://i.imgur.com/Odbbd0D.jpg" title="source: imgur.com" /></a>
+
+<a href="http://imgur.com/YRlx65e"><img src="http://i.imgur.com/YRlx65e.jpg" title="source: imgur.com" /></a>
 
 ([Click here for more screenshots](http://imgur.com/a/RH4cx#0))
 
