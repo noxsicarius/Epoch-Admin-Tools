@@ -6,7 +6,7 @@
 // Users can quickly re-log in oder to change their privileges
  
 SuperAdminList = ["1111111111111111","22222222222222222"];
-AdminNameList = ["Name1","Name2"];
+SuperAdminNameList = ["Name1","Name2"];
 
 AdminList = ["1111111111111111","22222222222222222"];
 AdminNameList = ["Name1","Name2"];
