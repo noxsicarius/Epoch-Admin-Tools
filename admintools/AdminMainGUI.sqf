@@ -929,15 +929,15 @@ AdminHighlightToggle = {
 	{
 		// If the specific admin tool is enabled, the arrow is created
 		// (This if statement will need to be replaced with a statement to compare the currently enabled tools with the array from the config)
-		if (Tool_ESP || Tool_ZombieShield || Tool_InfiniteAmmo || Tool_VehicleBoost || Tool_VehicleGodMode || Tool_AdminGodMode) then 
-		{
-			call compile preprocessFileLineNumbers 'admintools\tools\AdminHighlight-Logi.sqf';
-		} 
-		else 
-		{
-			AdminHighlightTool = !AdminHighlightTool;
-			{deleteVehicle _x;} forEach nearestObjects[player,["Sign_arrow_down_large_EP1"],10];
-		};
+		//if (Tool_ESP || Tool_ZombieShield || Tool_InfiniteAmmo || Tool_VehicleBoost || Tool_VehicleGodMode || Tool_AdminGodMode) then 
+		//{
+			//call compile preprocessFileLineNumbers 'admintools\tools\AdminHighlight-Logi.sqf';
+		//} 
+		//else 
+		//{
+			//AdminHighlightTool = !AdminHighlightTool;
+			//{deleteVehicle _x;} forEach nearestObjects[player,["Sign_arrow_down_large_EP1"],10];
+		//};
 	};
 };
 
