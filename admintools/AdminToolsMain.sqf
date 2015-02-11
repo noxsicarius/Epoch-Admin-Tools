@@ -12,7 +12,7 @@ _EXECcloud = 'EAT_SetOvercastServer = %1; publicVariableServer "EAT_SetOvercastS
 _EXECfog = 'EAT_SetFogServer = %1; publicVariableServer "EAT_SetFogServer"';
 _EXECtempVeh = '["%1"] execVM "admintools\tools\addtempvehicle.sqf"';
 
-if ((getPlayerUID player) in AdminList) then { // Admins
+if ((getPlayerUID player) in SuperAdminList && (name player) in SuperAdminNameList || (getPlayerUID player) in AdminList && (name player) in AdminNameList) then { // Super admin and admin
 	epochmenustart = [
 	["",true],
 		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
@@ -28,7 +28,7 @@ if ((getPlayerUID player) in AdminList) then { // Admins
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 	];
 } else {
-	if ((getPlayerUID player) in ModList) then { // Admin Level 3
+	if ((getPlayerUID player) in ModList && (name player) in ModNameList) then { // Mods
 		epochmenustart = [
 		["",true],
 			["-- Epoch Admin Tools (Level: Mod) --", [],"", -5, [["expression", ""]], "1", "0"],
