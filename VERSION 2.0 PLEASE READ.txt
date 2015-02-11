@@ -1,0 +1,36 @@
+This is the very early stage development of Epoch Admin Tool v2.0
+Please bare in mind that v1.9.2 is still in the testing phase so this version will contain many un-finished and un-tested features.
+
+We appreciate everyone's help in testing this tool, but please read the known issues before posting bug reports on the forum.
+
+KNOWN ISSUES:
+On first load the dialog will not be populated, just close the menu and open it again.
+The spawn menu filter buttons are only partially implemented. The filters for the weapons, gear and buildings do not work.
+The spawn skin menu needs more filtering. Some unusable base skins still in there.
+The map markers for the modular built items do not work (from GUI).
+The teleport in vehicle scripts may not work.
+The remove gear script only works on admin at the moment.
+The add ammo, spawn gear and spawn weapon scripts only work on admin at the moment.
+The heal player script only works for the admin (from GUI).
+Vehicle godmode may stay on after you exit the vehicle.
+Admin scroll menu toggle is not always in-sync with the GUI.
+
+
+MAPPED KEYS:
+
+F1 = Teleport via map
+F2 = Teleport player to me
+F3 = Teleport to player
+
+F9/F10 = Toggle admin scroll menu
+
+F11 = Open Admin Dialog menu
+
+DELETE key = Delete target item (DatabaseRemove.sqf)
+
+1 = Unlock item (PointToUnlock.sqf)
+2 = Lock item (PointToLock.sqf)
+3 = Show item code (gimmecode.sqf)
+4 = Make new key (givekey.sqf)
+5 = Point to repair (PointToRepairPERM.sqf)
+
