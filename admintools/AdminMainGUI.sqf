@@ -936,7 +936,7 @@ AdminHighlightToggle = {
 		else 
 		{
 			AdminHighlightTool = !AdminHighlightTool
-			{deleteVehicle _x;} forEach nearestObjects [player,["Sign_arrow_down_large_EP1"],10];
+			{deleteVehicle _x;} forEach nearestObjects[player,["Sign_arrow_down_large_EP1"],10];
 		};
 	};
 };
