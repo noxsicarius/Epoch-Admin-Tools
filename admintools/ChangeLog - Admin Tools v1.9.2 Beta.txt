@@ -1,36 +1,43 @@
 ==================================================
-You are using Epoch Admin Tools version 1.9.2 ALPHA
+You are using Epoch Admin Tools version 1.9.2 BETA
 by NoxSicarius
 ==================================================
 
 
-------------------- Version 1.9.2 ALPHA Changelog ---------------------
+------------------- Version 1.9.2 BETA Changelog ---------------------
 
 New Features:
 	Added epoch buildables to ESP
 	Added player storage to ESP
 	Added distinguish between locked/unlock vehicle to ESP
+	Added vehicle locator by Logi
+	Variables file now used for unmodifiable variables
+	Added Contact Admin (ticket) system:
+		If the action menu is enabled players can request
+		admin assistance
 	Added an optional action menu for players:
 		build bike/mozzie
 		view server rules
 		flip vehicle
 		dance
 		contact admin for help
-	Variables file now used for unmodifiable variables
-	Added vehicle locator by Logi
 
 
 Bug Fixes:
-	Heal Player works now
-	Skin changer loop fix 
+	Heal Player works again
+	Skin changer loop fix
 	Item class updates to epoch class @leodr99
+	Exported bases are now properly formatted
+	Variable collision in dialog.hpp
+		The tool will no longer have rsc list box errors
 
 
 CleanUp:
 	Skin Changer @leodr99
-	Adminlist renamed to config
+	adminlist.sqf has been changed to config.sqf
 	Enhanced ESP
-	Changelog
+	Speed increases in crate spawns
+	Speed increase in most tools by limiting calls to player
 
 
 MD5 hash for the dll files IN THIS VERSION:
