@@ -11,6 +11,7 @@ New Features:
 	Added player storage to ESP
 	Added distinguish between locked/unlock vehicle to ESP
 	Added vehicle locator by Logi
+	Added ArmA building GUI
 	Variables file now used for unmodifiable variables
 	Added Contact Admin (ticket) system:
 		If the action menu is enabled players can request
