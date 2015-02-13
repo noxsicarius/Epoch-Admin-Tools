@@ -3,6 +3,7 @@ private ["_location","_dir","_classname","_item","_hasrequireditem","_missing","
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		dayz_isSwimming;
 _cancel = false;
+_isPerm = fales;
 _reason = "";
 _canBuildOnPlot = false;
 _vehicle = vehicle player;
@@ -33,10 +34,13 @@ if (_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
 if((_this select 0) == "rebuild") then {
 	if(isNil "adminRebuildItem") exitWith {systemChat "You have not selected a buildable item yet"};
 	_item =	adminRebuildItem;
+	_isPerm = adminRebuildPerm;
 } else {
 	_item =	_this select 0;
 	adminRebuildItem = _item;
-	if((_this select 1) == "building") then {isBuilding = true;} else {isBuilding = false;};
+	if(_this select 1) then {isBuilding = true;} else {isBuilding = false;};
+	_isPerm = _this select 2;
+	adminRebuildPerm = _isPerm;
 };
 
 _classname = _item;
@@ -320,7 +324,7 @@ if(!_cancel) then {
 		publicVariableServer "PVDZE_obj_Publish";
 		cutText [format[(localize "str_epoch_player_140"),_combinationDisplay,_text], "PLAIN DOWN", 5];
 	} else {
-		if(!isBuilding) then {
+		if(_isPerm) then {
 			_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
 		
 			// fire?

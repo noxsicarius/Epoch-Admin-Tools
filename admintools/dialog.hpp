@@ -4,7 +4,7 @@
 
 // Control types
 
-class EAT_Veh_RscText
+class EAT_RscText
 {
 	access = 0;
 	type = 0;
@@ -23,7 +23,20 @@ class EAT_Veh_RscText
 	SizeEx = 0.03921;
 };
 
-class EAT_Veh_RscListBox
+class EAT_RscFrame
+{
+	type = 0;
+	idc = -1;
+	style = 64;
+	shadow = 2;
+	colorBackground[] = {0,0,0,0};
+	colorText[] = {1,1,1,1};
+	font = "Zeppelin32";
+	sizeEx = 0.02;
+	text = "";
+};
+
+class EAT_RscListBox
 {
 	access = 0;
 	type = 5;
@@ -65,7 +78,7 @@ class EAT_Veh_RscListBox
 	autoScrollRewind = 0;
 };
 
-class EAT_Veh_RscShortcutButton
+class EAT_RscShortcutButton
 {
 	type = 16;
 	x = 0.1;
@@ -150,7 +163,7 @@ class EAT_Veh_AdminDialog
 	movingenable = 0;
 
 	class Controls {
-		class EAT_Veh_RscText_1000: EAT_Veh_RscText
+		class EAT_veh_RscText_1000: EAT_RscText
 		{
 			idc = 1000;
 			x = 0.283646 * safezoneW + safezoneX;
@@ -160,7 +173,7 @@ class EAT_Veh_AdminDialog
 			colorBackground[] = {0,0,0,0.7};
 		};
 
-		class EAT_Veh_RscText_1001: EAT_Veh_RscText
+		class EAT_veh_RscText_1001: EAT_RscText
 		{
 			idc = 1001;
 			text = "Pick a vehicle or select a category";
@@ -170,7 +183,7 @@ class EAT_Veh_AdminDialog
 			h = 0.0166935 * safezoneH;
 		};
 
-		class EAT_Veh_RscListBox_1500: EAT_Veh_RscListBox
+		class EAT_veh_RscListBox_1500: EAT_RscListBox
 		{
 			idc = 13000;
 			x = 0.290407 * safezoneW + safezoneX;
@@ -179,7 +192,7 @@ class EAT_Veh_AdminDialog
 			h = 0.447636 * safezoneH;
 		};
 
-		class EAT_Veh_RscShortcutButton_1700: EAT_Veh_RscShortcutButton
+		class EAT_veh_RscShortcutButton_1700: EAT_RscShortcutButton
 		{
 			idc = -1;
 			text = "Temp";
@@ -190,7 +203,7 @@ class EAT_Veh_AdminDialog
 			onButtonClick = "TempDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
 		};
 
-		class EAT_Veh_RscShortcutButton_1701: EAT_Veh_RscShortcutButton
+		class EAT_veh_RscShortcutButton_1701: EAT_RscShortcutButton
 		{
 			idc = -1;
 			text = "Perm";
@@ -201,7 +214,7 @@ class EAT_Veh_AdminDialog
 			onButtonClick = "PermDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
 		};
 
-		class EAT_Veh_RscShortcutButton_1702: EAT_Veh_RscShortcutButton
+		class EAT_veh_RscShortcutButton_1702: EAT_RscShortcutButton
 		{
 			idc = 12004;
 			text = "Air";
@@ -212,7 +225,7 @@ class EAT_Veh_AdminDialog
 			onButtonClick="[""Air""] call LoadSpecificList;";
 		};
 
-		class EAT_Veh_RscShortcutButton_1704: EAT_Veh_RscShortcutButton
+		class EAT_veh_RscShortcutButton_1704: EAT_RscShortcutButton
 		{
 			idc = 12005;
 			text = "Land";
@@ -223,7 +236,7 @@ class EAT_Veh_AdminDialog
 			onButtonClick="[""LandVehicle""] call LoadSpecificList;";
 		};
 
-		class EAT_Veh_RscShortcutButton_1705: EAT_Veh_RscShortcutButton
+		class EAT_veh_RscShortcutButton_1705: EAT_RscShortcutButton
 		{
 			idc = 12006;
 			text = "Sea";
@@ -234,8 +247,7 @@ class EAT_Veh_AdminDialog
 			onButtonClick="[""Ship""] call LoadSpecificList;";
 		};
 
-
-		class EAT_Veh_RscShortcutButton_1710: EAT_Veh_RscShortcutButton
+		class EAT_veh_RscShortcutButton_1710: EAT_RscShortcutButton
 		{
 			idc = -1;
 			text = "Close";
@@ -243,6 +255,216 @@ class EAT_Veh_AdminDialog
 			y = 0.720556 * safezoneH + safezoneY;
 			w = 0.0651391 * safezoneW;
 			h = 0.0590864 * safezoneH;
+			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+	};
+};
+
+class EAT_build_AdminDialog
+{
+	idd = -1;
+	movingenable = 0;
+
+	class Controls {
+		class EAT_build_txtBackground: EAT_RscText
+		{
+			idc = 1000;
+			x = 0.312699 * safezoneW + safezoneX;
+			y = 0.229637 * safezoneH + safezoneY;
+			w = 0.375427 * safezoneW;
+			h = 0.521291 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		
+		class EAT_build_txtL: EAT_RscText
+		{
+			idc = 1001;
+			text = "  Building Types";
+			x = 0.320278 * safezoneW + safezoneX;
+			y = 0.235075 * safezoneH + safezoneY;
+			w = 0.0774524 * safezoneW;
+			h = 0.0210828 * safezoneH;
+			colorText[] = {1,1,1,1};
+			colorBackground[] = {0,0,0,1};
+		};
+		
+		class EAT_build_txtR: EAT_RscText
+		{
+			idc = 1002;
+			text = "Select a building below";
+			x = 0.401543 * safezoneW + safezoneX;
+			y = 0.235074 * safezoneH + safezoneY;
+			w = 0.261342 * safezoneW;
+			h = 0.0213143 * safezoneH;
+			colorText[] = {1,1,1,1};
+			colorBackground[] = {0,0,0,1};
+		};
+		
+		class EAT_build_RscListbox_1500: EAT_RscListbox
+		{
+			idc = 13000;
+			x = 0.40084 * safezoneW + safezoneX;
+			y = 0.264902 * safezoneH + safezoneY;
+			w = 0.276449 * safezoneW;
+			h = 0.464555 * safezoneH;
+		};
+		
+		class EAT_build_Frame: EAT_RscFrame
+		{
+			idc = 1800;
+			x = 0.400319 * safezoneW + safezoneX;
+			y = 0.26027 * safezoneH + safezoneY;
+			w = 0.280617 * safezoneW;
+			h = 0.476597 * safezoneH;
+		};
+		
+		class EAT_Build_Frame_L: EAT_RscFrame
+		{
+			idc = 1801;
+			x = 0.318833 * safezoneW + safezoneX;
+			y = 0.26027 * safezoneH + safezoneY;
+			w = 0.079015 * safezoneW;
+			h = 0.361039 * safezoneH;
+		};
+		
+		class EAT_Build_Frame_BL: EAT_RscFrame
+		{
+			idc = 1802;
+			x = 0.318833 * safezoneW + safezoneX;
+			y = 0.625052 * safezoneH + safezoneY;
+			w = 0.0784942 * safezoneW;
+			h = 0.111861 * safezoneH;
+		};
+		
+		class EAT_build_btnResident: EAT_RscShortcutButton
+		{
+			idc = 1702;
+			text = "Residential";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.264902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Residential""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnMilitary: EAT_RscShortcutButton
+		{
+			idc = 1703;
+			text = "Military";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.299902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Military""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnIndustrial: EAT_RscShortcutButton
+		{
+			idc = 1704;
+			text = "Industrial";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.334902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Industrial""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnReligious: EAT_RscShortcutButton
+		{
+			idc = 1705;
+			text = "Religious";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.369902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Religious""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnFarm: EAT_RscShortcutButton
+		{
+			idc = 1706;
+			text = "Farm";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.404902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553564 * safezoneH;
+			onButtonClick="[""Farm""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnOres: EAT_RscShortcutButton
+		{
+			idc = 1707;
+			text = "Ores";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.439902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Ores""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnGraves: EAT_RscShortcutButton
+		{
+			idc = 1708;
+			text = "Graves";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.474902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Graves""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnRoads: EAT_RscShortcutButton
+		{
+			idc = 1709;
+			text = "Roads";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.509902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Roads""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnOther: EAT_RscShortcutButton
+		{
+			idc = 1710;
+			text = "Other";
+			x = 0.323404 * safezoneW + safezoneX;
+			y = 0.544902 * safezoneH + safezoneY;
+			w = 0.0706801 * safezoneW;
+			h = 0.0553565 * safezoneH;
+			onButtonClick="[""Other""] call LoadSpecificList;";
+		};
+		
+		class EAT_build_btnTemp: EAT_RscShortcutButton
+		{
+			idc = 1700;
+			text = "Temp";
+			x = 0.329225 * safezoneW + safezoneX;
+			y = 0.624902 * safezoneH + safezoneY;
+			w = 0.0540102 * safezoneW;
+			h = 0.0507248 * safezoneH;
+			onButtonClick = "TempDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+		
+		class EAT_build_btnPerm: EAT_RscShortcutButton
+		{
+			idc = 1701;
+			text = "Perm";
+			x = 0.329225 * safezoneW + safezoneX;
+			y = 0.653902 * safezoneH + safezoneY;
+			w = 0.0540102 * safezoneW;
+			h = 0.0507248 * safezoneH;
+			onButtonClick = "PermDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+		
+		class EAT_build_btnClose: EAT_RscShortcutButton
+		{
+			idc = 1711;
+			text = "Close";
+			x = 0.329225 * safezoneW + safezoneX;
+			y = 0.684902 * safezoneH + safezoneY;
+			w = 0.0540102 * safezoneW;
+			h = 0.0507248 * safezoneH;
 			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
 		};
 	};
