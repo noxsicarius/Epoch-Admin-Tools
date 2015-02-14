@@ -1,6 +1,8 @@
-///////////////////////////////////////////////////////////////////////////
-/// Styles
-///////////////////////////////////////////////////////////////////////////
+// Colors
+#define COLOR_WHITE {1,1,1,1}
+#define COLOR_BLACK {0,0,0,1}
+#define COLOR_TRANSPARENT {0,0,0,0}
+#define COLOR_ORANGE {1,0.6392,0.0196,1}
 
 // Control types
 
@@ -9,7 +11,7 @@ class EAT_RscText
 	access = 0;
 	type = 0;
 	idc = -1;
-	colorBackground[] = {0,0,0,0};
+	colorBackground[] = COLOR_TRANSPARENT;
 	colorText[] = {0.8784,0.8471,0.651,1};
 	text = "";
 	fixedWidth = 0;
@@ -29,8 +31,8 @@ class EAT_RscFrame
 	idc = -1;
 	style = 64;
 	shadow = 2;
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
+	colorBackground[] = COLOR_TRANSPARENT;
+	colorText[] = COLOR_WHITE;
 	font = "Zeppelin32";
 	sizeEx = 0.02;
 	text = "";
@@ -47,9 +49,9 @@ class EAT_RscListBox
 	colorScrollbar[] = {0.95,0.95,0.95,1};
 	colorSelect[] = {0.95,0.95,0.95,1};
 	colorSelect2[] = {0.95,0.95,0.95,1};
-	colorSelectBackground[] = {0,0,0,1};
+	colorSelectBackground[] = COLOR_BLACK;
 	colorSelectBackground2[] = {0.8784,0.8471,0.651,1};
-	colorBackground[] = {0,0,0,1};
+	colorBackground[] = COLOR_BLACK;
 	soundSelect[] = {"",0.1,1};
 	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
 	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
@@ -57,7 +59,7 @@ class EAT_RscListBox
 	class ScrollBar
 	{
 		color[] = {1,1,1,0.6};
-		colorActive[] = {1,1,1,1};
+		colorActive[] = COLOR_WHITE;
 		colorDisabled[] = {1,1,1,0.3};
 		shadow = 0;
 		thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
@@ -70,7 +72,7 @@ class EAT_RscListBox
 	font = "Zeppelin32";
 	shadow = 2;
 	sizeEx = 0.03921;
-	color[] = {1,1,1,1};
+	color[] = COLOR_WHITE;
 	period = 1.2;
 	maxHistoryDelay = 1;
 	autoScrollSpeed = -1;
@@ -113,7 +115,7 @@ class EAT_RscShortcutButton
 	color[] = {0.8784,0.8471,0.651,1};
 	color2[] = {0.95,0.95,0.95,1};
 	colorDisabled[] = {1,1,1,0.25};
-	colorBackground[] = {1,1,1,1};
+	colorBackground[] = COLOR_WHITE;
 	colorBackground2[] = {1,1,1,0.4};
 
 	class Attributes
@@ -155,6 +157,67 @@ class EAT_RscShortcutButton
 		color = "#E5E5E5";
 		align = "left";
 	};
+};
+
+class EAT_RscButtonMenu : EAT_RscShortcutButton {
+	idc = -1;
+	type = 16;
+	style = "0x02 + 0xC0";
+	default = 0;
+	shadow = 0;
+	w = 0.095589;
+	h = 0.039216;
+	animTextureNormal = "#(argb,8,8,3)color(1,1,1,1)";
+	animTextureDisabled = "#(argb,8,8,3)color(1,1,1,1)";
+	animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
+	animTextureFocused = "#(argb,8,8,3)color(1,1,1,1)";
+	animTexturePressed = "#(argb,8,8,3)color(1,1,1,1)";
+	animTextureDefault = "#(argb,8,8,3)color(1,1,1,1)";
+	colorBackground[] = {0,0,0,0.8};
+	colorBackgroundFocused[] = COLOR_WHITE;
+	colorBackground2[] = {0.75,0.75,0.75,1};
+	color[] = COLOR_WHITE;
+	colorFocused[] = COLOR_BLACK;
+	color2[] = COLOR_BLACK;
+	colorText[] = COLOR_WHITE;
+	colorDisabled[] = {1,1,1,0.25};
+	period = 1.2;
+	periodFocus = 1.2;
+	periodOver = 1.2;
+	size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	tooltipColorText[] = COLOR_WHITE;
+	tooltipColorBox[] = COLOR_WHITE;
+	tooltipColorShade[] = {0,0,0,0.65};
+	class HitZone
+	{
+		left = 0.0;
+		top = 0.0;
+		right = 0.0;
+		bottom = 0.0;
+	};
+	class TextPos
+	{
+		left = "0.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		top = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) - (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)) / 2";
+		right = 0.005;
+		bottom = 0.0;
+	};
+	class Attributes
+	{
+		font = "Zeppelin32";
+		color = "#E5E5E5";
+		align = "left";
+		shadow = "false";
+	};
+	class ShortcutPos
+	{
+		left = "(6.25 * (((safezoneW / safezoneH) min 1.2) / 40)) - 0.0225 - 0.005";
+		top = 0.005;
+		w = 0.0225;
+		h = 0.03;
+	};
+	textureNoShortcut = "";
 };
 
 class EAT_Veh_AdminDialog
@@ -284,8 +347,8 @@ class EAT_build_AdminDialog
 			y = 0.235075 * safezoneH + safezoneY;
 			w = 0.0774524 * safezoneW;
 			h = 0.0210828 * safezoneH;
-			colorText[] = {1,1,1,1};
-			colorBackground[] = {0,0,0,1};
+			colorText[] = COLOR_ORANGE;
+			colorBackground[] = COLOR_BLACK;
 		};
 		
 		class EAT_build_txtR: EAT_RscText
@@ -294,10 +357,10 @@ class EAT_build_AdminDialog
 			text = "Select a building below";
 			x = 0.401543 * safezoneW + safezoneX;
 			y = 0.235074 * safezoneH + safezoneY;
-			w = 0.261342 * safezoneW;
+			w = 0.270000 * safezoneW;
 			h = 0.0213143 * safezoneH;
-			colorText[] = {1,1,1,1};
-			colorBackground[] = {0,0,0,1};
+			colorText[] = COLOR_ORANGE;
+			colorBackground[] = COLOR_BLACK;
 		};
 		
 		class EAT_build_RscListbox_1500: EAT_RscListbox
@@ -465,6 +528,22 @@ class EAT_build_AdminDialog
 			y = 0.684902 * safezoneH + safezoneY;
 			w = 0.0540102 * safezoneW;
 			h = 0.0507248 * safezoneH;
+			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+		class EAT_build_closeBTN: EAT_RscButtonMenu
+		{
+			idc = 1600;
+			text = "X";
+			x = 0.670866 * safezoneW + safezoneX;
+			y = 0.233927 * safezoneH + safezoneY;
+			w = 0.0140000 * safezoneW;
+			h = 0.0203776 * safezoneH;
+			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',1])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.2352])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.2352])", 0.5}; // Red
+			colorText[] = {0.8784,0.8471,0.651,1};
+			class Attributes
+			{
+				align = "center";
+			};
 			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
 		};
 	};
