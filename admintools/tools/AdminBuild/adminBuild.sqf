@@ -3,7 +3,7 @@ private ["_location","_dir","_classname","_item","_hasrequireditem","_missing","
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		dayz_isSwimming;
 _cancel = false;
-_isPerm = fales;
+_isPerm = false;
 _reason = "";
 _canBuildOnPlot = false;
 _vehicle = vehicle player;
