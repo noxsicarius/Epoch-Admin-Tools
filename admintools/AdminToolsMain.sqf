@@ -349,7 +349,7 @@ BuildMenu =
 [
 ["",true],
 	["Rebuild last item",[],"", -5,[["expression",format[_EXECscript7,"rebuild"]]],"1","1"],
-	["Building GUI",[],"", -5, [["expression", format[_EXECscript1,"buildingsDialog.sqf"]]], "1", "1"],
+	["Building GUI", [],"", -5, [["expression", format[_EXECscript1,"buildingsDialog.sqf"]]], "1", "1"],
 	["Base Materials >>",[],"#USER:BaseItems", -5,[["expression",""]],"1","1"],
 	["Storage >>",[],"#USER:BuildStorage", -5,[["expression",""]],"1","1"],
 	["Netting >>",[],"#USER:BuildNetting", -5,[["expression",""]],"1","1"],
@@ -474,7 +474,7 @@ BuildExtras =
 ];
 
 // Menu that spawns TEMPORARY air vehicles
-VehicleTempMenu =
+VehicleTempMenu=
 [
 ["",true],
 	["Spawn Temporary Vehicle -- AIR",[],"",-5,[["expression",""]],"1","0"],
@@ -499,8 +499,6 @@ VehicleTempMenu2 =
 	["MTVR (Fuel)",[],"",-5,[["expression",format[_EXECtempVeh,"MTVR_Refuel_DES_EP1"]]],"1","1"],
 	["Ural Truck",[],"",-5,[["expression",format[_EXECtempVeh,"Ural_TK_CIV_EP1"]]],"1","1"],
 	["Ikarus Bus",[],"",-5,[["expression",format[_EXECtempVeh,"Ikarus_TK_CIV_EP1"]]],"1","1"],
-	["HMMWV (Ambulance)",[],"",-5,[["expression",format[_EXECtempVeh,"HMMWV_Ambulance"]]],"1","1"],
-	["Military Offroad Special",[],"",-5,[["expression",format[_EXECtempVeh,"LandRover_Special_CZ_EP1"]]],"1","1"],
 	["Mountain Bike",[],"",-5,[["expression",format[_EXECtempVeh,"MMT_USMC"]]],"1","1"],
 	["Motorcycle",[],"",-5,[["expression",format[_EXECtempVeh,"M1030"]]],"1","1"],
 	["ATV",[],"",-5,[["expression",format[_EXECtempVeh,"ATV_US_EP1"]]],"1","1"],
@@ -519,21 +517,8 @@ VehicleTempMenu3 =
 	["M270 MLRS",[],"",-5,[["expression",format[_EXECtempVeh,"MLRS_DES_EP1"]]],"1","1"],
 	["T-34",[],"",-5,[["expression",format[_EXECtempVeh,"T34_TK_EP1"]]],"1","1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
-		["Next page", [], "#USER:VehicleTempMenu4", -5, [["expression", ""]], "1", "1"],
+		//["Next page", [], "#USER:VehicleTempMenu4", -5, [["expression", ""]], "1", "1"],
 			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
 ];
 
-// Menu that spawns TEMPORARY water vehicles
-VehicleTempMenu4 =
-[
-["",true],
-	["Spawn Temporary Vehicle -- WATER",[],"",-5,[["expression",""]],"1","0"],
-	["Fishing Boat",[],"",-5,[["expression",format[_EXECtempVeh,"Fishing_Boat"]]],"1","1"],
-	["PBX",[],"",-5,[["expression",format[_EXECtempVeh,"PBX"]]],"1","1"],
-	["RHIB",[],"",-5,[["expression",format[_EXECtempVeh,"RHIB"]]],"1","1"],
-	["Small boat",[],"",-5,[["expression",format[_EXECtempVeh,"Smallboat_1"]]],"1","1"],
-	["", [], "", -5, [["expression", ""]], "1", "0"],
-		// ["Next page", [], "#USER:VehicleTempMenu5", -5, [["expression", ""]], "1", "1"],
-			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
-];
 showCommandingMenu "#USER:epochmenustart";
