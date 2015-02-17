@@ -38,7 +38,7 @@ if((_this select 0) == "rebuild") then {
 } else {
 	_item =	_this select 0;
 	adminRebuildItem = _item;
-	if(_this select 1) then {isBuilding = true;} else {isBuilding = false;};
+	isBuilding = _this select 1;
 	_isPerm = _this select 2;
 	adminRebuildPerm = _isPerm;
 };
