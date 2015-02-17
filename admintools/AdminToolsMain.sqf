@@ -4,7 +4,7 @@ _EXECscript3 = '["%1"] execVM "admintools\weaponkits\BackPack.sqf"';
 _EXECscript4 = 'player execVM "admintools\weaponkits\%1"';
 _EXECscript5 = 'player execVM "admintools\vehicles\%1"';
 _EXECscript6 = '["%1"] execVM "admintools\crates\%2"';
-_EXECscript7 = '["%1","%2"] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
+_EXECscript7 = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
 _EXECscript8 = 'player execVM "admintools\tools\AdminBuild\%1"';
 _EXECskins = '["%1"] execVM "admintools\tools\skinChanger.sqf"';
 _EXECdate = 'EAT_SetDateServer = [%1,%2,%3,%4,0]; publicVariableServer "EAT_SetDateServer"';
