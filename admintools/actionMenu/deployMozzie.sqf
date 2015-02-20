@@ -7,7 +7,7 @@ _vehicle = vehicle _player;
 _canDo = call fnc_actionAllowed;
 _scrapNumber = {_x == "PartGeneric";} count _mags; // must return 2 or more
 _hasItems = ((_scrapNumber > 1) && ("PartEngine" in _mags) && ("ItemJerrycan" in _mags) && ("PartVRotor" in _mags));
-_hasTools = ("ItemToolBox" in _weps);
+_hasTools = ("ItemToolbox" in _weps);
 
 if((_hasItems && _hasTools && RequireToolBoxMozzie && RequirePartsMozzie) || (!RequireToolBoxMozzie && RequirePartsMozzie && _hasItems) || (!RequirePartsMozzie && RequireToolBoxMozzie && _hasTools) || (!RequirePartsMozzie && !RequireToolBoxMozzie)) then {
 	hasMozzieItem = true;
