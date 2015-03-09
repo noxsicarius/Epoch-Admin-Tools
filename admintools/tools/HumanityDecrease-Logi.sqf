@@ -17,7 +17,7 @@ _selectedPlayer setVariable["humanity", _humanity + _humanityChange, true];
 
 // Display a message to the admin that called the script
 _message = format ["You have removed %1 humanity from %3. %3's humanity is now %2!", _humanityChange, _humanity + _humanityChange, name _selectedPlayer];
-_message] execVM "admintools\tools\AdminMessageDisplay-Logi.sqf";
+[_message] execVM "admintools\tools\AdminMessageDisplay-Logi.sqf";
 
 // Tool use logger
 if(logMinorTool) then {
