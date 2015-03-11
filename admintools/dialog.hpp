@@ -38,6 +38,20 @@ class EAT_RscFrame
 	text = "";
 };
 
+class EAT_RscEdit
+{
+    style = 0x00 + 0x40; 
+    font = "Zeppelin32"; 
+	type = 2;
+    shadow = 2; 
+	lineSpacing = 1;
+    sizeEx = 0.03921; 
+	autocomplete = "";
+    colorBackground[] = {0, 0, 0, 1}; 
+    colorText[] = {0.95, 0.95, 0.95, 1}; 
+    colorSelection[] = {0.8784, 0.8471, 0.651, 1.0};
+};
+
 class EAT_RscListBox
 {
 	access = 0;
@@ -323,6 +337,65 @@ class EAT_Veh_AdminDialog
 	};
 };
 
+class EAT_messageBox_Dialog
+{
+	idd = -1;
+	movable = 0;
+
+	class Controls {
+		class EAT_msgBox_Background: EAT_RscText
+		{
+			idc = 1000;
+			x = 0.35677 * safezoneW + safezoneX;
+			y = 0.382451 * safezoneH + safezoneY;
+			w = 0.285304 * safezoneW;
+			h = 0.183649 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class EAT_msgBox_RscText_1001: EAT_RscText
+		{
+			idc = 1001;
+			text = "Send a server message";
+			x = 0.35677 * safezoneW + safezoneX;
+			y = 0.382451 * safezoneH + safezoneY;
+			w = 0.285305 * safezoneW;
+			h = 0.0247882 * safezoneH;
+			colorText[] = {1,0.6392,0.196,1};
+			colorBackground[] = {0,0,0,1};
+		};
+		class EAT_msgBox_txtBox: EAT_RscEdit
+		{
+			idc = 1400;
+			type = 2;
+			x = 0.362278 * safezoneW + safezoneX;
+			y = 0.417716 * safezoneH + safezoneY;
+			w = 0.274365 * safezoneW;
+			h = 0.109082 * safezoneH;
+			text = "";
+			colorSelection[] = {1,1,1,0.25};
+		};
+		class EAT_msgBox_btnSend: EAT_RscShortcutButton
+		{
+			idc = 1700;
+			text = "Send";
+			x = 0.3656 * safezoneW + safezoneX;
+			y = 0.518526 * safezoneH + safezoneY;
+			w = 0.0596567 * safezoneW;
+			h = 0.0535038 * safezoneH;
+			onButtonClick = "SendDialogText = ctrlText ((ctrlParent (_this select 0)) displayCtrl 1400);((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+		class EAT_msgBox_btnClose: EAT_RscShortcutButton
+		{
+			idc = 1701;
+			text = "Close";
+			x = 0.573451 * safezoneW + safezoneX;
+			y = 0.518526 * safezoneH + safezoneY;
+			w = 0.0596567 * safezoneW;
+			h = 0.0525776 * safezoneH;
+			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+	};
+};
 class EAT_build_AdminDialog
 {
 	idd = -1;
@@ -500,7 +573,7 @@ class EAT_build_AdminDialog
 		
 		class EAT_build_btnTemp: EAT_RscShortcutButton
 		{
-			idc = 1700;
+			idc = -1;
 			text = "Temp";
 			x = 0.329225 * safezoneW + safezoneX;
 			y = 0.624902 * safezoneH + safezoneY;
@@ -511,7 +584,7 @@ class EAT_build_AdminDialog
 		
 		class EAT_build_btnPerm: EAT_RscShortcutButton
 		{
-			idc = 1701;
+			idc = -1;
 			text = "Perm";
 			x = 0.329225 * safezoneW + safezoneX;
 			y = 0.653902 * safezoneH + safezoneY;

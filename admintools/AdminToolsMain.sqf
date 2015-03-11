@@ -53,6 +53,7 @@ AdminMenu =
 	["Zombie Shield",[],"", -5,[["expression",format[_EXECscript1,"zombieshield.sqf"]]],"1","1"],
 	["Zombie Spawner", [], "", -5, [["expression", format[_EXECscript1,"zombieSpawn.sqf"]]], "1", "1"],
 	["Heal Players",[],"", -5, [["expression", format[_EXECscript1,"healp.sqf"]]], "1", "1"],
+	["Send Server Message",[],"", -5,[["expression",format[_EXECscript1,"serverMessage.sqf"]]],"1","1"],
 	["Teleport Menu >>",[],"#USER:TeleportMenu", -5, [["expression", ""]], "1", "1"],
 	["Humanity Menu >>",[],"#USER:HumanityMenu", -5, [["expression", ""]], "1", "1"],
 	["", [], "", -5,[["expression", ""]], "1", "0"],

@@ -18,9 +18,11 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 
 /****************** Server Public Variables ******************/
 	if(isDedicated) then {
+		// Log tool use to .txt file
 		"usageLogger" addPublicVariableEventHandler {
 			"EATadminLogger" callExtension (_this select 1);
 		};
+		// Broadcast tool use to super admins to monitor abuse in real time
 		"useBroadcaster" addPublicVariableEventHandler {
 			EAT_toClient = (_this select 1);
 			{
@@ -29,9 +31,18 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 				};
 			} forEach entities "CAManBase";
 		};
+		// Broadcast server message to clients
+		"EAT_serverMessageServer" addPublicVariableEventHandler {
+			EAT_serverMessageClient = (_this select 1);
+			{
+				(owner _x) publicVariableClient "EAT_serverMessageClient";
+			} forEach entities "CAManBase";
+		};
+		// Export base to .sqf
 		"EAT_baseExporter" addPublicVariableEventHandler {
 			"EATbaseExporter" callExtension (_this select 1);
 		};
+		// teleport fix
 		"EAT_teleportFixServer" addPublicVariableEventHandler{
 			_array = (_this select 1);
 			_addRemove = (_array select 0);
@@ -46,21 +57,25 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 			EAT_teleportFixClient = tempList;
 			{(owner _x) publicVariableClient "EAT_teleportFixClient";} forEach entities "CAManBase";
 		};
+		// Broadcast date to clients
 		"EAT_SetDateServer" addPublicVariableEventHandler {
 			EAT_setDateClient = (_this select 1);
 			setDate EAT_setDateClient;
 			{(owner _x) publicVariableClient "EAT_setDateClient";} forEach entities "CAManBase";
 		};
+		// Broadcast weather to clients
 		"EAT_SetOvercastServer" addPublicVariableEventHandler {
 			EAT_setOvercastClient = (_this select 1);
 			5 setOvercast EAT_setOvercastClient;
 			{(owner _x) publicVariableClient "EAT_setOvercastClient";} forEach entities "CAManBase";
 		};
+		// Broadcast fog to clients
 		"EAT_SetFogServer" addPublicVariableEventHandler {
 			EAT_setFogClient = (_this select 1);
 			5 setFog EAT_setFogClient;
 			{(owner _x) publicVariableClient "EAT_setFogClient";} forEach entities "CAManBase";
 		};
+		// Admin ticket system
 		"EAT_contactAdminServer" addPublicVariableEventHandler {
 			_array = (_this select 1);
 			_addRemove = (_array select 0);
@@ -82,28 +97,35 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 	};
 
 /****************** Client Public Variables ******************/
+	// Broadcast tool use to super admin
 	if ((getPlayerUID player) in SuperAdminList) then {
 		"EAT_toClient" addPublicVariableEventHandler {
 			systemChat (_this select 1);
 		};
 	};
-
+	// Display server message
+	"EAT_serverMessageClient" addPublicVariableEventHandler{
+		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
+	};
+	// Teleport fix
 	"EAT_teleportFixClient" addPublicVariableEventHandler {
 		tempList = (_this select 1);
 	};
-
+	// Set date on client
 	"EAT_SetDateClient" addPublicVariableEventHandler {
 		setDate (_this select 1);
 	};
+	// Set overcast on client
 	"EAT_setOvercastClient" addPublicVariableEventHandler {
 		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setOvercast (_this select 1);
 	};
+	// Set fog on client
 	"EAT_setFogClient" addPublicVariableEventHandler {
 		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setFog (_this select 1);
 	};
-
+	// Admin ticket system
 	"EAT_contactAdminClient" addPublicVariableEventHandler {
 		helpQueue = (_this select 1);
 		if ((getPlayerUID player) in AdminAndModList) then {
