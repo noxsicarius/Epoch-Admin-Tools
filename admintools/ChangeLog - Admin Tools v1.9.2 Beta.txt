@@ -12,10 +12,10 @@ New Features:
 	Added distinguish between locked/unlock vehicle to ESP
 	Added vehicle locator by Logi
 	Added ArmA building GUI
-	Variables file now used for unmodifiable variables
-	Added Contact Admin (ticket) system:
-		If the action menu is enabled players can request
-		admin assistance
+	Added ability to spawn permanent ArmA buildings
+	Added server messaging system
+	Variables file now used for unmodifiable variables/functions
+	Added Contact Admin (ticket) system - MUST enable action menu for players
 	Added an optional action menu for players:
 		build bike/mozzie
 		view server rules
@@ -29,8 +29,7 @@ Bug Fixes:
 	Skin changer loop fix
 	Item class updates to epoch class @leodr99
 	Exported bases are now properly formatted
-	Variable collision in dialog.hpp
-		The tool will no longer have rsc list box errors
+	Variable collision in dialog.hpp to stop RSC variable collision errors
 
 
 CleanUp:
@@ -38,7 +37,8 @@ CleanUp:
 	adminlist.sqf has been changed to config.sqf
 	Enhanced ESP
 	Speed increases in crate spawns
-	Speed increase in most tools by limiting calls to player
+	Speed increase in most tools
+	Lower server load by limiting calls between player and server
 
 
 MD5 hash for the dll files IN THIS VERSION:
