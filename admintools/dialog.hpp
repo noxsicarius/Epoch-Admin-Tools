@@ -355,7 +355,7 @@ class EAT_messageBox_Dialog
 		class EAT_msgBox_RscText_1001: EAT_RscText
 		{
 			idc = 1001;
-			text = "Send a server message";
+			text = "PLACEHOLDER";
 			x = 0.35677 * safezoneW + safezoneX;
 			y = 0.382451 * safezoneH + safezoneY;
 			w = 0.285305 * safezoneW;
@@ -396,6 +396,7 @@ class EAT_messageBox_Dialog
 		};
 	};
 };
+
 class EAT_build_AdminDialog
 {
 	idd = -1;

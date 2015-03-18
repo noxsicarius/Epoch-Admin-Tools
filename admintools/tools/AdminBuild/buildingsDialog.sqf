@@ -6,12 +6,12 @@ buildingList = allBuildingList;
 
 _dialog = createdialog "EAT_build_AdminDialog";
 lbClear AdminDialogList;
+
 {
 	private ["_index", "_x"];
 	_index = lbAdd [AdminDialogList, format["%1 - %2 (%3)", _x select 0, _x select 1, _x select 2]];
 	lbSetPicture [AdminDialogList, _index];
 } forEach buildingList;
-
 
 LoadSpecificList = {
 	private ["_kindOf", "_filter", "_cfgvehicles","_dialog","_building"];
@@ -59,6 +59,7 @@ LoadSpecificList = {
 	};
 	
 	lbClear AdminDialogList;
+
 	{
 		private ["_index", "_x"];
 		_index = lbAdd [AdminDialogList, format["%1 - %2 (%3)", _x select 0, _x select 1, _x select 2]];
