@@ -1,11 +1,11 @@
-private ["_worldspace","_charID","_veh","_location","_isOk","_vehtospawn","_dir","_helipad","_removed","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_player"];
- _vehtospawn = _this select 0; 
- _player = player;
- _charID = dayz_characterID;
- _dir = getdir vehicle _player;
- _pos = getPos vehicle _player;
- _pos = [(_pos select 0)+8*sin(_dir),(_pos select 1)+8*cos(_dir),0];
- _worldspace = [_dir,_pos];
+private ["_worldspace","_charID","_veh","_location","_isOk","_vehtospawn","_dir","_pos","_helipad","_removed","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_player"];
+_vehtospawn = _this select 0;
+_player = player;
+_charID = dayz_characterID;
+_dir = getdir vehicle _player;
+_pos = getPos vehicle _player;
+_pos = [(_pos select 0)+8*sin(_dir),(_pos select 1)+8*cos(_dir),0];
+_worldspace = [_dir,_pos];
  
 cutText ["Starting Spawn...", "PLAIN DOWN"];
  
@@ -31,7 +31,7 @@ if (_isOk and _isKeyOK) then {
 	if(count _helipad > 0) then {
 		_location = (getPosATL (_helipad select 0));
 	} else {
-		_location = position _player findEmptyPosition [2,20,_vehtospawn];
+		_location = _pos;
 	};
 	
 	if(count _location != 0) then {
