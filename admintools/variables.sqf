@@ -221,8 +221,7 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 // overwrite epoch public variables
 //"PVDZE_plr_SetDate" addPublicVariableEventHandler {};
 
-// Adds the admin build items to the allowed objects to
-// allow for permanent building placement
+// Adds the admin build items to the allowed objects
 {dayz_allowedObjects = dayz_allowedObjects + [_x select 2];}forEach allBuildingList;
 
 // Show the admin list has loaded
