@@ -61,7 +61,23 @@ if(isNumber (configFile >> "CfgVehicles" >> _classname >> "nounderground")) then
 _offset = 	getArray (configFile >> "CfgVehicles" >> _classname >> "offset");
 if((count _offset) <= 0) then {
 	if(isBuilding) then {
-		_offset = [0,10,2];
+		if(_item in (buildResidential - buildShed)) then {
+			_offset = [0,15,2];
+		} else {
+			if(_item in (buildCastle + buildMilitary)) then {
+				_offset = [0,3,2];
+			} else {
+				if(_item in buildReligious) then {
+					_offset = [0,25,2];
+				} else {
+					if(_item in buildGrave + buildOutdoors) then {
+						_offset = [0,2,1];
+					} else {
+						_offset = [0,6,2];
+					};
+				};
+			};
+		};
 	} else {
 		_offset = [0,2,0];
 	};

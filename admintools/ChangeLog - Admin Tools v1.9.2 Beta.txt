@@ -14,8 +14,9 @@ New Features:
 	Added ArmA building GUI
 	Added ability to spawn permanent ArmA buildings
 	Added server messaging system
-	Variables file now used for unmodifiable variables/functions
 	Added Contact Admin (ticket) system - MUST enable action menu for players
+	Added vehicle revive for destroyed vehicles
+	Variables file now used for unmodifiable variables/functions
 	Added an optional action menu for players:
 		build bike/mozzie
 		view server rules
