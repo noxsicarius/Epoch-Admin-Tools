@@ -40,6 +40,7 @@ CleanUp:
 	Speed increases in crate spawns
 	Speed increase in most tools
 	Lower server load by limiting calls between player and server
+	Admin Build
 
 
 MD5 hash for the dll files IN THIS VERSION:

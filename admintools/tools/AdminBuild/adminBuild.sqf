@@ -1,13 +1,14 @@
-private ["_location","_dir","_classname","_item","_hasrequireditem","_missing","_hastoolweapon","_cancel","_reason","_started","_finished","_animState","_isMedic","_dis","_sfx","_hasbuilditem","_tmpbuilt","_onLadder","_isWater","_require","_text","_offset","_IsNearPlot","_isOk","_location1","_location2","_counter","_limit","_proceed","_num_removed","_position","_object","_canBuildOnPlot","_friendlies","_nearestPole","_ownerID","_findNearestPoles","_findNearestPole","_distance","_classnametmp","_ghost","_isPole","_needText","_lockable","_zheightchanged","_rotate","_combination_1","_combination_2","_combination_3","_combination_4","_combination","_combination_1_Display","_combinationDisplay","_zheightdirection","_abort","_isNear","_need","_needNear","_vehicle","_inVehicle","_requireplot","_objHDiff","_isLandFireDZ","_isTankTrap"];
+private ["_location","_dir","_classname","_item","_cancel","_reason","_dis","_tmpbuilt","_text","_offset","_IsNearPlot","_isOk","_location1","_location2","_position","_object",
+"_ownerID","_findNearestPoles","_findNearestPole","_distance","_classnametmp","_ghost","_isPole","_needText","_lockable","_zheightchanged","_rotate","_combination_1",
+"_combination_2","_combination_3","_combination_4","_combination","_combination_1_Display","_combinationDisplay","_zheightdirection","_vehicle","_inVehicle","_objHDiff",
+"_isLandFireDZ"];
 
-_onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
-_isWater = 		dayz_isSwimming;
 _cancel = false;
 _isPerm = false;
 _reason = "";
-_canBuildOnPlot = false;
 _vehicle = vehicle player;
 _inVehicle = (_vehicle != player);
+_canDo = call fnc_actionAllowed;
 
 DZE_Q = false;
 DZE_Z = false;
@@ -26,10 +27,9 @@ DZE_cancelBuilding = false;
 
 call gear_ui_init;
 closeDialog 1;
+
 if(isNil 'isBuilding') then {isBuilding = false};
-if (_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
-if (_inVehicle) exitWith {cutText [(localize "str_epoch_player_42"), "PLAIN DOWN"];};
-if (_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
+if(!_canDo) exitWith {cutText ["Cannot build while on ladder, in water, in vehicle","PLAIN DOWN"];};
 
 if((_this select 0) == "rebuild") then {
 	if(isNil "adminRebuildItem") exitWith {systemChat "You have not selected a buildable item yet"};
@@ -107,8 +107,6 @@ _IsNearPlot = count (_findNearestPole);
 
 // If item is plot pole && another one exists within 45m
 if(_isPole && _IsNearPlot > 0) exitWith {cutText [(localize "str_epoch_player_44") , "PLAIN DOWN"]; };
-
-_missing = "";
 
 _location = [0,0,0];
 _isOk = true;
