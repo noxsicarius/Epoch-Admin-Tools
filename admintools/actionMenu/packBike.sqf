@@ -59,12 +59,11 @@ if (_finished) then {
 	};
 	
 	cutText ["\nYou have packed a bike!", "PLAIN DOWN",3];
-	DZE_ActionInProgress = false;
 } else {
 	r_interrupt = false;
 	_player switchMove "";
 	_player playActionNow "stop";
-	DZE_ActionInProgress = false;
 		
 	cutText ["\n\nCanceled pack bike!", "PLAIN DOWN",4];
 };
+DZE_ActionInProgress = false;

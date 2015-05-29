@@ -102,3 +102,5 @@ TransformAnimalMenu =
 		["Main Menu", [20], "#USER:ActionMenu", -5, [["expression", ""]], "1", "1"]
 ];
 showCommandingMenu "#USER:ActionMenu";
+
+if(ActionMenuPlayers || ActionMenuAdmins){diag_log("Admin Tools: Actions_Menu.sqf loaded");};

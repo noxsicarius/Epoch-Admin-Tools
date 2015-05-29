@@ -1,13 +1,11 @@
-private ["_Secondary","_onLadder","_canDo","_player"];
+private ["_Secondary","_onLadder","_player"];
 
 _player = player;
 _Secondary = currentWeapon _player;
-_canDo = call fnc_actionAllowed;
 
 suicide_answer=nil;
 
-if(!_canDo) exitWith {cutText ["You are already performing an action","PLAIN DOWN"];};
-if (dayz_combat == 1) exitWith {cutText ["", "PLAIN DOWN"];};
+if (dayz_combat == 1) exitWith {cutText ["You are in combat", "PLAIN DOWN"];};
 
 DamiSpawn = 
 [

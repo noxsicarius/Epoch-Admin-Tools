@@ -1,4 +1,4 @@
-private ["_mags","_player","_weps","_hasItems","_hasTools","_scrapNumber","_canDo","_onLadder","_finished","_finishedTime","_veh","_location","_vehtospawn","_dir","_pos","_dist","_location","_worldspace"];
+private ["_mags","_player","_weps","_hasItems","_hasTools","_scrapNumber","_canDo","_finished","_finishedTime","_veh","_vehtospawn","_dir","_pos","_dist"];
 
 _player = player; //Setting a local variable as player saves resources
 _mags = magazines _player;
@@ -74,8 +74,6 @@ if (_finished) then {
 	_dir = getDir vehicle _player;
 	_pos = getPosATL vehicle _player;
 	_pos = [(_pos select 0)+_dist * sin(_dir),(_pos select 1)+ _dist * cos(_dir),0];
-	_worldspace = [_dir,_pos];
-	_location = _pos; 
 	_veh = createVehicle [_vehtospawn, _pos, [], 0, "CAN_COLLIDE"];
 	_veh setVariable ["MalSar",1,true];
 	_veh setVariable ["ObjectID", "1", true];
