@@ -1,38 +1,28 @@
-private ["_mycv","_n2sh","_n2c","_pmenu","_name","_player"];
+private ["_mycv","_max","_j","_name","_player"];
 
 _mycv = cameraView;
-_n2sh = 10;  
-_n2c = "Select Player:";
 _player = player;
+_max = 10;
+_j = 0;
 
-shnext = false;
-nlist = [];  
-selecteditem = "";
+pMenuTitle = "Select Player:";
+snext = false;
+plist = [];  
+pselect5 = "";
 spectate = true;
 
-{if (_x != _player) then {nlist set [count nlist, name _x];};} forEach playableUnits;
-		
-shnmenu = 
+{if (_x != _player) then {plist set [count plist, name _x];};} forEach playableUnits;
+
+while {pselect5==""} do
 {
-	_pmenu = [["",true],[_n2c, [-1], "", -5, [["expression", ""]], "1", "0"]];
-	for "_i" from (_this select 0) to (_this select 1) do
-	{_arr = [format['%1',nlist select (_i)], [_i - (_this select 0) + 2],  "", -5, [["expression", format["selecteditem = nlist select %1;",_i]]], "1", "1"];_pmenu set [_i+2, _arr];};
-	if (count nlist >  (_this select 1)) then {_pmenu set [(_this select 1)+2, ["Next", [12], "", -5, [["expression", "shnext = true;"]], "1", "1"]];}
-	else {_pmenu set [(_this select 1)+2, ["", [-1], "", -5, [["expression", ""]], "1", "0"]];};
-	_pmenu set [(_this select 1)+3, ["Exit", [13], "", -5, [["expression", "selecteditem = 'exitscript';"]], "1", "1"]];
-	showCommandingMenu "#USER:_pmenu";
+	[_j,(_j+_max) min (count plist)] call fn_smenu;_j=_j+_max;
+	WaitUntil {pselect5!="" || snext};	
+	snext = false;
 };
-_j = 0; _n2sh = 10; if (_n2sh>9) then {_n2sh=10;};
-while {selecteditem==""} do
+
+if (pselect5!= "exit" && pselect5!="") then
 {
-	[_j,(_j+_n2sh) min (count nlist)] call shnmenu;_j=_j+_n2sh;
-	WaitUntil {selecteditem!="" or shnext};	
-	shnext = false;
-};
-	
-if (selecteditem!= "exitscript") then
-{
-	_name = selecteditem;
+	_name = pselect5;
 	{
 		if(format[name _x] == _name) then 
 		{
@@ -57,7 +47,7 @@ if (selecteditem!= "exitscript") then
 	} forEach playableUnits;
 };
 spectate = false;
-if (!spectate && selecteditem != "exitscript") then 
+if (!spectate && pselect5 != "exit") then 
 {	
 	titleText ["Spectate done","PLAIN DOWN"];titleFadeOut 4;
 
