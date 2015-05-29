@@ -7,18 +7,10 @@ AdminAndModList = AdminList + ModList; // Add all admin/mod into one list for ea
 tempList = []; // Initialize templist
 helpQueue = []; // Initialize help queue
 
-/*
-	Determines default on or off for admin tools menu
-	Set this to false if you want the menu to be off by default.
-	F11 turns the tool off, F10 turns it on.
-	Leave this as True for now, it is under construction.
-*/
-if (isNil "toolsAreActive") then {toolsAreActive = true;};
-
 
 /****************** Server Public Variables ******************/
 	if(isDedicated) then {
-		// Log tool use to .txt file
+		// Log tool usage to .txt file
 		"usageLogger" addPublicVariableEventHandler {
 			"EATadminLogger" callExtension (_this select 1);
 		};
@@ -203,9 +195,9 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 	weaponCrateMagazines = [["2Rnd_shotgun_74Slug", 20],["2Rnd_shotgun_74Pellets", 20],["5Rnd_127x108_KSVK", 20],["5Rnd_127x99_as50", 20],["5Rnd_762x51_M24", 20],["5Rnd_86x70_L115A1", 20],["5x_22_LR_17_HMR", 20],["6Rnd_45ACP", 20],["7Rnd_45ACP_1911", 20],["8Rnd_9x18_Makarov", 20],["8Rnd_9x18_MakarovSD", 20],["8Rnd_B_Beneli_74Slug", 20],["8Rnd_B_Beneli_Pellets", 20],["8Rnd_B_Saiga12_74Slug", 20],["8Rnd_B_Saiga12_Pellets", 20],["10Rnd_127x99_M107", 20],["10Rnd_762x54_SVD", 20],["10x_303", 20],["15Rnd_9x19_M9", 20],["15Rnd_9x19_M9SD", 20],["15Rnd_W1866_Slug", 20],["15Rnd_W1866_Pellet", 20],["17Rnd_9x19_glock17", 20],["20Rnd_556x45_Stanag", 20],["20Rnd_762x51_DMR", 20],["20Rnd_762x51_FNFAL", 20],["20Rnd_B_765x17_Ball", 20],["30Rnd_545x39_AK", 20],["30Rnd_545x39_AKSD", 20],["30Rnd_556x45_G36", 20],["30Rnd_556x45_G36SD", 20],["30Rnd_556x45_Stanag", 20],["30Rnd_556x45_StanagSD", 20],["30Rnd_762x39_AK47", 20],["30Rnd_9x19_MP5", 20],["30Rnd_9x19_MP5SD", 20],["30Rnd_9x19_UZI", 20],["30Rnd_9x19_UZI_SD", 20],["50Rnd_127x108_KORD", 20],["64Rnd_9x19_Bizon", 20],["64Rnd_9x19_SD_Bizon", 20],["75Rnd_545x39_RPK", 20],["100Rnd_762x51_M240", 20],["100Rnd_762x54_PK", 20],["100Rnd_556x45_BetaCMag", 20],["100Rnd_556x45_M249", 20],["200Rnd_556x45_L110A1", 20],["200Rnd_556x45_M249", 20],["BoltSteel", 20],["PG7V", 20],["1Rnd_HE_M203", 20],["HandGrenade_west", 20],["SmokeShell", 20],["SmokeShellGreen", 20],["SmokeShellRed", 20],["PipeBomb", 20]];
 
 	
-/**************************** Functions ****************************/
+/**************************** Common Functions ****************************/
 
-	// This is a centralized function for checking if an acion is allowed to take place.
+	// This is a centralized function for checking if an action is allowed to take place.
 	// This is basically the "_canDo" found in player actions.
 	fnc_actionAllowed = {
 		private["_player","_vehicle","_inVehicle","_onLadder","_canDo"];
@@ -217,6 +209,86 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 
 	_canDo
 	};
+	
+	// Generates a selectable list of players for teleports and spectate
+	// Title is set by setting pMenuTitle = "TITLE HERE" before calling the function
+	pMenuTitle = "";
+	fn_smenu =
+	{
+		private["_pmenu"];
+		_pmenu = [["",true],[pMenuTitle, [-1], "", -5, [["expression", ""]], "1", "0"]];
+		for "_i" from (_this select 0) to (_this select 1) do
+		{_arr = [format['%1', plist select (_i)], [12],  "", -5, [["expression", format ["pselect5 = plist select %1;", _i]]], "1", "1"]; _pmenu set [_i + 2, _arr];};
+		if (count plist > (_this select 1)) then {_pmenu set [(_this select 1) + 2, ["Next", [13], "", -5, [["expression", "snext = true;"]], "1", "1"]];}
+		else {_pmenu set [(_this select 1) + 2, ["", [-1], "", -5, [["expression", ""]], "1", "0"]];};
+		_pmenu set [(_this select 1) + 3, ["Exit", [13], "", -5, [["expression", "pselect5 = 'exit';"]], "1", "1"]];
+		showCommandingMenu "#USER:_pmenu";
+	};
+
+	
+	
+/********************** Admin/Mod functions/variables **********************/
+	if ((getPlayerUID player) in AdminAndModList) then {
+	
+		//Admin-Mod mode script calls
+			playerGodToggle = {
+				playerGod = !playerGod;
+				[] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";
+			};
+			vehicleGodToggle = {
+				vehicleGod = !vehicleGod;
+				[] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";
+			};
+			playerESPToggle = {
+				playerESP = !playerESP;
+				if(playerESP && enhancedESP) then {enhancedESP = false; [enhancedESP] execVM "admintools\tools\AdminMode\ESPenhanced.sqf";};
+				[] execVM "admintools\tools\AdminMode\ESPplayer.sqf";
+			};
+			enhancedESPToggle = {
+				enhancedESP = !enhancedESP;
+				if(playerESP && enhancedESP) then {playerESP = false; [playerESP] execVM "admintools\tools\AdminMode\ESPplayer.sqf";};
+				[] execVM "admintools\tools\AdminMode\ESPenhanced.sqf";
+			};
+			grassOffToggle = {
+				grassOff = !grassOff;
+				[] execVM "admintools\tools\AdminMode\GrassOFF.sqf";
+			};
+			infAmmoToggle = {
+				infAmmo = !infAmmo;
+				[] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";
+			};
+			speedBoostToggle = {
+				speedBoost = !speedBoost;
+				[] execVM "admintools\tools\AdminMode\speedboost.sqf";
+			};
+			invisibilityToggle = {
+				invisibility = !invisibility;
+				[] execVM "admintools\tools\AdminMode\Invisibility.sqf";
+			};
+			flyingToggle = {
+				flying = !flying;
+				[] execVM "admintools\tools\AdminMode\Flying.sqf";
+			};
+			adminBuildToggle = {
+				adminBuild = !adminBuild;
+				[] execVM "admintools\tools\AdminMode\AdminFastBuild.sqf";
+			};
+			
+		// Admin-mod mode toggle function
+			AdminToggle =
+			{
+				if (speedBoost) then {[] execVM "admintools\tools\AdminMode\speedboost.sqf";};
+				if (enhancedESP) then {[] execVM "admintools\tools\AdminMode\ESPenhanced.sqf";};
+				if (playerESP) then {[] execVM "admintools\tools\AdminMode\ESPplayer.sqf";};
+				if (invisibility) then {[] execVM "admintools\tools\AdminMode\Invisibility.sqf";};
+				if (infAmmo) then {[] execVM "admintools\tools\AdminMode\InfiniteAmmo.sqf";};
+				if (flying) then {[] execVM "admintools\tools\AdminMode\Flying.sqf";};
+				if (playerGod) then {[] execVM "admintools\tools\AdminMode\GodModePlayer.sqf";};
+				if (vehicleGod) then {[] execVM "admintools\tools\AdminMode\GodModeVehicle.sqf";};
+				if (grassOff) then {[] execVM "admintools\tools\AdminMode\GrassOFF.sqf";};
+				if (adminBuild) then {[] execVM "admintools\tools\AdminMode\AdminFastBuild.sqf";};
+			};
+	};
 
 // overwrite epoch public variables
 //"PVDZE_plr_SetDate" addPublicVariableEventHandler {};
@@ -224,6 +296,4 @@ if (isNil "toolsAreActive") then {toolsAreActive = true;};
 // Adds the admin build items to the allowed objects
 {dayz_allowedObjects = dayz_allowedObjects + [_x select 2];}forEach allBuildingList;
 
-// Show the admin list has loaded
-adminListLoaded = true;
 diag_log("Admin Tools: variables.sqf loaded");
