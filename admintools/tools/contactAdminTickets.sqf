@@ -7,30 +7,19 @@ helpQueueMenu =
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Exit", [20], "", -5, [["expression", ""]], "1", "1"]
 ];
-
+	
 fn_tpToPlayer = {
-	private ["_name","_pmenu","_max"];
-	_player = player;
-	_max = 10; snext = false; plist = []; pselect5 = "";
+	private ["_name","_pmenu","_max","_player"];
+	_player = player; _j = 0; _max = 10;
+
+	snext = false; plist = []; pselect5 = "";
 	{plist set [count plist, _x];} forEach helpQueue;
-
-	smenu =
-	{
-		_pmenu = [["",true],["Teleport to Player:", [-1], "", -5, [["expression", ""]], "1", "0"]];
-		for "_i" from (_this select 0) to (_this select 1) do
-		{_arr = [format['%1', plist select (_i)], [12],  "", -5, [["expression", format ["pselect5 = plist select %1;", _i]]], "1", "1"]; _pmenu set [_i + 2, _arr];};
-		if (count plist > (_this select 1)) then {_pmenu set [(_this select 1) + 2, ["Next", [13], "", -5, [["expression", "snext = true;"]], "1", "1"]];}
-		else {_pmenu set [(_this select 1) + 2, ["", [-1], "", -5, [["expression", ""]], "1", "0"]];};
-		_pmenu set [(_this select 1) + 3, ["Exit", [13], "", -5, [["expression", "pselect5 = 'exit';"]], "1", "1"]];
-		showCommandingMenu "#USER:_pmenu";
-	};
-
-	_j = 0; _max = 10; if (_max>9) then {_max = 10;};
+	pMenuTitle = "Teleport to Player:";
 
 	while {pselect5 == ""} do
 	{
-		[_j, (_j + _max) min (count plist)] call smenu; _j = _j + _max;
-		WaitUntil {pselect5 != "" or snext};	
+		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+		WaitUntil {pselect5 != "" or snext};
 		snext = false;
 	};
 
@@ -72,27 +61,16 @@ fn_tpToPlayer = {
 };
 
 fn_tpToMe = {
-	private ["_name","_pmenu","_max","_UID"];
-	_player = player;
-	_max = 10; snext = false; plist = []; pselect5 = "";
+	private ["_name","_pmenu","_max","_UID","_player"];
+	_player = player; _j = 0; _max = 10;
+	
+	snext = false; plist = []; pselect5 = "";
 	{plist set [count plist, _x];} forEach helpQueue;
-
-	smenu =
-	{
-		_pmenu = [["",true],["Teleport to Me:", [-1], "", -5, [["expression", ""]], "1", "0"]];
-		for "_i" from (_this select 0) to (_this select 1) do
-		{_arr = [format['%1', plist select (_i)], [12],  "", -5, [["expression", format ["pselect5 = plist select %1;", _i]]], "1", "1"]; _pmenu set [_i + 2, _arr];};
-		if (count plist > (_this select 1)) then {_pmenu set [(_this select 1) + 2, ["Next", [13], "", -5, [["expression", "snext = true;"]], "1", "1"]];}
-		else {_pmenu set [(_this select 1) + 2, ["", [-1], "", -5, [["expression", ""]], "1", "0"]];};
-		_pmenu set [(_this select 1) + 3, ["Exit", [13], "", -5, [["expression", "pselect5 = 'exit';"]], "1", "1"]];
-		showCommandingMenu "#USER:_pmenu";
-	};
-
-	_j = 0; _max = 10; if (_max>9) then {_max = 10;};
+	pMenuTitle = "Teleport to Me:";
 
 	while {pselect5 == ""} do
 	{
-		[_j, (_j + _max) min (count plist)] call smenu; _j = _j + _max;
+		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
 		WaitUntil {pselect5 != "" or snext};	
 		snext = false;
 	};
@@ -146,27 +124,16 @@ fn_tpToMe = {
 };
 
 fn_removeFromQueue = {
-	private ["_name","_pmenu","_max"];
-	_player = player;
-	_max = 10; snext = false; plist = []; pselect5 = "";
+	private ["_name","_pmenu","_max","_player"];
+	_player = player; _j = 0; _max = 10;
+
+	snext = false; plist = []; pselect5 = "";
 	{plist set [count plist, _x];} forEach helpQueue;
-
-	smenu =
-	{
-		_pmenu = [["",true],["Remove Player from Queue:", [-1], "", -5, [["expression", ""]], "1", "0"]];
-		for "_i" from (_this select 0) to (_this select 1) do
-		{_arr = [format['%1', plist select (_i)], [12],  "", -5, [["expression", format ["pselect5 = plist select %1;", _i]]], "1", "1"]; _pmenu set [_i + 2, _arr];};
-		if (count plist > (_this select 1)) then {_pmenu set [(_this select 1) + 2, ["Next", [13], "", -5, [["expression", "snext = true;"]], "1", "1"]];}
-		else {_pmenu set [(_this select 1) + 2, ["", [-1], "", -5, [["expression", ""]], "1", "0"]];};
-		_pmenu set [(_this select 1) + 3, ["Exit", [13], "", -5, [["expression", "pselect5 = 'exit';"]], "1", "1"]];
-		showCommandingMenu "#USER:_pmenu";
-	};
-
-	_j = 0; _max = 10; if (_max>9) then {_max = 10;};
+	pMenuTitle = "Remove Player from Queue";
 
 	while {pselect5 == ""} do
 	{
-		[_j, (_j + _max) min (count plist)] call smenu; _j = _j + _max;
+		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
 		WaitUntil {pselect5 != "" or snext};
 		snext = false;
 	};

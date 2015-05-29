@@ -1,14 +1,9 @@
-private ["_location","_dir","_classname","_text","_object","_objectID","_objectUID","_newclassname","_obj","_upgrade","_objectCharacterID","_distance","_needText"];
-
+private ["_location","_dir","_classname","_text","_object","_objectID","_objectUID","_newclassname","_obj","_downgrade","_objectCharacterID"];
 
 player removeAction s_player_downgrade_build;
 s_player_downgrade_build = 1;
 
-_distance = 30;
-_needText = localize "str_epoch_player_246";
-
-
-// get cursortarget from addaction
+// get cursor target
 _obj = cursorTarget;
 if(isNull _obj) exitWith {s_player_downgrade_build = -1;};
 
@@ -16,7 +11,7 @@ _objectCharacterID 	= _obj getVariable ["CharacterID","0"];// Current charID
 _objectID 	= _obj getVariable ["ObjectID","0"];// Find objectID
 _objectUID	= _obj getVariable ["ObjectUID","0"];// Find objectUID
 
-if(_objectID == "0" && _objectUID == "0") exitWith {s_player_upgrade_build = -1; cutText [(localize "str_epoch_player_50"), "PLAIN DOWN"];};
+if(_objectID == "0" && _objectUID == "0") exitWith {s_player_downgrade_build = -1; cutText [(localize "str_epoch_player_50"), "PLAIN DOWN"];};
 
 // Get classname
 _classname = typeOf _obj;
@@ -25,11 +20,11 @@ _classname = typeOf _obj;
 _text = getText (configFile >> "CfgVehicles" >> _classname >> "displayName");
 
 // Find next downgrade
-_upgrade = getArray (configFile >> "CfgVehicles" >> _classname >> "downgradeBuilding");
+_downgrade = getArray (configFile >> "CfgVehicles" >> _classname >> "downgradeBuilding");
 
-if ((count _upgrade) > 0) then {
+if ((count _downgrade) > 0) then {
 
-	_newclassname = _upgrade select 0;
+	_newclassname = _downgrade select 0;
 
 	// Get position
 	_location	= _obj getVariable["OEMPos",(getposATL _obj)];

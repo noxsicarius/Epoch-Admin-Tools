@@ -1,4 +1,4 @@
-private ["_text","_dialog"];
+private ["_dialog"];
 SendDialogText = "";
 
 // Sleep to make sure scroll menu is cleared

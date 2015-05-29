@@ -1,4 +1,4 @@
-private ["_missing","_missingQty","_proceed","_itemIn","_countIn","_qty","_num_removed","_uniqueID","_removed","_removed_total","_tobe_removed_total","_obj","_objectID","_objectUID","_classname","_location","_dir","_objectCharacterID","_object","_temp_removed_array","_textMissing","_target","_objectClasses","_range","_objects","_requirements","_count","_cost","_itemText","_option"];
+private ["_target","_objectClasses","_range","_objects","_count","_findNearestPole","_IsNearPlot","_objects_filtered"];
 
 player removeAction s_player_maintain_area;
 s_player_maintain_area = 1;

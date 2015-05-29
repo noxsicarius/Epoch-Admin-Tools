@@ -1,4 +1,4 @@
-private ["_veh","_location","_dist","_vehtospawn","_dir","_pos","_player"];
+private ["_veh","_dist","_vehtospawn","_dir","_pos","_player"];
 
 _vehtospawn = _this select 0; 
 _dist = 7;

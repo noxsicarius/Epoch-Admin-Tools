@@ -1,4 +1,4 @@
-private ["_kindOf", "_filter", "_cfgvehicles","_dialog","_building","_buildingType","_buildingName","_buildingClass"];
+private ["_dialog","_building"];
 PermDialogSelected = -1;
 TempDialogSelected = -1;
 AdminDialogList = 13000;
@@ -8,13 +8,12 @@ _dialog = createdialog "EAT_build_AdminDialog";
 lbClear AdminDialogList;
 
 {
-	private ["_index", "_x"];
+	private ["_index"];
 	_index = lbAdd [AdminDialogList, format["%1 - %2 (%3)", _x select 0, _x select 1, _x select 2]];
 	lbSetPicture [AdminDialogList, _index];
 } forEach buildingList;
 
 LoadSpecificList = {
-	private ["_kindOf", "_filter", "_cfgvehicles","_dialog","_building"];
 	lbClear AdminDialogList;
 	buildingList = _this select 0;
 	

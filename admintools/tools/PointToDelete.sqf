@@ -1,4 +1,4 @@
-private ["_delobj","_player"];
+private ["_delobj","_player","_objectID","_objectUID"];
 _player = player;
 
 _delobj = cursorTarget;

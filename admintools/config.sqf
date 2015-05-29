@@ -3,16 +3,16 @@
 
 //Replace 111111111 with your ID. 
 SuperAdminList = [
-"111111111", // <Your In-Game Name here>
-"999999999" // <S-Admin In-Game Name>
+"111111111", // <player name>
+"999999999" // <player name>
 ];
 AdminList = [
-"999999999", // <Admin In-Game Name>
-"999999999" // <Admin In-Game Name>
+"999999999", // <player name>
+"999999999" // <player name>
 ];
 ModList = [
-"999999999", // <Moderator In-Game Name>
-"999999999" // <Moderator In-Game Name>
+"999999999", // <player name>
+"999999999" // <player name>
 ];
 
 

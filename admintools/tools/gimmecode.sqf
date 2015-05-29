@@ -1,4 +1,4 @@
-private ["_combo","_owner","_ct","_player"];
+private ["_combo","_ct","_player"];
 _ct = cursorTarget;
 _player = player;
 _combo = _ct getVariable ["CharacterID","0"];

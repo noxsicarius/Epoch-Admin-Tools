@@ -1,3 +1,4 @@
+private["_player"];
 if (isNil "SheildMe") then {SheildMe = true;} else {SheildMe = !SheildMe;};
 zombieShield = false;
 ZombieDistance = 0;
@@ -42,6 +43,7 @@ if(SheildMe && zombieShield) then {
 
  while {SheildMe && zombieShield} do 
 {
+	private["_pos","_zombies"];
 	_pos = getPos _player;
 	_zombies = _pos nearEntities ["zZombie_Base",ZombieDistance];
 

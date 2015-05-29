@@ -1,11 +1,9 @@
-private ["_worldspace","_charID","_veh","_location","_isOk","_vehtospawn","_dir","_pos","_helipad","_removed","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_player"];
+private ["_veh","_location","_isOk","_vehtospawn","_dir","_pos","_helipad","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_player"];
 _vehtospawn = _this select 0;
 _player = player;
-_charID = dayz_characterID;
 _dir = getdir vehicle _player;
 _pos = getPos vehicle _player;
 _pos = [(_pos select 0)+8*sin(_dir),(_pos select 1)+8*cos(_dir),0];
-_worldspace = [_dir,_pos];
  
 cutText ["Starting Spawn...", "PLAIN DOWN"];
  

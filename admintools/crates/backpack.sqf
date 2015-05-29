@@ -69,7 +69,6 @@ _selectDelay = selectDelay;
 if(selectDelay != 0) then {
 	titleText [format[_crateName + " will disappear in %1 seconds.",selectDelay],"PLAIN DOWN"]; titleFadeOut 4;
 	sleep _selectDelay;
-	// Delete crate after selectDelay seconds
 	deletevehicle _spawnCrate;
 	titleText [format[_crateName + " disappeared."],"PLAIN DOWN"]; titleFadeOut 4;
 } else {

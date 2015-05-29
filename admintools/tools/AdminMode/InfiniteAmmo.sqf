@@ -1,9 +1,7 @@
 /* 
 	Gives the user infinite ammo.
-	It can often cause the user to lose all ammo after logging out or
-	after a server restart due to how the server handles this.
-	The possibility of ammo loss after logging can be lessened by turning off the script 
-	before leaving.
+	It can often cause the user to lose all ammo after logout
+	The possibility of ammo loss after logging can be lessened by turning off the script first
 */
 if(isNil "infAmmo2") then {infAmmo2 = true;} else {infAmmo2 = !infAmmo2};
 if(infAmmo2) then {
@@ -21,6 +19,7 @@ while {alive (vehicle player) && infAmmo2} do
 	sleep 0.1;
 };
 vehicle player setUnitRecoilCoefficient 1;
+
 // Tool use logger
 if(logMajorTool) then {
 	usageLogger = format["%1 %2 -- has turned OFF infinite ammo",name player,getPlayerUID player];

@@ -53,13 +53,7 @@ move_right =
 };
 
 move_up =
-{
-    if ((getPosATL (vehicle player) select 2) < distanceFromGround) then
-    {
-        //player setVariable["dayz_isSwimming",true,false];
-        //player playMoveNow "AswmPercMrunSnonWnonDf_AswmPercMstpSnonWnonDnon"
-    };
-    
+{    
 	_vehicle = (vehicle player);
 	_vel = velocity _vehicle;
 	_dir = direction _vehicle;
@@ -134,5 +128,6 @@ while {flying2} do
     };
 	Sleep 0.01;
 };
+
 hovering = nil;
 hoverPos = nil;

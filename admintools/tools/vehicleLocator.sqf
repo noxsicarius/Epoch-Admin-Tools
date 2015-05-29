@@ -1,4 +1,4 @@
-private ["_inv","_searchString","_ID","_found","_targetColor","_finalID","_targetPosition","_targetVehicle","_count","_key","_keyName","_showMapMarker","_markerColour"];
+private ["_inv","_searchString","_ID","_found","_targetColor","_finalID","_targetPosition","_targetVehicle","_count","_key","_keyName","_showMapMarker","_markerColour","_locatorMarker"];
 
 /****************************************| Config |**************************************************************************************/
 
@@ -78,7 +78,6 @@ if(locateVehicle) then {
 				_locatorMarker setMarkerColorLocal _markerColour;
 				_locatorMarker setMarkerSizeLocal [1.0, 1.0];
 				_locatorMarker setMarkerTextLocal format ["locator: %1",_vehicleName];
-	//			systemChat format ["%1 belongs to %2 - %3",_keyName,_vehicleName,_finalID];
 			} else { 
 				systemChat format ["%1 belongs to %2 - %3",_keyName,_vehicleName,_finalID];
 			};

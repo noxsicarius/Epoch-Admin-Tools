@@ -2,6 +2,9 @@
 private["_ct","_player"];
 
 _ct = cursorTarget;
+
+if(_ct isNull) exitWith{cutText ["No target", "PLAIN DOWN"];};
+
 _ct setdammage 0;
 _ct setvehicleammo 1;
 _ct setfuel 1;
