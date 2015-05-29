@@ -1,15 +1,14 @@
-waitUntil {!isNil "adminListLoaded"}; // Wait for adminlist before starting
 waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
 
 // Give players action menu
-if((ActionMenuPlayers && !(((getPlayerUID player) in AdminAndModList))) || (ActionMenuAdmins && ((getPlayerUID player) in AdminAndModList))) then {
+if((ActionMenuPlayers && !((getPlayerUID player) in AdminAndModList)) || (ActionMenuAdmins && ((getPlayerUID player) in AdminAndModList))) then {
 	[] spawn {
 		_idx = -1;
 		_veh = vehicle player;
 
 		while {alive player} do {
 			if(_idx == -1) then {
-				_idx = (vehicle player) addaction [("<t color=""#FE9A2E"">" + ("Action Menu") + "</t>"),"admintools\actionMenu\Actions_Menu.sqf","",-107,false,true,"",""];
+				_idx = (vehicle player) addaction [("<t color=""#FE9A2E"">" + ("Action Menu") + "</t>"),"admintools\actionMenu\ActionsMenu.sqf","",-107,false,true,"",""];
 				_veh = vehicle player;
 			};
 			if (_veh != vehicle player) then
@@ -41,23 +40,15 @@ if ((getPlayerUID player) in AdminAndModList) then {
 
 		while {alive player} do
 		{
-			if(toolsAreActive) then
+			if (_idx == -1) then
 			{
-				if (_idx == -1) then
-				{
-					_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",7,false,true,"",""];
-					_veh = vehicle player;
-				};
-				if (_veh != vehicle player) then
-				{
-					_veh removeAction _idx;
-					_idx = -1;      
-				};
-			}else{
-				if(_idx != -1) then {
-					_veh removeAction _idx;
-					_idx = -1;
-				};
+				_idx = (vehicle player) addaction [("<t color=""#585858"">" + ("Admin Menu") +"</t>"),"admintools\AdminToolsMain.sqf","",7,false,true,"",""];
+				_veh = vehicle player;
+			};
+			if (_veh != vehicle player) then
+			{
+				_veh removeAction _idx;
+				_idx = -1;      
 			};
 			Sleep 2;
 		};
