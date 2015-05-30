@@ -18,8 +18,3 @@ if(logMinorTool) then {
 	usageLogger = format["%1 %2 -- has deleted %3",name _player,getPlayerUID _player,_delobj];
 	[] spawn {publicVariable "usageLogger";};
 };
-// Tool use broadcaster
-if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-	useBroadcaster = format["%1 -- has deleted a %2",name _player,_delobj];
-	[] spawn {publicVariableServer "useBroadcaster";};
-};

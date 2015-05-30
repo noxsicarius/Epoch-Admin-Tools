@@ -36,11 +36,6 @@ teleport = {
 			usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
 			[] spawn {publicVariable "usageLogger";};
 		};
-		// Tool use broadcaster
-		if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-			useBroadcaster = format["%1 -- has teleported",name player];
-			[] spawn {publicVariableServer "useBroadcaster";};
-		};
 	};
 };
 

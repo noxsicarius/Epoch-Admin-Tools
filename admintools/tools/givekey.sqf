@@ -23,9 +23,4 @@ if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Pla
 		usageLogger = format["%1 %2 -- has generated %3 for a %4",name _player,getPlayerUID _player,_result,_ct];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has generated a car key",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 };

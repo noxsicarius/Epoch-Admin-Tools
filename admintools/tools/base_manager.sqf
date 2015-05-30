@@ -305,13 +305,7 @@ fn_BCPaste = {
 	if(logMajorTool) then {
 		usageLogger = format["%1 %2 -- has pasted a copied base",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
-	};
-	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has placed a base";
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-	
+	};	
 };
 
 fn_BCDelete = {

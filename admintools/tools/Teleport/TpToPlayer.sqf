@@ -4,7 +4,7 @@ _max = 10; snext = false; plist = []; pselect5 = "";
 
 pMenuTitle = "Teleport to Player:";
 
-_j = 0; _max = 10; if (_max>9) then {_max = 10;};
+_j = 0;
 
 while {pselect5 == ""} do
 {
@@ -29,11 +29,6 @@ if (pselect5 != "exit") then
 			if(logMajorTool) then {
 				usageLogger = format["%1 %2 -- has teleported to %3_%4",name player,getPlayerUID player,_name,_x];
 				[] spawn {publicVariable "usageLogger";};
-			};
-			// Tool use broadcaster
-			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-				useBroadcaster = format["%1 -- has teleported to %2",name player,_name];
-				[] spawn {publicVariableServer "useBroadcaster";};
 			};
 		};
 	} forEach entities "CAManBase";

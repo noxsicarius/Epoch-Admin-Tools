@@ -48,12 +48,6 @@ if (_isOk and _isKeyOK) then {
 			usageLogger = format["%1 %2 -- has spawned a permanent vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
 			[] spawn {publicVariable "usageLogger";};
 		};
-		// Tool use broadcaster
-		if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-			useBroadcaster = format["%1 -- has spawned a permanent vehicle",name _player];
-			[] spawn {publicVariableServer "useBroadcaster";};
-		};
-
 	} else {
 		_removeitem = [_player, _config] call BIS_fnc_invRemove;
 		cutText ["Could not find an area to spawn vehicle.", "PLAIN DOWN"];

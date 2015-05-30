@@ -121,11 +121,6 @@ if(enhancedESP2) then {
 		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has enabled enhanced ESP",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 };
 
 While {enhancedESP2} do 

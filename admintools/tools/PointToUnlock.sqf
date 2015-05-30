@@ -27,12 +27,6 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		usageLogger = format["%1 %2 -- has unlocked vehicle: %3 with ID:%4",name _player,getPlayerUID _player,_obj,_objectID];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has forcibly unlocked a vehicle",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-
 } else {
 	// Unlock Safe/Lock_Box
 	if(_objType in DZE_LockedStorage) then {

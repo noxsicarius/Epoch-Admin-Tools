@@ -103,4 +103,4 @@ TransformAnimalMenu =
 ];
 showCommandingMenu "#USER:ActionMenu";
 
-if(ActionMenuPlayers || ActionMenuAdmins){diag_log("Admin Tools: Actions_Menu.sqf loaded");};
+if(ActionMenuPlayers || ActionMenuAdmins){diag_log("Admin Tools: ActionsMenu.sqf loaded");};

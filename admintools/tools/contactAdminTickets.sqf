@@ -42,11 +42,6 @@ fn_tpToPlayer = {
 						usageLogger = format["%1 %2 -- has teleported to %3 for a ticket",name _player,getPlayerUID _player,_name];
 						[] spawn {publicVariable "usageLogger";};
 					};
-					// Tool use broadcaster
-					if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-						useBroadcaster = format["%1 -- has teleported to %2 for a ticket",name _player,_name];
-						[] spawn {publicVariableServer "useBroadcaster";};
-					};
 				} else {
 					cutText["Player is no longer alive, removing from queue","PLAIN DOWN",2];
 				};

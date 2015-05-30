@@ -14,15 +14,6 @@ helpQueue = []; // Initialize help queue
 		"usageLogger" addPublicVariableEventHandler {
 			"EATadminLogger" callExtension (_this select 1);
 		};
-		// Broadcast tool use to super admins to monitor abuse in real time
-		"useBroadcaster" addPublicVariableEventHandler {
-			EAT_toClient = (_this select 1);
-			{
-				if ((getPlayerUID _x ) in SuperAdminList) then {
-					(owner _x) publicVariableClient "EAT_toClient";
-				};
-			} forEach entities "CAManBase";
-		};
 		// Broadcast server message to clients
 		"EAT_serverMessageServer" addPublicVariableEventHandler {
 			EAT_serverMessageClient = (_this select 1);
@@ -89,12 +80,6 @@ helpQueue = []; // Initialize help queue
 	};
 
 /****************** Client Public Variables ******************/
-	// Broadcast tool use to super admin
-	if ((getPlayerUID player) in SuperAdminList) then {
-		"EAT_toClient" addPublicVariableEventHandler {
-			systemChat (_this select 1);
-		};
-	};
 	// Display server message
 	"EAT_serverMessageClient" addPublicVariableEventHandler{
 		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;

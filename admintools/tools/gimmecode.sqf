@@ -20,11 +20,6 @@ if(_combo != "0") then {
 		usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name _player,getPlayerUID _player,_combo];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has viewed a locked item code",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 } else {
 	cutText [format["Not a valid target.",_combo], "PLAIN DOWN"];
 };

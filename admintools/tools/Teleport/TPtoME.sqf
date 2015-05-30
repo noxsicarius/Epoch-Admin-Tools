@@ -1,7 +1,6 @@
 private["_max","_j"];
 _max = 10; 
 _j = 0;
-// _menuCheckOk = false;
 snext = false; 
 plist = []; 
 pselect5 = "";
@@ -17,15 +16,6 @@ while {pselect5 == ""} do
 	WaitUntil {pselect5 != "" || snext};	
 	snext = false;
 };
-/*
-while {pselect5 == "" && !_menuCheckOk} do
-{
-	[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
-	WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
-	_menuCheckOk = (commandingMenu == "");
-	snext = false;
-};
-*/
 
 if (pselect5 != "exit") then
 {
@@ -53,11 +43,6 @@ if (pselect5 != "exit") then
 			if(logMajorTool) then {
 				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_UID];
 				[] spawn {publicVariable "usageLogger";};
-			};
-			// Tool use broadcaster
-			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-				useBroadcaster = format["%1 -- has teleported %2 to them",name player, _name];
-				[] spawn {publicVariableServer "useBroadcaster";};
 			};
 		};
 	} forEach entities "CAManBase";

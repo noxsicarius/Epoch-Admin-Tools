@@ -15,11 +15,6 @@ if (playerGod2) then
 		usageLogger = format["%1 %2 -- has ENABLED _player god mode",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has enabled god mode",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
