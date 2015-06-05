@@ -32,7 +32,7 @@ Bug Fixes:
 	Item class updates to epoch class @leodr99
 	Exported bases are now properly formatted
 	Variable collision in dialog.hpp to stop RSC variable collision errors
-	A number of unknown infinite loops fixed
+	A number of infinite loop fixes
 
 
 CleanUp:

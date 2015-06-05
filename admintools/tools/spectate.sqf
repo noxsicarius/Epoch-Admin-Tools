@@ -1,11 +1,12 @@
-private ["_mycv","_max","_j","_name","_player"];
+private ["_mycv","_max","_j","_name","_player","_menuCheckOk"];
 
 _mycv = cameraView;
 _player = player;
+_menuCheckOk = false;
 _max = 10;
 _j = 0;
 
-pMenuTitle = "Select Player:";
+pMenuTitle = "Spectate Player:";
 snext = false;
 plist = [];  
 pselect5 = "";
@@ -13,10 +14,11 @@ spectate = true;
 
 {if (_x != _player) then {plist set [count plist, name _x];};} forEach playableUnits;
 
-while {pselect5==""} do
+while {pselect5 == "" && !_menuCheckOk} do
 {
-	[_j,(_j+_max) min (count plist)] call fn_smenu;_j=_j+_max;
-	WaitUntil {pselect5!="" || snext};	
+	[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+	WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
+	_menuCheckOk = (commandingMenu == "");
 	snext = false;
 };
 
