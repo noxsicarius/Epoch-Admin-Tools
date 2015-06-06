@@ -13,33 +13,28 @@ _EXECcloud = 'EAT_SetOvercastServer = %1; publicVariableServer "EAT_SetOvercastS
 _EXECfog = 'EAT_SetFogServer = %1; publicVariableServer "EAT_SetFogServer"';
 _EXECtempVeh = '["%1"] execVM "admintools\tools\addtempvehicle.sqf"';
 
+// Main menu
 if ((getPlayerUID player) in AdminList) then { // Administrators
-	epochmenustart = [
-	["",true],
-		["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"],
-		["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"],
-		["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"],
-		["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"],
-		["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"],
-		["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"],
-		["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-//		["Weather/Time Menu >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"],
-		["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"],
-		["", [], "", -5, [["expression", ""]], "1", "0"],
-			["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
-	];
+	epochmenustart = [["",true],["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"]];
+	epochmenustart = epochmenustart + [["Admin Menu >>", [], "#USER:AdminMenu", -5, [["expression", ""]], "1", "1"]];
+	epochmenustart = epochmenustart + [["Vehicle Menu >>",[],"#USER:VehicleMenu",-5,[["expression",""]],"1","1"]];
+	epochmenustart = epochmenustart + [["Crate Menu >>",[],"#USER:CrateMenu",-5,[["expression",""]],"1","1"]];
+	epochmenustart = epochmenustart + [["Epoch Menu >>", [], "#USER:EpochMenu", -5, [["expression", ""]], "1", "1"]];
+	epochmenustart = epochmenustart + [["Weapon/Item Kits >>", [], "#USER:WeaponMenu", -5, [["expression", ""]], "1", "1"]];
+	epochmenustart = epochmenustart + [["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"]];
+	if(enableWeatherTimeChanger)then{ epochmenustart = epochmenustart + [["Weather/Time Menu >>", [], "#USER:WTMenu", -5, [["expression", ""]], "1", "1"]];};
+	epochmenustart = epochmenustart + [["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"]];
+	epochmenustart = epochmenustart + [["", [], "", -5, [["expression", ""]], "1", "0"]];
+	epochmenustart = epochmenustart + [["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]];
 } else {
 	if ((getPlayerUID player) in ModList) then { // Moderators
-		epochmenustart = [
-		["",true],
-			["-- Epoch Admin Tools (Level: Mod) --", [],"", -5, [["expression", ""]], "1", "0"],
-			["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"],
-			["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],
-			["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"],
-			["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"],
-			["", [], "", -5, [["expression", ""]], "1", "0"],
-				["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]
-		];
+		epochmenustart = [["",true],["-- Epoch Admin Tools (Level: Mod) --", [], "", -5, [["expression", ""]], "1", "0"]];
+		epochmenustart = epochmenustart + [["Mod Menu >>", [], "#USER:ModMenu", -5, [["expression", ""]], "1", "1"]];
+		epochmenustart = epochmenustart + [["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"]];
+		epochmenustart = epochmenustart + [["Skin Change Menu >>", [], "#USER:AdminSkinsMenu", -5, [["expression", ""]], "1", "1"]];
+		epochmenustart = epochmenustart + [["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"]];
+		epochmenustart = epochmenustart + [["", [], "", -5, [["expression", ""]], "1", "0"]];
+		epochmenustart = epochmenustart + [["Main Menu", [20], "#USER:epochmenustart", -5, [["expression", ""]], "1", "1"]];
 	};
 };
 

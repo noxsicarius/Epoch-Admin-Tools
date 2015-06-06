@@ -1,21 +1,43 @@
 
 /************** Epoch Admin Tools Variables **************/
 
-//Replace 111111111 with your ID. 
-SuperAdminList = [
-"111111111", // <player name>
-"999999999" // <player name>
-];
-AdminList = [
-"999999999", // <player name>
-"999999999" // <player name>
-];
-ModList = [
-"999999999", // <player name>
-"999999999" // <player name>
-];
+	//Replace 111111111 with your ID. 
+	SuperAdminList = [
+	"111111111", // <player name>
+	"999999999" // <player name>
+	];
+	AdminList = [
+	"999999999", // <player name>
+	"999999999" // <player name>
+	];
+	ModList = [
+	"999999999", // <player name>
+	"999999999" // <player name>
+	];
 
 
+	/*
+		Enable/Disable weather/time change menu.
+		Important: This may cause server to always revert to mid-day on restart.
+	*/	
+		enableWeatherTimeChanger = false;
+
+
+	/*
+		Log admin tool usage by your admins?
+		This creates a log in your server\EpochAdminToolLogs\toolUsageLog.txt
+		REQUIRES: EATadminLogger.dll
+	*/
+		//A major tool is a strong tool with high possibility for exploiting
+		logMajorTool = true;
+
+		//A minor tool is a weak tool with low possibility for exploiting
+		logMinorTool = false;
+
+	
+	
+	
+	
 /************** Action Menu Variables **************/
 
 	/*
@@ -90,39 +112,8 @@ ModList = [
 		antiSpamLimit = 15; // default 15 contacts
 		blindTime = 30; // default 30 seconds
 
+		
+		
 
-
-/*
-	Broadcasts a message to the super admins when the admin tools are used.
-	Default: false
-*/
-broadcastToolUse = false;
-
-
-/*
-	Log admin tool usage by your admins?
-	This creates a log in your server\EpochAdminToolLogs\toolUsageLog.txt
-	You MUST have the EpochAdminToolsUsageLogger.dll in the root server
-	directory or this will not work. The tool will still work either way.
-	This is divided into two categories.
-*/
-	/*
-		A major tool is a strong tool with high possibility for exploiting:
-		Teleport, god mode, ESP, infinite ammo, invisibility, crate spawns, 
-		unlocking items, displaying lock codes...
-		Default: true
-	*/
-	logMajorTool = true;
-
-	/*
-		A minor tool is a weak tool with low possibility for exploiting:
-		grass off, skin change, weapon kits, flying, maintain area, admin build
-		Default: true
-	*/
-	logMinorTool = true;
-	
-
-
-
-	
+		
 diag_log("Admin Tools: config.sqf loaded");

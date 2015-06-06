@@ -275,10 +275,12 @@ helpQueue = []; // Initialize help queue
 			};
 	};
 
-// overwrite epoch public variables
-//"PVDZE_plr_SetDate" addPublicVariableEventHandler {};
+/**************** overwrite epoch public variables ****************/
+	if(enableWeatherTimeChanger)then{"PVDZE_plr_SetDate" addPublicVariableEventHandler {};};
+
 
 // Adds the admin build items to the allowed objects
+// Fixes permanent arma building spawn
 {dayz_allowedObjects = dayz_allowedObjects + [_x select 2];}forEach allBuildingList;
 
 diag_log("Admin Tools: variables.sqf loaded");
