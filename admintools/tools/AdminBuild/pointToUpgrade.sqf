@@ -1,9 +1,8 @@
-private ["_location","_dir","_classname","_missing","_text","_proceed","_num_removed","_object","_missingQty","_itemIn","_countIn","_qty","_removed","_removed_total","_tobe_removed_total","_objectID","_objectUID","_temp_removed_array","_textMissing","_newclassname","_requirements","_obj","_upgrade","_lockable","_combination_1","_combination_2","_combination_3","_combination","_objectCharacterID","_canBuildOnPlot","_friendlies","_nearestPole","_ownerID","_distance","_needText","_findNearestPoles","_findNearestPole","_IsNearPlot"];
+private ["_location","_dir","_classname","_text","_object","_objectID","_objectUID","_newclassname","_obj","_upgrade","_lockable",
+"_combination_1","_combination_2","_combination_3","_combination","_objectCharacterID"];
 
 player removeAction s_player_upgrade_build;
 s_player_upgrade_build = 1;
-
-_distance = 30;
 
 _obj = cursorTarget;
 if(isNull _obj) exitWith {s_player_upgrade_build = -1;};
@@ -31,30 +30,13 @@ if ((count _upgrade) > 0) then {
 		_lockable = getNumber(configFile >> "CfgVehicles" >> _newclassname >> "lockable");
 	};
 
-	_requirements = _upgrade select 1;
-	
-	_missingQty = 0;
-	_missing = "";
-			
-	// Get position
-	_location	= _obj getVariable["OEMPos",(getposATL _obj)];
-
-	// Get direction
-	_dir = getDir _obj;
-
-	// Current charID
-	_objectCharacterID 	= _obj getVariable ["CharacterID","0"];
-
+	_location	= _obj getVariable["OEMPos",(getposATL _obj)];			// Get position
+	_dir = getDir _obj;													// Get direction
+	_objectCharacterID 	= _obj getVariable ["CharacterID","0"];			// Current charID
 	_classname = _newclassname;
-			
-	// Create new object 
-	_object = createVehicle [_classname, [0,0,0], [], 0, "CAN_COLLIDE"];
-
-	// Set direction
-	_object setDir _dir;
-
-	// Set location
-	_object setPosATL _location;
+	_object = createVehicle [_classname, [0,0,0], [], 0, "CAN_COLLIDE"];// Create new object 
+	_object setDir _dir;												// Set direction
+	_object setPosATL _location; 										// Set location
 
 	if (_lockable == 3) then {
 		_combination_1 = floor(random 10);

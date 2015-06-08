@@ -1,18 +1,14 @@
-private ["_LocalOrGlobal","_spawnCrate","_crateName","_weapon","_wpn_type","_mag_type","_magazine","_pos","_classname","_dir","_selectDelay"];
+private ["_LocalOrGlobal","_spawnCrate","_crateName","_weapon","_wpn_type","_mag_type","_magazine","_pos","_classname","_dir","_selectDelay","_player"];
 _LocalOrGlobal = _this select 0;
+_player = player;
 
 // Name of this crate
 _crateName = "ALL Weapons/Items Crate";
 
 // Tool use logger
 if(logMajorTool) then {
-	usageLogger = format["%1 %2 -- has spawned a %3 %4",name player,getPlayerUID player,_LocalOrGlobal,_crateName];
+	usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
 	[] spawn {publicVariable "usageLogger";};
-};
-// Tool use broadcaster
-if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-	useBroadcaster = format["%1 -- has spawned a %2 %3",name player,_LocalOrGlobal,_crateName];
-	[] spawn {publicVariableServer "useBroadcaster";};
 };
 
 if (isNil "weapons_list") then
@@ -54,8 +50,8 @@ if (isNil "magazines_list") then
 // Crate type. Possibilities: MedBox0, FoodBox0, BAF_BasicWeapons, USSpecialWeaponsBox, USSpecialWeapons_EP1, USVehicleBox, RUSpecialWeaponsBox, RUVehicleBox, etc.
 _classname = "USOrdnanceBox";
 
-_dir = getdir player;
-_pos = getposATL player;
+_dir = getdir _player;
+_pos = getposATL _player;
 _pos = [(_pos select 0)+1*sin(_dir),(_pos select 1)+1*cos(_dir), (_pos select 2)];
 
 if(_LocalOrGlobal == "local") then {
@@ -66,7 +62,7 @@ if(_LocalOrGlobal == "local") then {
 
 _spawnCrate setDir _dir;
 _spawnCrate setposATL _pos;
-			
+
 {
 	if(_x != "MeleeBaseBallBat") then{
 		_spawnCrate addWeaponCargoGlobal [_x, 5];
@@ -107,7 +103,6 @@ _selectDelay = selectDelay; //Makes the timer local per script call
 if(selectDelay != 0) then {
 	titleText [format[_crateName + " will disappear in %1 seconds.",selectDelay],"PLAIN DOWN"]; titleFadeOut 4;
 	sleep _selectDelay;
-	// Delete crate after selectDelay seconds
 	deletevehicle _spawnCrate;
 	titleText [format[_crateName + " disappeared."],"PLAIN DOWN"]; titleFadeOut 4;
 } else {

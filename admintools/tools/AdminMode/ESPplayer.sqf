@@ -21,24 +21,18 @@ if(playerESP2) then {
 while {playerESP2} do
 {
 	{
-		if (vehicle _x == _x) then 
-		{
+		if (vehicle _x == _x) then {
 			clearGroupIcons group _x;
 			group _x addGroupIcon ["x_art"];
 				
-			if ((side _x == side player) && (side player != resistance)) then 
-			{
+			if ((side _x == side player) && (side player != resistance)) then {
 				_color = _color_red;
-			} 
-			else 
-			{
+			} else {
 				_color = _color_orange;
 			};
 			group _x setGroupIconParams [_color, format ["[%1]-[%2m]",name _x,round(_x distance player)], 0.5, true];
 
-		}
-		else
-		{
+		} else {
 			clearGroupIcons group _x;
 			group _x addGroupIcon ["x_art"];
 			
@@ -57,12 +51,9 @@ while {playerESP2} do
 			
 			} forEach _crewtotal;
 				
-			if ((side _x == side player) && (side player != resistance)) then 
-			{
+			if ((side _x == side player) && (side player != resistance)) then {
 				_color = _color_blue;
-			} 
-			else 
-			{
+			} else {
 				_color = _color_red;
 			};
 			

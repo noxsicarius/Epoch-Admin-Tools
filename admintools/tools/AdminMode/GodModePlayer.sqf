@@ -4,25 +4,24 @@
 */
 if(isNil "playerGod2") then {playerGod2 = true;} else {playerGod2 = !playerGod2};
 
+private["_player","_vehicle"];
+_player = player;
+_vehicle = (vehicle _player);
+
 if (playerGod2) then
 {
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED player god mode",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has ENABLED _player god mode",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
-	};
-	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has enabled god mode",name player];
-		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
 	fnc_usec_unconscious = {};
-	(vehicle player) removeAllEventHandlers "handleDamage";
-	(vehicle player) addEventHandler ["handleDamage", { false }];	
-	(vehicle player) allowDamage false;
+	_vehicle removeAllEventHandlers "handleDamage";
+	_vehicle addEventHandler ["handleDamage", { false }];	
+	_vehicle allowDamage false;
 	r_player_unconscious = false;
 	r_player_infected = false;
 	r_player_injured = false;
@@ -40,30 +39,28 @@ if (playerGod2) then
 	dayz_thirst = 0;
 	dayz_temperatur = 100;
 	disableUserInput false;
-	player setVariable ["USEC_injured",false,true];
-	{player setVariable[_x,false,true];} forEach USEC_woundHit;
-	player setVariable ["unconsciousTime", r_player_timeout, true];
-	player setHit ['legs',0];
-	player setVariable ['hit_legs',0,false];
-	player setVariable['medForceUpdate',true,true];
-}
-else
-{
+	_player setVariable ["USEC_injured",false,true];
+	{_player setVariable[_x,false,true];} forEach USEC_woundHit;
+	_player setVariable ["unconsciousTime", r_player_timeout, true];
+	_player setHit ['legs',0];
+	_player setVariable ['hit_legs',0,false];
+	_player setVariable['medForceUpdate',true,true];
+} else {
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED player god mode",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has DISABLED god mode",name player];
+	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has DISABLED god mode",name _player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 
 	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
 	fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
 	fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";	
-	player addEventHandler ["handleDamage", {true}];
-	player removeAllEventHandlers "handleDamage";
-	player allowDamage true;
+	_player addEventHandler ["handleDamage", {true}];
+	_player removeAllEventHandlers "handleDamage";
+	_player allowDamage true;
 };

@@ -1,0 +1,291 @@
+==================================================
+You are using Epoch Admin Tools version 1.10.0
+by NoxSicarius
+==================================================
+
+
+------------------- Version 1.10.0 Changelog ---------------------
+
+New Features:
+	Added Variables file for unmodifiable variables/functions
+	Added epoch buildables to ESP
+	Added player storage to ESP
+	Added distinguish between locked/unlock vehicle to ESP
+	Added vehicle locator script by Logi
+	Added ArmA building GUI
+	Added ability to spawn permanent ArmA buildings
+	Added server messaging system
+	Added Contact Admin (ticket) system - MUST enable action menu for players
+	Added vehicle revive for destroyed vehicles
+	Added snap capable admin build
+	Added an optional action menu for players:
+		build bike/mozzie
+		view server rules
+		flip vehicle
+		dance
+		contact admin for help
+
+
+Bug Fixes:
+	Heal Player works again
+	Skin changer loop fix
+	Item class updates to epoch class @leodr99
+	Exported bases are now properly formatted
+	Variable collision in dialog.hpp to stop RSC variable collision errors
+	A number of infinite loop fixes
+
+
+CleanUp:
+	Skin Changer @leodr99
+	adminlist.sqf has been changed to config.sqf
+	Weather/Time menu made optional in case of bugs
+	Speed increases in crate spawns
+	Speed increase in most tools
+	Lower server load by limiting calls between player and server
+	Optimizations for every script
+	Cleanup for every script
+
+
+MD5 hash for the dll files IN THIS VERSION:
+	EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+	EATbaseExporter: 7E85058E271FB47D7E3885A50CC13719
+
+You can check the hash value of a file here: http://onlinemd5.com/
+
+
+
+
+------------------- Version 1.9.1 Changelog ---------------------
+
+New Features:
+	Weather and Time changes are now server wide
+
+
+Bug Fixes:
+	Teleport to Me works again
+	Battleye filter kicks
+	waituntil causing server load problems
+	Vehicle God Mode turns off properly now
+	Item Class updates @Evocation
+	RPT error fixes
+		adminListLoaded variable
+		zombieshield variables
+		TPtoMe
+		TPtoPlayer
+	BaseManager bugs fixed
+		Delete base variable toggle
+		Trader menus no longer adversely effected
+
+
+MD5 hash for the dll files IN THIS VERSION:
+	EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+	EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
+
+You can check the hash value of a file here: http://onlinemd5.com/
+
+
+
+
+------------------- Version 1.9 Changelog ---------------------
+First a thanks to F3cuk for helping fix up the tool and testing.
+
+New Features:
+	Base copy/paste 
+		Origiinal code/concept by maca134
+		Fixes, upgrades, and dll export by NoxSicarius
+	Tool use logging
+	Broadcast tool use
+		Broadcasts major uses of the tool to super admins, off by default
+	Lock/Unlock upgrade
+		Now locks and unlocks doors and safes too
+	Added all epoch events to ESP
+	New vehicle god mode
+	Added an enhanced admin build (can't rotate properly yet)
+		Build any epoch item instantly and without plot pole 
+		Upgrade buildable items
+		Downgrade buildable items
+		Maintain base
+		Build Arma/DayZ buildings (temporary only)
+	Added zombie spawner
+
+
+Bug Fixes:
+	Teleport no longer teleports vehicles into walls or buildings
+	Crates no longer delete at the wrong time if you spawn two or more.
+	Wrong file called for a few vehicle spawns @f3cuk
+	Wrong hatchet type in items.sqf @Onefox
+	Wrong hatchet in crates
+	Wrong variable types used in crates
+	Enhanced ESP only showed one epoch mission crash
+	ESP zero devisor (client only) @f3cuk
+	Fuel pump error fix
+	Adminlist and macros not loading fixed @f3cuk
+	Temporary vehicle spawns fixed up
+	Client side RPT error in vehicle god mode and a few other files.
+	Fixed permanent repair @DeanReid
+	HealPlayer UI fixes
+	Toggling admin mode works better
+	Invisibility rpt errors fixed
+	Humanity change rpt errors fixed
+	Key binding rpt errors fixed
+
+
+CleanUp:
+	Changed how vehicle god mode works. It is now much more effective.
+	Keyed vehicle spawn made a little better @f3cuk
+	Crate enhancements
+	Lock/unlock
+	ESP @f3cuk @Meowzors
+	Updated the dead player marker to work a little better.
+	Split the items gear kit into two parts -> medical & tools
+	ReadMe updates
+	delete base has been integrated with maca's base copy
+	AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
+	Cleaned up all Admin Mode files for better execution
+
+
+MD5 hash for the dll files IN THIS VERSION:
+EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
+
+You can check the hash value of a file here: http://onlinemd5.com/
+
+
+
+
+------------------- Version 1.8.2 Changelog ---------------------
+Bug Fixes:
+	Fixed the incorrect commit of vehicle key spawning, it works fine now.
+	Flying fixed
+
+
+
+
+------------------- Version 1.8.1 Changelog ---------------------
+Bug Fixes:
+	TP2Me (teleport player to admin) works again
+	Vehicle key spawning works better
+
+
+
+
+------------------- Version 1.8 Changelog ---------------------
+
+IMPORTANT: You must use the new adminlist.sqf for this release or the 
+tool will not work. Remember to copy over your UID.
+
+New Features:
+	Added ChangeLog
+	Added dead player and plot pole to ESP enhanced
+	Added ability to change ESP enhanced options in game by pressing F5
+	Added no plot pole building for adminbuild mode
+	Added local client crates (invisible to other players)
+	Added a customizable teleport. (custom setup required)
+		There is an example on how to do this located in your AdminToolsMain.sqf
+	Added plot pole destruction to base destruction menu.
+		Allows deletion of plot poles in the radius without deleting other items.
+	You can now disable the scroll menu
+		Off = F11
+		On = F10
+	You can now set radius for heal player or choose yourself.
+		Healing radius does not heal you, only those around you.
+
+
+Bug Fixes:
+	Teleport stops if the map is closed
+	Activate update to fix it not showing up.
+	Heal player no longer causes infection
+	The tools activate a little slower to keep them from not showing on login/relog
+	Vehicle destruction works correctly in base destruction.
+	Flying loop and undefined variable bug fix by T-Max
+
+
+Cleanup:
+	Cleaned up the directories
+	Readme updates
+	Stability updates
+	Vehicle spawn cleanup
+
+
+
+
+------------------- Version 1.7 Changelog ---------------------
+
+New Features:
+	Added dead players to map
+	Added Safe Zone Area creation
+	Added Number Key macros (similar to F keys)
+	Added No Plot Pole building in fastbuild.sqf (will be renamed admin build mode later)
+
+
+Bug Fixes:
+	Teleport map resetting
+	Teleport now disables if the map is closed
+	Zombie Shield Desync
+	Weapon Kit error fixes
+	Function keys now work all the time (As far as my testing can tell)
+	Added AI back into ESP (sorry about that)
+
+
+CleanUp:
+	Updated the readme with more information, a how to update section, and a table of contents.
+	Cleaned up the directories a little (All those files in one folder was messy)
+
+
+
+
+------------------- Version 1.6 Changelog ---------------------
+ 
+New Feature:
+	Admin Fast Build: allows fast base building when toggled on in AdminMode.
+	Added a secondary weapons menu.
+	Added a gear menu.
+	Function Key support. There is now a file: FunctionKeys.sqf that can be customized! 
+
+
+Bug Fix:
+	Fixed a bit of the desync/lag caused with zombie shield.
+	Teleporting no longer teleports you into the air if you are in an air vehicle with the engine off. 
+		If your engine is on it will still teleport you up to prevent tree collision.
+	ESP lag has been reduced
+
+
+CleanUp:
+	Condensed all weapons files into one file.
+	Updated ReadMe with a video tutorial for installing the tool.
+	Deleted fix buildings (did not work correctly and there is no clean way to make it work correctly)
+	Changed file names so it is easier to navigate and edit files.
+	All weapons/Ammo crate no longer has errors.
+	Using the skin change menu no longer deletes your backpack.
+	Added information on how to customize AdminMode and ModMode.
+
+
+
+
+------------------- Version 1.5 Changelog ---------------------
+New Features:
+	Admin Mode
+		Combines basic admin needs into one mode
+	Mod Mode
+		The same as Admin Mode but for mods
+	Point to Repair Permanent
+	Added large gun bag to weapon kit menu.
+ 
+ 
+Bug Fix:
+	Might have fixed flying bug that caused users to become overburdened. 
+	Removed Baseball Bat from all weapons/ammo crate to stop bat_swing error message from showing up.
+ 
+ 
+Clean up:
+	Fixed some ReadMe stuff
+	Rearranged Admin Tools scroll menu to put less used items at the bottom
+	Removed malinvisinit.sqf because it was unneeded for invisibility
+	Removed extra code in player god mode
+	Removed spawnzombies.sqf, might readd it later after some changes
+	Removed unnecessary/unused crates
+	Removed extra items from weapon kits.
+	Weaponkits files were changed for easier editing.
+	Some weaponkit duplicates were replaced with different weapons.
+	Item kit was changed to add survival items such as food and medical
+	Other miscilaneous cleanups, condensing, and syntax fixes.

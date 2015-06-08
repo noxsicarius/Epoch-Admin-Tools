@@ -1,36 +1,30 @@
-private ["_mycv","_n2sh","_n2c","_pmenu","_name"];
+private ["_mycv","_max","_j","_name","_player","_menuCheckOk"];
 
 _mycv = cameraView;
-_n2sh = 10;  
-_n2c = "Select Player:";
-shnext = false;
-nlist = [];  
-selecteditem = "";
+_player = player;
+_menuCheckOk = false;
+_max = 10;
+_j = 0;
+
+pMenuTitle = "Spectate Player:";
+snext = false;
+plist = [];  
+pselect5 = "";
 spectate = true;
 
-{if (_x != player) then {nlist set [count nlist, name _x];};} forEach playableUnits;
-		
-shnmenu = 
+{if (_x != _player) then {plist set [count plist, name _x];};} forEach playableUnits;
+
+while {pselect5 == "" && !_menuCheckOk} do
 {
-	_pmenu = [["",true],[_n2c, [-1], "", -5, [["expression", ""]], "1", "0"]];
-	for "_i" from (_this select 0) to (_this select 1) do
-	{_arr = [format['%1',nlist select (_i)], [_i - (_this select 0) + 2],  "", -5, [["expression", format["selecteditem = nlist select %1;",_i]]], "1", "1"];_pmenu set [_i+2, _arr];};
-	if (count nlist >  (_this select 1)) then {_pmenu set [(_this select 1)+2, ["Next", [12], "", -5, [["expression", "shnext = true;"]], "1", "1"]];}
-	else {_pmenu set [(_this select 1)+2, ["", [-1], "", -5, [["expression", ""]], "1", "0"]];};
-	_pmenu set [(_this select 1)+3, ["Exit", [13], "", -5, [["expression", "selecteditem = 'exitscript';"]], "1", "1"]];
-	showCommandingMenu "#USER:_pmenu";
+	[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+	WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
+	_menuCheckOk = (commandingMenu == "");
+	snext = false;
 };
-_j = 0; _n2sh = 10; if (_n2sh>9) then {_n2sh=10;};
-while {selecteditem==""} do
+
+if (pselect5!= "exit" && pselect5!="") then
 {
-	[_j,(_j+_n2sh) min (count nlist)] call shnmenu;_j=_j+_n2sh;
-	WaitUntil {selecteditem!="" or shnext};	
-	shnext = false;
-};
-	
-if (selecteditem!= "exitscript") then
-{
-	_name = selecteditem;
+	_name = pselect5;
 	{
 		if(format[name _x] == _name) then 
 		{
@@ -43,25 +37,20 @@ if (selecteditem!= "exitscript") then
 
 			// Tool use logger
 			if(logMajorTool) then {
-				usageLogger = format["%1 %2 -- has begun spectating %3",name player,getPlayerUID player,_name];
+				usageLogger = format["%1 %2 -- has begun spectating %3",name _player,getPlayerUID _player,_name];
 				[] spawn {publicVariable "usageLogger";};
-			};
-			// Tool use broadcaster
-			if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-				useBroadcaster = format["%1 -- is spectating %2",name player,_name];
-				[] spawn {publicVariableServer "useBroadcaster";};
 			};
 		};
 	} forEach playableUnits;
 };
 spectate = false;
-if (!spectate && selecteditem != "exitscript") then 
+if (!spectate && pselect5 != "exit") then 
 {	
 	titleText ["Spectate done","PLAIN DOWN"];titleFadeOut 4;
 
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has stopped spectating %3",name player,getPlayerUID player,_name];
+		usageLogger = format["%1 %2 -- has stopped spectating %3",name _player,getPlayerUID _player,_name];
 		[] spawn {publicVariable "usageLogger";};
 	};
 };

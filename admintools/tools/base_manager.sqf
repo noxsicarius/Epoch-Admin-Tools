@@ -101,7 +101,8 @@ if(isNil "BD_vehicles") then {BD_vehicles = true;};
 if(isNil "BCCurrentBase") then {BCCurrentBase = [];};
 
 // Temp variables to fix the trader dialogue issue
-private ["_TraderDialogLoadItemList","_TraderDialogShowPrices","_TraderDialogSell"];
+private ["_TraderDialogLoadItemList","_TraderDialogShowPrices","_TraderDialogSell","_player"];
+_player = player;
 _TraderDialogLoadItemList = TraderDialogLoadItemList;
 _TraderDialogShowPrices = TraderDialogShowPrices;
 _TraderDialogSell = TraderDialogSell;
@@ -219,7 +220,7 @@ fn_BCExport = {
 	_distance = BC_radius;
 	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
 	_objectCount = count _nearest_objects;
-	_i = 0;
+	_i = 1;
 	{
 		private ["_obj_type", "_direction", "_obj_position", "_relative_position", "_row"];
 		_obj_type = typeOf _x;
@@ -238,7 +239,7 @@ fn_BCExport = {
 		};
 		_row set [count _row, _x];
 		_objects set [count _objects, _row];
-		true
+		_i = _i + 1;
 	} count _nearest_objects;
 	
 	EAT_baseExporter = _export;
@@ -249,7 +250,7 @@ fn_BCExport = {
 
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has exported a base",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has exported a base",name _player,getPlayerUID _player];
 		publicVariable "usageLogger";
 	};
 
@@ -302,15 +303,9 @@ fn_BCPaste = {
 
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has pasted a copied base",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has pasted a copied base",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
-	};
-	// Tool use broadcaster
-	if(broadcastToolUse) then {
-		useBroadcaster = "Admin -- has placed a base";
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-	
+	};	
 };
 
 fn_BCDelete = {
@@ -367,12 +362,12 @@ fn_BCConfirmDelete = {
 
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name player,getPlayerUID player,count _objects];
+		usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name _player,getPlayerUID _player,count _objects];
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has deleted base items",name player];
+	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has deleted base items",name _player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 };
@@ -386,12 +381,12 @@ fn_BCSaveToDb = {
 	
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has placed a saved base",name player,getPlayerUID player];
+		usageLogger = format["%1 %2 -- has placed a saved base",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
 	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has placed a base",name player];
+	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
+		useBroadcaster = format["%1 -- has placed a base",name _player];
 		[] spawn {publicVariableServer "useBroadcaster";};
 	};
 

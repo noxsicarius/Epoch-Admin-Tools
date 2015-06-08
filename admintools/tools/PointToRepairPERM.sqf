@@ -1,9 +1,10 @@
-private ["_vehicle","_type","_name","_hitpoints"];
+private ["_vehicle","_type","_name","_hitpoints","_player"];
 
 _vehicle = cursorTarget;
 _type = typeOf _vehicle;
 _name = getText(configFile >> "cfgVehicles" >> _type >> "displayName");
 _hitpoints = _vehicle call vehicle_getHitpoints;
+_player = player;
 
 {
     private ["_damage","_selection"];
@@ -23,6 +24,6 @@ titleText [format["%1 permanently repaired, refuelled and rearmed.", _name], "PL
 
 // Tool use logger
 if(logMinorTool) then {
-	usageLogger = format["%1 %2 -- has permanently repaired %3",name player,getPlayerUID player,_vehicle];
+	usageLogger = format["%1 %2 -- has permanently repaired %3",name _player,getPlayerUID _player,_vehicle];
 	[] spawn {publicVariable "usageLogger";};
 };

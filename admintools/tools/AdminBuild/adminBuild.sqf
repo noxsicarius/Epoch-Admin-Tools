@@ -1,12 +1,14 @@
-private ["_location","_dir","_classname","_item","_hasrequireditem","_missing","_hastoolweapon","_cancel","_reason","_started","_finished","_animState","_isMedic","_dis","_sfx","_hasbuilditem","_tmpbuilt","_onLadder","_isWater","_require","_text","_offset","_IsNearPlot","_isOk","_location1","_location2","_counter","_limit","_proceed","_num_removed","_position","_object","_canBuildOnPlot","_friendlies","_nearestPole","_ownerID","_findNearestPoles","_findNearestPole","_distance","_classnametmp","_ghost","_isPole","_needText","_lockable","_zheightchanged","_rotate","_combination_1","_combination_2","_combination_3","_combination_4","_combination","_combination_1_Display","_combinationDisplay","_zheightdirection","_abort","_isNear","_need","_needNear","_vehicle","_inVehicle","_requireplot","_objHDiff","_isLandFireDZ","_isTankTrap"];
+private ["_location","_dir","_classname","_item","_cancel","_reason","_dis","_tmpbuilt","_text","_offset","_IsNearPlot","_isOk","_location1","_location2","_position","_object",
+"_ownerID","_findNearestPoles","_findNearestPole","_distance","_classnametmp","_ghost","_isPole","_needText","_lockable","_zheightchanged","_rotate","_combination_1",
+"_combination_2","_combination_3","_combination_4","_combination","_combination_1_Display","_combinationDisplay","_zheightdirection","_vehicle","_inVehicle","_objHDiff",
+"_isLandFireDZ"];
 
-_onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
-_isWater = 		dayz_isSwimming;
 _cancel = false;
+_isPerm = false;
 _reason = "";
-_canBuildOnPlot = false;
 _vehicle = vehicle player;
 _inVehicle = (_vehicle != player);
+_canDo = call fnc_actionAllowed;
 
 DZE_Q = false;
 DZE_Z = false;
@@ -25,23 +27,25 @@ DZE_cancelBuilding = false;
 
 call gear_ui_init;
 closeDialog 1;
+
 if(isNil 'isBuilding') then {isBuilding = false};
-if (_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
-if (_inVehicle) exitWith {cutText [(localize "str_epoch_player_42"), "PLAIN DOWN"];};
-if (_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
+if(!_canDo) exitWith {cutText ["Cannot build while on ladder, in water, in vehicle","PLAIN DOWN"];};
 
 if((_this select 0) == "rebuild") then {
 	if(isNil "adminRebuildItem") exitWith {systemChat "You have not selected a buildable item yet"};
 	_item =	adminRebuildItem;
+	_isPerm = adminRebuildPerm;
 } else {
 	_item =	_this select 0;
 	adminRebuildItem = _item;
-	if((_this select 1) == "building") then {isBuilding = true;} else {isBuilding = false;};
+	isBuilding = _this select 1;
+	_isPerm = _this select 2;
+	adminRebuildPerm = _isPerm;
 };
 
 _classname = _item;
 _classnametmp = _classname;
-_text = 		getText (configFile >> "CfgVehicles" >> _classname >> "displayName");
+_text = getText (configFile >> "CfgVehicles" >> _classname >> "displayName");
 _ghost = getText (configFile >> "CfgVehicles" >> _classname >> "ghostpreview");
 
 _lockable = 0;
@@ -57,7 +61,23 @@ if(isNumber (configFile >> "CfgVehicles" >> _classname >> "nounderground")) then
 _offset = 	getArray (configFile >> "CfgVehicles" >> _classname >> "offset");
 if((count _offset) <= 0) then {
 	if(isBuilding) then {
-		_offset = [0,10,2];
+		if(_item in (buildResidential - buildShed)) then {
+			_offset = [0,15,2];
+		} else {
+			if(_item in (buildCastle + buildMilitary)) then {
+				_offset = [0,3,2];
+			} else {
+				if(_item in buildReligious) then {
+					_offset = [0,25,2];
+				} else {
+					if(_item in buildGrave + buildOutdoors) then {
+						_offset = [0,2,1];
+					} else {
+						_offset = [0,6,2];
+					};
+				};
+			};
+		};
 	} else {
 		_offset = [0,2,0];
 	};
@@ -87,8 +107,6 @@ _IsNearPlot = count (_findNearestPole);
 
 // If item is plot pole && another one exists within 45m
 if(_isPole && _IsNearPlot > 0) exitWith {cutText [(localize "str_epoch_player_44") , "PLAIN DOWN"]; };
-
-_missing = "";
 
 _location = [0,0,0];
 _isOk = true;
@@ -320,7 +338,7 @@ if(!_cancel) then {
 		publicVariableServer "PVDZE_obj_Publish";
 		cutText [format[(localize "str_epoch_player_140"),_combinationDisplay,_text], "PLAIN DOWN", 5];
 	} else {
-		if(!isBuilding) then {
+		if(_isPerm) then {
 			_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
 		
 			// fire?

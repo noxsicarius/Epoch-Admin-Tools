@@ -1,9 +1,10 @@
-private ["_objectID","_objectUID","_obj","_ownerID","_dir","_pos","_holder","_weapons","_magazines","_backpacks","_objWpnTypes","_objWpnQty","_countr","_unlockedClass","_objType","_objectCharacterID"];
+private ["_objectID","_objectUID","_obj","_ownerID","_dir","_pos","_holder","_weapons","_magazines","_backpacks","_objWpnTypes","_objWpnQty","_countr","_unlockedClass","_objType","_objectCharacterID","_player"];
 
 _obj = cursorTarget;
 if(isNull _obj) exitWith {};
 _objectID = _obj getVariable["ObjectID","0"];
 _objType = typeOf _obj;
+_player = player;
 
 // Unlock car
 if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") then {
@@ -23,15 +24,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 
 	// Tool use logger
 	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has unlocked vehicle: %3 with ID:%4",name player,getPlayerUID player,_obj,_objectID];
+		usageLogger = format["%1 %2 -- has unlocked vehicle: %3 with ID:%4",name _player,getPlayerUID _player,_obj,_objectID];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has forcibly unlocked a vehicle",name player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-
 } else {
 	// Unlock Safe/Lock_Box
 	if(_objType in DZE_LockedStorage) then {
@@ -104,7 +99,7 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 
 		// Tool use logger
 		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has unlocked a safe - ID:%3 UID:%4",name player,getPlayerUID player,_objectID,_ownerID];
+			usageLogger = format["%1 %2 -- has unlocked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
 			[] spawn {publicVariable "usageLogger";};
 		};
 		// Tool use broadcaster
@@ -115,18 +110,19 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		
 	} else {
 
-		_objectCharacterID 	= _obj getVariable ["CharacterID","0"];
+		_objectCharacterID = _obj getVariable ["CharacterID","0"];
+		
 		//Unlock Doors
-		if(_obj animationPhase "Open_hinge" == 0) then {
-			_obj animate ["Open_hinge", 1];
-		};
-		if(_obj animationPhase "Open_latch" == 0) then {
-			_obj animate ["Open_latch", 1];
-		};
+		if(_obj animationPhase "Open_hinge" == 0) then {_obj animate ["Open_hinge", 1];};
+		if(_obj animationPhase "Open_latch" == 0) then {_obj animate ["Open_latch", 1];};
+		if(_obj animationPhase "Open_door" == 0) then {_obj animate ["Open_door", 1];};
+		if(_obj animationPhase "DoorR" == 0) then {_obj animate ["DoorR", 1];};
+		if(_obj animationPhase "LeftShutter" == 0) then {_obj animate ["LeftShutter", 1];};
+		if(_obj animationPhase "RightShutter" == 0) then {_obj animate ["RightShutter", 1];};
 		
 		// Tool use logger
 		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has unlocked a door - ID:%3 Combo:%4",name player,getPlayerUID player,_objectID,_objectCharacterID];
+			usageLogger = format["%1 %2 -- has unlocked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
 			[] spawn {publicVariable "usageLogger";};
 		};
 		// Tool use broadcaster

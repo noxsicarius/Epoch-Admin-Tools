@@ -1,10 +1,12 @@
-private ["_objectID","_objectUID","_obj","_ownerID","_dir","_pos","_holder","_weapons","_magazines","_backpacks","_alreadyPacking","_lockedClass","_text","_playerNear"];
+private ["_objectID","_objectUID","_obj","_ownerID","_dir","_pos","_holder","_weapons","_magazines","_backpacks","_lockedClass","_player"];
 
 _obj = cursorTarget;
 if(isNull _obj) exitWith {};
+
 _objType = typeOf _obj;
 _ownerID = _obj getVariable["ObjectID","0"];
 _objectID = _obj getVariable["ObjectID","0"];
+_player = player;
 
 // Lock car
 if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") then {
@@ -23,7 +25,7 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 
 	// Tool use logger
 	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has locked a vehicle: %3",name player,getPlayerUID player,_obj];
+		usageLogger = format["%1 %2 -- has locked a vehicle: %3",name _player,getPlayerUID _player,_obj];
 		[] spawn {publicVariable "usageLogger";};
 	};
 } else {
@@ -65,25 +67,25 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		
 		// Tool use logger
 		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name player,getPlayerUID player,_objectID,_ownerID];
+			usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
 			[] spawn {publicVariable "usageLogger";};
 		};
 
 	} else {
 		//Lock Door
 		
-		_objectCharacterID 	= _obj getVariable ["CharacterID","0"];
+		_objectCharacterID = _obj getVariable ["CharacterID","0"];
 		
-		if(_obj animationPhase "Open_hinge" == 1) then {
-			_obj animate ["Open_hinge", 0];
-		};
-		if(_obj animationPhase "Open_latch" == 1) then {
-			_obj animate ["Open_latch", 0];
-		};
+		if(_obj animationPhase "Open_hinge" == 1) then {_obj animate ["Open_hinge", 0];};
+		if(_obj animationPhase "Open_latch" == 1) then {_obj animate ["Open_latch", 0];};
+		if(_obj animationPhase "Open_door" == 1) then {_obj animate ["Open_door", 0];};
+		if(_obj animationPhase "DoorR" == 1) then {_obj animate ["DoorR", 0];};
+		if(_obj animationPhase "LeftShutter" == 1) then {_obj animate ["LeftShutter", 0];};
+		if(_obj animationPhase "RightShutter" == 1) then {_obj animate ["RightShutter", 0];};
 		
 		// Tool use logger
 		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name player,getPlayerUID player,_objectID,_objectCharacterID];
+			usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
 			[] spawn {publicVariable "usageLogger";};
 		};
 	};

@@ -8,7 +8,7 @@ if (isNil "vhnlist") then
 {
 	vhnlist = [];
 	_kindOf = ["LandVehicle","Air","Ship"];
-	_filter = ["BIS_Steerable_Parachute","ParachuteBase","StaticWeapon"];      
+	_filter = ["BIS_Steerable_Parachute","ParachuteBase","StaticWeapon"];
 	_cfgvehicles = configFile >> "cfgVehicles";
 	titleText ["Generating Vehicle list... Wait...","PLAIN DOWN"];titleFadeOut 2;
 	for "_i" from 0 to (count _cfgvehicles)-1 do 
@@ -28,7 +28,7 @@ if (isNil "vhnlist") then
 	titleText ["List is ready...","PLAIN DOWN"];titleFadeOut 2;
 };
 
-_dialog = createdialog "AdminDialog";
+_dialog = createdialog "EAT_Veh_AdminDialog";
 lbClear AdminDialogList;
 {
 	private ["_index", "_x","_image"];

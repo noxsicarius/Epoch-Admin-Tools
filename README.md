@@ -1,4 +1,4 @@
-Epoch Admin Tools v-1.9.1
+Epoch Admin Tools V-1.10.0
 =================
 
 ![Admin Tools](http://i.imgur.com/j0bTHPB.png)
@@ -7,7 +7,8 @@ Epoch Admin Tools v-1.9.1
 
 This is an admin menu with powerful tools for the purpose of testing and/or administrating a [DayZ Epoch Mod](http://epochmod.com/) server. Most tools will also be compatible with original DayZMod servers and other derivatives.
 
-***You may use this script free of charge and modify for your own needs, however you MAY NOT distribute this code or any modified versions of it without my permission.*** If you have new features you think people may benefit from please open a pull request to have it added to this tool. The main reason for this is to be sure the tool is of the best possible quality and that harmful code is not distributed under the guise of my work.
+***You may use this script free of charge and modify for your own needs, however you MAY NOT distribute this code or any modified versions of it without my permission.*** If you have new features you think people may benefit from please open a pull request to have it added to this tool. The main reason for this is to be sure the tool is of the best possible quality and that harmful code is not distributed under the guise of my work. 
+If you are worried about the integrity of the dll files look at the change log for MD5 hash values.
 
 # Table of Contents:
 * [Features](https://github.com/noxsicarius/Epoch-Admin-Tools#features)
@@ -71,7 +72,8 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Paste the following 
 	
 	~~~~java
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	~~~~
 	
 	Directly under this:
@@ -91,11 +93,12 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
 	progressLoadingScreen 0.5;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	progressLoadingScreen 1.0;
 	~~~~
 	
-1. Paste the following at the very bottom of the init:
+1. Paste the following at the bottom of the ***init***:
 
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
@@ -130,7 +133,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
     #include "admintools\dialog.hpp"
     ~~~~
 	
-1. Open ***admintools\AdminList.sqf***
+1. Open ***admintools\config.sqf***
 1. Replace the "111111111" with [your Player ID](http://i48.tinypic.com/2isxjkz.png) in order to have full access to the menu.
 1. The mission pbo is done. Repack it and upload it to your server (FTP or host's File Manager).
 1. Extract the .txt files from the ***Epoch-Admin-Tools/Battleye*** folder to your server's Battleye folder, overwriting the existing .txt files. 
@@ -151,7 +154,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
         if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
     ~~~~
     
-	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `&& (vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
+	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
 
 1. Now open your ***compile/server_updateObject.sqf*** and place this:
 
@@ -195,12 +198,14 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 1. Open your ***init.sqf***, find and delete the Epoch Admin Tools edits
 
 	> * [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	> * The epoch antihack edit inside the !isDedicated if statement. (Only if it exists
+	> * The epoch antihack edit inside the !isDedicated if statement. (Only if it exists)
+	> * The call compile lines showin in the step below that may belong to the tool
 	
 1. Paste the following 
 	
 	~~~~java
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	~~~~
 	
 	Directly under this:
@@ -220,16 +225,17 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
 	progressLoadingScreen 0.5;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
-	call compile preprocessFileLineNumbers "admintools\AdminList.sqf"; // Epoch admin Tools variables/UIDs
+	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
+	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	progressLoadingScreen 1.0;
 	~~~~
 	
-1. Paste the following at the bottom of the init:
+1. Paste the following at the bottom of the ***init.sqf***:
 
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
-
+	
 1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
 	
 	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
@@ -251,10 +257,11 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
 	> If you do not have an antihack line at all ***DO NOT*** add this code, just skip this step.
 
-1. Save init.sqf
-1. Now go into the admintools folder and open ***AdminList.sqf***
-1. Open the AdminList.sqf you coppied to your desktop.
-1. Copy all of the UIDs from the old Adminlist to your new one. ***DO NOT simply replace the file. There are new edits in the AdminList.sqf***
+1. Save the init.sqf and close it
+1. Now go into the admintools folder and open ***config.sqf***
+1. Open the AdminList.sqf you copied to your desktop.
+1. Copy all of the UIDs from the old Adminlist to your new one. ***This version has many changes and no longer uses AdminList.sqf***
+	
 
 #### You have now successfully and correctly updated your tools.
 
@@ -263,7 +270,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 * I'm getting kicked with "Script Restriction #X"!
  * Make sure you've installed the Battleye filters perfectly in the instructions. If it still fails, you can fix the error yourself with a little knowledge about [how the filters work](http://dayz.st/w/Battleye_Filters).
 * The menu doesn't appear.
- * The most likely cause of this error is either a syntax error in your ***init.sqf*** (e.g. a missing semi-colon), a syntax error in your ***admintools\AdminList.sqf*** (e.g. a comma after the last string in the array of Admins/Mods - see above optional instruction) or forgetting to add your Player ID (or typing it wrong) into the ***admintools\AdminList.sqf***. Specific errors can be found by reading your server's [RPT file](https://community.bistudio.com/wiki/arma.RPT). Also see [Debugging Techniques](https://community.bistudio.com/wiki/Debugging_Techniques).
+ * The most likely cause of this error is either a syntax error in your ***init.sqf*** (e.g. a missing semi-colon), a syntax error in your ***admintools\config.sqf*** (e.g. a comma after the last string in the array of Admins/Mods - see above optional instruction) or forgetting to add your Player ID (or typing it wrong) into the ***admintools\config.sqf***. Specific errors can be found by reading your server's [RPT file](https://community.bistudio.com/wiki/arma.RPT). Also see [Debugging Techniques](https://community.bistudio.com/wiki/Debugging_Techniques).
 * I get stuck at the loading screen with the arma2oaserver.rpt error that I am missing files.
  * This is most often caused by a broken PBO packaging tool. Reinstall or use a different tool.
 * How do I add something to my personal tools?
@@ -283,7 +290,7 @@ This is an admin menu with powerful tools for the purpose of testing and/or admi
 * If the problem you are posting is a bug and not a general install problem then post it to [the main discussion forum](http://epochmod.com/forum/index.php?/topic/7501-release-epoch-admin-tools/) and to [the github issues page](https://github.com/gregariousjb/Epoch-Admin-Tools/issues?state=open).
 
 ## Credits
-This project is based on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
+This project is based heavily on [Malory's Custom Epoch Admin Tools](https://github.com/iforgotmywhat/Dayz-Epoch-Admin-Tools/), which itself is based on [BluePhoenix Admin Tools](https://github.com/BluePhoenix175/DayZ-Admin-Tools-).
 
 * Project Leader: NoxSicarius (Nox)
 * A huge thanks goes out to Gregarious who began this project and did a huge amount of work on the tool. We were sad to see him go, but his generous contributions will be remembered.
