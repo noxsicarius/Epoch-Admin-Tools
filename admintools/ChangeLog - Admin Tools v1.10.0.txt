@@ -1,10 +1,10 @@
 ==================================================
-You are using Epoch Admin Tools version 1.10.0 BETA
+You are using Epoch Admin Tools version 1.10.0
 by NoxSicarius
 ==================================================
 
 
-------------------- Version 1.10.0 BETA Changelog ---------------------
+------------------- Version 1.10.0 Changelog ---------------------
 
 New Features:
 	Added Variables file for unmodifiable variables/functions
