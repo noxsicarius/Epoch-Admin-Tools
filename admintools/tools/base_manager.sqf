@@ -365,11 +365,6 @@ fn_BCConfirmDelete = {
 		usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name _player,getPlayerUID _player,count _objects];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has deleted base items",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 };
 
 fn_BCSaveToDb = {
@@ -384,12 +379,6 @@ fn_BCSaveToDb = {
 		usageLogger = format["%1 %2 -- has placed a saved base",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has placed a base",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-
 };
 
 fn_BCCancelBase = {

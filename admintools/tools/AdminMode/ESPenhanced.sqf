@@ -468,11 +468,6 @@ if(!enhancedESP2) then
 {
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
 
-	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
-	};
 	// Tool use broadcaster
 	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
 		useBroadcaster = format["%1 -- has disabled enhanced ESP",name player];

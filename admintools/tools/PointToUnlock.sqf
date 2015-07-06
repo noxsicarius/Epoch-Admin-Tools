@@ -101,13 +101,7 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		if(logMajorTool) then {
 			usageLogger = format["%1 %2 -- has unlocked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
 			[] spawn {publicVariable "usageLogger";};
-		};
-		// Tool use broadcaster
-		if(broadcastToolUse) then {
-			useBroadcaster = "Admin -- has forcibly unlocked a safe";
-			[] spawn {publicVariableServer "useBroadcaster";};
-		};
-		
+		};		
 	} else {
 
 		_objectCharacterID = _obj getVariable ["CharacterID","0"];
@@ -124,11 +118,6 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		if(logMajorTool) then {
 			usageLogger = format["%1 %2 -- has unlocked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
 			[] spawn {publicVariable "usageLogger";};
-		};
-		// Tool use broadcaster
-		if(broadcastToolUse) then {
-			useBroadcaster = "Admin -- has forcibly unlocked a door";
-			[] spawn {publicVariableServer "useBroadcaster";};
 		};
 	};
 };
