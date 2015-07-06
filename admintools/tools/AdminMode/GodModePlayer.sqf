@@ -51,11 +51,6 @@ if (playerGod2) then
 		usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "usageLogger";};
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has DISABLED god mode",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
 
 	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
 	fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
