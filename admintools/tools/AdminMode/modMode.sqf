@@ -28,7 +28,7 @@ optionMenu =
 		[format["Infinite Ammo: %1",infAmmo], [7], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
 		[format["God Mode: %1",playerGod], [8], "", -5, [["expression", 'call playerGodToggle']], "1", "1"],
 		[format["Car God Mode: %1",vehicleGod], [9], "", -5, [["expression", 'call vehicleGodToggle']], "1", "1"],
-		[format["Grass Off: %1",grassOff], [10], "", -5, [["expression", 'call grassOffToggle']], "1", "1"],
+		[format["Grass Off: %1",grassOff], [10], "", -5, [["expression", 'call grassOffToggle']], "1", "1"]
 	];
 	showCommandingMenu "#USER:toggleMenu";
 };
