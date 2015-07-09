@@ -1,7 +1,19 @@
 ==================================================
-You are using Epoch Admin Tools version 1.10.0
+You are using Epoch Admin Tools version 1.10.1
 by NoxSicarius
 ==================================================
+
+
+------------------- Version 1.10.1 Changelog ---------------------
+
+Bug Fixes:
+	Broadcast use RPT error
+	Mod mode RPT error @ Slayterson
+	
+CleanUp:
+	Battleye filters (unimportant changes)
+	Class name updates @ Slayterson
+
 
 
 ------------------- Version 1.10.0 Changelog ---------------------
