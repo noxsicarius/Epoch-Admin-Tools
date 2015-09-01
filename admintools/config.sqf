@@ -14,7 +14,7 @@
 	"999999999", // <player name>
 	"999999999" // <player name>
 	];
-
+	
 
 	/*
 		Enable/Disable weather/time change menu.
@@ -34,8 +34,19 @@
 		//A minor tool is a weak tool with low possibility for exploiting
 		logMinorTool = false;
 
-	
-	
+
+		
+/************** Safe Zone Variables *****************/
+	// This script is a modified version of AGN safe zone commander
+	SafeZonePlayer = true;					//Enable the player safe zones script? REQUIRED for the other variables to take effect
+	antiCamper = 10;						//Time limit for keeping god mode active x seconds after leaving the zone
+	safeZoneZombieShield = true;			//Remove zombies from safe zone
+	safeZoneGodmode = true; 				//Enable god mode inside the safe zone?
+	safeZoneAntiBackpack = true;			//Disable backpack gear theft?
+	safeZoneLootPiles = true;				//Allow looting from loot spawns inside the zone?
+
+	// Vehicle safe zones
+	SafeZoneVehicle = true;					// Use the vehicle safe zones script?
 	
 	
 /************** Action Menu Variables **************/
@@ -111,9 +122,7 @@
 		enableAntiSpam = true;
 		antiSpamLimit = 15; // default 15 contacts
 		blindTime = 30; // default 30 seconds
-
 		
 		
-
 		
 diag_log("Admin Tools: config.sqf loaded");

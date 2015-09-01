@@ -21,9 +21,8 @@ if((ActionMenuPlayers && !((getPlayerUID player) in AdminAndModList)) || (Action
 	};
 };
 
-
 // Give admins the admin menu
-if ((getPlayerUID player) in AdminAndModList) then {
+if (isAdmin) then {
 	[] spawn {
 		_idx = -1;
 		_veh = vehicle player;
@@ -57,3 +56,17 @@ if ((getPlayerUID player) in AdminAndModList) then {
 		_idx = -1;
 	};
 };
+
+if(SafeZonePlayer) then {
+	[] spawn {
+		[] ExecVM "admintools\safeZones\safeZonePlayers.sqf";
+	};
+};
+
+if(SafeZoneVehicle) then {
+	[] spawn {
+		[] ExecVM "admintools\safeZones\safeZoneVehicles.sqf";
+	};
+};
+
+diag_log("Admin Tools: Activate.sqf loaded");
