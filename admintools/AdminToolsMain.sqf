@@ -73,6 +73,7 @@ VehicleMenu =
 [
 ["",true],	
 	["Graphical Vehicle Menu", [],"", -5, [["expression", format[_EXECgenTools,"addvehicleDialog.sqf"]]], "1", "1"],
+	["Eject Players", [],"", -5, [["expression", format[_EXECgenTools,"ejectPlayers.sqf"]]], "1", "1"],
 	["Temporary Vehicle Menu >>", [], "#USER:VehicleTempMenu", -5, [["expression", ""]], "1", "1"],
 	["Locked Vehicle Menu >>", [], "#USER:VehiclekeyMenu", -5, [["expression", ""]], "1", "1"],
 	["Vehicle Tools >>", [], "#USER:VehicleTools", -5, [["expression", ""]], "1", "1"],
