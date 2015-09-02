@@ -29,7 +29,12 @@ if (pselect5 != "exit") then
 			
 			hint format ["Teleporting %1", _name];
 			
-			_x attachTo [vehicle player, [2, 2, 0]];
+			if(vehicle _x != _x) then {
+				(vehicle _x) attachTo [vehicle player, [5, 5, 0]];
+			} else {
+				_x attachTo [vehicle player, [2, 2, 0]];
+			};
+			
 			sleep 0.25;
 			detach _x;
 
