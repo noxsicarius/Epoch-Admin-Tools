@@ -6,7 +6,6 @@ if(isNil "playerGod2") then {playerGod2 = true;} else {playerGod2 = !playerGod2}
 
 private["_player","_vehicle"];
 _player = player;
-_vehicle = (vehicle _player);
 
 if (playerGod2) then
 {
@@ -19,9 +18,9 @@ if (playerGod2) then
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
 	fnc_usec_unconscious = {};
-	_vehicle removeAllEventHandlers "handleDamage";
-	_vehicle addEventHandler ["handleDamage", { false }];	
-	_vehicle allowDamage false;
+	_player removeAllEventHandlers "handleDamage";
+	_player addEventHandler ["handleDamage", { false }];	
+	_player allowDamage false;
 	r_player_unconscious = false;
 	r_player_infected = false;
 	r_player_injured = false;
