@@ -6,8 +6,9 @@ AdminAndModList = AdminList + ModList; // Add all admin/mod into one list for ea
 /***** Set variables *****/
 tempList = []; // Initialize templist
 helpQueue = []; // Initialize help queue
+vehicleGod2 = false;
+playerGod2 = false;
 if ((getPlayerUID player) in AdminAndModList) then { isAdmin = true;} else { isAdmin = false;};
-if(isAdmin) then {vehicleGod2 = true; playerGod2 = true;} else {vehicleGod2 = false; playerGod2 = false;};
 
 
 /****************** Server Public Variables ******************/
