@@ -6,9 +6,15 @@ by NoxSicarius
 
 ------------------- Version 1.10.1 Changelog ---------------------
 
+New Features:
+	Added safezones (vehicle and player protection)
+	Added eject players from vehicle
+	Added support for teleporting players who are in vehicles
+	
 Bug Fixes:
 	Broadcast use RPT error
 	Mod mode RPT error @ Slayterson
+	Player God Mode not working when enabled inside vehicle @Vitamin Carrot
 	
 CleanUp:
 	Battleye filters (unimportant changes)
@@ -37,6 +43,8 @@ New Features:
 		dance
 		contact admin for help
 
+Removed Features:
+	Removed live broadcast tool use
 
 Bug Fixes:
 	Heal Player works again
