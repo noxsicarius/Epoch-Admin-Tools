@@ -10,6 +10,7 @@ New Features:
 	Added safezones (vehicle and player protection)
 	Added eject players from vehicle
 	Added support for teleporting players who are in vehicles
+	Added enemy AI spawner
 	
 Bug Fixes:
 	Broadcast use RPT error
