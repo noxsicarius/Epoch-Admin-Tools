@@ -53,11 +53,11 @@ if(logMajorTool) then {
 unit_waypoints = {
 	private ["_wp","_pos_x","_pos_y","_pos_z","_unitGroup","_position"];
 
-	_unitGroup 		= _this select 0;
-	_position 		= _this select 1;
-	_pos_x 			= _position select 0;
-	_pos_y 			= _position select 1;
-	_pos_z 			= _position select 2;
+	_unitGroup = _this select 0;
+	_position = _this select 1;
+	_pos_x = _position select 0;
+	_pos_y = _position select 1;
+	_pos_z = _position select 2;
 
 	{
 		_wp = _unitGroup addWaypoint [_x,10];
@@ -125,7 +125,7 @@ spawnAI = {
 		{
 			_unit setSkill [(_x select 0),(_x select 1)]
 		} count _aiSkill;
-		_unit addEventHandler ["Killed",{_unit removeWeapon "NVGoggles";}]; // Add unit deletion after 30 minutes when api is back online
+		_unit addEventHandler ["Killed",{_unit removeWeapon "NVGoggles"; Sleep 1200; deleteVehicle _unit;}]; // Delete units 20 minutes after death
 	};
 	_unitGroup setFormation "ECH LEFT";
 	_unitGroup selectLeader ((units _unitGroup) select 0);
