@@ -11,6 +11,7 @@ New Features:
 	Added eject players from vehicle
 	Added support for teleporting players who are in vehicles
 	Added enemy AI spawner
+	Added fast walk system to admin mode
 	
 Bug Fixes:
 	Broadcast use RPT error

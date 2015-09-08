@@ -15,6 +15,7 @@ if (isNil "enhancedESP") then {enhancedESP = false;};
 if (isNil "grassOff") then {grassOff = true;};
 if (isNil "infAmmo") then {infAmmo = true;};
 if (isNil "speedBoost") then {speedBoost = false;};
+if (isNil "fastWalk") then {fastWalk = false;};
 if (isNil "invisibility") then {invisibility = false;};
 if (isNil "flying") then {flying = false;};
 if (isNil "adminBuild") then {adminBuild = false;};
@@ -30,7 +31,8 @@ optionMenu =
 		// and change the initialization to false in the config at the top of this file
 		["",true],
 		["Toggle options:(current state)", [-1], "", -5, [["expression", ""]], "1", "0"],
-		[format["Vehicle Speed Boost: %1",speedBoost],[2],"", -5, [["expression", 'call speedBoostToggle']], "1", "1"],		
+		[format["Vehicle Speed Boost: %1",speedBoost],[2],"", -5, [["expression", 'call speedBoostToggle']], "1", "1"],
+		[format["Fast Walk: %1",fastWalk],[2],"", -5, [["expression", 'call fastWalkToggle']], "1", "1"],
 		[format["Enhanced ESP: %1",enhancedESP], [3], "", -5, [["expression", 'call enhancedESPToggle']], "1", "1"],
 		[format["Player ESP: %1",playerESP], [4], "", -5, [["expression", 'call playerESPToggle']], "1", "1"],
 		[format["Invisibility ON: %1",invisibility], [5], "", -5, [["expression", 'call invisibilityToggle']], "1", "1"],

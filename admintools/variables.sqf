@@ -249,6 +249,10 @@ if ((getPlayerUID player) in AdminAndModList) then { isAdmin = true;} else { isA
 				speedBoost = !speedBoost;
 				[] execVM "admintools\tools\AdminMode\speedboost.sqf";
 			};
+			fastWalkToggle = {
+				fastWalk = !fastWalk;
+				[] execVM "admintools\tools\AdminMode\fastWalk.sqf";
+			};
 			invisibilityToggle = {
 				invisibility = !invisibility;
 				[] execVM "admintools\tools\AdminMode\Invisibility.sqf";
