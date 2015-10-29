@@ -7,7 +7,7 @@ _addOrRemove = _this select 0;
 _target = cursorTarget;
 _player = player;
 
-hmanityGain = -1;
+humanityGain = -1;
 
 if(isNull(_target)) then {_target = _player;};
 if(!isPlayer _target) exitWith{cutText["Error: No player selected","PLAIN DOWN"];};
