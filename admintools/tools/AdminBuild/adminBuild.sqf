@@ -1,7 +1,24 @@
 private ["_location","_dir","_classname","_item","_cancel","_reason","_dis","_tmpbuilt","_text","_offset","_IsNearPlot","_isOk","_location1","_location2","_position","_object",
 "_ownerID","_findNearestPoles","_findNearestPole","_distance","_classnametmp","_ghost","_isPole","_needText","_lockable","_zheightchanged","_rotate","_combination_1",
 "_combination_2","_combination_3","_combination_4","_combination","_combination_1_Display","_combinationDisplay","_zheightdirection","_vehicle","_inVehicle","_objHDiff",
-"_isLandFireDZ"];
+"_isLandFireDZ","_buidRes","_buildMil","_buildReli","_buildMisc"];
+
+/***--Multi-dimentional(nested) array extraction--***/
+myfnc_MDarray = {
+	private ["_list","_i","_temp"];
+	_list = []; _temp = _this select 0; _i = 0;					//varDeclaration
+
+	for "_i" from 0 to ((count _temp) - 1) do {					//assert input array size (starts at 1, not 0; hence the -1)
+		_list set [_i,((_temp select _i) select 2)];			//set is faster than deep copy "+"; could of had used BIS_fnc_returnNestedElement, but i like to have control over it
+	};
+	_list;														//return the uniDimensional List of classnames
+};
+// declare tempVariables for the unidimentional array with the list of each items for each category to be compared
+_buildRes = [(buildResidential - buildShed)] call myfnc_MDarray;
+_buildMil = [(buildCastle + buildMilitary)] call myfnc_MDarray;
+_buildReli = [buildReligious] call myfnc_MDarray;
+_buildMisc = [(buildGrave + buildOutdoors)] call myfnc_MDarray;
+/*-------------------------------------------------*/
 
 _cancel = false;
 _isPerm = false;
@@ -61,16 +78,16 @@ if(isNumber (configFile >> "CfgVehicles" >> _classname >> "nounderground")) then
 _offset = 	getArray (configFile >> "CfgVehicles" >> _classname >> "offset");
 if((count _offset) <= 0) then {
 	if(isBuilding) then {
-		if(_item in (buildResidential - buildShed)) then {
+		if(_item in _buildRes) then {
 			_offset = [0,15,2];
 		} else {
-			if(_item in (buildCastle + buildMilitary)) then {
+			if(_item in _buildMil) then {
 				_offset = [0,3,2];
 			} else {
-				if(_item in buildReligious) then {
+				if(_item in _buildReli) then {
 					_offset = [0,25,2];
 				} else {
-					if(_item in buildGrave + buildOutdoors) then {
+					if(_item in _buildMisc) then {
 						_offset = [0,2,1];
 					} else {
 						_offset = [0,6,2];
