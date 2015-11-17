@@ -9,7 +9,7 @@ _EXECscript3 = '["%1"] execVM "admintools\actionMenu\FunMenu\movements.sqf"';
 _EXECscript4 = '[%1] execVM "admintools\actionMenu\contactAdmin.sqf"';
 ActionMenu = [["",true],["-- Action Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 
-if((getPlayerUID player) in AdminList ||(getPlayerUID player) in ModList) then {
+if((getPlayerUID player) in AdminAndModList) then {
 
 	/*
 		This menu is for the Admins or Mods listed in the Epoch Admin Tools.
