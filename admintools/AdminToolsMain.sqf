@@ -80,10 +80,11 @@ if ((getPlayerUID player) in AdminList) then { // Administrators
 	EAT_vehicleTools = [["",true]];
 	EAT_vehicleTools = EAT_vehicleTools + [["-- Vehicle Tools --", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Vehicle Locator",[],"",-5,[["expression", format[_EXECgenTools,"vehicleLocator.sqf"]]], "1", "1"]];
-	EAT_vehicleTools = EAT_vehicleTools + [["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECgenTools,"PointToRepair.sqf"]]], "1", "1"]];
+	EAT_vehicleTools = EAT_vehicleTools + [["Recover Vehicle Key",[],"",-5,[["expression", format[_EXECgenTools,"keyRecovery.sqf"]]], "1", "1"]];
+//	EAT_vehicleTools = EAT_vehicleTools + [["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECgenTools,"PointToRepair.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECgenTools,"PointToRepairPERM.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Point to Revive Vehicle",[],"", -5,[["expression", format[_EXECgenTools,"PointToReviveVeh.sqf"]]], "1", "1"]];
-	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECgenTools,"PointToDelete.sqf"]]], "1", "1"]];
+//	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECgenTools,"PointToDelete.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Flip Vehicle", [],"", -5, [["expression", format[_EXECgenTools,"flipvehicle.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["", [], "", -5,[["expression", ""]], "1", "0"]];
