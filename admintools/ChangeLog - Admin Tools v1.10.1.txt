@@ -12,15 +12,23 @@ New Features:
 	Added support for teleporting players who are in vehicles
 	Added enemy AI spawner
 	Added fast walk system to admin mode
+	Added Key Recovery for purchased vehicles
+	
+Enhancements:
+	Humanity menu has reset to 2500 option
 	
 Bug Fixes:
 	Broadcast use RPT error
 	Mod mode RPT error @ Slayterson
 	Player God Mode not working when enabled inside vehicle @Vitamin Carrot
+	Object Offset not working @ leodr99
+	Undeclared variable caused by typo @ leodr99
 	
 CleanUp:
 	Battleye filters (unimportant changes)
 	Class name updates @ Slayterson
+	File structure improvements
+	Efficiency updates
 
 
 
