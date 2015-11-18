@@ -102,8 +102,9 @@ if ((getPlayerUID player) in AdminList) then { // Administrators
 //Main menu to handle humanity changing
 	EAT_humanityMenu = [["",true]];
 	EAT_humanityMenu = EAT_humanityMenu + [["-- Humanity Change Menu --", [], "", -5,[["expression", ""]], "1", "0"]];
-	EAT_humanityMenu = EAT_humanityMenu + [["Add Humanity to self or target", [],"", -5, [["expression", '["add"] execVM "admintools\tools\humanityChanger.sqf"']], "1", "1"]];
-	EAT_humanityMenu = EAT_humanityMenu + [["Remove Humanity from self or target", [],"", -5, [["expression", '["remove"] execVM "admintools\tools\humanityChanger.sqf"']], "1", "1"]];
+	EAT_humanityMenu = EAT_humanityMenu + [["Add to self or target", [],"", -5, [["expression", '["add"] execVM "admintools\tools\humanityChanger.sqf"']], "1", "1"]];
+	EAT_humanityMenu = EAT_humanityMenu + [["Remove from self or target", [],"", -5, [["expression", '["remove"] execVM "admintools\tools\humanityChanger.sqf"']], "1", "1"]];
+	EAT_humanityMenu = EAT_humanityMenu + [["Reset to 2500", [],"", -5, [["expression", '["reset"] execVM "admintools\tools\humanityChanger.sqf"']], "1", "1"]];
 	EAT_humanityMenu = EAT_humanityMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_humanityMenu = EAT_humanityMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
