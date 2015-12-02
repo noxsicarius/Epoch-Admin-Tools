@@ -1,15 +1,14 @@
 // Do not modify this file unless you know what you are doing
 
 AdminList = AdminList + SuperAdminList; // add SuperAdmin to Admin
-AdminAndModList = AdminList + ModList; // Add all admin/mod into one list for easy call
+EAT_adminModList = AdminList + ModList; // Add all admin/mod into one list for easy call
 
 /***** Set variables *****/
 tempList = []; // Initialize templist
 helpQueue = []; // Initialize help queue
 vehicleGod2 = false;
 playerGod2 = false;
-if ((getPlayerUID player) in AdminAndModList) then { isAdmin = true;} else { isAdmin = false;};
-
+if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {EAT_isAdmin = false;}; // Descern if player is admin
 
 /****************** Server Public Variables ******************/
 	if(isDedicated) then {
@@ -75,7 +74,7 @@ if ((getPlayerUID player) in AdminAndModList) then { isAdmin = true;} else { isA
 			};
 			EAT_contactAdminClient = helpQueue;
 			{
-				if ((getPlayerUID _x) in AdminAndModList) then {	//check if the clientID(uniqueID) is an admin|mod
+				if ((getPlayerUID _x) in EAT_adminModList) then {	//check if the clientID(uniqueID) is an admin|mod
 					(owner _x) publicVariableClient "EAT_contactAdminClient";
 				};
 			} forEach entities "CAManBase";
@@ -108,7 +107,7 @@ if ((getPlayerUID player) in AdminAndModList) then { isAdmin = true;} else { isA
 	// Admin ticket system
 	"EAT_contactAdminClient" addPublicVariableEventHandler {
 		helpQueue = (_this select 1);
-		if ((getPlayerUID player) in AdminAndModList) then {
+		if (isAdmin) then {
 			systemChat "****A player needs help****";
 		};
 	};
@@ -213,10 +212,10 @@ if ((getPlayerUID player) in AdminAndModList) then { isAdmin = true;} else { isA
 		showCommandingMenu "#USER:_pmenu";
 	};
 
-	
-	
+
+
 /********************** Admin/Mod functions/variables **********************/
-	if ((getPlayerUID player) in AdminAndModList) then {
+	if (EAT_isAdmin) then {
 	
 		//Admin-Mod mode script calls
 			playerGodToggle = {
@@ -286,8 +285,7 @@ if ((getPlayerUID player) in AdminAndModList) then { isAdmin = true;} else { isA
 	if(enableWeatherTimeChanger)then{"PVDZE_plr_SetDate" addPublicVariableEventHandler {};};
 
 
-// Adds the admin build items to the allowed objects
-// Fixes permanent arma building spawn
+// Required for permanent arma building spawn
 {dayz_allowedObjects = dayz_allowedObjects + [_x select 2];}forEach allBuildingList;
 
 diag_log("Admin Tools: variables.sqf loaded");

@@ -10,7 +10,7 @@ if(_combo != "0") then {
 		if ((_combo > 5000) && (_combo <= 7500)) then {_result = format["Blue%1",_combo-5000];}else{
 		if ((_combo > 7500) && (_combo <= 10000)) then {_result = format["Yellow%1",_combo-7500];}else{
 		if ((_combo > 10000) && (_combo <= 12500)) then {_result = format["Black%1",_combo-10000];};};};};};
-		cutText [format["Item Code: %1", _result], "PLAIN DOWN"];
+		cutText [format["Vehicle Key: %1", _result], "PLAIN DOWN"];
 	}else{
 		cutText [format["Item Code: %1", _combo], "PLAIN DOWN"];
 	};

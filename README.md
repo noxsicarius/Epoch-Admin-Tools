@@ -115,11 +115,7 @@ If you are worried about the integrity of the dll files look at the change log f
 	> if you have the line above ***replace it*** with this:
 
 	> ~~~~java
-	> // Epoch Admin Tools
-	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
-	> {
-	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
-	> };
+	> [] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with admin tool bypass
 	> ~~~~
 	
 	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.

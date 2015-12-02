@@ -1,10 +1,10 @@
 ==================================================
-You are using Epoch Admin Tools version 1.10.1
+You are using Epoch Admin Tools version 1.10.4
 by NoxSicarius
 ==================================================
 
 
-------------------- Version 1.10.1 Changelog ---------------------
+------------------- Version 1.10.4 Changelog ---------------------
 
 New Features:
 	Added safezones (vehicle and player protection)
@@ -14,8 +14,6 @@ New Features:
 	Added fast walk system to admin mode
 	Added Key Recovery for purchased vehicles
 	
-Enhancements:
-	Humanity menu has reset to 2500 option
 	
 Bug Fixes:
 	Broadcast use RPT error
@@ -24,7 +22,8 @@ Bug Fixes:
 	Object Offset not working @ leodr99
 	Undeclared variable caused by typo @ leodr99
 	
-CleanUp:
+Enhancements:
+	Humanity menu has reset to 2500 option
 	Battleye filters (unimportant changes)
 	Class name updates @ Slayterson
 	File structure improvements

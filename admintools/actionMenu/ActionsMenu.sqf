@@ -9,7 +9,7 @@ _EXECscript3 = '["%1"] execVM "admintools\actionMenu\FunMenu\movements.sqf"';
 _EXECscript4 = '[%1] execVM "admintools\actionMenu\contactAdmin.sqf"';
 ActionMenu = [["",true],["-- Action Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 
-if((getPlayerUID player) in AdminAndModList) then {
+if(isAdmin) then {
 
 	/*
 		This menu is for the Admins or Mods listed in the Epoch Admin Tools.
@@ -24,7 +24,6 @@ if((getPlayerUID player) in AdminAndModList) then {
 	ActionMenu = ActionMenu + [["", [], "", -5, [["expression", ""]], "1", "0"],["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 
 } else {
-
 	// This menu is for normal players only. If you have an admin listed, they will use the menu above.
 
 	ActionMenu = ActionMenu + [["Action Menu >>", [], "#USER:ActionsMenu", -5, [["expression", ""]], "1", "1"]];
@@ -40,7 +39,7 @@ if(AllowBuildBike) then {ActionsMenu = ActionsMenu + [["Build Bike", [], "", -5,
 if(AllowBuildMozzie) then {ActionsMenu = ActionsMenu + [["Build Mozzie", [],  "", -5, [["expression", format[_EXECscript1,"deployMozzie.sqf"]]], "1", "1"]];};
 if(AllowPackBike) then {ActionsMenu = ActionsMenu + [["Pack Bike", [], "", -5, [["expression", format[_EXECscript1,"packBike.sqf"]]], "1", "1"]];};
 if(AllowPackMozzie) then {ActionsMenu = ActionsMenu + [["Pack Mozzie", [], "", -5, [["expression", format[_EXECscript1,"packMozzie.sqf"]]], "1", "1"]];};
-if(AllowFlipVehicle) then {ActionsMenu = ActionsMenu + [["Flip Vehicle", [], "", -5, [["expression", format[_EXECscript1,"flipVehicle.sqf"]]], "1", "1"]];};
+if(AllowFlipVehicle) then {ActionsMenu = ActionsMenu + [["Flip Vehicle", [], "", -5, [["expression", 'player execVM "admintools\tools\flipVehicle.sqf"']], "1", "1"]];};
 if(AllowSuicide) then {ActionsMenu = ActionsMenu + [["Suicide", [], "", -5, [["expression", format[_EXECscript1,"suicide.sqf"]]], "1", "1"]];};
 ActionsMenu = ActionsMenu + [["", [], "", -5, [["expression", ""]], "1", "0"], ["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 

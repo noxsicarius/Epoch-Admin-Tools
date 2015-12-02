@@ -86,7 +86,7 @@ if ((getPlayerUID player) in AdminList) then { // Administrators
 	EAT_vehicleTools = EAT_vehicleTools + [["Point to Revive Vehicle",[],"", -5,[["expression", format[_EXECgenTools,"PointToReviveVeh.sqf"]]], "1", "1"]];
 //	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECgenTools,"PointToDelete.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
-	EAT_vehicleTools = EAT_vehicleTools + [["Flip Vehicle", [],"", -5, [["expression", format[_EXECgenTools,"flipvehicle.sqf"]]], "1", "1"]];
+	EAT_vehicleTools = EAT_vehicleTools + [["Flip Vehicle", [],"", -5, [["expression", format[_EXECgenTools,"flipVehicle.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
@@ -305,8 +305,8 @@ if ((getPlayerUID player) in AdminList) then { // Administrators
 	EAT_epochMenu = EAT_epochMenu + [["Admin Build Menu >> ",[],"#USER:EAT_buildMenu", -5,[["expression",""]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Point to Delete Item",[],"", -5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Point to display code",[],"",-5,[["expression",format[_EXECgenTools,"gimmecode.sqf"]]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Point to make new key",[],"",-5,[["expression",format[_EXECgenTools,"givekey.sqf"]]],"1","1"]];
+	EAT_epochMenu = EAT_epochMenu + [["Point to display code",[],"",-5,[["expression",format[_EXECgenTools,"displayLockCode.sqf"]]],"1","1"]];
+	EAT_epochMenu = EAT_epochMenu + [["Point to make new key",[],"",-5,[["expression",format[_EXECgenTools,"recoverKey.sqf"]]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Point to lock object",[],"",-5,[["expression",format[_EXECgenTools,"PointToLock.sqf"]]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Point to unlock object",[],"",-5,[["expression",format[_EXECgenTools,"PointToUnlock.sqf"]]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
