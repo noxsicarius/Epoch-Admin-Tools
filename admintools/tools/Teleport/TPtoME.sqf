@@ -24,8 +24,8 @@ if (pselect5 != "exit") then
 		{
 			_UID = (getPlayerUID _x);
 
-			EAT_teleportFixServer = ["add",_UID];
-			publicVariableServer "EAT_teleportFixServer";
+			EAT_PVEH_teleportFixServer = ["add",_UID];
+			publicVariableServer "EAT_PVEH_teleportFixServer";
 			
 			hint format ["Teleporting %1", _name];
 			
@@ -39,13 +39,13 @@ if (pselect5 != "exit") then
 			detach _x;
 
 			Sleep 3;
-			EAT_teleportFixServer = ["remove",_UID];
-			[] spawn {publicVariableServer "EAT_teleportFixServer"};
+			EAT_PVEH_teleportFixServer = ["remove",_UID];
+			[] spawn {publicVariableServer "EAT_PVEH_teleportFixServer"};
 			
 			// Tool use logger
-			if(logMajorTool) then {
-				usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_UID];
-				[] spawn {publicVariable "usageLogger";};
+			if(EAT_logMajorTool) then {
+				EAT_PVEH_usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_UID];
+				[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 			};
 		};
 	} forEach entities "CAManBase";

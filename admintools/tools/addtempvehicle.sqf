@@ -16,7 +16,7 @@ clearWeaponCargoGlobal _veh;
 cutText ["Spawned a vehicle.", "PLAIN DOWN"];
 
 // Tool use logger
-if(logMinorTool) then {
-	usageLogger = format["%1 %2 -- has spawned a temporary vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMinorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has spawned a temporary vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
+	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };

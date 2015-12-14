@@ -51,9 +51,9 @@ if ((count _downgrade) > 0) then {
 	player reveal _object;
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has used admin build to downgrade: %3",name player,getPlayerUID player,_obj];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has used admin build to downgrade: %3",name player,getPlayerUID player,_obj];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 
 } else {

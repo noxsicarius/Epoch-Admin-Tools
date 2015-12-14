@@ -117,9 +117,9 @@ if(enhancedESP2) then {
 	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
 	_player = player;
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 

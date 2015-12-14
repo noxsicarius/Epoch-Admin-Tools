@@ -5,15 +5,15 @@ _cancel = _this select 0;
 if(isNil "helpCount") then {helpCount = 0};
 
 if((!(_playerName in helpQueue)) && (!(_cancel)) && (helpCount < antiSpamLimit)) then {
-	EAT_contactAdminServer = ["add", _playerName];
-	[] spawn {publicVariable "EAT_contactAdminServer";};
+	EAT_PVEH_contactAdminServer = ["add", _playerName];
+	[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	cutText["An admin will be with you shortly", "PLAIN DOWN", 4];
 	if(enableAntiSpam) then {helpCount = helpCount + 1;};
 } else {
 	if(_cancel) then {
 		cutText["Cancelled help ticket", "PLAIN DOWN", 3];
-		EAT_contactAdminServer = ["remove", _playerName];
-		[] spawn {publicVariable "EAT_contactAdminServer";};
+		EAT_PVEH_contactAdminServer = ["remove", _playerName];
+		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	} else {
 		if((helpCount >= antiSpamLimit) && enableAntiSpam) then {
 			1 cutText["ANTI SPAM, your contact an admin is disabled","WHITE OUT"];

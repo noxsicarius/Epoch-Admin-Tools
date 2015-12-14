@@ -23,7 +23,7 @@ _vehicle setVelocity [0,0,1];
 titleText [format["%1 permanently repaired, refuelled and rearmed.", _name], "PLAIN DOWN"]; titleFadeOut 3;
 
 // Tool use logger
-if(logMinorTool) then {
-	usageLogger = format["%1 %2 -- has permanently repaired %3",name _player,getPlayerUID _player,_vehicle];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMinorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has permanently repaired %3",name _player,getPlayerUID _player,_vehicle];
+	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };

@@ -369,9 +369,9 @@ if(!_cancel) then {
 	};
 	
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has used admin build to place: %3",name player,getPlayerUID player,_item];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has used admin build to place: %3",name player,getPlayerUID player,_item];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 } else {
 	r_interrupt = false;

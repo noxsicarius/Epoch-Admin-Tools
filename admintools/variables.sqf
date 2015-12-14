@@ -1,7 +1,7 @@
 // Do not modify this file unless you know what you are doing
 
-AdminList = AdminList + SuperAdminList; // add SuperAdmin to Admin
-EAT_adminModList = AdminList + ModList; // Add all admin/mod into one list for easy call
+EAT_adminList = EAT_adminList + EAT_superAdminList; // add SuperAdmin to Admin
+EAT_adminModList = EAT_adminList + EAT_modList; // Add all admin/mod into one list for easy call
 
 /***** Set variables *****/
 tempList = []; // Initialize templist
@@ -13,22 +13,22 @@ if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {
 /****************** Server Public Variables ******************/
 	if(isDedicated) then {
 		// Log tool usage to .txt file
-		"usageLogger" addPublicVariableEventHandler {
+		"EAT_PVEH_usageLogger" addPublicVariableEventHandler {
 			"EATadminLogger" callExtension (_this select 1);
 		};
 		// Broadcast server message to clients
-		"EAT_serverMessageServer" addPublicVariableEventHandler {
-			EAT_serverMessageClient = (_this select 1);
+		"EAT_PVEH_serverMessageServer" addPublicVariableEventHandler {
+			EAT_PVEH_serverMessageClient = (_this select 1);
 			{
-				(owner _x) publicVariableClient "EAT_serverMessageClient";
+				(owner _x) publicVariableClient "EAT_PVEH_serverMessageClient";
 			} forEach entities "CAManBase";
 		};
 		// Export base to .sqf
-		"EAT_baseExporter" addPublicVariableEventHandler {
+		"EAT_PVEH_baseExporter" addPublicVariableEventHandler {
 			"EATbaseExporter" callExtension (_this select 1);
 		};
 		// teleport fix
-		"EAT_teleportFixServer" addPublicVariableEventHandler{
+		"EAT_PVEH_teleportFixServer" addPublicVariableEventHandler{
 			_array = (_this select 1);
 			_addRemove = (_array select 0);
 
@@ -39,29 +39,29 @@ if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {
 				_array = _array - ["remove"];
 				tempList = tempList - _array;
 			};
-			EAT_teleportFixClient = tempList;
-			{(owner _x) publicVariableClient "EAT_teleportFixClient";} forEach entities "CAManBase";
+			EAT_PVEH_teleportFixClient = tempList;
+			{(owner _x) publicVariableClient "EAT_PVEH_teleportFixClient";} forEach entities "CAManBase";
 		};
 		// Broadcast date to clients
-		"EAT_SetDateServer" addPublicVariableEventHandler {
-			EAT_setDateClient = (_this select 1);
-			setDate EAT_setDateClient;
-			{(owner _x) publicVariableClient "EAT_setDateClient";} forEach entities "CAManBase";
+		"EAT_PVEH_SetDateServer" addPublicVariableEventHandler {
+			EAT_PVEH_SetDateClient = (_this select 1);
+			setDate EAT_PVEH_SetDateClient;
+			{(owner _x) publicVariableClient "EAT_PVEH_SetDateClient";} forEach entities "CAManBase";
 		};
 		// Broadcast weather to clients
-		"EAT_SetOvercastServer" addPublicVariableEventHandler {
-			EAT_setOvercastClient = (_this select 1);
-			5 setOvercast EAT_setOvercastClient;
-			{(owner _x) publicVariableClient "EAT_setOvercastClient";} forEach entities "CAManBase";
+		"EAT_PVEH_SetOvercastServer" addPublicVariableEventHandler {
+			EAT_PVEH_setOvercastClient = (_this select 1);
+			5 setOvercast EAT_PVEH_setOvercastClient;
+			{(owner _x) publicVariableClient "EAT_PVEH_setOvercastClient";} forEach entities "CAManBase";
 		};
 		// Broadcast fog to clients
-		"EAT_SetFogServer" addPublicVariableEventHandler {
-			EAT_setFogClient = (_this select 1);
-			5 setFog EAT_setFogClient;
-			{(owner _x) publicVariableClient "EAT_setFogClient";} forEach entities "CAManBase";
+		"EAT_PVEH_SetFogServer" addPublicVariableEventHandler {
+			EAT_PVEH_setFogClient = (_this select 1);
+			5 setFog EAT_PVEH_setFogClient;
+			{(owner _x) publicVariableClient "EAT_PVEH_setFogClient";} forEach entities "CAManBase";
 		};
 		// Admin ticket system
-		"EAT_contactAdminServer" addPublicVariableEventHandler {
+		"EAT_PVEH_contactAdminServer" addPublicVariableEventHandler {
 			_array = (_this select 1);
 			_addRemove = (_array select 0);
 
@@ -72,10 +72,10 @@ if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {
 				_array = _array - ["remove"];
 				helpQueue = helpQueue - _array;
 			};
-			EAT_contactAdminClient = helpQueue;
+			EAT_PVEH_contactAdminClient = helpQueue;
 			{
 				if ((getPlayerUID _x) in EAT_adminModList) then {	//check if the clientID(uniqueID) is an admin|mod
-					(owner _x) publicVariableClient "EAT_contactAdminClient";
+					(owner _x) publicVariableClient "EAT_PVEH_contactAdminClient";
 				};
 			} forEach entities "CAManBase";
 		};
@@ -83,29 +83,29 @@ if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {
 
 /****************** Client Public Variables ******************/
 	// Display server message
-	"EAT_serverMessageClient" addPublicVariableEventHandler{
+	"EAT_PVEH_serverMessageClient" addPublicVariableEventHandler{
 		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
 	};
 	// Teleport fix
-	"EAT_teleportFixClient" addPublicVariableEventHandler {
+	"EAT_PVEH_teleportFixClient" addPublicVariableEventHandler {
 		tempList = (_this select 1);
 	};
 	// Set date on client
-	"EAT_SetDateClient" addPublicVariableEventHandler {
+	"EAT_PVEH_SetDateClient" addPublicVariableEventHandler {
 		setDate (_this select 1);
 	};
 	// Set overcast on client
-	"EAT_setOvercastClient" addPublicVariableEventHandler {
+	"EAT_PVEH_setOvercastClient" addPublicVariableEventHandler {
 		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setOvercast (_this select 1);
 	};
 	// Set fog on client
-	"EAT_setFogClient" addPublicVariableEventHandler {
+	"EAT_PVEH_setFogClient" addPublicVariableEventHandler {
 		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setFog (_this select 1);
 	};
 	// Admin ticket system
-	"EAT_contactAdminClient" addPublicVariableEventHandler {
+	"EAT_PVEH_contactAdminClient" addPublicVariableEventHandler {
 		helpQueue = (_this select 1);
 		if (isAdmin) then {
 			systemChat "****A player needs help****";
@@ -282,7 +282,7 @@ if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {
 	};
 
 /**************** overwrite epoch public variables ****************/
-	if(enableWeatherTimeChanger)then{"PVDZE_plr_SetDate" addPublicVariableEventHandler {};};
+	if(EAT_wtChanger)then{"PVDZE_plr_SetDate" addPublicVariableEventHandler {};};
 
 
 // Required for permanent arma building spawn

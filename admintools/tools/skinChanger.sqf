@@ -8,9 +8,9 @@ _backPacks = ["CZ_VestPouch_EP1","DZ_LargeGunBag_EP1","DZ_ALICE_Pack_EP1","DZ_As
 		"DZ_GunBag_EP1","DZ_CompactPack_EP1","DZ_TerminalPack_EP1"];
 
 // Tool use logger
-if(logMinorTool) then {
-	usageLogger = format["%1 %2 -- has changed skins to %3",name _player,getPlayerUID _player,_skin];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMinorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has changed skins to %3",name _player,getPlayerUID _player,_skin];
+	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };
 
 if(_bagType !="") then {

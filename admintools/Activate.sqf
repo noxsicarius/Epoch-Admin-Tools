@@ -32,8 +32,8 @@ if (EAT_isAdmin) then {
 		
 		// Tool use logger
 		if(logMajorTool || logMinorTool) then {
-			usageLogger = format["%1 %2 -- has logged on",name player,getPlayerUID player];
-			[] spawn {publicVariable "usageLogger";};
+			EAT_PVEH_usageLogger = format["%1 %2 -- has logged on",name player,getPlayerUID player];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 
 		while {alive player} do

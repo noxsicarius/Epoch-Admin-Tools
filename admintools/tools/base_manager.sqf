@@ -242,16 +242,16 @@ fn_BCExport = {
 		_i = _i + 1;
 	} count _nearest_objects;
 	
-	EAT_baseExporter = _export;
-	[] spawn {publicVariableServer "EAT_baseExporter"};
+	EAT_PVEH_baseExporter = _export;
+	[] spawn {publicVariableServer "EAT_PVEH_baseExporter"};
 
 	systemChat format["Exported base to server\EpochAdminTools\Bases.sqf"];
 	showCommandingMenu "#USER:BCMainMenu";
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has exported a base",name _player,getPlayerUID _player];
-		publicVariable "usageLogger";
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has exported a base",name _player,getPlayerUID _player];
+		publicVariable "EAT_PVEH_usageLogger";
 	};
 
 	_objects
@@ -302,9 +302,9 @@ fn_BCPaste = {
 	[_base_objects] call fn_BCBuildbase;
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has pasted a copied base",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has pasted a copied base",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};	
 };
 
@@ -361,9 +361,9 @@ fn_BCConfirmDelete = {
 	[format["<t size='0.6'>Deleted %1 objects</t>", count _objects],0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name _player,getPlayerUID _player,count _objects];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name _player,getPlayerUID _player,count _objects];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 
@@ -375,9 +375,9 @@ fn_BCSaveToDb = {
 	[format["<t size='0.6'>Added %1 objects to database</t>", count BCCurrentBase],0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 	
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has placed a saved base",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has placed a saved base",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 

@@ -24,9 +24,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	s_player_lockUnlock_crtl = -1;
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has locked a vehicle: %3",name _player,getPlayerUID _player,_obj];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has locked a vehicle: %3",name _player,getPlayerUID _player,_obj];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 } else {
 	//Lock Safe/Lock_box
@@ -66,9 +66,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		_holder setVariable ["BackpackCargo", _backpacks, true];
 		
 		// Tool use logger
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 
 	} else {
@@ -84,9 +84,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		if(_obj animationPhase "RightShutter" == 1) then {_obj animate ["RightShutter", 0];};
 		
 		// Tool use logger
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 	};
 };

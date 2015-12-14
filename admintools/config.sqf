@@ -2,15 +2,15 @@
 /************** Epoch Admin Tools Variables **************/
 
 	//Replace 111111111 with your ID. 
-	SuperAdminList = [
+	EAT_superAdminList = [
 	"111111111", // <player name>
 	"999999999" // <player name>
 	];
-	AdminList = [
+	EAT_adminList = [
 	"999999999", // <player name>
 	"999999999" // <player name>
 	];
-	ModList = [
+	EAT_modList = [
 	"999999999", // <player name>
 	"999999999" // <player name>
 	];
@@ -20,7 +20,7 @@
 		Enable/Disable weather/time change menu.
 		Important: This may cause server to always revert to mid-day on restart.
 	*/	
-		enableWeatherTimeChanger = false;
+		EAT_wtChanger = false;
 
 
 	/*
@@ -29,10 +29,10 @@
 		REQUIRES: EATadminLogger.dll
 	*/
 		//A major tool is a strong tool with high possibility for exploiting
-		logMajorTool = true;
+		EAT_logMajorTool = true;
 
 		//A minor tool is a weak tool with low possibility for exploiting
-		logMinorTool = false;
+		EAT_logMinorTool = false;
 
 
 		

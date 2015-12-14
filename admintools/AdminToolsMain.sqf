@@ -8,14 +8,14 @@ _EXECcrates = '["%1"] execVM "admintools\crates\%2"';
 /*_EXECadminBuild*/ if(isNil "snap_build") then {_EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';}else{_EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuildPro.sqf"';}; // Auto-detect raymix's snap pro
 _EXECbuildings = 'player execVM "admintools\tools\AdminBuild\%1"';
 _EXECskins = '["%1"] execVM "admintools\tools\skinChanger.sqf"';
-_EXECdate = 'EAT_SetDateServer = [%1,%2,%3,%4,0]; publicVariableServer "EAT_SetDateServer"';
-_EXECcloud = 'EAT_SetOvercastServer = %1; publicVariableServer "EAT_SetOvercastServer"';
-_EXECfog = 'EAT_SetFogServer = %1; publicVariableServer "EAT_SetFogServer"';
+_EXECdate = 'EAT_PVEH_SetDateServer = [%1,%2,%3,%4,0]; publicVariableServer "EAT_PVEH_SetDateServer"';
+_EXECcloud = 'EAT_PVEH_SetOvercastServer = %1; publicVariableServer "EAT_PVEH_SetOvercastServer"';
+_EXECfog = 'EAT_PVEH_SetFogServer = %1; publicVariableServer "EAT_PVEH_SetFogServer"';
 _EXECtempVeh = '["%1"] execVM "admintools\tools\addtempvehicle.sqf"';
 
 // Main menu
 if(isNil "EAT_mainMenu") then {
-if ((getPlayerUID player) in AdminList) then { // Administrators
+if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_mainMenu = [["",true],["-- Epoch Admin Tools (Level: Admin) --", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_mainMenu = EAT_mainMenu + [["Admin Menu >>", [], "#USER:EAT_adminMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_mainMenu = EAT_mainMenu + [["Vehicle Menu >>",[],"#USER:EAT_vehicleMenu",-5,[["expression",""]],"1","1"]];
@@ -23,10 +23,10 @@ if ((getPlayerUID player) in AdminList) then { // Administrators
 	EAT_mainMenu = EAT_mainMenu + [["Epoch Menu >>", [], "#USER:EAT_epochMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_mainMenu = EAT_mainMenu + [["Weapon/Item Kits >>", [], "#USER:EAT_weaponMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_mainMenu = EAT_mainMenu + [["Skin Change Menu >>", [], "#USER:EAT_skinMenu", -5, [["expression", ""]], "1", "1"]];
-	if(enableWeatherTimeChanger)then{EAT_mainMenu = EAT_mainMenu + [["Weather/Time Menu >>", [], "#USER:EAT_weatherTimeMenu", -5, [["expression", ""]], "1", "1"]];};
+	if(EAT_wtChanger)then{EAT_mainMenu = EAT_mainMenu + [["Weather/Time Menu >>", [], "#USER:EAT_weatherTimeMenu", -5, [["expression", ""]], "1", "1"]];};
 	if(ActionMenuPlayers && AllowContactAdmin)then{EAT_mainMenu = EAT_mainMenu + [["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"]];};
 } else {
-	if ((getPlayerUID player) in ModList) then { // Moderators
+	if ((getPlayerUID player) in EAT_modList) then { // Moderators
 		EAT_mainMenu = [["",true],["-- Epoch Admin Tools (Level: Mod) --", [], "", -5, [["expression", ""]], "1", "0"]];
 		EAT_mainMenu = EAT_mainMenu + [["Mod Menu >>", [], "#USER:EAT_modMenu", -5, [["expression", ""]], "1", "1"]];
 		EAT_mainMenu = EAT_mainMenu + [["Temporary Vehicle Menu >>", [], "#USER:EAT_vehicleTempMenu", -5, [["expression", ""]], "1", "1"]];

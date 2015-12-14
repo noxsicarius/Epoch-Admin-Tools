@@ -45,9 +45,9 @@ if(aCount == 0) exitWith{};
 
 _player = player;
 
-if(logMajorTool) then {
-	usageLogger = format["%1 %2 -- has spawned %3 AI units",name _player,getPlayerUID _player,aCount];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMajorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has spawned %3 AI units",name _player,getPlayerUID _player,aCount];
+	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };
 
 unit_waypoints = {

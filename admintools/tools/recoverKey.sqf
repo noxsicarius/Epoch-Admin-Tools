@@ -19,8 +19,8 @@ if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Pla
 	_player addweapon _result;
 	cutText [format["Key [%1] added to inventory!",_result], "PLAIN"];
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has generated %3 for a %4",name _player,getPlayerUID _player,_result,_ct];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has generated %3 for a %4",name _player,getPlayerUID _player,_result,_ct];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };

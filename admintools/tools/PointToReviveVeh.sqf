@@ -26,7 +26,7 @@ for "_i" from 1 to 10 do {
 titleText [format["%1 repaired. Will not be drivable until server restart", _name], "PLAIN DOWN"]; titleFadeOut 3;
 
 // Tool use logger
-if(logMinorTool) then {
-	usageLogger = format["%1 %2 -- has revived a %3",name _player,getPlayerUID _player,_vehicle];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMinorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has revived a %3",name _player,getPlayerUID _player,_vehicle];
+	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };

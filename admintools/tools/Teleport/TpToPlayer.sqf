@@ -28,9 +28,9 @@ if (pselect5 != "exit") then
 			detach (vehicle player);
 
 			// Tool use logger
-			if(logMajorTool) then {
-				usageLogger = format["%1 %2 -- has teleported to %3_%4",name player,getPlayerUID player,_name,_x];
-				[] spawn {publicVariable "usageLogger";};
+			if(EAT_logMajorTool) then {
+				EAT_PVEH_usageLogger = format["%1 %2 -- has teleported to %3_%4",name player,getPlayerUID player,_name,_x];
+				[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 			};
 		};
 	} forEach entities "CAManBase";

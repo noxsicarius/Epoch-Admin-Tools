@@ -38,9 +38,9 @@ fn_tpToPlayer = {
 					detach (vehicle _player);
 
 					// Tool use logger
-					if(logMinorTool) then {
-						usageLogger = format["%1 %2 -- has teleported to %3 for a ticket",name _player,getPlayerUID _player,_name];
-						[] spawn {publicVariable "usageLogger";};
+					if(EAT_logMinorTool) then {
+						EAT_PVEH_usageLogger = format["%1 %2 -- has teleported to %3 for a ticket",name _player,getPlayerUID _player,_name];
+						[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 					};
 				} else {
 					cutText["Player is no longer alive, removing from queue","PLAIN DOWN",2];
@@ -49,8 +49,8 @@ fn_tpToPlayer = {
 			};
 		} forEach entities "CAManBase";
 		
-		EAT_contactAdminServer = ["remove", _name];
-		[] spawn {publicVariable "EAT_contactAdminServer";};
+		EAT_PVEH_contactAdminServer = ["remove", _name];
+		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	};
 	true
 };
@@ -81,8 +81,8 @@ fn_tpToMe = {
 				if(alive _x) then {
 					_UID = (getPlayerUID _x);
 
-					EAT_teleportFixServer = ["add",_UID];
-					publicVariableServer "EAT_teleportFixServer";
+					EAT_PVEH_teleportFixServer = ["add",_UID];
+					publicVariableServer "EAT_PVEH_teleportFixServer";
 					
 					titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
 					
@@ -91,18 +91,13 @@ fn_tpToMe = {
 					detach _x;
 
 					Sleep 3;
-					EAT_teleportFixServer = ["remove",_UID];
-					[] spawn {publicVariableServer "EAT_teleportFixServer"};
+					EAT_PVEH_teleportFixServer = ["remove",_UID];
+					[] spawn {publicVariableServer "EAT_PVEH_teleportFixServer"};
 					
 					// Tool use logger
-					if(logMinorTool) then {
-						usageLogger = format["%1 %2 -- has teleported %3 to them for a ticket",name _player,getPlayerUID _player,_name];
-						[] spawn {publicVariable "usageLogger";};
-					};
-					// Tool use broadcaster
-					if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-						useBroadcaster = format["%1 -- has teleported %2 to them for a ticket ",name _player, _name];
-						[] spawn {publicVariableServer "useBroadcaster";};
+					if(EAT_logMinorTool) then {
+						EAT_PVEH_usageLogger = format["%1 %2 -- has teleported %3 to them for a ticket",name _player,getPlayerUID _player,_name];
+						[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 					};
 				} else {
 					cutText["Player is no longer alive, removing from queue","PLAIN DOWN",2];
@@ -112,8 +107,8 @@ fn_tpToMe = {
 			};
 		} forEach entities "CAManBase";
 
-		EAT_contactAdminServer = ["remove", _name];
-		[] spawn {publicVariable "EAT_contactAdminServer";};
+		EAT_PVEH_contactAdminServer = ["remove", _name];
+		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	};
 	true
 };
@@ -136,8 +131,8 @@ fn_removeFromQueue = {
 	if (pselect5 != "exit") then
 	{
 		_name = pselect5;
-		EAT_contactAdminServer = ["remove", _name];
-		[] spawn {publicVariable "EAT_contactAdminServer";};
+		EAT_PVEH_contactAdminServer = ["remove", _name];
+		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	};
 
 	true

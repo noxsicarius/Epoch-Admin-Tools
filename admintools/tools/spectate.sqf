@@ -36,9 +36,9 @@ if (pselect5!= "exit" && pselect5!="") then
 			player switchCamera _mycv;	
 
 			// Tool use logger
-			if(logMajorTool) then {
-				usageLogger = format["%1 %2 -- has begun spectating %3",name _player,getPlayerUID _player,_name];
-				[] spawn {publicVariable "usageLogger";};
+			if(EAT_logMajorTool) then {
+				EAT_PVEH_usageLogger = format["%1 %2 -- has begun spectating %3",name _player,getPlayerUID _player,_name];
+				[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 			};
 		};
 	} forEach playableUnits;
@@ -49,8 +49,8 @@ if (!spectate && pselect5 != "exit") then
 	titleText ["Spectate done","PLAIN DOWN"];titleFadeOut 4;
 
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has stopped spectating %3",name _player,getPlayerUID _player,_name];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has stopped spectating %3",name _player,getPlayerUID _player,_name];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };

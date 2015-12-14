@@ -37,9 +37,9 @@ if(_addOrRemove != "reset") then {
 	cutText [format["%1 humanity has been added (total: %2) for player %3", humanityGain, _humanity + humanityGain, name _target],"PLAIN DOWN"]; titleFadeOut 10;
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has added %3 to %4's humanity (total %5)",name _player,getPlayerUID _player,humanityGain,name _target,_humanity + humanityGain];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has added %3 to %4's humanity (total %5)",name _player,getPlayerUID _player,humanityGain,name _target,_humanity + humanityGain];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 }else{
 	humanityGain = _humanity - (_humanity * 2);
@@ -47,9 +47,9 @@ if(_addOrRemove != "reset") then {
 	cutText [format["Humanity reset to 2500 for player %1", name _target],"PLAIN DOWN"]; titleFadeOut 10;
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has RESET %3's humanity to 2500",name _player,getPlayerUID _player,name _target];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has RESET %3's humanity to 2500",name _player,getPlayerUID _player,name _target];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 

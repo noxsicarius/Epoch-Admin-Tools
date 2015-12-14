@@ -10,9 +10,9 @@ _player = player;
 if (playerGod2) then
 {
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED _player god mode",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED _player god mode",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 
 	player_zombieCheck = {};
@@ -46,9 +46,9 @@ if (playerGod2) then
 	_player setVariable['medForceUpdate',true,true];
 } else {
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 
 	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";

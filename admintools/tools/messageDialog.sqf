@@ -11,5 +11,5 @@ ctrlSetText [1001,"Send a server message"];
 waitUntil {!dialog};
 if(SendDialogText == "") exitWith {};
 
-EAT_serverMessageServer = "ADMIN: " + SendDialogText;
-[] spawn {publicVariable "EAT_serverMessageServer";};
+EAT_PVEH_serverMessageServer = "ADMIN: " + SendDialogText;
+[] spawn {publicVariable "EAT_PVEH_serverMessageServer";};

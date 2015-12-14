@@ -29,15 +29,15 @@ if(SheildMe) then {
 
 if(SheildMe && zombieShield) then {
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name _player,getPlayerUID _player,ZombieDistance];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name _player,getPlayerUID _player,ZombieDistance];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 } else {
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has disabled zombie shield",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has disabled zombie shield",name _player,getPlayerUID _player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 

@@ -32,9 +32,9 @@ teleport = {
 
 	// Tool use logger
 	if(_worked) then {
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 	};
 };

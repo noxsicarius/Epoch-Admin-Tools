@@ -11,9 +11,9 @@ if(isNil "playerESP2") then {playerESP2 = true;} else {playerESP2 = !playerESP2}
 
 if(playerESP2) then {
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED player ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED player ESP",name player,getPlayerUID player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 
@@ -67,8 +67,8 @@ while {playerESP2} do
 
 if(!playerESP2) then {
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED player ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED player ESP",name player,getPlayerUID player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };

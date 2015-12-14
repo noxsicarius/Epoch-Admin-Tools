@@ -44,9 +44,9 @@ if (_isOk and _isKeyOK) then {
 		cutText ["Vehicle spawned, key added to toolbelt.", "PLAIN DOWN"];
 
 		// Tool use logger
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has spawned a permanent vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has spawned a permanent vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 	} else {
 		_removeitem = [_player, _config] call BIS_fnc_invRemove;

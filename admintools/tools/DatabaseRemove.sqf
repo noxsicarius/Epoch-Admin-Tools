@@ -26,9 +26,9 @@ _objectUID = _obj getVariable["ObjectUID","0"];
 
 	_func_databaseremove = {
 		// Tool use logger
-		if(logMinorTool && !isNull _obj) then {
-			usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name _player,getPlayerUID _player,_text,_objectID,_objectUID];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMinorTool && !isNull _obj) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name _player,getPlayerUID _player,_text,_objectID,_objectUID];
+			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 
 		cutText ["Object deleted from database", "PLAIN DOWN",1];

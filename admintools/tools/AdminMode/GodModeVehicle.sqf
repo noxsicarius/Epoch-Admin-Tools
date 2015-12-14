@@ -7,9 +7,9 @@ if(isNil "vehicleGod2") then {vehicleGod2 = true;} else {vehicleGod2 = !vehicleG
 
 if(vehicleGod2) then {
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED vehicle god mode",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED vehicle god mode",name player,getPlayerUID player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 
@@ -60,7 +60,7 @@ if(!isNil "_playerVehicle") then {
     vehicle_handleKilled = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleKilled.sqf";
 };
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED vehicle god mode",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED vehicle god mode",name player,getPlayerUID player];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};

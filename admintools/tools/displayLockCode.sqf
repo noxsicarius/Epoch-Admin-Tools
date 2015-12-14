@@ -16,9 +16,9 @@ if(_combo != "0") then {
 	};
 	
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name _player,getPlayerUID _player,_combo];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has viewed a locked item code: %3",name _player,getPlayerUID _player,_combo];
+		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 } else {
 	cutText [format["Not a valid target.",_combo], "PLAIN DOWN"];
