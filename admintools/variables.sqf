@@ -2,13 +2,13 @@
 
 EAT_adminList = EAT_adminList + EAT_superAdminList; // add SuperAdmin to Admin
 EAT_adminModList = EAT_adminList + EAT_modList; // Add all admin/mod into one list for easy call
+if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {EAT_isAdmin = false;}; // Descern if player is admin
 
 /***** Set variables *****/
 tempList = []; // Initialize templist
 helpQueue = []; // Initialize help queue
 vehicleGod2 = false;
 playerGod2 = false;
-if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {EAT_isAdmin = false;}; // Descern if player is admin
 
 /****************** Server Public Variables ******************/
 	if(isDedicated) then {
@@ -107,7 +107,7 @@ if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {
 	// Admin ticket system
 	"EAT_PVEH_contactAdminClient" addPublicVariableEventHandler {
 		helpQueue = (_this select 1);
-		if (isAdmin) then {
+		if (EAT_isAdmin) then {
 			systemChat "****A player needs help****";
 		};
 	};
