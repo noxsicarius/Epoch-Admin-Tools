@@ -1,7 +1,7 @@
 waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
 
 // Give players action menu
-if((ActionMenuPlayers && !isAdmin) || (ActionMenuAdmins && isAdmin)) then {
+if((ActionMenuPlayers && !EAT_isAdmin) || (ActionMenuAdmins && EAT_isAdmin)) then {
 	[] spawn {
 		_idx = -1;
 		_veh = vehicle player;
@@ -31,7 +31,7 @@ if (EAT_isAdmin) then {
 		[]execVM "admintools\KeyBindings\NumberKeys.sqf";
 		
 		// Tool use logger
-		if(logMajorTool || logMinorTool) then {
+		if(EAT_logMajorTool || EAT_logMinorTool) then {
 			EAT_PVEH_usageLogger = format["%1 %2 -- has logged on",name player,getPlayerUID player];
 			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
