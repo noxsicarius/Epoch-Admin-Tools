@@ -56,7 +56,7 @@ while {true} do {
 		};
 	};
 
-	if (safeZoneAntiBackpack && !isAdmin) then
+	if (safeZoneAntiBackpack && !EAT_isAdmin) then
 	{
 		LastPlayerLookedAt = objNull;
 		LastPlayerLookedAtCountDown = 3;
@@ -153,7 +153,7 @@ while {true} do {
 	while { !canBuild } do
 	{
 		sleep 0.1;
-		if ( !(isNull _inVehicle) && (vehicle player == player) && !isAdmin ) then
+		if ( !(isNull _inVehicle) && (vehicle player == player) && !EAT_isAdmin ) then
 		{
 			_inVehicle removeEventHandler ["Fired", _EH_Fired_Vehicle];
 			_inVehicleLast = _inVehicle;
@@ -161,7 +161,7 @@ while {true} do {
 			_inVehicle = objNull;
 		};
 			
-		if ( vehicle player != player && isNull _inVehicle && !isAdmin ) then
+		if ( vehicle player != player && isNull _inVehicle && !EAT_isAdmin ) then
 		{
 			systemChat ( "Vehicle weapons DISABLED" );
 			_inVehicle = vehicle player;
@@ -175,18 +175,18 @@ while {true} do {
 	LastPlayerLookedAt = objNull;
 	LastPlayerLookedAtCountDown = 5;
 
-	if(!isAdmin) then {
+	if(!EAT_isAdmin) then {
 	terminate _antiBackpackThread;
 	terminate _antiBackpackThread2;};
 	terminate _antiZombieThread;
 	systemChat ("Leaving Safe Zone");
 	
-	if ( !(isNull _inVehicle) && !isAdmin) then {
+	if ( !(isNull _inVehicle) && !EAT_isAdmin) then {
 		systemChat ( "Vehicle weapons ENABLED" );
 		_inVehicle removeEventHandler ["Fired", _EH_Fired_Vehicle];
 	};
 		
-	if ( !(isNull _inVehicleLast) && !isAdmin) then {
+	if ( !(isNull _inVehicleLast) && !EAT_isAdmin) then {
 		systemChat ( "Vehicle weapons ENABLED" );
 		_inVehicleLast removeEventHandler ["Fired", _EH_Fired_Vehicle];
 	};
