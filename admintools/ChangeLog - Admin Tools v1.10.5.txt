@@ -1,10 +1,10 @@
 ==================================================
-You are using Epoch Admin Tools version 1.10.4
+You are using Epoch Admin Tools version 1.10.5
 by NoxSicarius
 ==================================================
 
 
-------------------- Version 1.10.4 Changelog ---------------------
+------------------- Version 1.10.5 Changelog ---------------------
 
 New Features:
 	Added safezones (vehicle and player protection)
@@ -14,13 +14,13 @@ New Features:
 	Added fast walk system to admin mode
 	Added Key Recovery for purchased vehicles
 	
-	
 Bug Fixes:
-	Broadcast use RPT error
+	Broadcast use RPT errors
 	Mod mode RPT error @ Slayterson
 	Player God Mode not working when enabled inside vehicle @Vitamin Carrot
 	Object Offset not working @ leodr99
 	Undeclared variable caused by typo @ leodr99
+	Help Ticket System fixes
 	
 Enhancements:
 	Humanity menu has reset to 2500 option
@@ -28,9 +28,21 @@ Enhancements:
 	Class name updates @ Slayterson
 	File structure improvements
 	Efficiency updates
+	Rewrote public variables system
+	Obsolete code removal
+	ESP efficiency/stability updates
+
+Special thanks to testers:
+	@Chr0nicCha0s
+	@Evocation
 
 
-
+MD5 hash for the dll files IN THIS VERSION:
+	EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+	EATbaseExporter: 7E85058E271FB47D7E3885A50CC13719
+	
+	
+	
 ------------------- Version 1.10.0 Changelog ---------------------
 
 New Features:
@@ -45,12 +57,7 @@ New Features:
 	Added Contact Admin (ticket) system - MUST enable action menu for players
 	Added vehicle revive for destroyed vehicles
 	Added snap capable admin build
-	Added an optional action menu for players:
-		build bike/mozzie
-		view server rules
-		flip vehicle
-		dance
-		contact admin for help
+	Added an optional action menu for players (required to use help tickets)
 
 Removed Features:
 	Removed live broadcast tool use
@@ -63,7 +70,6 @@ Bug Fixes:
 	Variable collision in dialog.hpp to stop RSC variable collision errors
 	A number of infinite loop fixes
 
-
 CleanUp:
 	Skin Changer @leodr99
 	adminlist.sqf has been changed to config.sqf
@@ -73,7 +79,6 @@ CleanUp:
 	Lower server load by limiting calls between player and server
 	Optimizations for every script
 	Cleanup for every script
-
 
 MD5 hash for the dll files IN THIS VERSION:
 	EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
@@ -137,7 +142,6 @@ New Features:
 		Build Arma/DayZ buildings (temporary only)
 	Added zombie spawner
 
-
 Bug Fixes:
 	Teleport no longer teleports vehicles into walls or buildings
 	Crates no longer delete at the wrong time if you spawn two or more.
@@ -158,7 +162,6 @@ Bug Fixes:
 	Humanity change rpt errors fixed
 	Key binding rpt errors fixed
 
-
 CleanUp:
 	Changed how vehicle god mode works. It is now much more effective.
 	Keyed vehicle spawn made a little better @f3cuk
@@ -172,10 +175,9 @@ CleanUp:
 	AdminList is now compiled in Activate.sqf to limit clutter in init.sqf
 	Cleaned up all Admin Mode files for better execution
 
-
 MD5 hash for the dll files IN THIS VERSION:
-EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
-EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
+	EATadminLogger: 9CBCC2334F56F5D617605D64F9A6D1A2
+	EATbaseExporter: BF787E3091E3748C69C69F33DD0E50C8
 
 You can check the hash value of a file here: http://onlinemd5.com/
 
@@ -210,15 +212,10 @@ New Features:
 	Added no plot pole building for adminbuild mode
 	Added local client crates (invisible to other players)
 	Added a customizable teleport. (custom setup required)
-		There is an example on how to do this located in your AdminToolsMain.sqf
 	Added plot pole destruction to base destruction menu.
-		Allows deletion of plot poles in the radius without deleting other items.
-	You can now disable the scroll menu
-		Off = F11
-		On = F10
+	You can now disable the scroll menu - Off = F11, On = F10
 	You can now set radius for heal player or choose yourself.
 		Healing radius does not heal you, only those around you.
-
 
 Bug Fixes:
 	Teleport stops if the map is closed
@@ -227,7 +224,6 @@ Bug Fixes:
 	The tools activate a little slower to keep them from not showing on login/relog
 	Vehicle destruction works correctly in base destruction.
 	Flying loop and undefined variable bug fix by T-Max
-
 
 Cleanup:
 	Cleaned up the directories
@@ -246,7 +242,6 @@ New Features:
 	Added Number Key macros (similar to F keys)
 	Added No Plot Pole building in fastbuild.sqf (will be renamed admin build mode later)
 
-
 Bug Fixes:
 	Teleport map resetting
 	Teleport now disables if the map is closed
@@ -254,7 +249,6 @@ Bug Fixes:
 	Weapon Kit error fixes
 	Function keys now work all the time (As far as my testing can tell)
 	Added AI back into ESP (sorry about that)
-
 
 CleanUp:
 	Updated the readme with more information, a how to update section, and a table of contents.
@@ -271,13 +265,10 @@ New Feature:
 	Added a gear menu.
 	Function Key support. There is now a file: FunctionKeys.sqf that can be customized! 
 
-
 Bug Fix:
 	Fixed a bit of the desync/lag caused with zombie shield.
 	Teleporting no longer teleports you into the air if you are in an air vehicle with the engine off. 
-		If your engine is on it will still teleport you up to prevent tree collision.
 	ESP lag has been reduced
-
 
 CleanUp:
 	Condensed all weapons files into one file.
@@ -293,18 +284,14 @@ CleanUp:
 
 ------------------- Version 1.5 Changelog ---------------------
 New Features:
-	Admin Mode
-		Combines basic admin needs into one mode
+	Admin Mode - Combines basic admin needs into one mode
 	Mod Mode
-		The same as Admin Mode but for mods
 	Point to Repair Permanent
 	Added large gun bag to weapon kit menu.
- 
  
 Bug Fix:
 	Might have fixed flying bug that caused users to become overburdened. 
 	Removed Baseball Bat from all weapons/ammo crate to stop bat_swing error message from showing up.
- 
  
 Clean up:
 	Fixed some ReadMe stuff
