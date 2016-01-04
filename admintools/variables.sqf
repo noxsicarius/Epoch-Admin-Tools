@@ -45,6 +45,7 @@ playerGod2 = false;
 	
 	// Broadcast date to clients
 	"EAT_PVEH_SetDate" addPublicVariableEventHandler {
+		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		setDate (_this select 1);
 	};
 	
