@@ -24,8 +24,8 @@ if (pselect5 != "exit") then
 		{
 			_UID = (getPlayerUID _x);
 
-			EAT_PVEH_teleportFixServer = ["add",_UID];
-			publicVariableServer "EAT_PVEH_teleportFixServer";
+			EAT_PVEH_teleportFix = ["add",_UID];
+			publicVariableServer "EAT_PVEH_teleportFix";
 			
 			hint format ["Teleporting %1", _name];
 			
@@ -39,8 +39,8 @@ if (pselect5 != "exit") then
 			detach _x;
 
 			Sleep 3;
-			EAT_PVEH_teleportFixServer = ["remove",_UID];
-			[] spawn {publicVariableServer "EAT_PVEH_teleportFixServer"};
+			EAT_PVEH_teleportFix = ["remove",_UID];
+			[] spawn {publicVariableServer "EAT_PVEH_teleportFix"};
 			
 			// Tool use logger
 			if(EAT_logMajorTool) then {

@@ -50,8 +50,8 @@ fn_tpToPlayer = {
 		} forEach entities "CAManBase";
 		
 		helpQueue = helpQueue - [_name];
-		EAT_PVEH_contactAdminServer = ["remove", _name];
-		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
+		EAT_PVEH_contactAdmin = ["remove", _name];
+		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
 	};
 	true
 };
@@ -82,8 +82,8 @@ fn_tpToMe = {
 				if(alive _x) then {
 					_UID = (getPlayerUID _x);
 
-					EAT_PVEH_teleportFixServer = ["add",_UID];
-					publicVariableServer "EAT_PVEH_teleportFixServer";
+					EAT_PVEH_teleportFix = ["add",_UID];
+					publicVariableServer "EAT_PVEH_teleportFix";
 					
 					titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
 					
@@ -92,8 +92,8 @@ fn_tpToMe = {
 					detach _x;
 
 					Sleep 3;
-					EAT_PVEH_teleportFixServer = ["remove",_UID];
-					[] spawn {publicVariableServer "EAT_PVEH_teleportFixServer"};
+					EAT_PVEH_teleportFix = ["remove",_UID];
+					[] spawn {publicVariableServer "EAT_PVEH_teleportFix"};
 					
 					// Tool use logger
 					if(EAT_logMinorTool) then {
@@ -109,8 +109,8 @@ fn_tpToMe = {
 		} forEach entities "CAManBase";
 		
 		helpQueue = helpQueue - [_name];
-		EAT_PVEH_contactAdminServer = ["remove", _name];
-		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
+		EAT_PVEH_contactAdmin = ["remove", _name];
+		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
 	};
 	true
 };
@@ -134,8 +134,8 @@ fn_removeFromQueue = {
 	{
 		_name = pselect5;
 		helpQueue = helpQueue - [_name];
-		EAT_PVEH_contactAdminServer = ["remove", _name];
-		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
+		EAT_PVEH_contactAdmin = ["remove", _name];
+		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
 	};
 
 	true

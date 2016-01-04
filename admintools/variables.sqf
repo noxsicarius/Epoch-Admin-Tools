@@ -16,78 +16,52 @@ playerGod2 = false;
 		"EAT_PVEH_usageLogger" addPublicVariableEventHandler {
 			"EATadminLogger" callExtension (_this select 1);
 		};
-		// Broadcast server message to clients
-		"EAT_PVEH_serverMessageServer" addPublicVariableEventHandler {
-			EAT_PVEH_serverMessageClient = (_this select 1);
-			{
-				(owner _x) publicVariableClient "EAT_PVEH_serverMessageClient";
-			} forEach entities "CAManBase";
-		};
+		
 		// Export base to .sqf
 		"EAT_PVEH_baseExporter" addPublicVariableEventHandler {
 			"EATbaseExporter" callExtension (_this select 1);
 		};
-		// teleport fix
-		"EAT_PVEH_teleportFixServer" addPublicVariableEventHandler{
-			private ["_array", "_addRemove"];
-			_array = (_this select 1);
-			_addRemove = (_array select 0);
-
-			if(_addRemove == "add") then {
-				_array = _array - ["add"];
-				tempList = tempList + _array;
-			} else {
-				_array = _array - ["remove"];
-				tempList = tempList - _array;
-			};
-			EAT_PVEH_teleportFixClient = tempList;
-			{(owner _x) publicVariableClient "EAT_PVEH_teleportFixClient";} forEach entities "CAManBase";
-		};
-		// Broadcast date to clients
-		"EAT_PVEH_SetDateServer" addPublicVariableEventHandler {
-			EAT_PVEH_SetDateClient = (_this select 1);
-			setDate EAT_PVEH_SetDateClient;
-			{(owner _x) publicVariableClient "EAT_PVEH_SetDateClient";} forEach entities "CAManBase";
-		};
-		// Broadcast weather to clients
-		"EAT_PVEH_SetOvercastServer" addPublicVariableEventHandler {
-			EAT_PVEH_setOvercastClient = (_this select 1);
-			5 setOvercast EAT_PVEH_setOvercastClient;
-			{(owner _x) publicVariableClient "EAT_PVEH_setOvercastClient";} forEach entities "CAManBase";
-		};
-		// Broadcast fog to clients
-		"EAT_PVEH_SetFogServer" addPublicVariableEventHandler {
-			EAT_PVEH_setFogClient = (_this select 1);
-			5 setFog EAT_PVEH_setFogClient;
-			{(owner _x) publicVariableClient "EAT_PVEH_setFogClient";} forEach entities "CAManBase";
-		};
 	};
 
 /****************** Client Public Variables ******************/
-	// Display server message
-	"EAT_PVEH_serverMessageClient" addPublicVariableEventHandler{
+	// Broadcast server message to clients
+	"EAT_PVEH_serverMessage" addPublicVariableEventHandler {
 		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
 	};
-	// Teleport fix
-	"EAT_PVEH_teleportFixClient" addPublicVariableEventHandler {
-		tempList = (_this select 1);
+	
+	// teleport fix
+	"EAT_PVEH_teleportFix" addPublicVariableEventHandler{
+		private ["_array", "_addRemove"];
+		_array = (_this select 1);
+		_addRemove = (_array select 0);
+		if(_addRemove == "add") then {
+			_array = _array - ["add"];
+			tempList = tempList + _array;
+		} else {
+			_array = _array - ["remove"];
+			tempList = tempList - _array;
+		};
 	};
-	// Set date on client
-	"EAT_PVEH_SetDateClient" addPublicVariableEventHandler {
+	
+	// Broadcast date to clients
+	"EAT_PVEH_SetDate" addPublicVariableEventHandler {
 		setDate (_this select 1);
 	};
-	// Set overcast on client
-	"EAT_PVEH_setOvercastClient" addPublicVariableEventHandler {
+	
+	// Broadcast weather to clients
+	"EAT_PVEH_SetOvercast" addPublicVariableEventHandler {
 		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setOvercast (_this select 1);
 	};
-	// Set fog on client
-	"EAT_PVEH_setFogClient" addPublicVariableEventHandler {
+	
+	// Broadcast fog to clients
+	"EAT_PVEH_SetFog" addPublicVariableEventHandler {
 		drn_fnc_DynamicWeather_SetWeatherLocal = {};
 		5 setFog (_this select 1);
 	};
+
 	// Admin ticket system
-	"EAT_PVEH_contactAdminServer" addPublicVariableEventHandler {
+	"EAT_PVEH_contactAdmin" addPublicVariableEventHandler {
 		private ["_array", "_addRemove"];
 		_array = (_this select 1);
 		_addRemove = (_array select 0);
@@ -105,7 +79,6 @@ playerGod2 = false;
 			diag_log "**** A player needs help ****";
 		};
 	};
-
 
 
 /******************* Buildings *******************/

@@ -8,9 +8,9 @@ _EXECcrates = '["%1"] execVM "admintools\crates\%2"';
 /*_EXECadminBuild*/ if(isNil "snap_build") then {_EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';}else{_EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuildPro.sqf"';}; // Auto-detect raymix's snap pro
 _EXECbuildings = 'player execVM "admintools\tools\AdminBuild\%1"';
 _EXECskins = '["%1"] execVM "admintools\tools\skinChanger.sqf"';
-_EXECdate = 'EAT_PVEH_SetDateServer = [%1,%2,%3,%4,0]; publicVariableServer "EAT_PVEH_SetDateServer"';
-_EXECcloud = 'EAT_PVEH_SetOvercastServer = %1; publicVariableServer "EAT_PVEH_SetOvercastServer"';
-_EXECfog = 'EAT_PVEH_SetFogServer = %1; publicVariableServer "EAT_PVEH_SetFogServer"';
+_EXECdate = 'EAT_PVEH_SetDate = [%1,%2,%3,%4,0]; setDate EAT_PVEH_SetDate; publicVariableServer "EAT_PVEH_SetDate"';
+_EXECcloud = 'EAT_PVEH_SetOvercast = %1; 5 setOvercast EAT_PVEH_SetOvercast; publicVariableServer "EAT_PVEH_SetOvercast"';
+_EXECfog = 'EAT_PVEH_SetFog = %1; 5 setFog EAT_PVEH_SetFog; publicVariableServer "EAT_PVEH_SetFog"';
 _EXECtempVeh = '["%1"] execVM "admintools\tools\addtempvehicle.sqf"';
 
 // Main menu
