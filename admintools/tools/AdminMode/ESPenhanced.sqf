@@ -125,7 +125,7 @@ if(enhancedESP2) then {
 
 While {enhancedESP2} do 
 {
-	If (AddPlayersToMap) then 
+	If (AddPlayersToMap && (delayTime == 0 || changed)) then 
 	{
 		{
 			(group _x) addGroupIcon PlayersMarkerType;
@@ -174,7 +174,7 @@ While {enhancedESP2} do
 			}Foreach AllDead;
 		};
 
-		If (AddZombieToMap) then {
+		If (AddZombieToMap && (delayTime == 0 || changed)) then {
 			_pos = getPos player;
 			_zombies = _pos nearEntities ["zZombie_Base",ZombieVisibleDistance];
 			k=0;
@@ -455,10 +455,6 @@ While {enhancedESP2} do
 	if(delayTime == 5) then {
 		delayTime = 0;
 	};
-
-	{
-		clearGroupIcons (group _x);
-	} forEach allUnits;
 	
 	Sleep GlobalSleep;
 
