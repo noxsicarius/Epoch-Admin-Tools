@@ -9,7 +9,7 @@ _EXECscript3 = '["%1"] execVM "admintools\actionMenu\FunMenu\movements.sqf"';
 _EXECscript4 = '[%1] execVM "admintools\actionMenu\contactAdmin.sqf"';
 ActionMenu = [["",true],["-- Action Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 
-if(isAdmin) then {
+if(EAT_isAdmin) then {
 
 	/*
 		This menu is for the Admins or Mods listed in the Epoch Admin Tools.
@@ -88,5 +88,3 @@ TransformAnimalMenu =
 		["Main Menu", [20], "#USER:ActionMenu", -5, [["expression", ""]], "1", "1"]
 ];
 showCommandingMenu "#USER:ActionMenu";
-
-if(ActionMenuPlayers || ActionMenuAdmins) then {diag_log("Admin Tools: Actions_Menu.sqf loaded");};

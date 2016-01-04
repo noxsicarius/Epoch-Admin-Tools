@@ -2,7 +2,7 @@
 
 EAT_adminList = EAT_adminList + EAT_superAdminList; // add SuperAdmin to Admin
 EAT_adminModList = EAT_adminList + EAT_modList; // Add all admin/mod into one list for easy call
-if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {EAT_isAdmin = false;}; // Descern if player is admin
+if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {EAT_isAdmin = false;}; // Discern if player is admin
 
 /***** Set variables *****/
 tempList = []; // Initialize templist
@@ -29,6 +29,7 @@ playerGod2 = false;
 		};
 		// teleport fix
 		"EAT_PVEH_teleportFixServer" addPublicVariableEventHandler{
+			private ["_array", "_addRemove"];
 			_array = (_this select 1);
 			_addRemove = (_array select 0);
 
@@ -60,25 +61,6 @@ playerGod2 = false;
 			5 setFog EAT_PVEH_setFogClient;
 			{(owner _x) publicVariableClient "EAT_PVEH_setFogClient";} forEach entities "CAManBase";
 		};
-		// Admin ticket system
-		"EAT_PVEH_contactAdminServer" addPublicVariableEventHandler {
-			_array = (_this select 1);
-			_addRemove = (_array select 0);
-
-			if(_addRemove == "add") then {
-				_array = _array - ["add"];
-				helpQueue = helpQueue + _array;
-			} else {
-				_array = _array - ["remove"];
-				helpQueue = helpQueue - _array;
-			};
-			EAT_PVEH_contactAdminClient = helpQueue;
-			{
-				if ((getPlayerUID _x) in EAT_adminModList) then {	//check if the clientID(uniqueID) is an admin|mod
-					(owner _x) publicVariableClient "EAT_PVEH_contactAdminClient";
-				};
-			} forEach entities "CAManBase";
-		};
 	};
 
 /****************** Client Public Variables ******************/
@@ -105,12 +87,25 @@ playerGod2 = false;
 		5 setFog (_this select 1);
 	};
 	// Admin ticket system
-	"EAT_PVEH_contactAdminClient" addPublicVariableEventHandler {
-		helpQueue = (_this select 1);
-		if (EAT_isAdmin) then {
-			systemChat "****A player needs help****";
+	"EAT_PVEH_contactAdminServer" addPublicVariableEventHandler {
+		private ["_array", "_addRemove"];
+		_array = (_this select 1);
+		_addRemove = (_array select 0);
+		
+		if(_addRemove == "add") then {
+			_array = _array - ["add"];
+			helpQueue = helpQueue + _array;
+		} else {
+			_array = _array - ["remove"];
+			helpQueue = helpQueue - _array;
+		};
+		
+		if (EAT_isAdmin && _addRemove == "add") then {
+			systemChat "**** A player needs help ****";
+			diag_log "**** A player needs help ****";
 		};
 	};
+
 
 
 /******************* Buildings *******************/

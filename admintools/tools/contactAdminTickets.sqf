@@ -49,6 +49,7 @@ fn_tpToPlayer = {
 			};
 		} forEach entities "CAManBase";
 		
+		helpQueue = helpQueue - [_name];
 		EAT_PVEH_contactAdminServer = ["remove", _name];
 		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	};
@@ -106,7 +107,8 @@ fn_tpToMe = {
 				breakOut "fn_tpToMe";
 			};
 		} forEach entities "CAManBase";
-
+		
+		helpQueue = helpQueue - [_name];
 		EAT_PVEH_contactAdminServer = ["remove", _name];
 		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	};
@@ -131,6 +133,7 @@ fn_removeFromQueue = {
 	if (pselect5 != "exit") then
 	{
 		_name = pselect5;
+		helpQueue = helpQueue - [_name];
 		EAT_PVEH_contactAdminServer = ["remove", _name];
 		[] spawn {publicVariable "EAT_PVEH_contactAdminServer";};
 	};
