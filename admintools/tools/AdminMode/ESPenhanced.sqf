@@ -464,12 +464,10 @@ if(!enhancedESP2) then
 {
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
 
-	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has disabled enhanced ESP",name player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-
+	{
+		clearGroupIcons (group _x);
+	} forEach allUnits;
+	
 	If (AddDeadPlayersToMap) then 
 	{
 		{
