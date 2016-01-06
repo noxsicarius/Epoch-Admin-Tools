@@ -11,9 +11,9 @@ _gunTwo = (weapons _player) select 1;
 
 // Remove the correct player weapon
 if(_gun in _handGuns) then{
-	if(_gunOne in _handGuns) then {_player removeWeapon _gunOne;} else {_player removeWeapon _gunTwo;};
+	if(if(!isNil _gunOne && _gunOne in _handGuns) then {_player removeWeapon _gunOne;} else {if(!isNil _gunTwo) then {_player removeWeapon _gunTwo;};};
 } else {
-	if(_gunOne in _handGuns) then {_player removeWeapon _gunTwo;} else {_player removeWeapon _gunOne;};
+	if(!isNil _gunTwo && _gunOne in _handGuns) then {_player removeWeapon _gunTwo;} else {if(!isNil _gunOne) then {_player removeWeapon _gunOne;};};
 };
 
 // Add Items
