@@ -91,7 +91,7 @@ spawnAI = {
 	_unitGroup = createGroup EAST;
 
 	for "_x" from 1 to (aCount/_divisor) do {
-		_unit = _unitGroup createUnit [(_aiSkin call BIS_fnc_selectRandom),[_pos_x,_pos_y,_pos_z],[],0,"CAN COLLIDE"];
+		_unit = _unitGroup createUnit [(_aiSkin call BIS_fnc_selectRandom),[_pos_x,_pos_y,_pos_z],[],(area/2),"CAN COLLIDE"];
 		[_unit] joinSilent _unitGroup;
 		_unit setVariable ["Bandit",true];
 		_unit enableAI "TARGET";
