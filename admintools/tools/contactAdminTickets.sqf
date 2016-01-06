@@ -43,7 +43,7 @@ fn_tpToPlayer = {
 						[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 					};
 				} else {
-					cutText["Player is no longer alive, removing from queue","PLAIN DOWN",2];
+					cutText[format["%1 is no longer alive, removing from queue",_name],"PLAIN DOWN",2];
 				};
 				breakOut "fn_tpToPlayer";
 			};
