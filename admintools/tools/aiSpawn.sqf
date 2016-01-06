@@ -125,7 +125,7 @@ spawnAI = {
 		{
 			_unit setSkill [(_x select 0),(_x select 1)]
 		} count _aiSkill;
-		_unit addEventHandler ["Killed",{_unit removeWeapon "NVGoggles"; Sleep 1200; deleteVehicle _unit;}]; // Delete units 20 minutes after death
+		_unit addEventHandler ["Killed",{_unit removeWeapon "NVGoggles"; Sleep 900; deleteVehicle _unit;}]; // Delete units 15 minutes after death
 	};
 	_unitGroup setFormation "ECH LEFT";
 	_unitGroup selectLeader ((units _unitGroup) select 0);
