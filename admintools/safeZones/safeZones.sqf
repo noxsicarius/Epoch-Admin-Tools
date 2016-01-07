@@ -7,7 +7,7 @@ private ["_fnc_enterZoneVehicle","_fnc_clearZombies","_fnc_enterZonePlayer","_fn
 if (isNil "inZone") then {inZone = false;};
 if (isNil "canbuild") then {canbuild = true;};
 _enterMsg = "*** PROTECTED ZONE! No stealing or shooting allowed ***";
-_exitMsg = "*** GODE MODE DISABLED! You can now be damaged ***";
+_exitMsg = "*** GOD MODE DISABLED! You can now be damaged ***";
 
 // handles players entering zone
 _fnc_enterZonePlayer = {

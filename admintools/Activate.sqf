@@ -55,6 +55,6 @@ if (EAT_isAdmin) then {
 };
 
 // Start safezone scripts if enabled
-if(EAT_safeZones) then {[] spawn {[] ExecVM "admintools\safeZones\safeZonePlayers.sqf";};};
+if(EAT_safeZones) then {[] spawn {[] ExecVM "admintools\safeZones\safeZones.sqf";};};
 
 diag_log("Admin Tools: Activate.sqf loaded");
