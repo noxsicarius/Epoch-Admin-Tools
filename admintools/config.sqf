@@ -16,37 +16,36 @@
 	];
 	
 
-	/*
-		Enable/Disable weather/time change menu.
-		Important: This may cause server to always revert to mid-day on restart.
-	*/	
-		EAT_wtChanger = false;
+	
+	//Enable/Disable weather/time change menu. This may cause server to revert to mid-day on restart.
+	EAT_wtChanger = false;
 
 
-	/*
-		Log admin tool usage by your admins?
-		This creates a log in your server\EpochAdminToolLogs\toolUsageLog.txt
-		REQUIRES: EATadminLogger.dll
-	*/
-		//A major tool is a strong tool with high possibility for exploiting
-		EAT_logMajorTool = true;
-
-		//A minor tool is a weak tool with low possibility for exploiting
-		EAT_logMinorTool = false;
-
+	//This creates a log in your server\EpochAdminToolLogs\toolUsageLog.txt REQUIRES: EATadminLogger.dll
+		EAT_logMajorTool = true; //A major tool is a strong tool with high possibility for exploitation
+		EAT_logMinorTool = false;//A minor tool is a weak tool with low possibility for exploitation
 
 		
 /************** Safe Zone Variables *****************/
-	// This script is a modified version of AGN safe zone commander
-	SafeZonePlayer = true;					//Enable the player safe zones script? REQUIRED for the other variables to take effect
-	antiCamper = 10;						//Time limit for keeping god mode active x seconds after leaving the zone
-	safeZoneZombieShield = true;			//Remove zombies from safe zone
-	safeZoneGodmode = true; 				//Enable god mode inside the safe zone?
-	safeZoneAntiBackpack = true;			//Disable backpack gear theft?
-	safeZoneLootPiles = true;				//Allow looting from loot spawns inside the zone?
+	EAT_safeZones = true; //Enable the player safe zones script? REQUIRED for the other variables to take effect
+	EAT_szDetectTraders = true; // This can USUALLY detect the MAJOR THREE traders (no aircraft/bandit/hero)
+	EAT_szUseCustomZones = false; // Allows you to set your own zone positions (Works with auto detect)
+	EAT_szPlotPoleZones = false; // NOT WORKING YET. Makes EVERY player plot pole area a safe zone
+	EAT_szAntiTheft = true; // Disable stealing from inventory while in zone (allows interaction with friend inventory)
+	EAT_szAiShield = true; // Remove AI in a radius 1.5x the zone size (if zone is 100 diameter, deletes 150m from center.
+	EAT_szUseSpeedLimits = true; // Enforce a speed limit for vehicles to stop from pushing players out of zone
+	EAT_szSpeedLimit = 35; // Max speed for vehicles inside the zones
+	EAT_szUseHint = false; // Use hints for messages? (will display at bottom of screen instead if false)
 
-	// Vehicle safe zones
-	SafeZoneVehicle = true;					// Use the vehicle safe zones script?
+	// You can find these in the sensors section of the mission.sqm for each map
+	// Format: [[POSITION],RADIUS]
+	EAT_szCustomZones = [
+		// Cherno zones that can't be auto detected:
+		[[1606.6443,289.70795,7803.5156],100], // Bandit
+		[[12944.227,210.19823,12766.889],100], // Hero
+		[[12060.471,158.85699,12638.533],100] // Aircraft (NO COMMA ON LAST LINE)
+		// ALWAYS LEAVE OFF THE LAST "," OR THIS WILL BREAK
+	];
 	
 	
 /************** Action Menu Variables **************/
