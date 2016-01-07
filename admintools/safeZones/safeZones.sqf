@@ -1,4 +1,4 @@
-// This script was developed by analysing AGN safe zones, infistar safe zones, and others like them
+// This script was developed by analysing AGN safe zones, maca safe zones, infistar safe zones, and others like them
 // to create the best possible combination of them all.
 
 waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
