@@ -50,11 +50,12 @@ if (playerGod2) then
 		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
-
-	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
-	fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
-	fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";	
-	_player addEventHandler ["handleDamage", {true}];
-	_player removeAllEventHandlers "handleDamage";
-	_player allowDamage true;
+	if(!inZone) then {
+		player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
+		fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
+		fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";
+		_player addEventHandler ["handleDamage", {true}];
+		_player removeAllEventHandlers "handleDamage";
+		_player allowDamage true;
+	};
 };

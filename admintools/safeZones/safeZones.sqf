@@ -1,9 +1,7 @@
 // This script was developed by analysing AGN safe zones, maca safe zones, infistar safe zones, and others like them
 // to create the best possible combination of them all.
 
-waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
-
-private ["_fnc_enterZoneVehicle","_fnc_clearZombies","_fnc_enterZonePlayer","_fnc_exitZone","_enterMsg","_exitMsg"];
+private ["_fnc_enterZoneVehicle","_fnc_clearZombies","_fnc_enterZonePlayer","_EH_weaponFirePlayer","_EH_weaponFireVehicle","_fnc_exitZone","_enterMsg","_exitMsg"];
 if (isNil "inZone") then {inZone = false;};
 if (isNil "canbuild") then {canbuild = true;};
 _enterMsg = "*** PROTECTED ZONE! No stealing or shooting allowed ***";
@@ -14,42 +12,38 @@ _fnc_enterZonePlayer = {
 	private["_player","_veh","_inZone"];
 
 	inZone = true;
+	_player = player;
+	
 	if(EAT_szUseHint) then {hint _enterMsg;} else { cutText[_enterMsg,"PLAIN DOWN"];};
-		
-	if(!EAT_isAdmin) then {
-		player_fired = {
-			deleteVehicle (nearestObject [_this select 0,_this select 4]);
-			cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN"];
-		};
-	};
+	
+	if(!EAT_isAdmin) then {_EH_weaponFirePlayer = _player addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN"];}];};
 		
 	if (!playerGod2) then {
-		_player = player;
 		player_zombieCheck = {};
 		fnc_usec_damageHandler = {};
 		_player removeAllEventHandlers "handleDamage";
 		_player addEventHandler ["handleDamage", {false}];
 		_player allowDamage false;
 	};
-		
+};
+
+// handles occupied vehicles in zone. This includes purchased ones.
+// A player must enter the vehicle to enable god mode if it is purchased inside the zone.
+_fnc_enterZoneVehicle = {
+	private["_veh","_inZone"];
 	_veh = vehicle player;
 	if (player != _veh && !vehicleGod2) then {
 		_inZone = _veh getVariable ["inZone",0];
 		if (_inZone == 0) then {
 			if(!EAT_isAdmin) then {
-				_veh removeAllEventHandlers "Fired";
-				_veh addEventHandler ["Fired", {_this call player_fired;}];
-				{
-					_x removeAllEventHandlers "Fired";
-					_x addEventHandler ["Fired", {_this call player_fired;}];
-				} forEach (crew _veh);
+				_EH_weaponFireVehicle = _veh addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN"];}];
 				_veh setVariable ["inZone",1];
 			};
 				
 			if(EAT_szVehicleGod) then {
-				vehicle_handleDamage = {false};
-				_veh removeAllEventHandlers "HandleDamage";
-				_veh addeventhandler ["HandleDamage",{ _this call vehicle_handleDamage } ];
+				vehicle_handleDamage = {};
+				_veh removeAllEventHandlers "handleDamage";
+				_veh addEventHandler ["handleDamage",{false}];
 				_veh allowDamage false;
 			};
 		};
@@ -61,29 +55,28 @@ _fnc_exitZone = {
 	private["_veh","_inZone","_player"];
 	
 	if(EAT_szUseHint) then {hint _exitMsg;} else { cutText[_exitMsg,"PLAIN DOWN"];};
-	if(!EAT_isAdmin) then {player_fired = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_fired.sqf";};
-	if (!playerGod2) then {fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";};
-	object_monitorGear = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_monitorGear.sqf";
 	
 	_player = player;
-	_veh = vehicle player;
+	_veh = vehicle _player;
 	if (player != _veh && !vehicleGod2 && EAT_szVehicleGod) then {
 		vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
 		_inZone = _veh getVariable ["inZone",0];
 		if (_inZone == 1) then {
 			_veh setVariable ["inZone",0];
-			_veh removeAllEventHandlers "HandleDamage";
-			_veh addeventhandler ["HandleDamage",{ _this call vehicle_handleDamage } ];
+			_veh removeAllEventHandlers "handleDamage";
+			_veh addEventHandler ["handleDamage",{_this call vehicle_handleDamage}];
 			_veh allowDamage true;
+			if(!EAT_isAdmin) then {_veh removeEventHandler ["Fired",_EH_weaponFireVehicle];};
 		};
 	};
-			
+	
 	if (!playerGod2) then {
 		_player allowDamage true;
 		player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
 		fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
-		_player removeAllEventHandlers "HandleDamage";
-		_player addeventhandler ["HandleDamage",{_this call fnc_usec_damageHandler;} ];
+		_player removeAllEventHandlers "handleDamage";
+		_player addEventHandler ["handleDamage",{_this call fnc_usec_damageHandler}];
+		if(!EAT_isAdmin) then {_player removeEventHandler ["Fired", _EH_weaponFirePlayer];};
 	};
 	inZone = false;
 };
@@ -160,7 +153,7 @@ _fnc_antiTheft = {
 	while{inZone} do {
 		_friend = false;
 		_ct = cursorTarget;
-			if(!isNil _ct && isPlayer _ct) then {
+			if(!isNull _ct && isPlayer _ct) then {
 				_dist = _ct distance player;
 			if(_dist < 7) then {
 				_ctPlayerID = _ct getVariable["CharacterID","0"];
@@ -170,20 +163,22 @@ _fnc_antiTheft = {
 				_ct = nil;
 			};
 		};
-		if(!isNil (FindDisplay 106) && (!isNil _ct && !_friend)) then {
+		if(!isNull (FindDisplay 106) && (!isNull _ct && !_friend)) then {
 			(findDisplay 106) closeDisplay 1;
-			waitUntil {isNil (FindDisplay 106)};
+			waitUntil {isNull (FindDisplay 106)};
 			createGearDialog [(player), 'RscDisplayGear'];
 		};
-		waitUntil {isNil (FindDisplay 106)};
+		waitUntil {isNull (FindDisplay 106)};
 	};
 };
-	
+
+diag_log("Admin Tools: safeZones.sqf loaded");
+
 while {true} do	{
 	private["_veh","_zoneChange"];
-		
+	
 	_zoneChange = false;
-		
+	
 	if (EAT_szUseCustomZones && !inZone) then {
 		{
 			_z = _x select 0;
@@ -192,7 +187,7 @@ while {true} do	{
 			if ((vehicle player) distance _z < _r) then {_zoneChange = true;};
 		} forEach EAT_szCustomZones;
 	};
-		
+	
 	if (EAT_szDetectTraders) then {
 		if (!canbuild) then {_zoneChange = true;};
 	};
@@ -203,6 +198,7 @@ while {true} do	{
 			if(EAT_szAntiTheft)then{[_fnc_antiTheft]spawn {call (_this select 0);};};
 			if(EAT_szUseSpeedLimits)then{[_fnc_speedLimitEnforcer] spawn {call (_this select 0);};};
 		};
+		call _fnc_enterZoneVehicle; // Must be called continuously to god mode purchased vehicles
 		call _fnc_clearZombies;
 		if (EAT_szAiShield) then {call _fnc_clearAI;};
 	} else {

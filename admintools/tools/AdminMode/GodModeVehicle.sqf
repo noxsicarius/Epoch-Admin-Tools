@@ -37,7 +37,7 @@ while{alive (vehicle player) && vehicleGod2} do
 	waitUntil{Sleep 1; ((player == (vehicle player)) || !vehicleGod2)};
 
 	// Disable god mode for a vehicle only if it was on
-	if(!isNil "_playerVehicle") then {
+	if(!isNil "_playerVehicle" && !inZone) then {
 		_playerVehicle removeAllEventHandlers "handleDamage";
 		_playerVehicle addEventHandler ["handleDamage", {_this select 2}];
 		_playerVehicle allowDamage true;
@@ -50,7 +50,7 @@ while{alive (vehicle player) && vehicleGod2} do
 };
 
 // Disable god mode for a vehicle only if it was on
-if(!isNil "_playerVehicle") then {
+if(!isNil "_playerVehicle" && !inZone) then {
     _playerVehicle removeAllEventHandlers "handleDamage";
     _playerVehicle addEventHandler ["handleDamage", {_this select 2}];
     _playerVehicle allowDamage true;
