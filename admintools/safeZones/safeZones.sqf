@@ -46,7 +46,7 @@ _fnc_enterZonePlayer = {
 				_veh setVariable ["inZone",1];
 			};
 				
-			if(SafeZoneVehicle) then {
+			if(EAT_szVehicleGod) then {
 				vehicle_handleDamage = {false};
 				_veh removeAllEventHandlers "HandleDamage";
 				_veh addeventhandler ["HandleDamage",{ _this call vehicle_handleDamage } ];
@@ -67,7 +67,7 @@ _fnc_exitZone = {
 	
 	_player = player;
 	_veh = vehicle player;
-	if (player != _veh && !vehicleGod2 && SafeZoneVehicle) then {
+	if (player != _veh && !vehicleGod2 && EAT_szVehicleGod) then {
 		vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
 		_inZone = _veh getVariable ["inZone",0];
 		if (_inZone == 1) then {

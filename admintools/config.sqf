@@ -28,6 +28,7 @@
 		
 /************** Safe Zone Variables *****************/
 	EAT_safeZones = true; //Enable the player safe zones script? REQUIRED for the other variables to take effect
+	EAT_szVehicleGod = true; // Protect vehicles in the safe zone
 	EAT_szDetectTraders = true; // This can USUALLY detect the MAJOR THREE traders (no aircraft/bandit/hero)
 	EAT_szUseCustomZones = false; // Allows you to set your own zone positions (Works with auto detect)
 	EAT_szPlotPoleZones = false; // NOT WORKING YET. Makes EVERY player plot pole area a safe zone
