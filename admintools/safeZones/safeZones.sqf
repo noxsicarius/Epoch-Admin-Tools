@@ -17,7 +17,7 @@ _fnc_enterZonePlayer = {
 	if(EAT_szUseHint) then {hint _enterMsg;} else { cutText[_enterMsg,"PLAIN DOWN"];};
 		
 	if(!EAT_isAdmin) then {
-		player_Fired = {
+		player_fired = {
 			deleteVehicle (nearestObject [_this select 0,_this select 4]);
 			cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN"];
 		};
