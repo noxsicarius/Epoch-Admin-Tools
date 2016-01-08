@@ -23,7 +23,8 @@ if (pselect5 != "exit") then
 		if(name _x == _name) then
 		{
 			_UID = (getPlayerUID _x);
-
+			
+			tempList = tempList + _x;
 			EAT_PVEH_teleportFix = ["add",_UID];
 			publicVariableServer "EAT_PVEH_teleportFix";
 			
@@ -37,8 +38,9 @@ if (pselect5 != "exit") then
 			
 			sleep 0.25;
 			detach _x;
-
+			
 			Sleep 3;
+			tempList = tempList - _x;
 			EAT_PVEH_teleportFix = ["remove",_UID];
 			[] spawn {publicVariableServer "EAT_PVEH_teleportFix"};
 			

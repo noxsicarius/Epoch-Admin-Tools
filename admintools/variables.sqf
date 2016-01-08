@@ -77,7 +77,6 @@ playerGod2 = false;
 		
 		if (EAT_isAdmin && _addRemove == "add") then {
 			systemChat "**** A player needs help ****";
-			diag_log "**** A player needs help ****";
 		};
 	};
 
