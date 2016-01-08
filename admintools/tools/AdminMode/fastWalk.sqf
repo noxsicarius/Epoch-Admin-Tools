@@ -2,7 +2,7 @@ if(isNil "fastWalkMove") then {fastWalkMove = true;} else {fastWalkMove = !fastW
 
 fastWalkForward = {
 	_player = vehicle player;
-	_dis = 10;
+	_dis = 5;
 	_dir = getdir _player;
 	_pos = getPosATL _player;
 	_pos2 = getPos _player;
