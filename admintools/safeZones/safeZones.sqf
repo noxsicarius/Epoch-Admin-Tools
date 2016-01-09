@@ -16,7 +16,7 @@ _fnc_enterZonePlayer = {
 	
 	if(EAT_szUseHint) then {hint _enterMsg;} else { cutText[_enterMsg,"PLAIN DOWN"];};
 	
-	if(!EAT_isAdmin) then {_EH_weaponFirePlayer = _player addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN"];}];};
+	if(!EAT_isAdmin) then {_EH_weaponFirePlayer = _player addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN",2];}];};
 		
 	if (!playerGod2) then {
 		player_zombieCheck = {};
@@ -36,7 +36,7 @@ _fnc_enterZoneVehicle = {
 		_inZone = _veh getVariable ["inZone",0];
 		if (_inZone == 0) then {
 			if(!EAT_isAdmin) then {
-				_EH_weaponFireVehicle = _veh addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN"];}];
+				_EH_weaponFireVehicle = _veh addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN",2];}];
 				_veh setVariable ["inZone",1];
 			};
 				
@@ -84,7 +84,7 @@ _fnc_exitZone = {
 // Deletes zombies near players
 _fnc_clearZombies = {
 	private["_zombies"];
-	_zombies = (vehicle player) nearEntities ["zZombie_Base",40];
+	_zombies = (vehicle player) nearEntities ["zZombie_Base",EAT_szZombieDistance];
 		
 	// Kill and hide zombies
 	if((count _zombies) > 0) then {
@@ -110,7 +110,7 @@ _fnc_clearZombies = {
 // Deletes AI near the zone
 _fnc_clearAI = {
 	private ["_aiUnits"];
-	_aiUnits = player nearEntities ['Man',100];
+	_aiUnits = player nearEntities ['Man',EAT_szAiDistance];
 		
 	if((count _aiUnits) > 0) then {
 		{
@@ -199,8 +199,8 @@ while {true} do	{
 			if(EAT_szUseSpeedLimits)then{[_fnc_speedLimitEnforcer] spawn {call (_this select 0);};};
 		};
 		call _fnc_enterZoneVehicle; // Must be called continuously to god mode purchased vehicles
-		call _fnc_clearZombies;
-		if (EAT_szAiShield) then {call _fnc_clearAI;};
+		if(EAT_szZombieShield) then {call _fnc_clearZombies;};
+		if(EAT_szAiShield) then {call _fnc_clearAI;};
 	} else {
 		if(inZone) then {call _fnc_exitZone;};
 	};

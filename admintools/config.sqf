@@ -33,11 +33,14 @@
 	EAT_szUseCustomZones = false; // Allows you to set your own zone positions (Works with auto detect)
 	EAT_szPlotPoleZones = false; // NOT WORKING YET. Makes EVERY player plot pole area a safe zone
 	EAT_szAntiTheft = true; // Disable stealing from inventory while in zone (allows interaction with friend inventory)
-	EAT_szAiShield = true; // Remove AI in a radius 1.5x the zone size (if zone is 100 diameter, deletes 150m from center.
+	EAT_szAiShield = false; // Remove AI in a radius around the zone
+	EAT_szAiDistance = 100; // Distance to remove AI from players in a zone
+	EAT_szZombieShield = true; // Remove zombies near players
+	EAT_szZombieDistance = 20; // Distance to remove zombies from player in the zone
 	EAT_szUseSpeedLimits = true; // Enforce a speed limit for vehicles to stop from pushing players out of zone
 	EAT_szSpeedLimit = 35; // Max speed for vehicles inside the zones
 	EAT_szUseHint = false; // Use hints for messages? (will display at bottom of screen instead if false)
-
+	
 	// You can find these in the sensors section of the mission.sqm for each map
 	// Format: [[POSITION],RADIUS]
 	EAT_szCustomZones = [
