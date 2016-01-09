@@ -1,13 +1,13 @@
 ==================================================
-You are using Epoch Admin Tools version 1.10.5
+You are using Epoch Admin Tools version 1.10.6
 by NoxSicarius
 ==================================================
 
 
-------------------- Version 1.10.5 Changelog ---------------------
+------------------- Version 1.10.6 Changelog ---------------------
 
 New Features:
-	Added safezones (vehicle and player protection)
+	Added advanced safe zone system
 	Added eject players from vehicle
 	Added support for teleporting players who are in vehicles
 	Added enemy AI spawner
@@ -21,6 +21,7 @@ Bug Fixes:
 	Object Offset not working @ leodr99
 	Undeclared variable caused by typo @ leodr99
 	Help Ticket System fixes
+	Weapon kit fixes
 	
 Enhancements:
 	Humanity menu has reset to 2500 option
@@ -31,10 +32,13 @@ Enhancements:
 	Rewrote public variables system
 	Obsolete code removal
 	ESP efficiency/stability updates
+	Help ticket system upgrades
 
 Special thanks to testers:
 	@Chr0nicCha0s
 	@Evocation
+	@nidico100
+	@Paradox
 
 
 MD5 hash for the dll files IN THIS VERSION:
