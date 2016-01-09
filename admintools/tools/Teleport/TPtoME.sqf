@@ -15,21 +15,21 @@ while {pselect5 == "" && !_menuCheckOk} do
 	snext = false;
 };
 
-if (pselect5 != "exit") then
-{
+if (pselect5 != "exit") then {
 	_name = pselect5;
 	
 	{
-		if(name _x == _name) then
-		{
+		scopeName "fn_tpToMe";
+		if(name _x == _name) then {
 			_UID = (getPlayerUID _x);
 			
 			tempList = tempList + _x;
 			EAT_PVEH_teleportFix = ["add",_UID];
 			publicVariableServer "EAT_PVEH_teleportFix";
 			
-			hint format ["Teleporting %1", _name];
+			titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
 			
+			sleep 1.5; // Give the server time to register the antihack bypass.
 			if(vehicle _x != _x) then {
 				(vehicle _x) attachTo [vehicle player, [5, 5, 0]];
 			} else {
@@ -49,6 +49,7 @@ if (pselect5 != "exit") then
 				EAT_PVEH_usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_UID];
 				[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 			};
+			breakOut "fn_tpToMe";
 		};
 	} forEach entities "CAManBase";
 };

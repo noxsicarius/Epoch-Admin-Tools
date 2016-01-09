@@ -20,8 +20,8 @@ if (pselect5 != "exit") then
 	_name = pselect5;
 	
 	{
-		if(name _x == _name) then
-		{
+		scopeName "fn_tpToPlayer";
+		if(name _x == _name) then {
 			titleText[format["Teleporting to %1", _name],"PLAIN DOWN"];
 			(vehicle player) attachTo [_x, [2, 2, 0]];
 			sleep 0.25;
@@ -32,6 +32,7 @@ if (pselect5 != "exit") then
 				EAT_PVEH_usageLogger = format["%1 %2 -- has teleported to %3_%4",name player,getPlayerUID player,_name,_x];
 				[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 			};
+			breakOut "fn_tpToPlayer";
 		};
 	} forEach entities "CAManBase";
 };
