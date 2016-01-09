@@ -87,7 +87,7 @@ fn_tpToMe = {
 					
 					titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
 
-					sleep 1.5; // Give the server time to register the antihack bypass.
+					sleep 3; // Give the server time to register the antihack bypass.
 					_x attachTo [vehicle _player, [2, 2, 0]];
 					sleep 0.25;
 					detach _x;

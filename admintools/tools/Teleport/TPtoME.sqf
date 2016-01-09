@@ -29,7 +29,7 @@ if (pselect5 != "exit") then {
 			
 			titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
 			
-			sleep 1.5; // Give the server time to register the antihack bypass.
+			sleep 3; // Give the server time to register the antihack bypass.
 			if(vehicle _x != _x) then {
 				(vehicle _x) attachTo [vehicle player, [5, 5, 0]];
 			} else {
