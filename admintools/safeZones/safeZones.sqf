@@ -17,7 +17,7 @@ _fnc_enterZonePlayer = {
 	if(EAT_szUseHint) then {hint _enterMsg;} else { cutText[_enterMsg,"PLAIN DOWN"];};
 	
 	if(!EAT_isAdmin) then {_EH_weaponFirePlayer = _player addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN",2];}];};
-		
+	
 	if (!playerGod2) then {
 		player_zombieCheck = {};
 		fnc_usec_damageHandler = {};
@@ -85,7 +85,7 @@ _fnc_exitZone = {
 _fnc_clearZombies = {
 	private["_zombies"];
 	_zombies = (vehicle player) nearEntities ["zZombie_Base",EAT_szZombieDistance];
-		
+	
 	// Kill and hide zombies
 	if((count _zombies) > 0) then {
 		{
@@ -111,7 +111,7 @@ _fnc_clearZombies = {
 _fnc_clearAI = {
 	private ["_aiUnits"];
 	_aiUnits = player nearEntities ['Man',EAT_szAiDistance];
-		
+	
 	if((count _aiUnits) > 0) then {
 		{
 			if ((!isNull group _x) && (getPlayerUID _x == '')) then
@@ -167,6 +167,8 @@ _fnc_antiTheft = {
 			(findDisplay 106) closeDisplay 1;
 			waitUntil {isNull (FindDisplay 106)};
 			createGearDialog [(player), 'RscDisplayGear'];
+			systemChat("Redirecting to your inventory...");
+			systemChat("To enter a player's gear add them as a friend");
 		};
 		waitUntil {isNull (FindDisplay 106)};
 	};
@@ -195,7 +197,7 @@ while {true} do	{
 	if (_zoneChange) then {
 		if(!inZone) then {
 			call _fnc_enterZonePlayer;
-			if(EAT_szAntiTheft)then{[_fnc_antiTheft]spawn {call (_this select 0);};};
+			if(EAT_szAntiTheft && !EAT_isAdmin)then{[_fnc_antiTheft]spawn {call (_this select 0);};};
 			if(EAT_szUseSpeedLimits)then{[_fnc_speedLimitEnforcer] spawn {call (_this select 0);};};
 		};
 		call _fnc_enterZoneVehicle; // Must be called continuously to god mode purchased vehicles
