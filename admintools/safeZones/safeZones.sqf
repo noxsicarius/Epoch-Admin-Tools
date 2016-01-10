@@ -177,24 +177,24 @@ _fnc_antiTheft = {
 diag_log("Admin Tools: safeZones.sqf loaded");
 
 while {true} do	{
-	private["_veh","_zoneChange"];
+	private["_veh","_inZone"];
 	
-	_zoneChange = false;
+	_inZone = false;
 	
-	if (EAT_szUseCustomZones && !inZone) then {
+	if (EAT_szUseCustomZones) then {
 		{
 			_z = _x select 0;
 			_z = [_z select 0, _z select 2, 0];
 			_r = _x select 1;
-			if ((vehicle player) distance _z < _r) then {_zoneChange = true;};
+			if ((vehicle player) distance _z < _r) then {_inZone = true;};
 		} forEach EAT_szCustomZones;
 	};
 	
 	if (EAT_szDetectTraders) then {
-		if (!canbuild) then {_zoneChange = true;};
+		if (!canbuild) then {_inZone = true;};
 	};
 
-	if (_zoneChange) then {
+	if (_inZone) then {
 		if(!inZone) then {
 			call _fnc_enterZonePlayer;
 			if(EAT_szAntiTheft && !EAT_isAdmin)then{[_fnc_antiTheft]spawn {call (_this select 0);};};
@@ -206,4 +206,5 @@ while {true} do	{
 	} else {
 		if(inZone) then {call _fnc_exitZone;};
 	};
+	Sleep 1;
 };

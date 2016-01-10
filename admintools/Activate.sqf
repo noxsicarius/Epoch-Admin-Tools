@@ -1,5 +1,4 @@
 waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
-
 // Give players action menu
 if((ActionMenuPlayers && !EAT_isAdmin) || (ActionMenuAdmins && EAT_isAdmin)) then {
 	[] spawn {
@@ -55,6 +54,6 @@ if (EAT_isAdmin) then {
 };
 
 // Start safezone scripts if enabled
-if(EAT_safeZones) then {[] spawn {[] ExecVM "admintools\safeZones\safeZones.sqf";};};
+if(EAT_safeZones && !isServer) then {[] spawn {[] ExecVM "admintools\safeZones\safeZones.sqf";};};
 
 diag_log("Admin Tools: Activate.sqf loaded");
