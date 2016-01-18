@@ -21,6 +21,22 @@ playerGod2 = false;
 		"EAT_PVEH_baseExporter" addPublicVariableEventHandler {
 			"EATbaseExporter" callExtension (_this select 1);
 		};
+		
+		// teleport fix
+		"EAT_PVEH_teleportFix" addPublicVariableEventHandler{
+			private ["_array", "_addRemove"];
+			_array = (_this select 1);
+			_addRemove = (_array select 0);
+			if(_addRemove == "add") then {
+				_array = _array - ["add"];
+				tempList = tempList + _array;
+			} else {
+				_array = _array - ["remove"];
+				tempList = tempList - _array;
+			};
+			EAT_PVEH_teleportFixClient = tempList;
+			{(owner _x) publicVariableClient "EAT_PVEH_teleportFixClient";} forEach entities "CAManBase";
+		};
 	};
 
 /****************** Client Public Variables ******************/
@@ -29,20 +45,11 @@ playerGod2 = false;
 		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
 	};
 	
-	// teleport fix
-	"EAT_PVEH_teleportFix" addPublicVariableEventHandler{
-		private ["_array", "_addRemove"];
-		_array = (_this select 1);
-		_addRemove = (_array select 0);
-		if(_addRemove == "add") then {
-			_array = _array - ["add"];
-			tempList = tempList + _array;
-		} else {
-			_array = _array - ["remove"];
-			tempList = tempList - _array;
-		};
+	// Teleport fix
+	"EAT_PVEH_teleportFixClient" addPublicVariableEventHandler {
+		tempList = (_this select 1);
 	};
-	
+
 	// Broadcast date to clients
 	"EAT_PVEH_SetDate" addPublicVariableEventHandler {
 		drn_fnc_DynamicWeather_SetWeatherLocal = {};
