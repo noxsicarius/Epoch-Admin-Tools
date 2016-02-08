@@ -40,6 +40,7 @@
 	EAT_szUseSpeedLimits = true; // Enforce a speed limit for vehicles to stop from pushing players out of zone
 	EAT_szSpeedLimit = 35; // Max speed for vehicles inside the zones
 	EAT_szUseHint = false; // Use hints for messages? (will display at bottom of screen instead if false)
+	EAT_szAdminWeapon = false; // Allow admins to use weapons in the safe zones? (True = yes)
 	
 	// You can find these in the sensors section of the mission.sqm for each map
 	// Format: [[POSITION],RADIUS]
