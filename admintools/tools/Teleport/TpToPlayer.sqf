@@ -15,7 +15,7 @@ while {pselect5 == "" && !_menuCheckOk} do
 	snext = false;
 };
 
-if (pselect5 != "exit") then
+if (pselect5 != "exit" && pselect5 != "") then
 {
 	_name = pselect5;
 	

@@ -9,21 +9,22 @@ helpQueueMenu =
 ];
 	
 fn_tpToPlayer = {
-	private ["_name","_pmenu","_max","_player"];
-	_player = player; _j = 0; _max = 10;
+	private ["_name","_pmenu","_max","_player","_menuCheckOk"];
+	_player = player; _menuCheckOk = false; _max = 10; _j = 0;
 
 	snext = false; plist = []; pselect5 = "";
 	{plist set [count plist, _x];} forEach helpQueue;
 	pMenuTitle = "Teleport to Player:";
 
-	while {pselect5 == ""} do
+	while {pselect5 == "" && !_menuCheckOk} do
 	{
 		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
-		WaitUntil {pselect5 != "" or snext};
+		WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
+		_menuCheckOk = (commandingMenu == "");
 		snext = false;
 	};
 
-	if (pselect5 != "exit") then
+	if (pselect5 != "exit" && pselect5 != "") then
 	{
 		_name = pselect5;
 
@@ -57,21 +58,22 @@ fn_tpToPlayer = {
 };
 
 fn_tpToMe = {
-	private ["_name","_pmenu","_max","_UID","_player"];
-	_player = player; _j = 0; _max = 10;
+	private ["_name","_pmenu","_max","_UID","_player","_menuCheckOk"];
+	_player = player; _menuCheckOk = false; _j = 0; _max = 10;
 	
 	snext = false; plist = []; pselect5 = "";
 	{plist set [count plist, _x];} forEach helpQueue;
 	pMenuTitle = "Teleport to Me:";
 
-	while {pselect5 == ""} do
+	while {pselect5 == "" && !_menuCheckOk} do
 	{
 		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
-		WaitUntil {pselect5 != "" or snext};	
+		WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
+		_menuCheckOk = (commandingMenu == "");
 		snext = false;
 	};
 
-	if (pselect5 != "exit") then
+	if (pselect5 != "exit" && pselect5 != "") then
 	{
 		_name = pselect5;
 
@@ -117,21 +119,22 @@ fn_tpToMe = {
 };
 
 fn_removeFromQueue = {
-	private ["_name","_pmenu","_max","_player"];
-	_player = player; _j = 0; _max = 10;
+	private ["_name","_pmenu","_max","_player","_menuCheckOk"];
+	_player = player; _menuCheckOk = false; _j = 0; _max = 10;
 
 	snext = false; plist = []; pselect5 = "";
 	{plist set [count plist, _x];} forEach helpQueue;
 	pMenuTitle = "Remove Player from Queue";
 
-	while {pselect5 == ""} do
+	while {pselect5 == "" && !_menuCheckOk} do
 	{
 		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
-		WaitUntil {pselect5 != "" or snext};
+		WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
+		_menuCheckOk = (commandingMenu == "");
 		snext = false;
 	};
 
-	if (pselect5 != "exit") then
+	if (pselect5 != "exit" && pselect5 != "") then
 	{
 		_name = pselect5;
 		helpQueue = helpQueue - [_name];
