@@ -157,7 +157,7 @@ If you are worried about the integrity of the dll files look at the change log f
 
     ~~~~java
     // Epoch Admin Tools
-    if (_object getVariable "MalSar" == 1) exitWith {};
+    if (_object getVariable ["MalSar",0] == 1) exitWith {};
     ~~~~
 
     ...immediately above this:
