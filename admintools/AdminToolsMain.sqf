@@ -120,7 +120,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_teleportMenu = EAT_teleportMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_teleportMenu = EAT_teleportMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
-// Menu2 for changing skins.
+// Menu for changing skins.
 // Entry Format:["Entry Name",[],"",-5,[["expression",'["Skin_class_name"] execVM "admintools\tools\skinChanger.sqf"']],"1","1"]];
 	EAT_skinMenu = [["",true]];
 	EAT_skinMenu = EAT_skinMenu + [["-- Skin Menu (Page 1)", [], "", -5,[["expression", ""]], "1", "0"]];
@@ -304,13 +304,22 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_epochMenu = EAT_epochMenu + [["-- Epoch Only Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_epochMenu = EAT_epochMenu + [["Admin Build Menu >> ",[],"#USER:EAT_buildMenu", -5,[["expression",""]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Point to Delete Item",[],"", -5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Point to display code",[],"",-5,[["expression",format[_EXECgenTools,"displayLockCode.sqf"]]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Point to make new key",[],"",-5,[["expression",format[_EXECgenTools,"recoverKey.sqf"]]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Point to lock object",[],"",-5,[["expression",format[_EXECgenTools,"PointToLock.sqf"]]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Point to unlock object",[],"",-5,[["expression",format[_EXECgenTools,"PointToUnlock.sqf"]]],"1","1"]];
+	EAT_epochMenu = EAT_epochMenu + [["Cursor Target Menu >>",[],"#USER:EAT_pointMenu", -5,[["expression",""]],"1","1"]];
+	EAT_epochMenu = EAT_epochMenu + [["Get current position",[],"",-5,[["expression",[player] execVM "admintools\tools\getPosition.sqf"]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_epochMenu = EAT_epochMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
+
+// Menu that deals with cursor target items like locks and safes
+	EAT_pointMenu = [["",true]];
+	EAT_pointMenu = EAT_pointMenu + [["-- Cursor Target Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
+	EAT_pointMenu = EAT_pointMenu + [["Point to get position",[],"",-5,[["expression",[cursorTarget] execVM "admintools\tools\getPosition.sqf"]],"1","1"]];
+	EAT_pointMenu = EAT_pointMenu + [["Point to display code",[],"",-5,[["expression",format[_EXECgenTools,"displayLockCode.sqf"]]],"1","1"]];
+	EAT_pointMenu = EAT_pointMenu + [["Point to make new key",[],"",-5,[["expression",format[_EXECgenTools,"recoverKey.sqf"]]],"1","1"]];
+	EAT_pointMenu = EAT_pointMenu + [["Point to lock object",[],"",-5,[["expression",format[_EXECgenTools,"PointToLock.sqf"]]],"1","1"]];
+	EAT_pointMenu = EAT_pointMenu + [["Point to unlock object",[],"",-5,[["expression",format[_EXECgenTools,"PointToUnlock.sqf"]]],"1","1"]];
+	EAT_pointMenu = EAT_pointMenu + [["Point to Delete Item",[],"", -5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
+	EAT_pointMenu = EAT_pointMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
+	EAT_pointMenu = EAT_pointMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
 // Base menu for Admin Build functions
 	EAT_buildMenu = [["",true]];
