@@ -305,14 +305,14 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_epochMenu = EAT_epochMenu + [["Admin Build Menu >> ",[],"#USER:EAT_buildMenu", -5,[["expression",""]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Cursor Target Menu >>",[],"#USER:EAT_pointMenu", -5,[["expression",""]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Get current position",[],"",-5,[["expression",[player] execVM "admintools\tools\getPosition.sqf"]],"1","1"]];
+	EAT_epochMenu = EAT_epochMenu + [["Get current position",[],"",-5,[["expression",'[player] execVM "admintools\tools\getPosition.sqf"']],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_epochMenu = EAT_epochMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
 // Menu that deals with cursor target items like locks and safes
 	EAT_pointMenu = [["",true]];
 	EAT_pointMenu = EAT_pointMenu + [["-- Cursor Target Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_pointMenu = EAT_pointMenu + [["Point to get position",[],"",-5,[["expression",[cursorTarget] execVM "admintools\tools\getPosition.sqf"]],"1","1"]];
+	EAT_pointMenu = EAT_pointMenu + [["Point to get position",[],"",-5,[["expression",'[cursorTarget] execVM "admintools\tools\getPosition.sqf"']],"1","1"]];
 	EAT_pointMenu = EAT_pointMenu + [["Point to display code",[],"",-5,[["expression",format[_EXECgenTools,"displayLockCode.sqf"]]],"1","1"]];
 	EAT_pointMenu = EAT_pointMenu + [["Point to make new key",[],"",-5,[["expression",format[_EXECgenTools,"recoverKey.sqf"]]],"1","1"]];
 	EAT_pointMenu = EAT_pointMenu + [["Point to lock object",[],"",-5,[["expression",format[_EXECgenTools,"PointToLock.sqf"]]],"1","1"]];
