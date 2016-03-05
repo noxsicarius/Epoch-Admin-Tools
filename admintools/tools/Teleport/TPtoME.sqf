@@ -23,6 +23,8 @@ if (pselect5 != "exit" && pselect5 != "") then {
 		if(name _x == _name) then {
 			_UID = (getPlayerUID _x);
 			
+			EAT_returnPlayer = [_x, (getPos _x)]; // Used to return player to last position
+			
 			EAT_PVEH_teleportFix = ["add",_UID];
 			publicVariableServer "EAT_PVEH_teleportFix";
 			

@@ -13,6 +13,7 @@ New Features:
 	Added enemy AI spawner
 	Added fast walk system to admin mode
 	Added Key Recovery for purchased vehicles
+	Added return teleport for players
 	
 Bug Fixes:
 	Broadcast use RPT errors

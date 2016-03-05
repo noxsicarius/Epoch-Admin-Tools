@@ -116,6 +116,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_teleportMenu = EAT_teleportMenu + [["Teleport (F1)",[],"", -5,[["expression", format[_EXECgenTools,"Teleport\Teleport.sqf"]]], "1", "1"]];
 	EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Me (F2)",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\TPtoME.sqf"]]], "1", "1"]];
 	EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Player (F3)",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\TpToPlayer.sqf"]]], "1", "1"]];
+	EAT_teleportMenu = EAT_teleportMenu + [["Return Player to Last Pos",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\returnPlayerTP.sqf"]]], "1", "1"]];
 	//EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Starry",[],"", -5, [["expression", '[6325.6772,7807.7412,0] execVM "admintools\tools\Teleport\teleportToLocation.sqf"']], "1", "1"]];
 	EAT_teleportMenu = EAT_teleportMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_teleportMenu = EAT_teleportMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];

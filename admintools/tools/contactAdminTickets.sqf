@@ -3,6 +3,7 @@ helpQueueMenu =
 ["",true],
 	["Teleport to player", [], "", -5, [["expression", "[] spawn fn_tpToPlayer"]], "1", "1"],
 	["Teleport player to you", [], "", -5, [["expression", "[] spawn fn_tpToMe"]], "1", "1"],
+	["Return Player to Last Pos",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\returnPlayerTP.sqf"]]], "1", "1"],
 	["Remove a player from queue", [], "", -5, [["expression", "[] spawn fn_removeFromQueue"]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Exit", [20], "", -5, [["expression", ""]], "1", "1"]
@@ -83,6 +84,8 @@ fn_tpToMe = {
 			{
 				if(alive _x) then {
 					_UID = (getPlayerUID _x);
+					
+					EAT_returnPlayer = [_x, (getPos _x)]; // Used to return player to last position
 
 					EAT_PVEH_teleportFix = ["add",_UID];
 					publicVariableServer "EAT_PVEH_teleportFix";
