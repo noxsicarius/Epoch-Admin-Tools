@@ -35,9 +35,10 @@ Enhancements:
 	Help ticket system upgrades
 
 Special thanks to testers:
+	@2000jago
 	@Chr0nicCha0s
-	@Evocation
 	@nidico100
+	@Evocation
 	@Paradox
 
 
