@@ -9,7 +9,7 @@ _UID = (getPlayerUID _player);
 EAT_PVEH_teleportFix = ["add",_UID];
 publicVariableServer "EAT_PVEH_teleportFix";
 
-titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
+titleText[format["Teleporting %1", name _player],"PLAIN DOWN"];
 
 sleep 1; // Give the clients time to receive the propagated antihack bypass.
 
