@@ -23,13 +23,12 @@ if (pselect5 != "exit" && pselect5 != "") then {
 		if(name _x == _name) then {
 			_UID = (getPlayerUID _x);
 			
-			tempList = tempList + _UID;
 			EAT_PVEH_teleportFix = ["add",_UID];
 			publicVariableServer "EAT_PVEH_teleportFix";
 			
 			titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
 			
-			sleep 3; // Give the server time to register the antihack bypass.
+			sleep 1; // Give the clients time to receive the propagated antihack bypass.
 			if(vehicle _x != _x) then {
 				(vehicle _x) attachTo [vehicle player, [5, 5, 0]];
 			} else {
@@ -39,8 +38,8 @@ if (pselect5 != "exit" && pselect5 != "") then {
 			sleep 0.25;
 			detach _x;
 			
+			// Leave the client in the bypass list for a short time to let the server register their new position
 			Sleep 3;
-			tempList = tempList - _UID;
 			EAT_PVEH_teleportFix = ["remove",_UID];
 			[] spawn {publicVariableServer "EAT_PVEH_teleportFix"};
 			
