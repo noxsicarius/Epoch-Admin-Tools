@@ -22,6 +22,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_mainMenu = EAT_mainMenu + [["Crate Menu >>",[],"#USER:EAT_crateMenu",-5,[["expression",""]],"1","1"]];
 	EAT_mainMenu = EAT_mainMenu + [["Epoch Menu >>", [], "#USER:EAT_epochMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_mainMenu = EAT_mainMenu + [["Weapon/Item Kits >>", [], "#USER:EAT_weaponMenu", -5, [["expression", ""]], "1", "1"]];
+	EAT_mainMenu = EAT_mainMenu + [["Teleport Menu >>",[],"#USER:EAT_teleportMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_mainMenu = EAT_mainMenu + [["Skin Change Menu >>", [], "#USER:EAT_skinMenu", -5, [["expression", ""]], "1", "1"]];
 	if(EAT_wtChanger)then{EAT_mainMenu = EAT_mainMenu + [["Weather/Time Menu >>", [], "#USER:EAT_weatherTimeMenu", -5, [["expression", ""]], "1", "1"]];};
 	if(ActionMenuPlayers && AllowContactAdmin)then{EAT_mainMenu = EAT_mainMenu + [["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"]];};
@@ -30,6 +31,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 		EAT_mainMenu = [["",true],["-- Epoch Admin Tools (Level: Mod) --", [], "", -5, [["expression", ""]], "1", "0"]];
 		EAT_mainMenu = EAT_mainMenu + [["Mod Menu >>", [], "#USER:EAT_modMenu", -5, [["expression", ""]], "1", "1"]];
 		EAT_mainMenu = EAT_mainMenu + [["Temporary Vehicle Menu >>", [], "#USER:EAT_vehicleTempMenu", -5, [["expression", ""]], "1", "1"]];
+		EAT_mainMenu = EAT_mainMenu + [["Teleport Menu >>",[],"#USER:EAT_teleportMenu", -5, [["expression", ""]], "1", "1"]];
 		EAT_mainMenu = EAT_mainMenu + [["Skin Change Menu >>", [], "#USER:EAT_skinMenu", -5, [["expression", ""]], "1", "1"]];
 		if(ActionMenuPlayers && AllowContactAdmin)then{EAT_mainMenu = EAT_mainMenu + [["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"]];};
 	};
@@ -48,7 +50,6 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_adminMenu = EAT_adminMenu + [["AI spawner", [], "", -5, [["expression", format[_EXECgenTools,"aiSpawn.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Heal Players",[],"", -5, [["expression", format[_EXECgenTools,"healp.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Send Server Message",[],"", -5,[["expression",format[_EXECgenTools,"messageDialog.sqf"]]],"1","1"]];
-	EAT_adminMenu = EAT_adminMenu + [["Teleport Menu >>",[],"#USER:EAT_teleportMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Humanity Menu >>",[],"#USER:EAT_humanityMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_adminMenu = EAT_adminMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
@@ -61,7 +62,6 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_modMenu = EAT_modMenu + [["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
 	EAT_modMenu = EAT_modMenu + [["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECgenTools,"spectate.sqf"]]], "1", "1"]];
 	EAT_modMenu = EAT_modMenu + [["Heal Players",[],"",-5,[["expression", format[_EXECgenTools,"healp.sqf"]]], "1", "1"]];
-	EAT_modMenu = EAT_modMenu + [["Teleport Menu >>",[],"#USER:EAT_teleportMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_modMenu = EAT_modMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_modMenu = EAT_modMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
