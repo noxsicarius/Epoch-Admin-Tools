@@ -21,27 +21,28 @@ playerGod2 = false;
 		"EAT_PVEH_baseExporter" addPublicVariableEventHandler {
 			"EATbaseExporter" callExtension (_this select 1);
 		};
-	};
 
+		// teleport fix
+		"EAT_PVEH_teleportFix" addPublicVariableEventHandler{
+			_array = (_this select 1);
+
+			if((_array select 0) == "add") then {
+				tempList = tempList + [_array select 1];
+			} else {
+				tempList = tempList - [_array select 1];
+			};
+			EAT_teleportFixClient = tempList;
+			{(owner _x) publicVariableClient "EAT_teleportFixClient";} forEach entities "CAManBase";
+		};
+	};
 /****************** Client Public Variables ******************/
 	// Broadcast server message to clients
 	"EAT_PVEH_serverMessage" addPublicVariableEventHandler {
 		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
 	};
 	
-	// teleport fix
-	"EAT_PVEH_teleportFix" addPublicVariableEventHandler{
-		private ["_array", "_addRemove"];
-		_array = (_this select 1);
-		_addRemove = (_array select 0);
-
-		if(_addRemove == "add") then {
-			_array = _array - ["add"];
-			tempList = tempList + _array;
-		} else {
-			_array = _array - ["remove"];
-			tempList = tempList - _array;
-		};
+	"EAT_teleportFixClient" addPublicVariableEventHandler {
+		tempList = (_this select 1);
 	};
 
 	// Broadcast date to clients
