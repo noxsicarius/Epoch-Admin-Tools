@@ -7,8 +7,7 @@ _addOrRemove = _this select 0;
 _target = cursorTarget;
 _player = player;
 
-if(isNull(_target)) then {_target = _player;};
-if(!isPlayer _target) exitWith{cutText["Error: No player selected","PLAIN DOWN"];};
+if(!isPlayer _target) then {_target = _player;};
 
 humanityGain = -1;
 _humanity = _target getVariable["humanity", 0];
