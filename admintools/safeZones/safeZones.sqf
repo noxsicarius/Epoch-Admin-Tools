@@ -194,6 +194,15 @@ while {true} do	{
 		} forEach EAT_szCustomZones;
 	};
 	
+	if (EAT_areaGodMode) then {
+		{
+			_z = _x select 0;
+			_z = [_z select 0, _z select 1, 0];
+			_r = _x select 1;
+			if ((vehicle player) distance _z < _r) then {_inZone = true;};
+		} forEach EAT_szAdminZone;
+	};
+	
 	if (EAT_szDetectTraders) then {
 		if (!canbuild) then {_inZone = true;};
 	};

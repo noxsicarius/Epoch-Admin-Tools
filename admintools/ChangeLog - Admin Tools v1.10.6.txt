@@ -14,6 +14,7 @@ New Features:
 	Added fast walk system to admin mode
 	Added Key Recovery for purchased vehicles
 	Added return teleport for players
+	Re-added temporary Safe Zone Area spawner
 	
 Bug Fixes:
 	Broadcast use RPT errors

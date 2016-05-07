@@ -7,8 +7,10 @@ if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {
 /***** Set variables *****/
 tempList = []; // Initialize templist
 helpQueue = []; // Initialize help queue
+EAT_szAdminZone = []; // Temporary admin safe zones
 vehicleGod2 = false;
 playerGod2 = false;
+EAT_areaGodMode = false;
 
 /****************** Server Public Variables ******************/
 	if(isDedicated) then {
@@ -20,6 +22,14 @@ playerGod2 = false;
 		// Export base to .sqf
 		"EAT_PVEH_baseExporter" addPublicVariableEventHandler {
 			"EATbaseExporter" callExtension (_this select 1);
+		};
+		
+		// Export base to .sqf
+		"EAT_PVEH_safeZone" addPublicVariableEventHandler {
+			EAT_szAdminZone = _this select 1;
+
+			EAT_PVEH_safeZoneClient = EAT_szAdminZone;
+			{(owner _x) publicVariableClient "EAT_PVEH_safeZoneClient";} forEach entities "CAManBase";
 		};
 
 		// teleport fix
@@ -43,6 +53,10 @@ playerGod2 = false;
 	
 	"EAT_teleportFixClient" addPublicVariableEventHandler {
 		tempList = (_this select 1);
+	};
+	
+	"EAT_PVEH_safeZoneClient" addPublicVariableEventHandler {
+		EAT_szAdminZone = (_this select 1);
 	};
 
 	// Broadcast date to clients

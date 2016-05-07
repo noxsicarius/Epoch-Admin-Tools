@@ -44,7 +44,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_adminMenu = EAT_adminMenu + [["Point to Repair(Perm)",[],"", -5,[["expression", format[_EXECgenTools,"PointToRepairPERM.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Point to Delete(Perm)",[],"", -5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECgenTools,"spectate.sqf"]]], "1", "1"]];
-	//EAT_adminMenu = EAT_adminMenu + [["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECgenTools,"SafeZoneArea.sqf"]]], "1", "1"]];
+	EAT_adminMenu = EAT_adminMenu + [["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECgenTools,"SafeZoneArea.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Zombie Shield",[],"", -5,[["expression",format[_EXECgenTools,"zombieshield.sqf"]]],"1","1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Zombie Spawner", [], "", -5, [["expression", format[_EXECgenTools,"zombieSpawn.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["AI spawner", [], "", -5, [["expression", format[_EXECgenTools,"aiSpawn.sqf"]]], "1", "1"]];
