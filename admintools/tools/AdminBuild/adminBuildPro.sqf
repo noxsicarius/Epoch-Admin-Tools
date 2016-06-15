@@ -29,7 +29,7 @@ _isPerm = false;
 _reason = "";
 _vehicle = vehicle player;
 _inVehicle = (_vehicle != player);
-_canDo = call fnc_actionAllowed;
+_canDo = call EAT_fnc_actionAllowed;
 
 helperDetach = false; 
 
@@ -86,16 +86,16 @@ if(isNumber (configFile >> "CfgVehicles" >> _classname >> "nounderground")) then
 _offset = 	getArray (configFile >> "CfgVehicles" >> _classname >> "offset");
 if((count _offset) <= 0) then {
 	if(isBuilding) then {
-		if(_item in (buildResidential - buildShed)) then {
+		if(_item in (EAT_buildResidential - EAT_buildShed)) then {
 			_offset = [0,15,2];
 		} else {
-			if(_item in (buildCastle + buildMilitary)) then {
+			if(_item in (EAT_buildCastle + EAT_buildMilitary)) then {
 				_offset = [0,3,2];
 			} else {
-				if(_item in buildReligious) then {
+				if(_item in EAT_buildReligious) then {
 					_offset = [0,25,2];
 				} else {
-					if(_item in buildGrave + buildOutdoors) then {
+					if(_item in EAT_buildGrave + EAT_buildOutdoors) then {
 						_offset = [0,2,1];
 					} else {
 						_offset = [0,6,2];

@@ -34,7 +34,7 @@ clearMagazineCargoGlobal _spawnCrate;
 clearBackpackCargoGlobal _spawnCrate;
 
 // Add gear
-{_spawnCrate addBackpackCargoGlobal _x;}forEach backpackCrateContents;
+{_spawnCrate addBackpackCargoGlobal _x;}forEach EAT_backpackCrateContents;
 
 // Send text to spawner only
 titleText [format[_crateName + " spawned!"],"PLAIN DOWN"]; titleFadeOut 4;

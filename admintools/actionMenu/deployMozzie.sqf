@@ -4,22 +4,22 @@ _player = player; //Setting a local variable as player saves resources
 _mags = magazines _player;
 _weps = weapons _player;
 _vehicle = vehicle _player;
-_canDo = call fnc_actionAllowed;
+_canDo = call EAT_fnc_actionAllowed;
 _scrapNumber = {_x == "PartGeneric";} count _mags; // must return 2 or more
 _hasItems = ((_scrapNumber > 1) && ("PartEngine" in _mags) && ("ItemJerrycan" in _mags) && ("PartVRotor" in _mags));
 _hasTools = ("ItemToolbox" in _weps);
 
-if((_hasItems && _hasTools && RequireToolBoxMozzie && RequirePartsMozzie) || (!RequireToolBoxMozzie && RequirePartsMozzie && _hasItems) || (!RequirePartsMozzie && RequireToolBoxMozzie && _hasTools) || (!RequirePartsMozzie && !RequireToolBoxMozzie)) then {
+if((_hasItems && _hasTools && EAT_RequireToolBoxMozzie && EAT_RequireToolBoxMozzie) || (!EAT_RequireToolBoxMozzie && EAT_RequireToolBoxMozzie && _hasItems) || (!EAT_RequireToolBoxMozzie && EAT_RequireToolBoxMozzie && _hasTools) || (!EAT_RequireToolBoxMozzie && !EAT_RequireToolBoxMozzie)) then {
 	hasMozzieItem = true;
 } else { 
 	hasMozzieItem = false;
-	if(RequirePartsMozzie && RequireToolBoxMozzie) then {
+	if(EAT_RequireToolBoxMozzie && EAT_RequireToolBoxMozzie) then {
 		cutText ["\n\nNeed: 2x Scrap Metal, 1x Engine, 1x Main Rotor, 1x ToolBox, and 1x Jerrycan required to build mozzie", "PLAIN DOWN"];
 	} else {
-		if(RequirePartsMozzie && !RequireToolBoxMozzie) then {
+		if(EAT_RequireToolBoxMozzie && !EAT_RequireToolBoxMozzie) then {
 			cutText ["\n\nNeed: 2x Scrap Metal, 1x Engine, 1x Main Rotor, and 1x Jerrycan required to build mozzie", "PLAIN DOWN"];
 		} else {
-			if(!RequirePartsMozzie && RequireToolBoxMozzie) then {
+			if(!EAT_RequireToolBoxMozzie && EAT_RequireToolBoxMozzie) then {
 				cutText ["\n\nNeed: 1x ToolBox required to build mozzie", "PLAIN DOWN"];
 			};
 		};
@@ -35,7 +35,7 @@ if(!(_canDo)) exitWith {cutText ["You are in a vehicle or already performing an 
 
 
 DZE_ActionInProgress = true;
-if(RequirePartsMozzie) then {
+if(EAT_RequireToolBoxMozzie) then {
 	_player removeMagazine "PartGeneric";
 	_player removeMagazine "PartGeneric";
 	_player removeMagazine "PartEngine";
@@ -43,7 +43,7 @@ if(RequirePartsMozzie) then {
 	_player removeMagazine "PartVRotor";
 };
 
-if(RequireToolBoxMozzie) then {
+if(EAT_RequireToolBoxMozzie) then {
 	_player removeWeapon "ItemToolbox";
 };	
 	
@@ -92,14 +92,14 @@ if (_finished) then {
 	_player playActionNow "stop";
 	DZE_ActionInProgress = false;
 		
-	if(RequirePartsMozzie) then {
+	if(EAT_RequireToolBoxMozzie) then {
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartEngine";
 		_player addMagazine "ItemJerrycan";
 		_player addMagazine "PartVRotor";
 	};
-	if(RequireToolBoxMozzie) then {
+	if(EAT_RequireToolBoxMozzie) then {
 		_player addWeapon "ItemToolbox";
 	};
 	cutText ["\n\nCanceled building a Mozzie.", "PLAIN DOWN",4];

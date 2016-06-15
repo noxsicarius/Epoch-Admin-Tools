@@ -1,4 +1,4 @@
-helpQueueMenu =
+EAT_helpQueueMenu =
 [
 ["",true],
 	["Teleport to player", [], "", -5, [["expression", "[] spawn fn_tpToPlayer"]], "1", "1"],
@@ -14,12 +14,12 @@ fn_tpToPlayer = {
 	_player = player; _menuCheckOk = false; _max = 10; _j = 0;
 
 	snext = false; plist = []; pselect5 = "";
-	{plist set [count plist, _x];} forEach helpQueue;
-	pMenuTitle = "Teleport to Player:";
+	{plist set [count plist, _x];} forEach EAT_helpQueue;
+	EAT_pMenuTitle = "Teleport to Player:";
 
 	while {pselect5 == "" && !_menuCheckOk} do
 	{
-		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+		[_j, (_j + _max) min (count plist)] call EAT_fnc_playerSelect; _j = _j + _max;
 		WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
 		_menuCheckOk = (commandingMenu == "");
 		snext = false;
@@ -51,7 +51,7 @@ fn_tpToPlayer = {
 			};
 		} forEach entities "CAManBase";
 		
-		helpQueue = helpQueue - [_name];
+		EAT_helpQueue = EAT_helpQueue - [_name];
 		EAT_PVEH_contactAdmin = ["remove", _name];
 		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
 	};
@@ -63,12 +63,12 @@ fn_tpToMe = {
 	_player = player; _menuCheckOk = false; _j = 0; _max = 10;
 	
 	snext = false; plist = []; pselect5 = "";
-	{plist set [count plist, _x];} forEach helpQueue;
-	pMenuTitle = "Teleport to Me:";
+	{plist set [count plist, _x];} forEach EAT_helpQueue;
+	EAT_pMenuTitle = "Teleport to Me:";
 
 	while {pselect5 == "" && !_menuCheckOk} do
 	{
-		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+		[_j, (_j + _max) min (count plist)] call EAT_fnc_playerSelect; _j = _j + _max;
 		WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
 		_menuCheckOk = (commandingMenu == "");
 		snext = false;
@@ -114,7 +114,7 @@ fn_tpToMe = {
 			};
 		} forEach entities "CAManBase";
 		
-		helpQueue = helpQueue - [_name];
+		EAT_helpQueue = EAT_helpQueue - [_name];
 		EAT_PVEH_contactAdmin = ["remove", _name];
 		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
 	};
@@ -126,12 +126,12 @@ fn_removeFromQueue = {
 	_player = player; _menuCheckOk = false; _j = 0; _max = 10;
 
 	snext = false; plist = []; pselect5 = "";
-	{plist set [count plist, _x];} forEach helpQueue;
-	pMenuTitle = "Remove Player from Queue";
+	{plist set [count plist, _x];} forEach EAT_helpQueue;
+	EAT_pMenuTitle = "Remove Player from Queue";
 
 	while {pselect5 == "" && !_menuCheckOk} do
 	{
-		[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+		[_j, (_j + _max) min (count plist)] call EAT_fnc_playerSelect; _j = _j + _max;
 		WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
 		_menuCheckOk = (commandingMenu == "");
 		snext = false;
@@ -140,7 +140,7 @@ fn_removeFromQueue = {
 	if (pselect5 != "exit" && pselect5 != "") then
 	{
 		_name = pselect5;
-		helpQueue = helpQueue - [_name];
+		EAT_helpQueue = EAT_helpQueue - [_name];
 		EAT_PVEH_contactAdmin = ["remove", _name];
 		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
 	};
@@ -148,4 +148,4 @@ fn_removeFromQueue = {
 	true
 };
 
-showCommandingMenu "#USER:helpQueueMenu";
+showCommandingMenu "#USER:EAT_helpQueueMenu";

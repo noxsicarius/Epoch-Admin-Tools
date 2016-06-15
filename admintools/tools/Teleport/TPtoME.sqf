@@ -5,11 +5,11 @@ snext = false; plist = []; pselect5 = "";
 {if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach entities "CAManBase";
 {if ((count crew _x) > 0) then {{if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach crew _x;};} foreach (entities "LandVehicle" + entities "Air" + entities "Ship");
 
-pMenuTitle = "Teleport to Me:";
+EAT_pMenuTitle = "Teleport to Me:";
 
 while {pselect5 == "" && !_menuCheckOk} do
 {
-	[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+	[_j, (_j + _max) min (count plist)] call EAT_fnc_playerSelect; _j = _j + _max;
 	WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
 	_menuCheckOk = (commandingMenu == "");
 	snext = false;
@@ -24,7 +24,7 @@ if (pselect5 != "exit" && pselect5 != "") then {
 			_UID = (getPlayerUID _x);
 			
 			EAT_returnPlayer = [_x, (getPos _x)]; // Used to return player to last position
-			tempList = tempList + [_UID];
+			EAT_tempList = EAT_tempList + [_UID];
 			
 			EAT_PVEH_teleportFix = ["add",_UID];
 			publicVariableServer "EAT_PVEH_teleportFix";
@@ -44,7 +44,7 @@ if (pselect5 != "exit" && pselect5 != "") then {
 			
 			// Leave the client in the bypass list for a short time to let the server register their new position
 			Sleep 3;
-			tempList = tempList - [_UID];
+			EAT_tempList = EAT_tempList - [_UID];
 			EAT_PVEH_teleportFix = ["remove",_UID];
 			[] spawn {publicVariableServer "EAT_PVEH_teleportFix"};
 			

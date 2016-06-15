@@ -34,8 +34,8 @@ clearMagazineCargoGlobal _spawnCrate;
 clearBackpackCargoGlobal _spawnCrate;
 
 // Add gear
-{_spawnCrate addWeaponCargoGlobal _x;}forEach buildingCrateWeapons;
-{_spawnCrate addMagazineCargoGlobal _x;}forEach buildingCrateMagazines;
+{_spawnCrate addWeaponCargoGlobal _x;}forEach EAT_buildingCrateWeapons;
+{_spawnCrate addMagazineCargoGlobal _x;}forEach EAT_buildingCrateMagazines;
 _spawnCrate addBackpackCargoGlobal ["DZ_LargeGunBag_EP1", 1];
 
 // Send text to spawner only

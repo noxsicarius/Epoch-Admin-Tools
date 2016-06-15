@@ -5,11 +5,11 @@ snext = false; plist = []; pselect5 = "";
 {if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach entities "CAManBase";
 {if ((count crew _x) > 0) then {{if ((_x != player) && (getPlayerUID _x != "")) then {plist set [count plist, name _x];};} forEach crew _x;};} foreach (entities "LandVehicle" + entities "Air" + entities "Ship");
 
-pMenuTitle = "Teleport to Player:";
+EAT_pMenuTitle = "Teleport to Player:";
 
 while {pselect5 == "" && !_menuCheckOk} do
 {
-	[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+	[_j, (_j + _max) min (count plist)] call EAT_fnc_playerSelect; _j = _j + _max;
 	WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
 	_menuCheckOk = (commandingMenu == "");
 	snext = false;

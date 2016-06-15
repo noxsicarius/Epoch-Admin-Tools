@@ -3,9 +3,9 @@
 */
 private["_playerVehicle"];
 
-if(isNil "vehicleGod2") then {vehicleGod2 = true;} else {vehicleGod2 = !vehicleGod2};
+if(isNil "EAT_vehicleGod2") then {EAT_vehicleGod2 = true;} else {EAT_vehicleGod2 = !EAT_vehicleGod2};
 
-if(vehicleGod2) then {
+if(EAT_vehicleGod2) then {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED vehicle god mode",name player,getPlayerUID player];
@@ -13,13 +13,13 @@ if(vehicleGod2) then {
 	};
 };
 
-while{alive (vehicle player) && vehicleGod2} do
+while{alive (vehicle player) && EAT_vehicleGod2} do
 {
 	// Wait until player gets in a vehicle or god mode is turned off
-	waitUntil{Sleep 1; ((player != (vehicle player)) || !vehicleGod2)};
+	waitUntil{Sleep 1; ((player != (vehicle player)) || !EAT_vehicleGod2)};
 
 	// Enable god mode only if it hasn't been turned off
-	if(vehicleGod2) then {
+	if(EAT_vehicleGod2) then {
 		_playerVehicle = (vehicle player);
 		_playerVehicle setfuel 1;
 		_playerVehicle setdammage 0;
@@ -34,7 +34,7 @@ while{alive (vehicle player) && vehicleGod2} do
 	};
 
 	// Wait until player leaves vehicle or god mode is turned off
-	waitUntil{Sleep 1; ((player == (vehicle player)) || !vehicleGod2)};
+	waitUntil{Sleep 1; ((player == (vehicle player)) || !EAT_vehicleGod2)};
 
 	// Disable god mode for a vehicle only if it was on
 	if(!isNil "_playerVehicle" && !inZone) then {

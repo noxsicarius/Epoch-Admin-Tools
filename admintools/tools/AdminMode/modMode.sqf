@@ -4,15 +4,6 @@
    To make an option default OFF change = true to = false.
 */
 
-// START OF CONFIG
-if (isNil "playerGod") then {playerGod = true;};
-if (isNil "vehicleGod") then {vehicleGod = true;};
-if (isNil "playerESP") then {playerESP = true;};
-if (isNil "grassOff") then {grassOff = true;};
-if (isNil "infAmmo") then {infAmmo = true;};
-if (isNil "invisibility") then {invisibility = false;};
-// END OF CONFIG
-
 if (isNil "modMode") then {modMode = true;}else{modMode = !modMode;};
 
 // To disable an option for mods place a // in the front of the line below
@@ -23,13 +14,13 @@ optionMenu =
 	[
 		["",true],
 		["Toggle options:(current state)", [-1], "", -5, [["expression", ""]], "1", "0"],
-		[format["Player ESP: %1",playerESP], [4], "", -5, [["expression", 'call playerESPToggle']], "1", "1"],
-		[format["Fast Walk: %1",fastWalk],[2],"", -5, [["expression", 'call fastWalkToggle']], "1", "1"],
-		[format["Invisibility ON: %1",invisibility], [5], "", -5, [["expression", 'call invisibilityToggle']], "1", "1"],
-		[format["Infinite Ammo: %1",infAmmo], [7], "", -5, [["expression", 'call infAmmoToggle']], "1", "1"],
-		[format["God Mode: %1",playerGod], [8], "", -5, [["expression", 'call playerGodToggle']], "1", "1"],
-		[format["Car God Mode: %1",vehicleGod], [9], "", -5, [["expression", 'call vehicleGodToggle']], "1", "1"],
-		[format["Grass Off: %1",grassOff], [10], "", -5, [["expression", 'call grassOffToggle']], "1", "1"]
+		[format["Player ESP: %1",EAT_playerESP], [4], "", -5, [["expression", 'call EAT_playerESPToggle']], "1", "1"],
+		[format["Fast Walk: %1",EAT_fastWalk],[2],"", -5, [["expression", 'call EAT_fastWalkToggle']], "1", "1"],
+		[format["Invisibility ON: %1",EAT_invisibility], [5], "", -5, [["expression", 'call EAT_invisibilityToggle']], "1", "1"],
+		[format["Infinite Ammo: %1",EAT_infAmmo], [7], "", -5, [["expression", 'call EAT_infAmmoToggle']], "1", "1"],
+		[format["God Mode: %1",EAT_playerGod], [8], "", -5, [["expression", 'call EAT_playerGodToggle']], "1", "1"],
+		[format["Car God Mode: %1",EAT_vehicleGod], [9], "", -5, [["expression", 'call EAT_vehicleGodToggle']], "1", "1"],
+		[format["Grass Off: %1",EAT_grassOff], [10], "", -5, [["expression", 'call EAT_grassOffToggle']], "1", "1"]
 	];
 	showCommandingMenu "#USER:toggleMenu";
 };
@@ -42,4 +33,4 @@ if(modMode) then {
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F4_KEY];
 };
 
-call AdminToggle;
+call EAT_AdminToggle;

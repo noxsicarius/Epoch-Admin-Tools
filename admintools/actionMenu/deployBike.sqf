@@ -4,22 +4,22 @@ _player = player; //Setting a local variable as player saves resources
 _mags = magazines _player;
 _weps = weapons _player;
 _vehicle = vehicle _player;
-_canDo = call fnc_actionAllowed;
+_canDo = call EAT_fnc_actionAllowed;
 _wheelNumber = {_x == "PartWheel";} count _mags; // must return 2 or more
 _hasItems = (("PartGeneric" in _mags) && (_wheelNumber > 1));
 _hasTools = ("ItemToolbox" in _weps);
 
-if((_hasItems && _hasTools && RequireToolBoxBike && RequirePartsBike) || (!RequireToolBoxBike && RequirePartsBike && _hasItems) || (!RequirePartsBike && RequireToolBoxBike && _hasTools) || (!RequirePartsBike && !RequireToolBoxBike)) then {
+if((_hasItems && _hasTools && EAT_RequireToolBoxBike && EAT_RequirePartsBike) || (!EAT_RequireToolBoxBike && EAT_RequirePartsBike && _hasItems) || (!EAT_RequirePartsBike && EAT_RequireToolBoxBike && _hasTools) || (!EAT_RequirePartsBike && !EAT_RequireToolBoxBike)) then {
 	hasBikeItem = true;
 } else {
 	hasBikeItem = false;
-	if(RequirePartsBike && RequireToolBoxBike) then {
+	if(EAT_RequirePartsBike && EAT_RequireToolBoxBike) then {
 		cutText ["\n\nNeed: 1x Scrap Metal, 1x ToolBox and 2x Wheels required to build bike", "PLAIN DOWN"];
 	} else {
-		if(RequirePartsBike && !RequireToolBoxBike) then {
+		if(EAT_RequirePartsBike && !EAT_RequireToolBoxBike) then {
 			cutText ["\n\nNeed: 1x scrap metal and 2x wheels required to build bike", "PLAIN DOWN"];
 		} else {
-			if(!RequirePartsBike && RequireToolBoxBike) then {
+			if(!EAT_RequirePartsBike && EAT_RequireToolBoxBike) then {
 				cutText ["\n\nNeed: 1x ToolBox required to build bike", "PLAIN DOWN"];
 			};
 		};
@@ -34,12 +34,12 @@ if(!(_canDo)) exitWith {cutText ["You are in a vehicle or already performing an 
 
 
 DZE_ActionInProgress = true;
-if(RequirePartsBike) then {
+if(EAT_RequirePartsBike) then {
 	_player removeMagazine "PartGeneric";
 	_player removeMagazine "PartWheel";
 	_player removeMagazine "PartWheel";
 };
-if(RequireToolBoxBike) then {
+if(EAT_RequireToolBoxBike) then {
 	_player removeWeapon "ItemToolbox";
 };
 
@@ -87,12 +87,12 @@ if (_finished) then {
 	_player playActionNow "stop";
 	DZE_ActionInProgress = false;
 	
-	if(RequirePartsBike) then {
+	if(EAT_RequirePartsBike) then {
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartWheel";
 		_player addMagazine "PartWheel";
 	};
-	if(RequireToolBoxBike) then {
+	if(EAT_RequireToolBoxBike) then {
 		_player addWeapon "ItemToolbox";
 	};
 	

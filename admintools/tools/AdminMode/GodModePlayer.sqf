@@ -2,12 +2,12 @@
 	Heals all damage and makes the user invincible to damage by everything 
 	excluding antihack killing a hacker.
 */
-if(isNil "playerGod2") then {playerGod2 = true;} else {playerGod2 = !playerGod2};
+if(isNil "EAT_playerGod2") then {EAT_playerGod2 = true;} else {EAT_playerGod2 = !EAT_playerGod2};
 
 private["_player","_vehicle"];
 _player = player;
 
-if (playerGod2) then
+if (EAT_playerGod2) then
 {
 	// Tool use logger
 	if(EAT_logMajorTool) then {

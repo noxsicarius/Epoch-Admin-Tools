@@ -1,7 +1,7 @@
 private ["_player","_ctType","_inVehicle","_ct","_canDo","_onLadder","_finished","_finishedTime","_distance"];
 
 _player = player; //Setting a local variable as player saves resources
-_canDo = call fnc_actionAllowed;
+_canDo = call EAT_fnc_actionAllowed;
 _ct = cursorTarget;
 _ctType = typeOf _ct;
 _distance = _player distance _ct;
@@ -49,12 +49,12 @@ if (_finished) then {
 	publicVariableServer "PVDZE_obj_Delete";
 
 	deleteVehicle _ct;
-	if(RequirePartsBike) then {
+	if(EAT_RequirePartsBike) then {
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartWheel";
 		_player addMagazine "PartWheel";
 	};
-	if(RequireToolBoxBike) then {
+	if(EAT_RequireToolBoxBike) then {
 		_player addWeapon "ItemToolbox";
 	};
 	

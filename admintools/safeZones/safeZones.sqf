@@ -4,8 +4,8 @@
 private ["_fnc_enterZoneVehicle","_fnc_clearZombies","_fnc_enterZonePlayer","_EH_weaponFirePlayer","_EH_weaponFireVehicle","_fnc_exitZone","_enterMsg","_exitMsg"];
 if (isNil "inZone") then {inZone = false;};
 if (isNil "canbuild") then {canbuild = true;};
-if (isNil "playerGod2") then {playerGod2 = false;};
-if (isNil "vehicleGod2") then {vehicleGod2 = false;};
+if (isNil "EAT_playerGod2") then {EAT_playerGod2 = false;};
+if (isNil "EAT_vehicleGod2") then {EAT_vehicleGod2 = false;};
 
 _enterMsg = "*** PROTECTED ZONE! No stealing or shooting allowed ***";
 _exitMsg = "*** GOD MODE DISABLED! You can now be damaged ***";
@@ -23,7 +23,7 @@ _fnc_enterZonePlayer = {
 	
 	if(!EAT_isAdmin || (EAT_isAdmin && !EAT_szAdminWeapon)) then {_EH_weaponFirePlayer = _player addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN",2];}];};
 	
-	if (!playerGod2) then {
+	if (!EAT_playerGod2) then {
 		player_zombieCheck = {};
 		fnc_usec_damageHandler = {};
 		_player removeAllEventHandlers "handleDamage";
@@ -44,7 +44,7 @@ _fnc_enterZoneVehicle = {
 			_veh setVariable ["inZone",true,true];
 			if(!EAT_isAdmin || (EAT_isAdmin && !EAT_szAdminWeapon)) then {_EH_weaponFireVehicle = _veh addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN",2];}];};
 				
-			if(EAT_szVehicleGod && !vehicleGod2) then {
+			if(EAT_szVehicleGod && !EAT_vehicleGod2) then {
 				vehicle_handleDamage = {};
 				_veh removeAllEventHandlers "handleDamage";
 				_veh addEventHandler ["handleDamage",{false}];
@@ -66,7 +66,7 @@ _fnc_exitZone = {
 	if (_player != _veh && EAT_szVehicleGod) then {
 		_veh setVariable ["inZone",false,true];
 		if(!EAT_isAdmin || (EAT_isAdmin && !EAT_szAdminWeapon)) then {_veh removeEventHandler ["Fired",_EH_weaponFireVehicle];};
-		if(!vehicleGod2) then {
+		if(!EAT_vehicleGod2) then {
 			vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
 			_veh removeAllEventHandlers "handleDamage";
 			_veh addEventHandler ["handleDamage",{_this call vehicle_handleDamage}];
@@ -75,7 +75,7 @@ _fnc_exitZone = {
 	};
 	
 	if(!EAT_isAdmin || (EAT_isAdmin && !EAT_szAdminWeapon)) then {_player removeEventHandler ["Fired", _EH_weaponFirePlayer];};
-	if (!playerGod2) then {
+	if (!EAT_playerGod2) then {
 		player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
 		fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
 		_player removeAllEventHandlers "handleDamage";

@@ -14,10 +14,10 @@ myfnc_MDarray = {
 	_list;														//return the uniDimensional List of classnames
 };
 // declare tempVariables for the unidimentional array with the list of each items for each category to be compared
-_buildRes = [(buildResidential - buildShed)] call myfnc_MDarray;
-_buildMil = [(buildCastle + buildMilitary)] call myfnc_MDarray;
-_buildReli = [buildReligious] call myfnc_MDarray;
-_buildMisc = [(buildGrave + buildOutdoors)] call myfnc_MDarray;
+_buildRes = [(EAT_buildResidential - EAT_buildShed)] call myfnc_MDarray;
+_buildMil = [(EAT_buildCastle + EAT_buildMilitary)] call myfnc_MDarray;
+_buildReli = [EAT_buildReligious] call myfnc_MDarray;
+_buildMisc = [(EAT_buildGrave + EAT_buildOutdoors)] call myfnc_MDarray;
 /*-------------------------------------------------*/
 
 _cancel = false;
@@ -25,7 +25,7 @@ _isPerm = false;
 _reason = "";
 _vehicle = vehicle player;
 _inVehicle = (_vehicle != player);
-_canDo = call fnc_actionAllowed;
+_canDo = call EAT_fnc_actionAllowed;
 
 DZE_Q = false;
 DZE_Z = false;

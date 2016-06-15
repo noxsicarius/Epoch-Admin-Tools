@@ -2,7 +2,7 @@ private ["_player","_vehicle","_ctType","_inVehicle","_ct","_canDo","_onLadder",
 
 _player = player; //Setting a local variable as player saves resources
 _vehicle = vehicle _player;
-_canDo = call fnc_actionAllowed;
+_canDo = call EAT_fnc_actionAllowed;
 _ct = cursorTarget;
 _ctType = typeOf _ct;
 _distance = _player distance _ct;
@@ -51,14 +51,14 @@ if (_finished) then {
 	publicVariableServer "PVDZE_obj_Delete";
 
 	deleteVehicle _ct;
-	if(RequirePartsMozzie) then {
+	if(EAT_RequireToolBoxMozzie) then {
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartGeneric";
 		_player addMagazine "PartEngine";
 		_player addMagazine "ItemJerrycan";
 		_player addMagazine "PartVRotor";
 	};
-	if(RequireToolBoxMozzie) then {
+	if(EAT_RequireToolBoxMozzie) then {
 		_player addWeapon "ItemToolbox";
 	};
 		

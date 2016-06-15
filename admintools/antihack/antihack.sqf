@@ -76,7 +76,7 @@ if (!((getPlayerUID player) in EAT_adminModList)) then {
 			_curpos = getPosATL (vehicle player);
 			_curtime = diag_ticktime;
 			
-			if((getPlayerUID player) in tempList) then {
+			if((getPlayerUID player) in EAT_tempList) then {
 				_lastpos = _curpos;
 				_lastheight = _curheight;
 				_lasttime = _curtime;
@@ -89,7 +89,7 @@ if (!((getPlayerUID player) in EAT_adminModList)) then {
 				_acceptableDistance = if (_lastVehicle isKindOf "Plane") then { 15; } else { 10; };
 			};
 			
-			if (((_distance > _acceptableDistance) || {(_difftime > 1)}) && (!((getPlayerUID player) in tempList))) then {
+			if (((_distance > _acceptableDistance) || {(_difftime > 1)}) && (!((getPlayerUID player) in EAT_tempList))) then {
 				_curheight = (ATLtoASL _curpos) select 2;
 				_speed = _distance / _difftime;
 				_topSpeed = if (_acceptableDistance == 15) then { 20; } else { 10; };

@@ -6,7 +6,7 @@ _menuCheckOk = false;
 _max = 10;
 _j = 0;
 
-pMenuTitle = "Spectate Player:";
+EAT_pMenuTitle = "Spectate Player:";
 snext = false;
 plist = [];  
 pselect5 = "";
@@ -16,7 +16,7 @@ spectate = true;
 
 while {pselect5 == "" && !_menuCheckOk} do
 {
-	[_j, (_j + _max) min (count plist)] call fn_smenu; _j = _j + _max;
+	[_j, (_j + _max) min (count plist)] call EAT_fnc_playerSelect; _j = _j + _max;
 	WaitUntil {pselect5 != "" || snext || commandingMenu == ""};
 	_menuCheckOk = (commandingMenu == "");
 	snext = false;

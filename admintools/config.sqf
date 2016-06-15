@@ -51,6 +51,24 @@
 		[[12060.471,158.85699,12638.533],100] // Aircraft (NO COMMA ON LAST LINE)
 		// ALWAYS LEAVE OFF THE LAST "," OR THIS WILL BREAK
 	];
+
+
+/************** Admin/Mod mode Variables **************/
+	
+	// Defines the default on and off for admin/mod mode options
+	// ALL items can be turned on or off during gameplay, these are just defaults
+	EAT_playerGod = true;
+	EAT_vehicleGod = true;
+	EAT_playerESP = true;
+	EAT_enhancedESP = false;
+	EAT_grassOff = true;
+	EAT_infAmmo = true;
+	EAT_speedBoost = false;
+	EAT_fastWalk = false;
+	EAT_invisibility = false;
+	EAT_flying = false;
+	EAT_adminBuild = false;
+
 	
 	
 /************** Action Menu Variables **************/
@@ -59,73 +77,73 @@
 		Give players an actions menu? (dance, deploy bike/mozzie, flip car)
 		Default: true
 	*/
-	ActionMenuPlayers = true;
+	EAT_ActionMenuPlayers = true;
 
 	/*
 		Give admins the same action menu above? (not really needed unless you are a playing admin)
 		Default: false
 	*/
-	ActionMenuAdmins = false;
+	EAT_ActionMenuAdmins = false;
 
 
 	/****** Bike variables ******/
 
 	//Allow player to build a bike?
-	AllowBuildBike = true;
+	EAT_AllowBuildBike = true;
 
 	// This option requires players to have a toolbox to build a bike (consumes the toolbox)
-	RequireToolBoxBike = true;
+	EAT_RequireToolBoxBike = true;
 
 	// This option requires players to have the parts for building a bike (consumes the parts)
 	// Required parts: two wheels, one scrap metal
-	RequirePartsBike = false;
+	EAT_RequirePartsBike = false;
 
 	// This option dictates if players are allowed to repack a bike to get their items back
-	AllowPackBike = true;
+	EAT_AllowPackBike = true;
 
 
 	/****** Mozzie variables ******/
 
 	//Allow player to build a Mozzie?
-	AllowBuildMozzie = true;
+	EAT_AllowBuildMozzie = true;
 
 	// This option requires players to have a toolbox to build a Mozzie (consumes the toolbox)
-	RequireToolBoxMozzie = false;
+	EAT_RequireToolBoxMozzie = false;
 
 	// This option requires players to have the parts for building a Mozzie (consumes the parts)
 	// Required parts: main rotor, two scrap, one engine, one jerry can (full)
-	RequirePartsMozzie = true;
+	EAT_RequireToolBoxMozzie = true;
 
 	// This option dictates if players are allowed to repack a mozzie to get their items back
-	AllowPackMozzie = true;
+	EAT_AllowPackMozzie = true;
 
 
 	/****** Misc ******/
 		
 	// Allow players to flip their vehicles rightside up
-	AllowFlipVehicle = true;
+	EAT_AllowFlipVehicle = true;
 		
 	// Allow players to commit suicide
-	AllowSuicide = true;
+	EAT_AllowSuicide = true;
 		
 	// Allow players to use the movement menu (dance)
-	AllowMovementMenu = true;
+	EAT_AllowMovementMenu = true;
 
 	/* 
 		Allow players to open a help ticket with the admins.
 		The help queue can be viewed via the admin menu.
 		The player can NOT spam the admins.
 	*/
-	AllowContactAdmin = true;
+	EAT_AllowContactAdmin = true;
 
 		/*
 			Stops spamming of the contact admin. If it is enabled and a user contacts an admin
-			the given number of times they will get a white screen for blindTime seconds and 
+			the given number of times they will get a white screen for EAT_blindTime seconds and 
 			the contact feature will be disabled
 		*/
-		enableAntiSpam = true;
-		antiSpamLimit = 15; // default 15 contacts
-		blindTime = 30; // default 30 seconds
+		EAT_enableAntiSpam = true;
+		EAT_antiSpamLimit = 15; // default 15 contacts
+		EAT_blindTime = 30; // default 30 seconds
 		
 		
 		
