@@ -104,7 +104,7 @@ If you are worried about the integrity of the dll files look at the change log f
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
 	
-1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
+1. If you use the normal battleye antiahck or similar do this step, if you have no antihack then skip this.
 	
 	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
 
@@ -118,7 +118,12 @@ If you are worried about the integrity of the dll files look at the change log f
 	> [] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with admin tool bypass
 	> ~~~~
 	
-	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
+	> If you have a different antihack then replace the placeholder line in the following code with your antihack line and place it in your init.sqf where the antihack line was.
+	> // Epoch Admin Tools
+	> if (!((getPlayerUID player) in EAT_adminModList)) then 
+	> {
+	> 	PLACE YOUR ANTI-HACK LINE HERE example: execVM "xvmAntihack.sqf";
+	> };
 
 1. Save the init.sqf
 1. Open your ***description.ext***
