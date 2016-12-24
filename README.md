@@ -76,26 +76,30 @@ If you are worried about the integrity of the dll files look at the change log f
 	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	~~~~
 	
-	Directly under this:
+	Directly *above* this:
 	
 	~~~~java
-	call compile preprocessFileLineNumbers "server_traders.sqf";
+	initialized = true;
 	~~~~
 
 	So that it looks like this:
 	~~~~java
+	initialized = false;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
-	progressLoadingScreen 0.1;
+	progressLoadingScreen 0.05;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
-	progressLoadingScreen 0.2;
+	progressLoadingScreen 0.1;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
-	progressLoadingScreen 0.4;
+	progressLoadingScreen 0.15;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
-	progressLoadingScreen 0.5;
+	progressLoadingScreen 0.2;
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\BIS_Effects\init.sqf";
+	progressLoadingScreen 0.25;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus11.sqf"; //Add trader city objects locally on each machine early
 	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
 	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
-	progressLoadingScreen 1.0;
+	initialized = true;
 	~~~~
 	
 1. Paste the following at the bottom of the ***init***:
@@ -103,27 +107,6 @@ If you are worried about the integrity of the dll files look at the change log f
 	~~~~java
 	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
 	~~~~
-	
-1. If you use the normal battleye antiahck or similar do this step, if you have no antihack then skip this.
-	
-	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
-
-	> ~~~~java
-	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
-	> ~~~~
-
-	> if you have the line above ***replace it*** with this:
-
-	> ~~~~java
-	> [] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with admin tool bypass
-	> ~~~~
-	
-	> If you have a different antihack then replace the placeholder line in the following code with your antihack line and place it in your init.sqf where the antihack line was.
-	> // Epoch Admin Tools
-	> if (!((getPlayerUID player) in EAT_adminModList)) then 
-	> {
-	> 	PLACE YOUR ANTI-HACK LINE HERE example: execVM "xvmAntihack.sqf";
-	> };
 
 1. Save the init.sqf
 1. Open your ***description.ext***
@@ -141,6 +124,10 @@ If you are worried about the integrity of the dll files look at the change log f
 
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 	
+## Install finished
+
+#### Anything below this line is not needed yet. This will be updated as the mod is updated more for 1.0.6
+
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
 1. Open ***init/server_functions.sqf*** and replace this:
 
