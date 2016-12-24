@@ -9,13 +9,12 @@ _distance = _player distance _ct;
 
 /********** Exit sequences **********/
 if(isNull _ct || _ctType != "Old_bike_TK_CIV_EP1" || (_ct getVariable ["MalSar",0] != 1)) exitWith {cutText ["Target is not a player built bike.", "PLAIN DOWN"];};
-if(dayz_combat == 1) exitWith {cutText ["You are in Combat and cannot pack a bike.", "PLAIN DOWN"];};
 if(!(_canDo)) exitWith {cutText ["You are in a vehicle or already performing an action","PLAIN DOWN"];};
 if(_distance > 3) exitWith {cutText ["You must be within 3 meters of the bike to pack it","PLAIN DOWN"];};
 /********** End Exit sequences **********/
 
 
-DZE_ActionInProgress = true;
+dayz_actionInProgress = true;
 
 _player playActionNow "Medic";
 [_player,"repair",0,false,10] call dayz_zombieSpeak;
@@ -45,8 +44,8 @@ if (_finished) then {
 	
 	_objectID = _ct getVariable ["ObjectID", "0"];
 	_objectUID = _ct getVariable ["ObjectUID", "0"];
-	PVDZE_obj_Delete = [_objectID, _objectUID, (name _player)];
-	publicVariableServer "PVDZE_obj_Delete";
+	PVDZ_obj_Destroy = [_objectID, _objectUID, (name _player)];
+	publicVariableServer "PVDZ_obj_Destroy";
 
 	deleteVehicle _ct;
 	if(EAT_RequirePartsBike) then {
@@ -66,4 +65,4 @@ if (_finished) then {
 		
 	cutText ["\n\nCanceled pack bike!", "PLAIN DOWN",4];
 };
-DZE_ActionInProgress = false;
+dayz_actionInProgress = false;

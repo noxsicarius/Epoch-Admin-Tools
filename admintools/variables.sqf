@@ -2,7 +2,7 @@
 
 EAT_adminList = EAT_adminList + EAT_superAdminList; // add SuperAdmin to Admin
 EAT_adminModList = EAT_adminList + EAT_modList; // Add all admin/mod into one list for easy call
-if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {EAT_isAdmin = false;}; // Discern if player is admin
+if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true; dayz_antihack = 0;} else {EAT_isAdmin = false; dayz_antihack = 1;}; // Discern if player is admin
 
 /***** Set variables *****/
 EAT_tempList = []; // Initialize EAT_tempList
@@ -53,6 +53,12 @@ EAT_areaGodMode = false;
 	
 	"EAT_teleportFixClient" addPublicVariableEventHandler {
 		EAT_tempList = (_this select 1);
+		// bypass new 1.0.6 antihack temporarily
+		if ((getPlayerUID player) in EAT_tempList) then {
+			dayz_antihack = 0;
+		} else {
+			dayz_antihack = 1;
+		};
 	};
 	
 	"EAT_PVEH_safeZoneClient" addPublicVariableEventHandler {
@@ -266,10 +272,10 @@ EAT_areaGodMode = false;
 	};
 
 /**************** overwrite epoch public variables ****************/
-	if(EAT_wtChanger)then{"PVDZE_plr_SetDate" addPublicVariableEventHandler {};};
+	if(EAT_wtChanger)then{"dayzSetDate" addPublicVariableEventHandler {};};
 
 
 // Required for permanent arma building spawn
-{dayz_allowedObjects = dayz_allowedObjects + [_x select 2];}forEach EAT_allBuildingList;
+{DayZ_SafeObjects = DayZ_SafeObjects + [_x select 2];}forEach EAT_allBuildingList;
 
 diag_log("Admin Tools: variables.sqf loaded");

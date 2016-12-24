@@ -218,7 +218,7 @@ fn_BCExport = {
 	_export = "";
 	_position = BC_center;
 	_distance = BC_radius;
-	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
+	_nearest_objects = nearestObjects [[_position select 0, _position select 1], DayZ_SafeObjects, _distance];
 	_objectCount = count _nearest_objects;
 	_i = 1;
 	{
@@ -266,7 +266,7 @@ fn_BCCopy = {
 	_objects = [];
 	_position = BC_center;
 	_distance = BC_radius;
-	_nearest_objects = nearestObjects [[_position select 0, _position select 1], dayz_allowedObjects, _distance];
+	_nearest_objects = nearestObjects [[_position select 0, _position select 1], DayZ_SafeObjects, _distance];
 	{
 		private ["_obj_type", "_direction", "_obj_position", "_relative_position", "_row"];
 		_obj_type = typeOf _x;
@@ -336,7 +336,7 @@ fn_BCConfirmDelete = {
 	_objectClasses = [];
 
 	if (BD_Buildables) then {
-		_objectClasses = dayz_allowedObjects;
+		_objectClasses = DayZ_SafeObjects;
 	};
 	if (BD_vehicles) then {
 		_objectClasses = _objectClasses + ["LandVehicle","Helicopter","Plane","Ship"];
@@ -354,8 +354,8 @@ fn_BCConfirmDelete = {
 		deleteVehicle _x;
 		_objectID = _x getVariable ["ObjectID", "0"];
 		_objectUID = _x getVariable ["ObjectUID", "0"];
-		PVDZE_obj_Delete = [_objectID, _objectUID, (name player)];
-		publicVariableServer "PVDZE_obj_Delete";
+		PVDZ_obj_Destroy = [_objectID, _objectUID, (name player)];
+		publicVariableServer "PVDZ_obj_Destroy";
 	} forEach _objects;
 
 	[format["<t size='0.6'>Deleted %1 objects</t>", count _objects],0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
@@ -369,8 +369,8 @@ fn_BCConfirmDelete = {
 
 fn_BCSaveToDb = {
 	{
-		PVDZE_obj_Publish = [_x getVariable ["CharacterID", dayz_characterID],_x,[getDir _x, getPosATL _x], typeOf _x];
-		publicVariableServer "PVDZE_obj_Publish";
+		PVDZ_obj_Publish = [_x getVariable ["CharacterID", dayz_characterID],_x,[getDir _x, getPosATL _x], typeOf _x];
+		publicVariableServer "PVDZ_obj_Publish";
 	} count BCCurrentBase;
 	[format["<t size='0.6'>Added %1 objects to database</t>", count BCCurrentBase],0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 	

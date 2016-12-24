@@ -10,7 +10,7 @@ if(isNil "storageList") then {storageList = [];};
 if(isNil "buildableObjectsList") then {buildableObjectsList = [];};
 if(isNil "crashList") then {crashList = [];};
 if(isNil "storageObjects") then {storageObjects = ["TentStorage","TentStorageDomed","TentStorageDomed2","VaultStorageLocked","OutHouse_DZ","Wooden_shed_DZ","WoodShack_DZ","StorageShed_DZ","LockboxStorageLocked","GunRack_DZ","WoodCrate_DZ"];};
-if(isNil "buildableObjects") then {buildableObjects = (dayz_allowedObjects - storageObjects) - ["LightPole_DZ","Plastic_Pole_EP1_DZ","Generator_DZ","TrapBear","ParkBench_DZ"];};
+if(isNil "buildableObjects") then {buildableObjects = (DayZ_SafeObjects - storageObjects) - ["LightPole_DZ","Plastic_Pole_EP1_DZ","Generator_DZ","TrapBear","ParkBench_DZ"];};
 
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 if(isNil "enhancedESP2") then {enhancedESP2 = true;} else {enhancedESP2 = !enhancedESP2};

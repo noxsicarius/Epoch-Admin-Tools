@@ -45,7 +45,7 @@ _fnc_enterZoneVehicle = {
 			if(!EAT_isAdmin || (EAT_isAdmin && !EAT_szAdminWeapon)) then {_EH_weaponFireVehicle = _veh addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN",2];}];};
 				
 			if(EAT_szVehicleGod && !EAT_vehicleGod2) then {
-				vehicle_handleDamage = {};
+				fnc_veh_handleDam = {};
 				_veh removeAllEventHandlers "handleDamage";
 				_veh addEventHandler ["handleDamage",{false}];
 				_veh allowDamage false;
@@ -67,9 +67,9 @@ _fnc_exitZone = {
 		_veh setVariable ["inZone",false,true];
 		if(!EAT_isAdmin || (EAT_isAdmin && !EAT_szAdminWeapon)) then {_veh removeEventHandler ["Fired",_EH_weaponFireVehicle];};
 		if(!EAT_vehicleGod2) then {
-			vehicle_handleDamage = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\vehicle_handleDamage.sqf";
+			fnc_veh_handleDam = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\veh_handleDam.sqf";
 			_veh removeAllEventHandlers "handleDamage";
-			_veh addEventHandler ["handleDamage",{_this call vehicle_handleDamage}];
+			_veh addEventHandler ["handleDamage",{_this call fnc_veh_handleDam}];
 			_veh allowDamage true;
 		};
 	};

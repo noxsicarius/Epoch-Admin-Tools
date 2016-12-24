@@ -5,7 +5,7 @@ _Secondary = currentWeapon _player;
 
 suicide_answer=nil;
 
-if (dayz_combat == 1) exitWith {cutText ["You are in combat", "PLAIN DOWN"];};
+if (_player getVariable["inCombat",false]) exitWith {cutText ["You are in combat", "PLAIN DOWN"];};
 
 DamiSpawn = 
 [

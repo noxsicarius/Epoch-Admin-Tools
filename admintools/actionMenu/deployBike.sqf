@@ -33,7 +33,7 @@ if(!(_canDo)) exitWith {cutText ["You are in a vehicle or already performing an 
 /********** End Exit sequences **********/
 
 
-DZE_ActionInProgress = true;
+dayz_actionInProgress = true;
 if(EAT_RequirePartsBike) then {
 	_player removeMagazine "PartGeneric";
 	_player removeMagazine "PartWheel";
@@ -78,14 +78,14 @@ if (_finished) then {
 	clearWeaponCargoGlobal _veh;
 
 	cutText ["\nYou have built a bike!", "PLAIN DOWN",3];
-	DZE_ActionInProgress = false;
+	dayz_actionInProgress = false;
 	sleep 6;
 	cutText ["\nWarning: Spawned bikes DO NOT SAVE after server restart!", "PLAIN DOWN"];
 } else {
 	r_interrupt = false;
 	_player switchMove "";
 	_player playActionNow "stop";
-	DZE_ActionInProgress = false;
+	dayz_actionInProgress = false;
 	
 	if(EAT_RequirePartsBike) then {
 		_player addMagazine "PartGeneric";

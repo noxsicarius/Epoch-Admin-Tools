@@ -1,4 +1,3 @@
-waitUntil {!isNil "dayz_animalCheck"}; // Wait for the character to load all required items
 // Give players action menu
 if((EAT_ActionMenuPlayers && !EAT_isAdmin) || (EAT_ActionMenuAdmins && EAT_isAdmin)) then {
 	[] spawn {

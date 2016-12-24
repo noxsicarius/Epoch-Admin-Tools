@@ -130,7 +130,7 @@ _findNearestPole = [];
 _IsNearPlot = count (_findNearestPole);
 
 // If item is plot pole && another one exists within 45m
-if(_isPole && _IsNearPlot > 0) exitWith {  DZE_ActionInProgress = false; cutText [(localize "str_epoch_player_44") , "PLAIN DOWN"]; };
+if(_isPole && _IsNearPlot > 0) exitWith {  dayz_actionInProgress = false; cutText [(localize "str_epoch_player_44") , "PLAIN DOWN"]; };
 
 _location = [0,0,0];
 _isOk = true;
@@ -420,8 +420,8 @@ if(!_cancel) then {
 		_tmpbuilt setVariable ["CharacterID",_combination,true];
 
 
-		PVDZE_obj_Publish = [_combination,_tmpbuilt,[_dir,_location],_classname];
-		publicVariableServer "PVDZE_obj_Publish";
+		PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location],_classname];
+		publicVariableServer "PVDZ_obj_Publish";
 		cutText [format[(localize "str_epoch_player_140"),_combinationDisplay,_text], "PLAIN DOWN", 5];
 
 	} else {
@@ -432,8 +432,8 @@ if(!_cancel) then {
 			if(_tmpbuilt isKindOf "Land_Fire_DZ") then {
 				_tmpbuilt spawn player_fireMonitor;
 			} else {
-				PVDZE_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location],_classname];
-				publicVariableServer "PVDZE_obj_Publish";
+				PVDZ_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location],_classname];
+				publicVariableServer "PVDZ_obj_Publish";
 			};
 		};
 	};

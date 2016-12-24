@@ -29,12 +29,12 @@ if((_hasItems && _hasTools && EAT_RequireToolBoxMozzie && EAT_RequireToolBoxMozz
 
 /********** Exit sequences **********/
 if (!hasMozzieItem) exitWith {};
-if(dayz_combat == 1) exitWith {cutText ["You are in Combat and cannot build a Mozzie.", "PLAIN DOWN"];};
+if(_player getVariable["inCombat",false]) exitWith {cutText ["You are in Combat and cannot build a Mozzie.", "PLAIN DOWN"];};
 if(!(_canDo)) exitWith {cutText ["You are in a vehicle or already performing an action","PLAIN DOWN"];};
 /********** End Exit sequences **********/
 
 
-DZE_ActionInProgress = true;
+dayz_actionInProgress = true;
 if(EAT_RequireToolBoxMozzie) then {
 	_player removeMagazine "PartGeneric";
 	_player removeMagazine "PartGeneric";
@@ -83,14 +83,14 @@ if (_finished) then {
 	_veh setVehicleAmmo 0;
 
 	cutText ["\nYou have built a Mozzie!", "PLAIN DOWN",3];
-	DZE_ActionInProgress = false;
+	dayz_actionInProgress = false;
 	sleep 6;
 	cutText ["\nWarning: Spawned Mozzies DO NOT SAVE after server restart!", "PLAIN DOWN"];
 } else {
 	r_interrupt = false;
 	_player switchMove "";
 	_player playActionNow "stop";
-	DZE_ActionInProgress = false;
+	dayz_actionInProgress = false;
 		
 	if(EAT_RequireToolBoxMozzie) then {
 		_player addMagazine "PartGeneric";
