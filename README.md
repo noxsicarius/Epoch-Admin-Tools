@@ -1,4 +1,4 @@
-Epoch Admin Tools V-1.10.0
+Epoch Admin Tools V-1.10.7
 =================
 
 ![Admin Tools](http://i.imgur.com/j0bTHPB.png)

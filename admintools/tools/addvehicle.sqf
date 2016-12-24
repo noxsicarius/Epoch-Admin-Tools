@@ -1,5 +1,5 @@
-private ["_veh","_location","_isOk","_vehtospawn","_dir","_pos","_helipad","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_player"];
-_vehtospawn = _this select 0;
+private ["_marker","_location","_isOk","_vehtospawn","_dir","_pos","_helipad","_keyColor","_keyNumber","_keySelected","_isKeyOK","_config","_player"];
+_vehtospawn = _this select 0; // Vehicle string
 _player = player;
 _dir = getdir vehicle _player;
 _pos = getPos vehicle _player;
@@ -34,12 +34,11 @@ if (_isOk and _isKeyOK) then {
 	
 	if(count _location != 0) then {
 		//place vehicle spawn marker (local)
-		_veh = createVehicle ["Sign_arrow_down_large_EP1", _location, [], 0, "CAN_COLLIDE"]; 
-		_location = (getPosATL _veh);
- 
-		PVDZE_veh_Publish2 = [_veh,[_dir,_location],_vehtospawn,false,_keySelected,_player];
+		_marker = createVehicle ["Sign_arrow_down_large_EP1", _location, [], 0, "CAN_COLLIDE"];
+		_player reveal _marker;
+		_location = (getPosATL _marker);
+		PVDZE_veh_Publish2 = [[_dir,_location],_vehtospawn,false,_keySelected,_player];
 		publicVariableServer  "PVDZE_veh_Publish2";
-		_player reveal _veh;
 		
 		cutText ["Vehicle spawned, key added to toolbelt.", "PLAIN DOWN"];
 
@@ -52,6 +51,7 @@ if (_isOk and _isKeyOK) then {
 		_removeitem = [_player, _config] call BIS_fnc_invRemove;
 		cutText ["Could not find an area to spawn vehicle.", "PLAIN DOWN"];
 	};
+	deleteVehicle _marker;
 } else {
 	cutText ["Your toolbelt is full.", "PLAIN DOWN"];
 };
