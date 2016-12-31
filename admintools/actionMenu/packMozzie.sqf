@@ -9,8 +9,7 @@ _distance = _player distance _ct;
 
 
 /********** Exit sequences **********/
-if(isNull _ct || _ctType != "CSJ_GyroC") exitWith {cutText ["Target is not a player built mozzie.", "PLAIN DOWN"];};
-if(_ct getVariable ["MalSar",0] != 1) exitWith {cutText ["Target is not a player built mozzie.", "PLAIN DOWN"];};
+if(isNull _ct || _ctType != "CSJ_GyroC" || (_ct getVariable ["EAT_Veh",0] != 1)) exitWith {cutText ["Target is not a player built mozzie.", "PLAIN DOWN"];};
 if(_player getVariable["inCombat",false]) exitWith {cutText ["You are in Combat and cannot pack a mozzie.", "PLAIN DOWN"];};
 if(!(_canDo)) exitWith {cutText ["You are in a vehicle or already performing an action","PLAIN DOWN"];};
 if(_distance > 3) exitWith {cutText ["You must be within 3 meters of the mozzie to pack it","PLAIN DOWN"];};

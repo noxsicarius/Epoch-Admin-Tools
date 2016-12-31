@@ -71,7 +71,7 @@ if (_finished) then {
 	_pos = getPosATL vehicle _player;
 	_pos = [(_pos select 0)+_dist*sin(_dir),(_pos select 1)+_dist*cos(_dir),0];
 	_veh = createVehicle [_vehtospawn, _pos, [], 0, "CAN_COLLIDE"];
-	_veh setVariable ["MalSar",1,true];
+	_veh setVariable ["EAT_Veh",1,true];
 	_veh setVariable ["ObjectID", "1", true];
 	_veh setVariable ["ObjectUID", "1", true];
 	clearMagazineCargoGlobal _veh;

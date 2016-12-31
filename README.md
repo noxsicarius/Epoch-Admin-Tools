@@ -124,46 +124,41 @@ If you are worried about the integrity of the dll files look at the change log f
 
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 	
-## Install finished
-
-#### Anything below this line is not needed yet. This will be updated as the mod is updated more for 1.0.6
-
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
-1. Open ***init/server_functions.sqf*** and replace this:
+1. Open ***system/scheduler/sched_safetyVehicle.sqf*** and replace this:
 
     ~~~~java
-        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
+		if (vehicle _x != _x && !(vehicle _x in dayz_serverObjectMonitor) && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
     ~~~~
     
 	...with this:
 
     ~~~~java
     	// Epoch Admin Tools
-        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
+		if (vehicle _x != _x && !(vehicle _x in dayz_serverObjectMonitor) && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["EAT_Veh",0] !=1)) then {
     ~~~~
     
-	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
+	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["EAT_Veh",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
 
 1. Now open your ***compile/server_updateObject.sqf*** and place this:
 
 
     ~~~~java
-    // Epoch Admin Tools
-    if (_object getVariable ["MalSar",0] == 1) exitWith {};
+		// Epoch Admin Tools
+		if (_object getVariable ["EAT_Veh",0] == 1) exitWith {};
     ~~~~
 
     ...immediately above this:
 
     ~~~~java
-    if (!_parachuteWest and !(locked _object)) then {
+    _objectID = _object getVariable ["ObjectID","0"];
     ~~~~
 
 5. Repack the server pbo and upload it to your server. 
 
+## Install finished
 
 #### View the [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki) for additional configuration options and help.
-
-
 
 # Updating
 
