@@ -140,19 +140,20 @@ If you are worried about the integrity of the dll files look at the change log f
     
 	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["EAT_Veh",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
 
-1. Now open your ***compile/server_updateObject.sqf*** and place this:
+1. Now open your ***compile/server_updateObject.sqf*** and find:
 
-
+    ~~~~java
+		_objectID = _object getVariable ["ObjectID","0"];
+    ~~~~
+	
+	Place the following directly ABOVE it.
+	
     ~~~~java
 		// Epoch Admin Tools
 		if (_object getVariable ["EAT_Veh",0] == 1) exitWith {};
     ~~~~
 
-    ...immediately above this:
 
-    ~~~~java
-    _objectID = _object getVariable ["ObjectID","0"];
-    ~~~~
 
 5. Repack the server pbo and upload it to your server. 
 
