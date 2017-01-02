@@ -192,7 +192,7 @@ EAT_areaGodMode = false;
 	EAT_pMenuTitle = "";
 	EAT_fnc_playerSelect =
 	{
-		private["_pmenu"];
+		private["_pmenu","_arr"];
 		_pmenu = [["",true],[EAT_pMenuTitle, [-1], "", -5, [["expression", ""]], "1", "0"]];
 		for "_i" from (_this select 0) to (_this select 1) do
 		{_arr = [format['%1', plist select (_i)], [12],  "", -5, [["expression", format ["pselect5 = plist select %1;", _i]]], "1", "1"]; _pmenu set [_i + 2, _arr];};
@@ -202,7 +202,17 @@ EAT_areaGodMode = false;
 		showCommandingMenu "#USER:_pmenu";
 	};
 
+	// Convert multidimensional array to single dimensional
+	// Used in adminBuild
+	myfnc_MDarray = {
+		private ["_list","_i","_temp"];
+		_list = []; _temp = _this select 0; _i = 0;					//varDeclaration
 
+		for "_i" from 0 to ((count _temp) - 1) do {					//assert input array size (starts at 1, not 0; hence the -1)
+			_list set [_i,((_temp select _i) select 2)];			//set is faster than deep copy "+"; could of had used BIS_fnc_returnNestedElement, but i like to have control over it
+		};
+		_list;														//return the uniDimensional List of classnames
+	};
 
 /********************** Admin/Mod functions/variables **********************/
 	if (EAT_isAdmin) then {

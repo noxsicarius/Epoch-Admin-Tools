@@ -68,6 +68,9 @@
 	EAT_invisibility = false;
 	EAT_flying = false;
 	EAT_adminBuild = false;
+	
+	// Change the maximum build distance for placable base items
+	DZE_buildMaxMoveDistance = 20;
 
 	
 	

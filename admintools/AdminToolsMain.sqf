@@ -5,7 +5,7 @@ _EXECweapons = '["%1","%2","%3"] execVM "admintools\weaponkits\WeaponKits.sqf"';
 _EXECbackpacks = '["%1"] execVM "admintools\weaponkits\BackPack.sqf"';
 _EXECgear = 'player execVM "admintools\weaponkits\%1"';
 _EXECcrates = '["%1"] execVM "admintools\crates\%2"';
-/*_EXECadminBuild*/ if(isNil "snap_build") then {_EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';}else{_EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuildPro.sqf"';}; // Auto-detect raymix's snap pro
+_EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
 _EXECbuildings = 'player execVM "admintools\tools\AdminBuild\%1"';
 _EXECskins = '["%1"] execVM "admintools\tools\skinChanger.sqf"';
 _EXECdate = 'EAT_PVEH_SetDate = [%1,%2,%3,%4,0]; setDate EAT_PVEH_SetDate; drn_fnc_DynamicWeather_SetWeatherLocal = {}; publicVariableServer "EAT_PVEH_SetDate"';
