@@ -90,11 +90,9 @@ EAT_areaGodMode = false;
 		_addRemove = (_array select 0);
 		
 		if(_addRemove == "add") then {
-			_array = _array - ["add"];
-			EAT_helpQueue = EAT_helpQueue + _array;
+			EAT_helpQueue = EAT_helpQueue + [_array select 1];
 		} else {
-			_array = _array - ["remove"];
-			EAT_helpQueue = EAT_helpQueue - _array;
+			EAT_helpQueue = EAT_helpQueue - [_array select 1];
 		};
 		
 		if (EAT_isAdmin && _addRemove == "add") then {
