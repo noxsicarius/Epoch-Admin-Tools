@@ -114,6 +114,7 @@ F5Menu =
 if(enhancedESP2) then { 
 	dList = []; //List of dead bodies
 	dListMarkers = []; //List of Dead player markers
+	1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 2) then {call F5Menu;};"];
 	_player = player;
 	// Tool use logger
 	if(EAT_logMajorTool) then {
