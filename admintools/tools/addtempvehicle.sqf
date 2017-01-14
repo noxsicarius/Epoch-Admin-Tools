@@ -9,10 +9,9 @@ _pos = [(_pos select 0)+_dist*sin(_dir),(_pos select 1)+_dist*cos(_dir),0];
 _worldspace = [_dir,_pos];
 
 _veh = createVehicle [_vehtospawn, _pos, [], 0, "CAN_COLLIDE"];
-_veh setVariable ["MalSar",1,true];
+_veh setVariable ["EAT_Veh",1,true];
 clearMagazineCargoGlobal _veh;
 clearWeaponCargoGlobal _veh;
-	
 cutText ["Spawned a vehicle.", "PLAIN DOWN"];
 
 // Tool use logger
