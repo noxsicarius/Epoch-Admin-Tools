@@ -2,7 +2,7 @@
 
 EAT_adminList = EAT_adminList + EAT_superAdminList; // add SuperAdmin to Admin
 EAT_adminModList = EAT_adminList + EAT_modList; // Add all admin/mod into one list for easy call
-if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true; dayz_antihack = 1;} else {EAT_isAdmin = false; dayz_antihack = 1;}; // Discern if player is admin
+if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true; dayz_antihack = 0;} else {EAT_isAdmin = false; dayz_antihack = 1;}; // Discern if player is admin
 
 /***** Set variables *****/
 EAT_tempList = []; // Initialize EAT_tempList
