@@ -15,7 +15,7 @@
 	To remove all function key support simply delete or comment out the lines in this file.
 */
 
-// 1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 2) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
+// reserved for espenhanced.sqf
 // 2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 3) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 // 3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 4) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 // 4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 5) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];

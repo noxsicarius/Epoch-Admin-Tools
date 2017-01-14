@@ -114,7 +114,6 @@ F5Menu =
 if(enhancedESP2) then { 
 	dList = []; //List of dead bodies
 	dListMarkers = []; //List of Dead player markers
-	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
 	_player = player;
 	// Tool use logger
 	if(EAT_logMajorTool) then {
@@ -462,7 +461,7 @@ While {enhancedESP2} do
 
 if(!enhancedESP2) then 
 {
-	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
+	(findDisplay 46) displayRemoveEventHandler ["KeyDown", 1_KEY];
 
 	{
 		clearGroupIcons (group _x);
