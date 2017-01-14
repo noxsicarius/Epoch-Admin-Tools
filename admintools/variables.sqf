@@ -2,7 +2,7 @@
 
 EAT_adminList = EAT_adminList + EAT_superAdminList; // add SuperAdmin to Admin
 EAT_adminModList = EAT_adminList + EAT_modList; // Add all admin/mod into one list for easy call
-if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true; dayz_antihack = 0;} else {EAT_isAdmin = false; dayz_antihack = 1;}; // Discern if player is admin
+if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true; dayz_antihack = 1;} else {EAT_isAdmin = false; dayz_antihack = 1;}; // Discern if player is admin
 
 /***** Set variables *****/
 EAT_tempList = []; // Initialize EAT_tempList
@@ -54,11 +54,6 @@ EAT_areaGodMode = false;
 	"EAT_teleportFixClient" addPublicVariableEventHandler {
 		EAT_tempList = (_this select 1);
 		// bypass new 1.0.6 antihack temporarily
-		if ((getPlayerUID player) in EAT_tempList) then {
-			dayz_antihack = 0;
-		} else {
-			dayz_antihack = 1;
-		};
 	};
 	
 	"EAT_PVEH_safeZoneClient" addPublicVariableEventHandler {
@@ -90,9 +85,11 @@ EAT_areaGodMode = false;
 		_addRemove = (_array select 0);
 		
 		if(_addRemove == "add") then {
-			EAT_helpQueue = EAT_helpQueue + [_array select 1];
+			_array = _array - ["add"];
+			EAT_helpQueue = EAT_helpQueue + _array;
 		} else {
-			EAT_helpQueue = EAT_helpQueue - [_array select 1];
+			_array = _array - ["remove"];
+			EAT_helpQueue = EAT_helpQueue - _array;
 		};
 		
 		if (EAT_isAdmin && _addRemove == "add") then {
