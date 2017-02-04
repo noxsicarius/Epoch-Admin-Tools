@@ -1,8 +1,9 @@
 // Do not modify this file unless you know what you are doing
 
+dayz_antihack = 0; // Disabled to allow use of mod antihack
 EAT_adminList = EAT_adminList + EAT_superAdminList; // add SuperAdmin to Admin
 EAT_adminModList = EAT_adminList + EAT_modList; // Add all admin/mod into one list for easy call
-if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true; dayz_antihack = 0;} else {EAT_isAdmin = false; dayz_antihack = 1;}; // Discern if player is admin
+if ((getPlayerUID player) in EAT_adminModList) then {EAT_isAdmin = true;} else {EAT_isAdmin = false;}; // Discern if player is admin
 
 /***** Set variables *****/
 EAT_tempList = []; // Initialize EAT_tempList
