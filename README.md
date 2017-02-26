@@ -114,10 +114,7 @@ If you are worried about the integrity of the dll files look at the change log f
 
 	> ~~~~java
 	> // Epoch Admin Tools
-	> if (!((getPlayerUID player) in EAT_adminModList)) then 
-	> {
-	>     call compile preprocessFileLineNumbers "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
-	> };
+	> [] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
 	> ~~~~
 	
 1. Paste the following at the bottom of the ***init***:
