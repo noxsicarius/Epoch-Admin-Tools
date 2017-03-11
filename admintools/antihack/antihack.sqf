@@ -14,8 +14,8 @@ if (!((getPlayerUID player) in EAT_adminModList)) then {
 		_playerUID = getPlayerUID player;
 		while {1 == 1} do {
 			if (typeName player != "OBJECT") then {
-				PVDZE_atp = format["WARNING typename error for player UID#%1", _playerUID];
-				publicVariableServer "PVDZE_atp";
+				PVDZ_sec_atp = format["WARNING typename error for player UID#%1", _playerUID];
+				publicVariableServer "PVDZ_sec_atp";
 				//forceEnd;
 				endMission "LOSER";
 				sleep 10; //Bypass spam
@@ -30,8 +30,8 @@ if (!((getPlayerUID player) in EAT_adminModList)) then {
 		while {true} do {
 			sleep 5;
 		};
-		PVDZE_atp = format["WARNING PLAYER WITH NAME (%1) && UID# (%2) HAS CHANGED THE TRUE VALUE TO FALSE", _playerName, _playerUID];
-		publicVariableServer "PVDZE_atp";
+		PVDZ_sec_atp = format["WARNING PLAYER WITH NAME (%1) && UID# (%2) HAS CHANGED THE TRUE VALUE TO FALSE", _playerName, _playerUID];
+		publicVariableServer "PVDZ_sec_atp";
 		endMission "LOSER";
 		sleep 10;
 	};
@@ -48,8 +48,8 @@ if (!((getPlayerUID player) in EAT_adminModList)) then {
 				_plant = _x createVehicleLocal _debug;
 				sleep 0.1;
 				if (sizeOf _x == 0) exitWith { 
-					PVDZE_atp = "Plants texture hack for type " + _x;
-					publicVariableServer "PVDZE_atp";
+					PVDZ_sec_atp = "Plants texture hack for type " + _x;
+					publicVariableServer "PVDZ_sec_atp";
 					endMission "LOSER";
 				};
 				deleteVehicle _plant;
@@ -105,8 +105,8 @@ if (!((getPlayerUID player) in EAT_adminModList)) then {
 				if (_lastVehicle == vehicle player) then {
 					if ((_speed > _topSpeed) && (alive player) && ((driver (vehicle player) == player) || (isNull (driver (vehicle player)))) && (_debug distance _lastpos > 3000) && !((vehicle player == player) && (_curheight < _lastheight) && ((_curheight - _terrainHeight) > 1))) then {
 						(vehicle player) setposATL  _lastpos;
-						PVDZE_atp = format["TELEPORT REVERT for player UID#%1 from %2 to %3, %4 meters, now at %5", getPlayerUID player, _lastpos, _curPos, round(_lastpos distance _curpos), getPosATL player];
-						publicVariableServer "PVDZE_atp";
+						PVDZ_sec_atp = format["TELEPORT REVERT for player UID#%1 from %2 to %3, %4 meters, now at %5", getPlayerUID player, _lastpos, _curPos, round(_lastpos distance _curpos), getPosATL player];
+						publicVariableServer "PVDZ_sec_atp";
 					} else {
 						_lastpos = _curpos;
 						_lastheight = _curheight;
