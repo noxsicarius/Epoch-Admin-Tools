@@ -1,4 +1,4 @@
-private ["_vehicle","_type","_name","_hitpoints","_player"];
+private ["_vehicle","_type","_name","_hitpoints","_player","_strH"];
 
 _vehicle = cursorTarget;
 _type = typeOf _vehicle;
@@ -12,9 +12,13 @@ _player = player;
 
     if (_damage > 0) then {
 		_selection = getText(configFile >> "cfgVehicles" >> _type >> "HitPoints" >> _x >> "name");
-		[_vehicle,_selection,0] call object_setFixServer;
+		_strH = "hit_" + (_selection);
+		_vehicle setHit[_selection,0];
+		_vehicle setVariable[_strH,0,true];
 	};
-} count _hitpoints;
+} forEach _hitpoints;
+PVDZ_veh_Save = [_vehicle,"repair"];
+publicVariableServer "PVDZ_veh_Save";
 
 _vehicle setDamage 0;
 _vehicle setFuel 1;
