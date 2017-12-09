@@ -29,5 +29,5 @@ if (suicide_answer) then {
 	sleep 8.4;
 	_player fire _Secondary;
 	_selection = "body";
-	_player setHit["body",1];
+	[player,'suicide'] call player_death;
 };
