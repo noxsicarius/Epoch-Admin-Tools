@@ -7,7 +7,7 @@ _crateName = "ALL Weapons/Items Crate";
 
 // Tool use logger
 if(EAT_logMajorTool) then {
-	EAT_PVEH_usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
+	EAT_PVEH_usageLogger = format["%1 %2 -- has added a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
 	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };
 
