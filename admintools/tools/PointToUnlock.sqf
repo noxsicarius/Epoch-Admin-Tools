@@ -33,70 +33,22 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		// Get all required variables
 		_unlockedClass = getText (configFile >> "CfgVehicles" >> _objType >> "unlockedClass");
 		_text =	getText (configFile >> "CfgVehicles" >> _objType >> "displayName");
-		_dir = direction _obj;
-		_pos = _obj getVariable["OEMPos",(getposATL _obj)];
-		_objectID = _obj getVariable["ObjectID","0"];
-		_objectUID = _obj getVariable["ObjectUID","0"];
-		_ownerID = _obj getVariable["CharacterID","0"];
-		_weapons = 		_obj getVariable["WeaponCargo",[]];
-		_magazines = 	_obj getVariable["MagazineCargo",[]];
-		_backpacks = 	_obj getVariable["BackpackCargo",[]];
-		_holder = createVehicle [_unlockedClass,_pos,[], 0, "CAN_COLLIDE"];
+		//_obj setVariable["packing",1];
 		
-		//log the lockUnlock
-		PVDZE_log_lockUnlock = [player, _obj, false];
-		publicVariableServer "PVDZE_log_lockUnlock";
-		_obj setVariable["packing",1];
+		disableUserInput true; // Make sure player can not modify gear while it is filling
+		(findDisplay 106) closeDisplay 0; // Close gear
+		dze_waiting = nil;
 		
-		// Remove locked vault
-		deleteVehicle _obj;
-
-		//Add the new unlocked safe
-		_holder setdir _dir;
-		_holder setPosATL _pos;
-		player reveal _holder;
-
-		_holder setVariable["CharacterID",_ownerID,true];
-		_holder setVariable["ObjectID",_objectID,true];
-		_holder setVariable["ObjectUID",_objectUID,true];
-		_holder setVariable ["OEMPos", _pos, true];
-
-		if (count _weapons > 0) then {
-			//Add weapons
-			_objWpnTypes = 	_weapons select 0;
-			_objWpnQty = 	_weapons select 1;
-			_countr = 0;
-			{
-				_holder addweaponcargoGlobal [_x,(_objWpnQty select _countr)];
-				_countr = _countr + 1;
-			} count _objWpnTypes;
-		};
-
-		if (count _magazines > 0) then {
-			//Add Magazines
-			_objWpnTypes = _magazines select 0;
-			_objWpnQty = _magazines select 1;
-			_countr = 0;
-			{
-				if( _x != "CSGAS" ) then
-				{
-					_holder addmagazinecargoGlobal [_x,(_objWpnQty select _countr)];
-					_countr = _countr + 1;
-				};
-			} count _objWpnTypes;
-		};
-
-		if (count _backpacks > 0) then {
-			//Add Backpacks
-			_objWpnTypes = _backpacks select 0;
-			_objWpnQty = _backpacks select 1;
-			_countr = 0;
-			{
-				_holder addbackpackcargoGlobal [_x,(_objWpnQty select _countr)];
-				_countr = _countr + 1;
-			} count _objWpnTypes;
-		};
-
+		[_unlockedClass,objNull] call fn_waitForObject;
+		
+		PVDZE_handleSafeGear = [_player,_obj,0];
+		publicVariableServer "PVDZE_handleSafeGear";
+		//wait for response from server to verify safe was logged before proceeding
+		waitUntil {!isNil "dze_waiting"};
+		disableUserInput false; // Safe is done filling now
+		
+		format[localize "STR_BLD_UNLOCKED",_text] call dayz_rollingMessages;
+		
 		// Tool use logger
 		if(EAT_logMajorTool) then {
 			EAT_PVEH_usageLogger = format["%1 %2 -- has unlocked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
