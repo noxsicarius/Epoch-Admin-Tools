@@ -45,3 +45,5 @@ JasonTM Epoch Admin Tools Test Branch Change Log
 22. Updated README.md with the updated install instructions.
 
 23. Added my changelog.
+
+24. Added file getObjectDetails.sqf to admintools\tools. This file is bound to key J and displays object name, charID, ObjectId.
