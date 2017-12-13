@@ -53,3 +53,15 @@ JasonTM Epoch Admin Tools Test Branch Change Log
 26. admintools\tools\addvehicle.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
 
 27. admintools\tools\AdminMode\GodModeVehicle.sqf - removed the word enabled to avoid Battleye kick in publicvariableval.txt.
+
+28. admintools\tools\AdminMode\ESPenhanced.sqf - removed the word "enabled" to avoid Battleye kick in publicvariableval.txt.
+
+29. admintools\tools\AdminMode\ESPplayer.sqf - removed the word "enabled" to avoid Battleye kick in publicvariableval.txt.
+
+30. admintools\tools\AdminMode\Flying.sqf - changed the word "enabled" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+30. admintools\tools\AdminMode\speedboost.sqf - changed the word "enabled" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+31. admintools\tools\zombieSpawn.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+32. admintools\AdminToolsMain.sqf - disabled client side AI spawner becauses it compromises Battleye security. AI spawning function should be moved server side.
