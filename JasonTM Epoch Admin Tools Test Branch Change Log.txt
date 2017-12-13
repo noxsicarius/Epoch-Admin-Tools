@@ -51,3 +51,5 @@ JasonTM Epoch Admin Tools Test Branch Change Log
 25. admintools/tools/AdminMode\GodModePlayer.sqf - removed the word enabled used with EAT_PVEH_usageLogger to avoid Battleye kick in publicvariableval.txt.
 
 26. admintools\tools\addvehicle.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+27. admintools\tools\AdminMode\GodModeVehicle.sqf - removed the word enabled to avoid Battleye kick in publicvariableval.txt.
