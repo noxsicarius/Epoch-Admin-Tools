@@ -69,3 +69,5 @@ JasonTM Epoch Admin Tools Test Branch Change Log
 33. admintools\AdminToolsMain.sqf - disabled Base Manager Menu until it is updated for 1.0.6+, base_manager.sqf needs to have its functions updated to work with the new trader dialogs. It does not work correctly and posts errors to the client side rpt.
 
 34. admintools\variables.sqf - updated classnames in EAT_weaponCrateWeapons, EAT_weaponCrateMagazines, and EAT_itemCrateMagazines.
+
+35. Removed some redundancy in Battleye scripts.txt.
