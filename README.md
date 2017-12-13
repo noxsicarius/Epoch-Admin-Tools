@@ -60,6 +60,7 @@ If you are worried about the integrity of the dll files look at the change log f
 	> Note: "Your_Mission.pbo" is a placeholder name. Your mission might be called "DayZ_Epoch_11.Chernarus", "DayZ_Epoch_13.Tavi", or "dayz_mission" depending on hosting and chosen map.
 
 1. Extract the ***admintools*** folder from the Epoch Admin Tools project zip into the root of your mission folder.
+1. Copy the ***dayz_code*** folder into the root of your mission folder. If you already have this folder then just copy the file keyboard.sqf into the appropriate directory.
 1. If you are allowed to use custom dll's (some hosts forbid it)
 	
 	> Copy all files ***inside the DLL folder*** (not the folder itself) to your ROOT server folder (where arma2oaserver.exe and @DayZ_Epoch is located)
@@ -81,6 +82,17 @@ If you are worried about the integrity of the dll files look at the change log f
 	~~~~java
 	initialized = true;
 	~~~~
+1. Paste the following
+	
+	~~~~java
+	call compile preprocessFileLineNumbers "dayz_code\init\compiles.sqf";
+	~~~~
+	
+	Directly *below* this:
+	
+	~~~~java
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
+	~~~~
 
 	So that it looks like this:
 	~~~~java
@@ -92,11 +104,14 @@ If you are worried about the integrity of the dll files look at the change log f
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
 	progressLoadingScreen 0.15;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
-	progressLoadingScreen 0.2;
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\BIS_Effects\init.sqf";
+	call compile preprocessFileLineNumbers "dayz_code\init\compiles.sqf";
+	if (_verCheck) then {
+	#include "DZE_Hotfix_1.0.6.1A\init\compiles.sqf"
+	};
 	progressLoadingScreen 0.25;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus11.sqf"; //Add trader city objects locally on each machine early
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus11.sqf"; //Add trader city objects 	locally on every machine early
+	if (dayz_POIs && (toLower worldName == "chernarus")) then {call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus\poi\init.sqf";}; //Add POI objects locally on every machine early
 	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
 	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	initialized = true;
@@ -107,7 +122,7 @@ If you are worried about the integrity of the dll files look at the change log f
 	> Find the antihack line in your ***init.sqf***, it will be similar to the one below
 
 	> ~~~~java
-	> call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\antihack.sqf";
+	> execVM "\z\addons\dayz_code\system\antihack.sqf";
 	> ~~~~
 
 	> if you have the line above ***replace it*** with this:
@@ -140,6 +155,22 @@ If you are worried about the integrity of the dll files look at the change log f
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
 	
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
+1. Copy the EAT_vehSpawn.sqf file contained in the downloaded directory dayz_server/compile to the same directory in the extracted dayz_server folder.
+
+1. Now open your ***init/server_functions.sqf*** and find:
+
+    ~~~~java
+		spawn_vehicles = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_vehicles.sqf";
+    ~~~~
+	
+	Place the following directly BELOW it.
+	
+    ~~~~java
+		// Epoch Admin Tools
+		EAT_vehSpawn = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\EAT_vehSpawn.sqf";
+    ~~~~
+
+    
 1. Open ***system/scheduler/sched_safetyVehicle.sqf*** and replace this:
 
     ~~~~java
