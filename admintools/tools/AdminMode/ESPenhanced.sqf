@@ -119,7 +119,7 @@ if(enhancedESP2) then {
 	_player = player;
 	// Tool use logger
 	if(EAT_logMajorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name _player,getPlayerUID _player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has enhanced ESP",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
