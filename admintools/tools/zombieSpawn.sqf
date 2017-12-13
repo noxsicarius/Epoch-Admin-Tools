@@ -52,7 +52,7 @@ waitUntil{(zCount != 0) || (commandingMenu == "")};
 if(zCount <= 0) exitWith{};
 
 if(EAT_logMajorTool) then {
-	EAT_PVEH_usageLogger = format["%1 %2 -- has spawned %3 zombies",name _player,getPlayerUID _player,zCount];
+	EAT_PVEH_usageLogger = format["%1 %2 -- has added %3 zombies",name _player,getPlayerUID _player,zCount];
 	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };
 
