@@ -47,7 +47,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_adminMenu = EAT_adminMenu + [["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECgenTools,"SafeZoneArea.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Zombie Shield",[],"", -5,[["expression",format[_EXECgenTools,"zombieshield.sqf"]]],"1","1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Zombie Spawner", [], "", -5, [["expression", format[_EXECgenTools,"zombieSpawn.sqf"]]], "1", "1"]];
-	EAT_adminMenu = EAT_adminMenu + [["AI spawner", [], "", -5, [["expression", format[_EXECgenTools,"aiSpawn.sqf"]]], "1", "1"]];
+//	EAT_adminMenu = EAT_adminMenu + [["AI spawner", [], "", -5, [["expression", format[_EXECgenTools,"aiSpawn.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Heal Players",[],"", -5, [["expression", format[_EXECgenTools,"healp.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Send Server Message",[],"", -5,[["expression",format[_EXECgenTools,"messageDialog.sqf"]]],"1","1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Humanity Menu >>",[],"#USER:EAT_humanityMenu", -5, [["expression", ""]], "1", "1"]];
