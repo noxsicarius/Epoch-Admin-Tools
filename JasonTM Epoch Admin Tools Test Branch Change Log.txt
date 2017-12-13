@@ -65,3 +65,7 @@ JasonTM Epoch Admin Tools Test Branch Change Log
 31. admintools\tools\zombieSpawn.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
 
 32. admintools\AdminToolsMain.sqf - disabled client side AI spawner becauses it compromises Battleye security. AI spawning function should be moved server side.
+
+33. admintools\AdminToolsMain.sqf - disabled Base Manager Menu until it is updated for 1.0.6+, base_manager.sqf needs to have its functions updated to work with the new trader dialogs. It does not work correctly and posts errors to the client side rpt.
+
+34. admintools\variables.sqf - updated classnames in EAT_weaponCrateWeapons, EAT_weaponCrateMagazines, and EAT_itemCrateMagazines.
