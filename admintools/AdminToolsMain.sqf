@@ -304,7 +304,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_epochMenu = [["",true]];
 	EAT_epochMenu = EAT_epochMenu + [["-- Epoch Only Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_epochMenu = EAT_epochMenu + [["Admin Build Menu >> ",[],"#USER:EAT_buildMenu", -5,[["expression",""]],"1","1"]];
-	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
+//	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Cursor Target Menu >>",[],"#USER:EAT_pointMenu", -5,[["expression",""]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Get current position",[],"",-5,[["expression",'[player] execVM "admintools\tools\getPosition.sqf"']],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
