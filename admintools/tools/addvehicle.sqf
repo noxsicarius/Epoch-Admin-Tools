@@ -41,7 +41,7 @@ if (_isOk and _isKeyOK) then {
 
 		// Tool use logger
 		if(EAT_logMajorTool) then {
-			EAT_PVEH_usageLogger = format["%1 %2 -- has spawned a permanent vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
+			EAT_PVEH_usageLogger = format["%1 %2 -- has added a permanent vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
 			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 		};
 	} else {
