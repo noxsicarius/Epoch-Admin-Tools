@@ -93,7 +93,7 @@ if (EAT_flying2) then
 {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED flying",name player,getPlayerUID player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has added flying",name player,getPlayerUID player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 

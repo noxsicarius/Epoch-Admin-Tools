@@ -11,7 +11,7 @@ if (EAT_playerGod2) then
 {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED _player god mode",name _player,getPlayerUID _player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has _player god mode",name _player,getPlayerUID _player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 

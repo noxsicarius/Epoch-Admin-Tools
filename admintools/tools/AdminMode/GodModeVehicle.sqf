@@ -8,7 +8,7 @@ if(isNil "EAT_vehicleGod2") then {EAT_vehicleGod2 = true;} else {EAT_vehicleGod2
 if(EAT_vehicleGod2) then {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED vehicle god mode",name player,getPlayerUID player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has vehicle god mode",name player,getPlayerUID player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };

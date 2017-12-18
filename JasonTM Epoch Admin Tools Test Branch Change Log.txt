@@ -1,0 +1,73 @@
+JasonTM Epoch Admin Tools Test Branch Change Log
+
+1. admintools\actionMenu\suicide.sqf - Update to work with updated player_death function
+
+2. admintools\actionMenu\ActionsMenu.sqf - Corrected Variable name.
+
+3. admintools\actionMenu\ActionsMenu.sqf - Corrected Variable name. Disabled TransformAnimalMenu due to gear check update in player_switchModel.sqf. With the 1.0.6+ update, it is no longer possible to change into animal skins due to an update to the gear check in player_switchModel.sqf. Changing into an aminal skin automatically deletes your gear and the update to player_switchModel.sqf prevents switching skins when inventory is empty.
+
+4. admintools\crates\allweapons.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+5. admintools\crates\backpack.sqf - updated classname TentStorageDomed2 to TentStorage (TentStorageDomed2 is no longer a valid classname in Epoch) and changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+6. admintools\crates\building.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt. 
+
+7. admintools\crates\items.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+8. admintools\crates\weapons.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+9. admintools\variables.sqf - added PVEH for server-side temp vehicle spawner.
+
+10. admintools\variables.sqf - Lowered the total backpacks in EAT_backpackCrateContents array to 5 because the current tent selection in Epoch only hold 5 total.
+
+11. admintools\variables.sqf - Updated classname FoodSteakCooked to FoodbeefCooked in array EAT_itemCrateMagazines.
+
+12. admintools\tools\PointToLock.sqf - Updated to work with PVDZE_handleSafeGear (Safes and Lockboxes).
+
+13. admintools\tools\PointToUnlock.sqf - Updated to work with PVDZE_handleSafeGear (Safes and Lockboxes).
+
+14. admintools\tools\PointToRepairPERM.sqf - Updated to work with PVDZ_veh_Save.
+
+15. admintools\tools\addtempvehicle.sqf - Updated with publicVariableServer to send vehicle parameters to server side spawning function.
+
+16. admintools\tools\AdminMode\ESPenhanced.sqf - The solution for array buildableOjects looks like it should work but doesn't, so I changed it to a list of classnames.
+
+17. admintools\tools\AdminMode\ESPenhanced.sqf - Changed Key 1 to Key 4 to access the menu because Key 1 is used for weapon switching in 1.0.6+
+
+18. admintools\tools\AdminMode\ESPenhanced.sqf - Updated crashsite and supply drop classnames and added a correction for the heli crashsite display name.
+
+19. admintools\activate.sqf - commented out files FunctionKeys.sqf and NumberKeys.sqf because the 1.0.6 update uses keyboard.sqf to manage the keys.
+
+20. Added the directories dayz_code and dayz_server which contain the files for keyboard.sqf and the server side temp vehicle spawner.
+
+21. Updated Battleye filters to work with 1.0.6+ Epoch update.
+
+22. Updated README.md with the updated install instructions.
+
+23. Added my changelog.
+
+24. Added file getObjectDetails.sqf to admintools\tools. This file is bound to key J and displays object name, charID, ObjectId.
+
+25. admintools/tools/AdminMode\GodModePlayer.sqf - removed the word enabled used with EAT_PVEH_usageLogger to avoid Battleye kick in publicvariableval.txt.
+
+26. admintools\tools\addvehicle.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+27. admintools\tools\AdminMode\GodModeVehicle.sqf - removed the word enabled to avoid Battleye kick in publicvariableval.txt.
+
+28. admintools\tools\AdminMode\ESPenhanced.sqf - removed the word "enabled" to avoid Battleye kick in publicvariableval.txt.
+
+29. admintools\tools\AdminMode\ESPplayer.sqf - removed the word "enabled" to avoid Battleye kick in publicvariableval.txt.
+
+30. admintools\tools\AdminMode\Flying.sqf - changed the word "enabled" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+30. admintools\tools\AdminMode\speedboost.sqf - changed the word "enabled" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+31. admintools\tools\zombieSpawn.sqf - changed the word "spawned" to "added" to avoid Battleye kick in publicvariableval.txt.
+
+32. admintools\AdminToolsMain.sqf - disabled client side AI spawner becauses it compromises Battleye security. AI spawning function should be moved server side.
+
+33. admintools\AdminToolsMain.sqf - disabled Base Manager Menu until it is updated for 1.0.6+, base_manager.sqf needs to have its functions updated to work with the new trader dialogs. It does not work correctly and posts errors to the client side rpt.
+
+34. admintools\variables.sqf - updated classnames in EAT_weaponCrateWeapons, EAT_weaponCrateMagazines, and EAT_itemCrateMagazines.
+
+35. Removed some redundancy in Battleye scripts.txt.

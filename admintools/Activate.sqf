@@ -25,8 +25,8 @@ if (EAT_isAdmin) then {
 		_veh = vehicle player;
 
 		// Load key macros
-		[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
-		[]execVM "admintools\KeyBindings\NumberKeys.sqf";
+		//[]execVM "admintools\KeyBindings\FunctionKeys.sqf";
+		//[]execVM "admintools\KeyBindings\NumberKeys.sqf";
 		
 		// Tool use logger
 		if(EAT_logMajorTool || EAT_logMinorTool) then {

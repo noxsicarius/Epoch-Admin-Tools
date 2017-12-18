@@ -3,7 +3,7 @@ if(isNil "EAT_speedBoost2") then {EAT_speedBoost2 = true;} else {EAT_speedBoost2
 if (EAT_speedBoost2) then {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has ENABLED speed boost",name player,getPlayerUID player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has added speed boost",name player,getPlayerUID player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 

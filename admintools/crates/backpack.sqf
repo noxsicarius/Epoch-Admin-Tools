@@ -6,11 +6,11 @@ _player = player;
 _crateName = "Backpack Tent";
 
 // Crate type
-_classname = "TentStorageDomed2";
+_classname = "TentStorage";
 
 // Tool use logger
 if(EAT_logMajorTool) then {
-	EAT_PVEH_usageLogger = format["%1 %2 -- has spawned a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
+	EAT_PVEH_usageLogger = format["%1 %2 -- has added a %3 %4",name _player,getPlayerUID _player,_LocalOrGlobal,_crateName];
 	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 };
 

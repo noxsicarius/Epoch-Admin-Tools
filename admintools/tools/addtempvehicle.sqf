@@ -8,10 +8,9 @@ _pos = getPosATL vehicle _player;
 _pos = [(_pos select 0)+_dist*sin(_dir),(_pos select 1)+_dist*cos(_dir),0];
 _worldspace = [_dir,_pos];
 
-_veh = createVehicle [_vehtospawn, _pos, [], 0, "CAN_COLLIDE"];
-_veh setVariable ["EAT_Veh",1,true];
-clearMagazineCargoGlobal _veh;
-clearWeaponCargoGlobal _veh;
+EAT_PVEH_vehSpawn = [_vehtospawn,_pos,_player];
+	publicVariableServer "EAT_PVEH_vehSpawn";
+	
 cutText ["Spawned a vehicle.", "PLAIN DOWN"];
 
 // Tool use logger
