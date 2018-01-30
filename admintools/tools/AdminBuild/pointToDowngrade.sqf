@@ -31,6 +31,7 @@ if ((count _downgrade) > 0) then {
 
 	// Get direction
 	_dir = getDir _obj;
+	_vector = [(vectorDir _obj),(vectorUp _obj)];
 
 	// Reset the character ID on locked doors before they inherit the newclassname
 	if (_classname in DZE_DoorsLocked) then {
@@ -45,8 +46,14 @@ if ((count _downgrade) > 0) then {
 
 	cutText [format[(localize "str_epoch_player_142"),_text], "PLAIN DOWN", 5];
 
-	PVDZE_obj_Swap = [_objectCharacterID,_object,[_dir,_location],_classname,_obj,player];
-	publicVariableServer "PVDZE_obj_Swap";
+	if (DZE_permanentPlot) then {
+			_ownerID = _obj getVariable["ownerPUID","0"];
+			_object setVariable ["ownerPUID",_ownerID,true];
+			PVDZE_obj_Swap = [_objectCharacterID,_object,[_dir,_location,dayz_playerUID,_vector],_classname,_obj,player,[],dayz_authKey];
+		} else {
+			PVDZE_obj_Swap = [_objectCharacterID,_object,[_dir,_location, _vector],_classname,_obj,player,[],dayz_authKey];
+		};
+		publicVariableServer "PVDZE_obj_Swap";
 
 	player reveal _object;
 

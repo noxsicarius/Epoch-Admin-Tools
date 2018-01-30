@@ -30,7 +30,7 @@ if (pselect5!= "exit" && pselect5!="") then
 		{
 			F6_Key = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 64) then {spectate = false;};"];	
 			(vehicle _x) switchCamera "EXTERNAL";
-			titleText ["F6 to return","PLAIN DOWN"];titleFadeOut 4;
+			"F6 to return" call dayz_rollingMessages;
 			waitUntil { !(alive _x) or !(alive player) or !(spectate)};
 			(findDisplay 46) displayRemoveEventHandler ["KeyDown", F6_Key];
 			player switchCamera _mycv;	
@@ -46,7 +46,7 @@ if (pselect5!= "exit" && pselect5!="") then
 spectate = false;
 if (!spectate && pselect5 != "exit") then 
 {	
-	titleText ["Spectate done","PLAIN DOWN"];titleFadeOut 4;
+	"Spectate done" call dayz_rollingMessages;
 
 	// Tool use logger
 	if(EAT_logMajorTool) then {

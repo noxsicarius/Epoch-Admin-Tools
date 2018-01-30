@@ -396,85 +396,26 @@ if(!_cancel) then {
 	format[localize "str_build_01",_text] call dayz_rollingMessages;
 
 	_tmpbuilt setVariable ["OEMPos",_location,true]; //store original location as a variable
-
-	if(_lockable > 1) then { //if item has code lock on it
-		_combinationDisplay = ""; //define new display
-			
-		switch (_lockable) do { //generate random combinations depending on item type
-			case 2: { // 2 lockbox
-				_combination_1 = (floor(random 3)) + 100; // 100=red,101=green,102=blue
-				_combination_2 = floor(random 10);
-				_combination_3 = floor(random 10);
-				_combination = format["%1%2%3",_combination_1,_combination_2,_combination_3];
-				dayz_combination = _combination;
-				if (_combination_1 == 100) then {
-					_combination_1_Display = localize "STR_TEAM_RED";
-				};
-				if (_combination_1 == 101) then {
-					_combination_1_Display = localize "STR_TEAM_GREEN";
-				};
-				if (_combination_1 == 102) then {
-					_combination_1_Display = localize "STR_TEAM_BLUE";
-				};
-				_combinationDisplay = format["%1%2%3",_combination_1_Display,_combination_2,_combination_3];
-			};
-			case 3: { // 3 combolock
-				_combination_1 = floor(random 10);
-				_combination_2 = floor(random 10);
-				_combination_3 = floor(random 10);
-				_combination = format["%1%2%3",_combination_1,_combination_2,_combination_3];
-				dayz_combination = _combination;
-				_combinationDisplay = _combination;
-			};
-			case 4: { // 4 safe
-				_combination_1 = floor(random 10);
-				_combination_2 = floor(random 10);
-				_combination_3 = floor(random 10);
-				_combination_4 = floor(random 10);
-				_combination = format["%1%2%3%4",_combination_1,_combination_2,_combination_3,_combination_4];
-				dayz_combination = _combination;
-				_combinationDisplay = _combination;
-			};
-		};
-
-		_tmpbuilt setVariable ["CharacterID",_combination,true]; //set combination as a character ID
-		//call publish precompiled function with given args and send public variable to server to save item to database
-		if (DZE_permanentPlot) then {
-			_tmpbuilt setVariable ["ownerPUID",dayz_playerUID,true];
-			PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID,_vector],[]];
-			if (_lockable == 3) then {
-				_friendsArr = [[dayz_playerUID,toArray (name player)]];
-				_tmpbuilt setVariable ["doorfriends", _friendsArr, true];
-				PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location,dayz_playerUID,_vector],_friendsArr];
-			};
+	
+	if(_isPerm) then {
+		_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
+		// fire?
+		if(_tmpbuilt isKindOf "Land_Fire_DZ") then { //if campfire, then spawn, but do not publish to database
+			_tmpbuilt spawn player_fireMonitor;
 		} else {
-			PVDZ_obj_Publish = [_combination,_tmpbuilt,[_dir,_location, _vector],[]];
-		};
-		publicVariableServer "PVDZ_obj_Publish";
-
-		[format[localize "str_epoch_player_140",_combinationDisplay,_text],1] call dayz_rollingMessages; //display new combination
-		systemChat format[localize "str_epoch_player_140",_combinationDisplay,_text];
-	} else { //if not lockable item
-		if(_isPerm) then {
-			_tmpbuilt setVariable ["CharacterID",dayz_characterID,true];
-			// fire?
-			if(_tmpbuilt isKindOf "Land_Fire_DZ") then { //if campfire, then spawn, but do not publish to database
-				_tmpbuilt spawn player_fireMonitor;
-			} else {
-				if (DZE_permanentPlot) then {
-					_tmpbuilt setVariable ["ownerPUID",dayz_playerUID,true];
-					if (_isPole) then {
-						_friendsArr = [[dayz_playerUID,toArray (name player)]];
-						_tmpbuilt setVariable ["plotfriends", _friendsArr, true];
-						PVDZ_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location,dayz_playerUID,_vector],_friendsArr];
-					} else {
-						PVDZ_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location,dayz_playerUID,_vector],[]];
-					};
+			if (DZE_permanentPlot) then {
+				_tmpbuilt setVariable ["ownerPUID",dayz_playerUID,true];
+				if (_isPole) then {
+					_friendsArr = [[dayz_playerUID,toArray (name player)]];
+					_tmpbuilt setVariable ["plotfriends", _friendsArr, true];
+					PVDZ_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location,dayz_playerUID,_vector],_friendsArr,player,dayz_authKey];
 				} else {
-					PVDZ_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location, _vector],[]];
+					PVDZ_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location,dayz_playerUID,_vector],[],player,dayz_authKey];
 				};
-				publicVariableServer "PVDZ_obj_Publish";
+			} else {
+				PVDZ_obj_Publish = [dayz_characterID,_tmpbuilt,[_dir,_location, _vector],[]];
 			};
+			publicVariableServer "PVDZ_obj_Publish";
 		};
 	};
 

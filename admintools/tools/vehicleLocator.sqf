@@ -42,9 +42,8 @@ if(locateVehicle) then {
 	_i = 0;
 	for "_i" from 0 to 10 do {deleteMarkerLocal ("locatorMarker"+ (str _i));};
 
-	if (_count == 0) exitWith { systemChat "Place a key in your inventory to find that vehicle."; locateVehicle = false;};
-
-	systemChat format ["Found: %1 vehicle key",_count];
+	if (_count == 0) exitWith {"Place a key in your inventory to find that vehicle." call dayz_rollingMessages; locateVehicle = false;};
+	format["Found: %1 vehicle key",_count] call dayz_rollingMessages;
 
 	_count = _count - 1;
 
@@ -79,18 +78,18 @@ if(locateVehicle) then {
 				_locatorMarker setMarkerSizeLocal [1.0, 1.0];
 				_locatorMarker setMarkerTextLocal format ["locator: %1",_vehicleName];
 			} else { 
-				systemChat format ["%1 belongs to %2 - %3",_keyName,_vehicleName,_finalID];
+				format["%1 belongs to %2 - %3",_keyName,_vehicleName,_finalID] call dayz_rollingMessages;
 			};
-		} else { 
-			systemChat format ["%1 - Vehicle ID: %2 - (This vehicle no longer exists in the database)",_keyName,_finalID];
+		} else {
+			format["%1 - Vehicle ID: %2 - (This vehicle no longer exists in the database)",_keyName,_finalID] call dayz_rollingMessages;
 		};
 	};
 
 	if (_showMapMarker) then {
-		systemChat "Map markers added. Run this again to remove them.";
+		"Map markers added. Run this again to remove them." call dayz_rollingMessages;
 	};
 } else {
 	_i=0;
 	for "_i" from 0 to 10 do {deleteMarkerLocal ("locatorMarker"+ (str _i));};
-	systemChat "Map markers removed";
+	"Map markers removed" call dayz_rollingMessages;
 };

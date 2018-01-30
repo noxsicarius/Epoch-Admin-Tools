@@ -24,7 +24,7 @@ _vehicle setDamage 0;
 _vehicle setFuel 1;
 _vehicle setVehicleAmmo 1;
 _vehicle setVelocity [0,0,1];
-titleText [format["%1 permanently repaired, refuelled and rearmed.", _name], "PLAIN DOWN"]; titleFadeOut 3;
+format["%1 permanently repaired, refuelled and rearmed.", _name] call dayz_rollingMessages;
 
 // Tool use logger
 if(EAT_logMinorTool) then {

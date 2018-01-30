@@ -1,17 +1,17 @@
-private["_EXECgenTools","_EXECweapons","_EXECbackpacks","_EXECgear","_EXECcrates","_EXECadminBuild","_EXECbuildings","_EXECskins","_EXECdate","_EXECcloud","_EXECfog","_EXECtempVeh"];
+private["_EXECgenTools","_EXECweapons","_EXECbackpacks","_EXECgear","_EXECcrates","_EXECadminBuild","_EXECbuildings","_EXECskins","_EXECdate","_EXECcloud","_EXECfog"];
 
 _EXECgenTools = 'player execVM "admintools\tools\%1"';
 _EXECweapons = '["%1","%2","%3"] execVM "admintools\weaponkits\WeaponKits.sqf"';
 _EXECbackpacks = '["%1"] execVM "admintools\weaponkits\BackPack.sqf"';
 _EXECgear = 'player execVM "admintools\weaponkits\%1"';
-_EXECcrates = '["%1"] execVM "admintools\crates\%2"';
+_EXECcrates = '["%1"] execVM "admintools\crates\spawnCrate.sqf"';
 _EXECadminBuild = '["%1",false,true] execVM "admintools\tools\AdminBuild\adminBuild.sqf"';
 _EXECbuildings = 'player execVM "admintools\tools\AdminBuild\%1"';
 _EXECskins = '["%1"] execVM "admintools\tools\skinChanger.sqf"';
-_EXECdate = 'EAT_PVEH_SetDate = [%1,%2,%3,%4,0]; setDate EAT_PVEH_SetDate; drn_fnc_DynamicWeather_SetWeatherLocal = {}; publicVariableServer "EAT_PVEH_SetDate"';
-_EXECcloud = 'EAT_PVEH_SetOvercast = %1; 5 setOvercast EAT_PVEH_SetOvercast; drn_fnc_DynamicWeather_SetWeatherLocal = {}; publicVariableServer "EAT_PVEH_SetOvercast"';
-_EXECfog = 'EAT_PVEH_SetFog = %1; 5 setFog EAT_PVEH_SetFog; drn_fnc_DynamicWeather_SetWeatherLocal = {}; publicVariableServer "EAT_PVEH_SetFog"';
-_EXECtempVeh = '["%1"] execVM "admintools\tools\addtempvehicle.sqf"';
+_EXECdate = 'EAT_PVEH_SetDate = [%1,%2,%3,%4,0]; setDate EAT_PVEH_SetDate; publicVariable "EAT_PVEH_SetDate"';
+_EXECcloud = 'EAT_PVEH_SetOvercast = %1; 5 setOvercast EAT_PVEH_SetOvercast; publicVariable "EAT_PVEH_SetOvercast"';
+_EXECfog = 'EAT_PVEH_SetFog = %1; 5 setFog EAT_PVEH_SetFog; publicVariable "EAT_PVEH_SetFog"';
+
 
 // Main menu
 if(isNil "EAT_mainMenu") then {
@@ -26,14 +26,16 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_mainMenu = EAT_mainMenu + [["Skin Change Menu >>", [], "#USER:EAT_skinMenu", -5, [["expression", ""]], "1", "1"]];
 	if(EAT_wtChanger)then{EAT_mainMenu = EAT_mainMenu + [["Weather/Time Menu >>", [], "#USER:EAT_weatherTimeMenu", -5, [["expression", ""]], "1", "1"]];};
 	if(EAT_ActionMenuPlayers && EAT_AllowContactAdmin)then{EAT_mainMenu = EAT_mainMenu + [["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"]];};
+	EAT_mainMenu = EAT_mainMenu + [["", [], "", -5, [["expression", ""]], "1", "0"], ["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 } else {
 	if ((getPlayerUID player) in EAT_modList) then { // Moderators
 		EAT_mainMenu = [["",true],["-- Epoch Admin Tools (Level: Mod) --", [], "", -5, [["expression", ""]], "1", "0"]];
 		EAT_mainMenu = EAT_mainMenu + [["Mod Menu >>", [], "#USER:EAT_modMenu", -5, [["expression", ""]], "1", "1"]];
-		EAT_mainMenu = EAT_mainMenu + [["Temporary Vehicle Menu >>", [], "#USER:EAT_vehicleTempMenu", -5, [["expression", ""]], "1", "1"]];
+		EAT_mainMenu = EAT_mainMenu + [["Graphical Vehicle Menu", [],"", -5, [["expression", format[_EXECgenTools,"addvehicleDialog.sqf"]]], "1", "1"]];
 		EAT_mainMenu = EAT_mainMenu + [["Teleport Menu >>",[],"#USER:EAT_teleportMenu", -5, [["expression", ""]], "1", "1"]];
 		EAT_mainMenu = EAT_mainMenu + [["Skin Change Menu >>", [], "#USER:EAT_skinMenu", -5, [["expression", ""]], "1", "1"]];
 		if(EAT_ActionMenuPlayers && EAT_AllowContactAdmin)then{EAT_mainMenu = EAT_mainMenu + [["Player Ticket Menu >>", [], "", -5, [["expression", format[_EXECgenTools,"contactAdminTickets.sqf"]]], "1", "1"]];};
+		EAT_mainMenu = EAT_mainMenu + [["", [], "", -5, [["expression", ""]], "1", "0"], ["Exit", [20], "", -5, [["expression", ""]], "1", "1"]];
 	};
 };
 
@@ -41,13 +43,13 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_adminMenu = [["",true]];
 	EAT_adminMenu = EAT_adminMenu + [["-- Administrator's Menu --", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_adminMenu = EAT_adminMenu + [["Admin Mode (F4 for options)",[],"", -5,[["expression",format[_EXECgenTools,"AdminMode\adminMode.sqf"]]],"1","1"]];
-	EAT_adminMenu = EAT_adminMenu + [["Point to Repair(Perm)",[],"", -5,[["expression", format[_EXECgenTools,"PointToRepairPERM.sqf"]]], "1", "1"]];
-	EAT_adminMenu = EAT_adminMenu + [["Point to Delete(Perm)",[],"", -5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
+	EAT_adminMenu = EAT_adminMenu + [["Point to Repair",[],"", -5,[["expression", format[_EXECgenTools,"PointToRepairPERM.sqf"]]], "1", "1"]];
+	EAT_adminMenu = EAT_adminMenu + [["Point to Delete",[],"", -5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECgenTools,"spectate.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Safe Zone Create/Delete",[],"", -5, [["expression", format[_EXECgenTools,"SafeZoneArea.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Zombie Shield",[],"", -5,[["expression",format[_EXECgenTools,"zombieshield.sqf"]]],"1","1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Zombie Spawner", [], "", -5, [["expression", format[_EXECgenTools,"zombieSpawn.sqf"]]], "1", "1"]];
-//	EAT_adminMenu = EAT_adminMenu + [["AI spawner", [], "", -5, [["expression", format[_EXECgenTools,"aiSpawn.sqf"]]], "1", "1"]];
+	EAT_adminMenu = EAT_adminMenu + [["AI spawner", [], "", -5, [["expression", format[_EXECgenTools,"aiSpawn.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Heal Players",[],"", -5, [["expression", format[_EXECgenTools,"healp.sqf"]]], "1", "1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Send Server Message",[],"", -5,[["expression",format[_EXECgenTools,"messageDialog.sqf"]]],"1","1"]];
 	EAT_adminMenu = EAT_adminMenu + [["Humanity Menu >>",[],"#USER:EAT_humanityMenu", -5, [["expression", ""]], "1", "1"]];
@@ -58,8 +60,8 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_modMenu = [["",true]];
 	EAT_modMenu = EAT_modMenu + [["-- Moderator's Menu --", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_modMenu = EAT_modMenu + [["Mod Mode (F4 for options)",[],"", -5,[["expression",format[_EXECgenTools,"AdminMode\modMode.sqf"]]],"1","1"]];
-	EAT_modMenu = EAT_modMenu + [["Point to Repair (Temp)",[],"",-5,[["expression", format[_EXECgenTools,"PointToRepair.sqf"]]], "1", "1"]];
-	EAT_modMenu = EAT_modMenu + [["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
+	EAT_modMenu = EAT_modMenu + [["Point to Repair",[],"", -5,[["expression", format[_EXECgenTools,"PointToRepairPERM.sqf"]]], "1", "1"]];
+	EAT_modMenu = EAT_modMenu + [["Point to Delete",[],"",-5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
 	EAT_modMenu = EAT_modMenu + [["Spectate player (F6 to cancel)",[],"", -5,[["expression", format[_EXECgenTools,"spectate.sqf"]]], "1", "1"]];
 	EAT_modMenu = EAT_modMenu + [["Heal Players",[],"",-5,[["expression", format[_EXECgenTools,"healp.sqf"]]], "1", "1"]];
 	EAT_modMenu = EAT_modMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
@@ -70,8 +72,6 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_vehicleMenu = EAT_vehicleMenu + [["-- Vehicle Menu --", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_vehicleMenu = EAT_vehicleMenu + [["Graphical Vehicle Menu", [],"", -5, [["expression", format[_EXECgenTools,"addvehicleDialog.sqf"]]], "1", "1"]];
 	EAT_vehicleMenu = EAT_vehicleMenu + [["Eject Players", [],"", -5, [["expression", format[_EXECgenTools,"ejectPlayers.sqf"]]], "1", "1"]];
-	EAT_vehicleMenu = EAT_vehicleMenu + [["Temporary Vehicle Menu >>", [], "#USER:EAT_vehicleTempMenu", -5, [["expression", ""]], "1", "1"]];
-	EAT_vehicleMenu = EAT_vehicleMenu + [["Locked Vehicle Menu >>", [], "#USER:EAT_vehicleKeyMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_vehicleMenu = EAT_vehicleMenu + [["Vehicle Tools >>", [], "#USER:EAT_vehicleTools", -5, [["expression", ""]], "1", "1"]];
 	EAT_vehicleMenu = EAT_vehicleMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_vehicleMenu = EAT_vehicleMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
@@ -81,24 +81,11 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_vehicleTools = EAT_vehicleTools + [["-- Vehicle Tools --", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Vehicle Locator",[],"",-5,[["expression", format[_EXECgenTools,"vehicleLocator.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Recover Vehicle Key",[],"",-5,[["expression", format[_EXECgenTools,"keyRecovery.sqf"]]], "1", "1"]];
-//	EAT_vehicleTools = EAT_vehicleTools + [["Point to Repair (Temp)", [],"", -5, [["expression", format[_EXECgenTools,"PointToRepair.sqf"]]], "1", "1"]];
-	EAT_vehicleTools = EAT_vehicleTools + [["Point to Repair (Perm)", [],"", -5, [["expression", format[_EXECgenTools,"PointToRepairPERM.sqf"]]], "1", "1"]];
-	EAT_vehicleTools = EAT_vehicleTools + [["Point to Revive Vehicle",[],"", -5,[["expression", format[_EXECgenTools,"PointToReviveVeh.sqf"]]], "1", "1"]];
-//	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete (Temp)", [],"", -5, [["expression", format[_EXECgenTools,"PointToDelete.sqf"]]], "1", "1"]];
-	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete (Perm)",[],"",-5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
+	EAT_vehicleTools = EAT_vehicleTools + [["Point to Repair", [],"", -5, [["expression", format[_EXECgenTools,"PointToRepairPERM.sqf"]]], "1", "1"]];
+	EAT_vehicleTools = EAT_vehicleTools + [["Point to Delete",[],"",-5,[["expression",format[_EXECgenTools,"DatabaseRemove.sqf"]]],"1","1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Flip Vehicle", [],"", -5, [["expression", format[_EXECgenTools,"flipVehicle.sqf"]]], "1", "1"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_vehicleTools = EAT_vehicleTools + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
-
-// Sub vehicle selection menu for permanent vehicles
-	EAT_vehicleKeyMenu = [["",true]];
-	EAT_vehicleKeyMenu = EAT_vehicleKeyMenu + [["-- Permanent Vehicles --", [], "", -5,[["expression", ""]], "1", "0"]];
-	EAT_vehicleKeyMenu = EAT_vehicleKeyMenu + [["Neutral Trader Menu", [],"", -5, [["expression", format[_EXECgenTools,"malveh\malvehiclemenuneutral.sqf"]]], "1", "1"]];
-	EAT_vehicleKeyMenu = EAT_vehicleKeyMenu + [["Friendly Trader Menu", [],"", -5, [["expression", format[_EXECgenTools,"malveh\malvehiclemenufriendly.sqf"]]], "1", "1"]];
-	EAT_vehicleKeyMenu = EAT_vehicleKeyMenu + [["Hero Trader Menu", [],"", -5, [["expression", format[_EXECgenTools,"malveh\malvehiclemenuhero.sqf"]]], "1", "1"]];
-	EAT_vehicleKeyMenu = EAT_vehicleKeyMenu + [["Bandit Trader Menu", [],"", -5, [["expression", format[_EXECgenTools,"malveh\malvehiclemenubandit.sqf"]]], "1", "1"]];
-	EAT_vehicleKeyMenu = EAT_vehicleKeyMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
-	EAT_vehicleKeyMenu = EAT_vehicleKeyMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
 //Main menu to handle humanity changing
 	EAT_humanityMenu = [["",true]];
@@ -113,11 +100,10 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	//	teleport to place Example: ["Name",[],"", -5, [["expression", '[x,y,z] execVM "admintools\tools\Teleport\teleportToLocation.sqf"']], "1", "1"]];
 	EAT_teleportMenu = [["",true]];
 	EAT_teleportMenu = EAT_teleportMenu + [["-- Teleport Menu --", [], "", -5,[["expression", ""]], "1", "0"]];
-	EAT_teleportMenu = EAT_teleportMenu + [["Teleport (F1)",[],"", -5,[["expression", format[_EXECgenTools,"Teleport\Teleport.sqf"]]], "1", "1"]];
-	EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Me (F2)",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\TPtoME.sqf"]]], "1", "1"]];
-	EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Player (F3)",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\TpToPlayer.sqf"]]], "1", "1"]];
-	EAT_teleportMenu = EAT_teleportMenu + [["Return Player to Last Pos",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\returnPlayerTP.sqf"]]], "1", "1"]];
-	//EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Starry",[],"", -5, [["expression", '[6325.6772,7807.7412,0] execVM "admintools\tools\Teleport\teleportToLocation.sqf"']], "1", "1"]];
+	EAT_teleportMenu = EAT_teleportMenu + [["Teleport (4 Key)",[],"", -5,[["expression", format[_EXECgenTools,"Teleport\Teleport.sqf"]]], "1", "1"]];
+	EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Me (5 Key)",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\TPtoME.sqf"]]], "1", "1"]];
+	EAT_teleportMenu = EAT_teleportMenu + [["Teleport To Player (6 Key)",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\TpToPlayer.sqf"]]], "1", "1"]];
+//	EAT_teleportMenu = EAT_teleportMenu + [["Return Player to Last Pos",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\returnPlayerTP.sqf"]]], "1", "1"]];
 	EAT_teleportMenu = EAT_teleportMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_teleportMenu = EAT_teleportMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
@@ -147,17 +133,19 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_skinMenu2 = EAT_skinMenu2 + [["Bandit Jane",[],"",-5,[["expression",format[_EXECskins,"BanditW2_DZ"]]],"1","1"]];
 	EAT_skinMenu2 = EAT_skinMenu2 + [["Invisible",[],"",-5,[["expression",format[_EXECskins,"Survivor1_DZ"]]],"1","1"]];
 	EAT_skinMenu2 = EAT_skinMenu2 + [["", [], "", -5,[["expression", ""]], "1", "0"]];
-	EAT_skinMenu = EAT_skinMenu + [["< Back", [], "#USER:EAT_skinMenu", -5, [["expression", ""]], "1", "1"]];
+	EAT_skinMenu2 = EAT_skinMenu2 + [["< Back", [], "#USER:EAT_skinMenu", -5, [["expression", ""]], "1", "1"]];
 
 // Weapon menu select
 	EAT_weaponMenu = [["",true]];
 	EAT_weaponMenu = EAT_weaponMenu + [["-- Weapons Menu --", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_weaponMenu = EAT_weaponMenu + [["Primary Weapons Menu >>",[],"#USER:EAT_primaryWeaponMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_weaponMenu = EAT_weaponMenu + [["Secondary Weapons Menu >>",[],"#USER:EAT_secondaryWeaponMenu", -5, [["expression", ""]], "1", "1"]];
-	EAT_weaponMenu = EAT_weaponMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_weaponMenu = EAT_weaponMenu + [["Gear/Items Menu >>",[],"#USER:EAT_gearMenu", -5, [["expression", ""]], "1", "1"]];
+	EAT_weaponMenu = EAT_weaponMenu + [["Delete all gear", [],"", -5, [["expression", format[_EXECgear,"removeGear.sqf"]]], "1", "1"]];
+	EAT_weaponMenu = EAT_weaponMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
+	EAT_weaponMenu = EAT_weaponMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
-// Main weapons like the M4
+	// Main weapons like the M4
 	// Entry Format:["Name", [],"", -5, [["expression", format[_EXECweapons,"Gun_Calss_Name","Ammo_Class_Name","Explosive_Round_Class_Name"]]], "1", "1"]];
 	// If there is no explosive 203 round then put "nil" in place of "Explosive_Round_Class_Name" 
 	EAT_primaryWeaponMenu = [["",true]];
@@ -165,16 +153,12 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["M4 Holo", [],"", -5, [["expression", format[_EXECweapons,"M4A1_HWS_GL_camo","30Rnd_556x45_Stanag","1Rnd_HE_M203"]]], "1", "1"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["M4A1_DZ GL SD Camo", [],"", -5, [["expression", format[_EXECweapons,"M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","1Rnd_HE_M203"]]], "1", "1"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["Sa58V ACOG", [],"", -5, [["expression", format[_EXECweapons,"Sa58V_RCO_EP1","30Rnd_762x39_SA58","nil"]]], "1", "1"]];
-	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["Aks Kobra", [],"", -5, [["expression", format[_EXECweapons,"AK74_Kobra_DZ","30Rnd_545x39_AK","nil"]]], "1", "1"]];
-	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["FN FAL", [],"", -5, [["expression", format[_EXECweapons,"FNFAL_DZ","20Rnd_762x51_FNFAL","nil"]]], "1", "1"]];
+	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["AKM Kobra", [],"", -5, [["expression", format[_EXECweapons,"AKM_Kobra_DZ","30Rnd_762x39_AK47","nil"]]], "1", "1"]];
+	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["FN FAL", [],"", -5, [["expression", format[_EXECweapons,"FNFAL_CCO_DZ","20Rnd_762x51_FNFAL","nil"]]], "1", "1"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["Mk 48", [],"", -5, [["expression", format[_EXECweapons,"Mk48_CCO_DZ","100Rnd_762x51_M240","nil"]]], "1", "1"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["AS50", [],"", -5, [["expression", format[_EXECweapons,"BAF_AS50_scoped","5Rnd_127x99_AS50","nil"]]], "1", "1"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [[".338 LAPUA", [],"", -5, [["expression", format[_EXECweapons,"BAF_LRR_scoped","5Rnd_86x70_L115A1","nil"]]], "1", "1"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["DMR_DZ", [],"", -5, [["expression", format[_EXECweapons,"DMR_DZ","20Rnd_762x51_DMR","nil"]]], "1", "1"]];
-	//EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["M14 Aim", [],"", -5, [["expression", format[_EXECweapons,"M14_CCO_DZ","20Rnd_762x51_DMR","nil"]]], "1", "1"]];
-	//EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["Pecheneg 50 cal", [],"", -5, [["expression", format[_EXECweapons,"Pecheneg_DZ","100Rnd_762x54_PK","nil"]]], "1", "1"]];
-	//EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["M16 ACOG", [],"", -5, [["expression", format[_EXECweapons,"M16A4_ACOG_DZ","30Rnd_556x45_Stanag","nil"]]], "1", "1"]];
-	//EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["M4 CCO SD", [],"", -5, [["expression", format[_EXECweapons,"M4A1_AIM_SD","30Rnd_556x45_StanagSD","nil"]]], "1", "1"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_primaryWeaponMenu = EAT_primaryWeaponMenu + [["Secondary Weapons", [], "#USER:EAT_secondaryWeaponMenu", -5, [["expression", ""]], "1", "1"]];
 
@@ -197,43 +181,43 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_gearMenu = EAT_gearMenu + [["Medical gear", [],"", -5, [["expression", format[_EXECgear,"medical.sqf"]]], "1", "1"]];
 	EAT_gearMenu = EAT_gearMenu + [["Alice Pack", [],"", -5, [["expression", format[_EXECbackpacks,"DZ_ALICE_Pack_EP1"]]], "1", "1"]];
 	EAT_gearMenu = EAT_gearMenu + [["Large Gun Bag", [],"", -5, [["expression", format[_EXECbackpacks,"DZ_LargeGunBag_EP1"]]], "1", "1"]];
-	EAT_gearMenu = EAT_gearMenu + [["Delete all gear", [],"", -5, [["expression", format[_EXECgear,"removeGear.sqf"]]], "1", "1"]];
 	EAT_gearMenu = EAT_gearMenu + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_gearMenu = EAT_gearMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
 // Main crate menu
 	EAT_crateMenu = [["",true]];
 	EAT_crateMenu = EAT_crateMenu + [["-- Crate Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_crateMenu = EAT_crateMenu + [["Private Crate Menu >>",[],"#USER:EAT_crateMenuPrivate", -5, [["expression", ""]], "1", "1"]];
-	EAT_crateMenu = EAT_crateMenu + [["Public Crate Menu >>",[],"#USER:EAT_crateMenuPublic", -5, [["expression", ""]], "1", "1"]];
+	EAT_crateMenu = EAT_crateMenu + [["Crate Menu >>",[],"#USER:EAT_crateMenu", -5, [["expression", ""]], "1", "1"]];
 	EAT_crateMenu = EAT_crateMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_crateMenu = EAT_crateMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
 
-// This menu creates a local (private) crate of items that ONLY the user can see
-	// Entry Format: ["name",[],"",-5,[["expression",format[_EXECcrates,"local","fileNAME.sqf"]]],"1","1"]];
-	EAT_crateMenuPrivate = [["",true]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["-- Private Crates --", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["Weapons Crate",[],"",-5,[["expression",format[_EXECcrates,"local","weapons.sqf"]]],"1","1"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["Items Crate",[],"",-5,[["expression",format[_EXECcrates,"local","items.sqf"]]],"1","1"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECcrates,"local","allweapons.sqf"]]],"1","1"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["Building Crate",[],"",-5,[["expression",format[_EXECcrates,"local","building.sqf"]]],"1","1"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["Backpack Tent",[],"",-5,[["expression",format[_EXECcrates,"local","backpack.sqf"]]],"1","1"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["Public Crates >>", [], "#USER:EAT_crateMenuPublic", -5, [["expression", ""]], "1", "1"]];
-	EAT_crateMenuPrivate = EAT_crateMenuPrivate + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
-
-// This menu creates a global (public) crate of items that EVERYONE can see
-	// Entry Format: ["name",[],"",-5,[["expression",format[_EXECcrates,"global","fileNAME.sqf"]]],"1","1"]];
-	EAT_crateMenuPublic = [["",true]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["-- Public Crates --", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["Weapons Crate",[],"",-5,[["expression",format[_EXECcrates,"global","weapons.sqf"]]],"1","1"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["Items Crate",[],"",-5,[["expression",format[_EXECcrates,"global","items.sqf"]]],"1","1"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECcrates,"global","allweapons.sqf"]]],"1","1"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["Building Crate",[],"",-5,[["expression",format[_EXECcrates,"global","building.sqf"]]],"1","1"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["Backpack Tent",[],"",-5,[["expression",format[_EXECcrates,"global","backpack.sqf"]]],"1","1"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["Private Crates >>", [], "#USER:EAT_crateMenuPrivate", -5, [["expression", ""]], "1", "1"]];
-	EAT_crateMenuPublic = EAT_crateMenuPublic + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
+// This menu selects a crate type to send to the server to spawn
+	// Entry Format: ["name",[],"",-5,[["expression",format[_EXECcrates,"cratetype"]]],"1","1"]];
+	EAT_crateMenu = [["",true]];
+	EAT_crateMenu = EAT_crateMenu + [["-- Crates --", [], "", -5, [["expression", ""]], "1", "0"]];
+	EAT_crateMenu = EAT_crateMenu + [["Epoch Weapons Crate",[],"",-5,[["expression",format[_EXECcrates,"EpochWeapons"]]],"1","1"]];
+	if(EAT_isOverpoch)then{EAT_crateMenu = EAT_crateMenu + [["Overwatch Weapons Crate",[],"",-5,[["expression",format[_EXECcrates,"OverwatchWeapons"]]],"1","1"]];};
+	EAT_crateMenu = EAT_crateMenu + [["Items Crate",[],"",-5,[["expression",format[_EXECcrates,"Items"]]],"1","1"]];
+	EAT_crateMenu = EAT_crateMenu + [["ALL Weapons/Items Crate",[],"",-5,[["expression",format[_EXECcrates,"AllWeapons"]]],"1","1"]];
+	EAT_crateMenu = EAT_crateMenu + [["Building Crate Menu >>",[],"#USER:EAT_BuildingCrateMenu", -5, [["expression", ""]], "1", "1"]];
+	EAT_crateMenu = EAT_crateMenu + [["Backpack Tent",[],"",-5,[["expression",format[_EXECcrates,"Backpack"]]],"1","1"]];
+	EAT_crateMenu = EAT_crateMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
+	EAT_crateMenu = EAT_crateMenu + [["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]];
+	
+	EAT_BuildingCrateMenu =
+	[
+		["",true],
+		["-- Building Crate Menu --", [], "", -5, [["expression", ""]], "1", "0"],
+		["Admin Building Kit",[],"",-5,[["expression",format[_EXECcrates,"AllItemsBuilding"]]],"1","1"],
+		["Small Cinder Kit",[],"",-5,[["expression",format[_EXECcrates,"smallCinderBuildingKit"]]],"1","1"],
+		["Medium Cinder Kit",[],"",-5,[["expression",format[_EXECcrates,"mediumCinderBuildingKit"]]],"1","1"],
+		["Large Cinder Kit",[],"",-5,[["expression",format[_EXECcrates,"largeCinderBuildingKit"]]],"1","1"],
+		["Small Wood Kit",[],"",-5,[["expression",format[_EXECcrates,"smallWoodBuildingKit"]]],"1","1"],
+		["Medium Wood Kit",[],"",-5,[["expression",format[_EXECcrates,"mediumWoodBuildingKit"]]],"1","1"],
+		["Large Wood Kit",[],"",-5,[["expression",format[_EXECcrates,"largeWoodBuildingKit"]]],"1","1"],
+		["", [], "", -5, [["expression", ""]], "1", "0"],
+		["Main Menu", [20], "#USER:EAT_mainMenu", -5, [["expression", ""]], "1", "1"]
+	];
 
 // Menu for changing time and weather
 	EAT_weatherTimeMenu = [["",true]];
@@ -304,7 +288,7 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_epochMenu = [["",true]];
 	EAT_epochMenu = EAT_epochMenu + [["-- Epoch Only Menu --", [], "", -5, [["expression", ""]], "1", "0"]];
 	EAT_epochMenu = EAT_epochMenu + [["Admin Build Menu >> ",[],"#USER:EAT_buildMenu", -5,[["expression",""]],"1","1"]];
-//	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
+	EAT_epochMenu = EAT_epochMenu + [["Base Manager Menu >>", [], "", -5, [["expression",format[_EXECgenTools,"base_manager.sqf"]]], "1", "1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Cursor Target Menu >>",[],"#USER:EAT_pointMenu", -5,[["expression",""]],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["Get current position",[],"",-5,[["expression",'[player] execVM "admintools\tools\getPosition.sqf"']],"1","1"]];
 	EAT_epochMenu = EAT_epochMenu + [["", [], "", -5, [["expression", ""]], "1", "0"]];
@@ -435,43 +419,6 @@ if ((getPlayerUID player) in EAT_adminList) then { // Administrators
 	EAT_buildExtras = EAT_buildExtras + [["Park Bench",[],"", -5,[["expression",format[_EXECadminBuild,"ParkBench_DZ"]]],"1","1"]];
 	EAT_buildExtras = EAT_buildExtras + [["", [], "", -5,[["expression", ""]], "1", "0"]];
 	EAT_buildExtras = EAT_buildExtras + [["< Back", [], "#USER:EAT_buildMenu", -5, [["expression", ""]], "1", "1"]];
-
-// Menu that spawns TEMPORARY air vehicles
-	EAT_vehicleTempMenu = [["",true]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["Spawn Temporary Vehicle -- AIR",[],"",-5,[["expression",""]],"1","0"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["MH-6J Little Bird",[],"",-5,[["expression",format[_EXECtempVeh,"MH6J_DZ"]]],"1","1"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["UH-60M Black Hawk",[],"",-5,[["expression",format[_EXECtempVeh,"UH60M_EP1_DZE"]]],"1","1"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["CH-47F Chinook",[],"",-5,[["expression",format[_EXECtempVeh,"CH_47F_EP1_DZE"]]],"1","1"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["MV-22 Osprey",[],"",-5,[["expression",format[_EXECtempVeh,"MV22_DZ"]]],"1","1"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["A-10 Jet",[],"",-5,[["expression",format[_EXECtempVeh,"A10"]]],"1","1"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["C-130J Super Hercules",[],"",-5,[["expression",format[_EXECtempVeh,"C130J_US_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["",[],"",-5,[["expression",""]],"1","0"]];
-	EAT_vehicleTempMenu = EAT_vehicleTempMenu + [["Next page >",[],"#USER:EAT_vehicleTempMenu2",-5,[["expression",""]],"1","1"]];
-
-// Menu2 that spawns TEMPORARY wheeled vehicles
-	EAT_vehicleTempMenu2 = [["",true]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["Spawn Temporary Vehicle -- WHEELED",[],"",-5,[["expression",""]],"1","0"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["SUV (Camo)",[],"",-5,[["expression",format[_EXECtempVeh,"SUV_Camo"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["Armored SUV",[],"",-5,[["expression",format[_EXECtempVeh,"ArmoredSUV_PMC_DZE"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["MTVR (Fuel)",[],"",-5,[["expression",format[_EXECtempVeh,"MtvrRefuel_DES_EP1_DZ"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["Ural Truck",[],"",-5,[["expression",format[_EXECtempVeh,"Ural_TK_CIV_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["Ikarus Bus",[],"",-5,[["expression",format[_EXECtempVeh,"Ikarus_TK_CIV_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["Mountain Bike",[],"",-5,[["expression",format[_EXECtempVeh,"MMT_USMC"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["Motorcycle",[],"",-5,[["expression",format[_EXECtempVeh,"M1030"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["ATV",[],"",-5,[["expression",format[_EXECtempVeh,"ATV_US_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["Next page >", [], "#USER:EAT_vehicleTempMenu3", -5, [["expression", ""]], "1", "1"]];
-	EAT_vehicleTempMenu2 = EAT_vehicleTempMenu2 + [["< Back", [], "#USER:EAT_vehicleTempMenu", -5, [["expression", ""]], "1", "1"]];
-
-// Menu that spawns TEMPORARY vehicles with treads (tanks)
-	EAT_vehicleTempMenu3 = [["",true]];
-	EAT_vehicleTempMenu3 = EAT_vehicleTempMenu3 + [["Spawn Temporary Vehicle -- TRACKED",[],"",-5,[["expression",""]],"1","0"]];
-	EAT_vehicleTempMenu3 = EAT_vehicleTempMenu3 + [["M1A1",[],"",-5,[["expression",format[_EXECtempVeh,"M1A1_US_DES_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu3 = EAT_vehicleTempMenu3 + [["M1A2 TUSK",[],"",-5,[["expression",format[_EXECtempVeh,"M1A2_US_TUSK_MG_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu3 = EAT_vehicleTempMenu3 + [["M270 MLRS",[],"",-5,[["expression",format[_EXECtempVeh,"MLRS_DES_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu3 = EAT_vehicleTempMenu3 + [["T-34",[],"",-5,[["expression",format[_EXECtempVeh,"T34_TK_EP1"]]],"1","1"]];
-	EAT_vehicleTempMenu3 = EAT_vehicleTempMenu3 + [["", [], "", -5, [["expression", ""]], "1", "0"]];
-	EAT_vehicleTempMenu3 = EAT_vehicleTempMenu3 + [["< Back", [], "#USER:EAT_vehicleTempMenu2", -5, [["expression", ""]], "1", "1"]];
 };
 
 showCommandingMenu "#USER:EAT_mainMenu";

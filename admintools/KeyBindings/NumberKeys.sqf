@@ -15,13 +15,13 @@
 	To remove all function key support simply delete or comment out the lines in this file.
 */
 
-// reserved for espenhanced.sqf
-// N2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 3) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
-// N3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 4) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
-// N4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 5) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
-// N5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 6) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
-// N6_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 7) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
-// N7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 8) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
+// N1_KEY reserved for weapon switching
+// N2_KEY reserved for weapon switching
+// N3_KEY reserved for weapon switching
+N4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 5) then {[] execVM ""admintools\tools\Teleport\Teleport.sqf"";true};"];
+N5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 6) then {[] execVM ""admintools\tools\Teleport\TPtoME.sqf"";true};"];
+N6_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 7) then {[] execVM ""admintools\tools\Teleport\TpToPlayer.sqf"";true};"];
+// N7_KEY reserved for enhanced esp
 // N8_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 9) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 // N9_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 10) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 // N0_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 11) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];

@@ -26,7 +26,7 @@ if(fastWalkMove) then {
 	fastWalk_keyForward = (findDisplay 46) displayAddEventHandler ["KeyDown","if (((_this select 1) == 17) && (_this select 2)) then {call fastWalkForward;};"];
 	fastWalk_keyLeft = (findDisplay 46) displayAddEventHandler ["KeyDown","if (((_this select 1) == 30) && (_this select 2)) then {call fastWalkLeft;}"];
 	fastWalk_keyRight = (findDisplay 46) displayAddEventHandler ["KeyDown","if (((_this select 1) == 32) && (_this select 2)) then {call fastWalkRight;}"];
-	2 cutText ["Hold shift and W","PLAIN",0.75];
+	"Hold shift and W" call dayz_rollingMessages;
 } else {
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", fastWalk_keyForward];
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", fastWalk_keyLeft];

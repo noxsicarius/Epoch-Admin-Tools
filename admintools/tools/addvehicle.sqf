@@ -5,8 +5,6 @@ _dir = getdir vehicle _player;
 _pos = getPos vehicle _player;
 _pos = [(_pos select 0)+8*sin(_dir),(_pos select 1)+8*cos(_dir),0];
  
-cutText ["Starting Spawn...", "PLAIN DOWN"];
- 
 // First select key color
 _keyColor = ["Green","Red","Blue","Yellow","Black"] call BIS_fnc_selectRandom;
  
@@ -25,19 +23,21 @@ if (_isOk and _isKeyOK) then {
  
 	_dir = round(random 360); 
 	_helipad = nearestObjects [_player, ["HeliHCivil","HeliHempty"], 100];
-
+	
+	/*
 	if(count _helipad > 0) then {
 		_location = (getPosATL (_helipad select 0));
 	} else {
 		_location = _pos;
 	};
-	
+	*/
+	_location = _pos;
 	if(count _location != 0) then {
 		//place vehicle spawn marker (local)
-		PVDZE_veh_Publish2 = [[_dir,_location],_vehtospawn,false,_keySelected,_player];
+		PVDZE_veh_Publish2 = [[_dir,_location],_vehtospawn,false,_keySelected,_player,dayz_authKey];
 		publicVariableServer  "PVDZE_veh_Publish2";
 		
-		cutText ["Vehicle spawned, key added to toolbelt.", "PLAIN DOWN"];
+		"Vehicle spawned, key added to toolbelt." call dayz_rollingMessages;
 
 		// Tool use logger
 		if(EAT_logMajorTool) then {
@@ -46,8 +46,8 @@ if (_isOk and _isKeyOK) then {
 		};
 	} else {
 		_removeitem = [_player, _config] call BIS_fnc_invRemove;
-		cutText ["Could not find an area to spawn vehicle.", "PLAIN DOWN"];
+		"Could not find an area to spawn vehicle." call dayz_rollingMessages;
 	};
 } else {
-	cutText ["Your toolbelt is full.", "PLAIN DOWN"];
+	"Your toolbelt is full." call dayz_rollingMessages;
 };

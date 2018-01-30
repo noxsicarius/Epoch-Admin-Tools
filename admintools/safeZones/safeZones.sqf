@@ -7,8 +7,8 @@ if (isNil "canbuild") then {canbuild = true;};
 if (isNil "EAT_playerGod2") then {EAT_playerGod2 = false;};
 if (isNil "EAT_vehicleGod2") then {EAT_vehicleGod2 = false;};
 
-_enterMsg = "*** PROTECTED ZONE! No stealing or shooting allowed ***";
-_exitMsg = "*** GOD MODE DISABLED! You can now be damaged ***";
+_enterMsg = "*** SAFE ZONE! No stealing or shooting allowed ***";
+_exitMsg = "*** LEAVING SAFE ZONE! You can now be damaged ***";
 _EH_weaponFirePlayer = 1;
 _EH_weaponFireVehicle = 1;
 
@@ -19,7 +19,11 @@ _fnc_enterZonePlayer = {
 	inZone = true;
 	_player = player;
 	
-	if(EAT_szUseHint) then {hint _enterMsg;} else { cutText[_enterMsg,"PLAIN DOWN"];};
+	call {
+	if (EAT_messageType == "DynamicText") exitWith {[format["<t size='0.70' color='#00cc00' align='center'>%1</t>",_enterMsg],0,-0.3,8,0.5] spawn BIS_fnc_dynamicText;};
+	if (EAT_messageType == "cutText") exitWith {cutText[_enterMsg,"PLAIN DOWN"];};
+	if (EAT_messageType == "Hint") exitWith {hint _enterMsg;};
+	};
 	
 	if(!EAT_isAdmin || (EAT_isAdmin && !EAT_szAdminWeapon)) then {_EH_weaponFirePlayer = _player addEventHandler ["Fired", {deleteVehicle (nearestObject [_this select 0,_this select 4]);cutText ["***ALL weapons disabled inside Safe Zones***","WHITE IN",2];}];};
 	
@@ -58,7 +62,11 @@ _fnc_enterZoneVehicle = {
 _fnc_exitZone = {
 	private["_veh","_inZone","_player"];
 	
-	if(EAT_szUseHint) then {hint _exitMsg;} else { cutText[_exitMsg,"PLAIN DOWN"];};
+	call {
+	if (EAT_messageType == "DynamicText") exitWith {[format["<t size='0.70' color='#00cc00' align='center'>%2</t>",_exitMsg],0,-0.3,8,0.5] spawn BIS_fnc_dynamicText;};
+	if (EAT_messageType == "cutText") exitWith {cutText[_exitMsg,"PLAIN DOWN"];};
+	if (EAT_messageType == "Hint") exitWith {hint _exitMsg;};
+	};
 	
 	_player = player;
 	_veh = vehicle _player;
@@ -89,7 +97,6 @@ _fnc_exitZone = {
 _fnc_clearZombies = {
 	private["_zombies"];
 	_zombies = (vehicle player) nearEntities ["zZombie_Base",EAT_szZombieDistance];
-	
 	// Kill and hide zombies
 	if((count _zombies) > 0) then {
 		{
@@ -103,13 +110,14 @@ _fnc_clearZombies = {
 
 		if((count _zombies) > 0) then {
 			// Failure to delay entity delete results in RPT spam of lost _agent
-			Sleep 2;
+			uiSleep 2;
 			{
 				deleteVehicle _x;
 			} forEach _zombies;	
 		};
 	};
 };
+
 
 // Deletes AI near the zone
 _fnc_clearAI = {
@@ -128,7 +136,7 @@ _fnc_clearAI = {
 		} forEach _aiUnits;
 		
 		if((count _aiUnits) > 0) then {
-			Sleep 2;
+			uiSleep 2;
 			{
 				deleteVehicle _x;
 			}forEach _aiUnits;
@@ -148,7 +156,7 @@ _fnc_speedLimitEnforcer = {
 			if(_speed > 70) then {_slowPercent = 0.4;}else{if(_speed>50)then{_slowPercent = 0.6;};};
 			_veh setVelocity [(_vel select 0) * _slowPercent,(_vel select 1) * _slowPercent,(_vel select 2) * _slowPercent];
 		};
-		Sleep 0.3;
+		uiSleep 0.3;
 	};
 };
 	
@@ -167,7 +175,7 @@ _fnc_antiTheft = {
 				_ct = nil;
 			};
 		};
-		if(!isNull (FindDisplay 106) && (!isNull _ct && !_friend)) then {
+		if(!isNull (FindDisplay 106) && (!isNull _ct && !_friend && isPlayer _ct)) then {
 			(findDisplay 106) closeDisplay 1;
 			waitUntil {isNull (FindDisplay 106)};
 			createGearDialog [(player), 'RscDisplayGear'];
@@ -219,5 +227,5 @@ while {true} do	{
 	} else {
 		if(inZone) then {call _fnc_exitZone;};
 	};
-	Sleep 1;
+	uiSleep 0.5;
 };

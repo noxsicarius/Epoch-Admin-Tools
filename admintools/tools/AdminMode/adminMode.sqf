@@ -32,11 +32,11 @@ optionMenu =
 };
 
 if(EAT_AdminMode) then {
-	2 cutText ["***Press F4 to toggle AdminMode options***","PLAIN",0.75];
+	"***Press F4 to toggle AdminMode options***" call dayz_rollingMessages;
 	F4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 62) then {call optionMenu;};"];
 	call EAT_AdminToggle;
 } else{
-	titleText ["Admin Mode - DISABLED","PLAIN DOWN"];titleFadeOut 3;
+	"Admin Mode - DISABLED" call dayz_rollingMessages;
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F4_KEY];
 	call EAT_AdminToggle;
 };

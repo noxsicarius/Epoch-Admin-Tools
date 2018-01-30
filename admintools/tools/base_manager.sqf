@@ -91,6 +91,18 @@ BCBaseList = [
 			["CinderWallHalf_DZ",[-6.29492,-10.5371,3.37958],240.211],
 			["WoodStairsSans_DZ",[12.2749,-1.63672,-2.20044],149.947]
 		]
+	],
+		[
+		"Base2", //Name the base
+		"Bambi Bunker", //give it a display name
+		[0,23,0], //This is the distance the base will spawn from you
+		[
+			["MetalFloor_DZ",[-0.635254,-0.428711,3.1275],124.745],
+			["CinderWall_DZ",[0.869141,1.74072,-0.076416],214.745],
+			["CinderWall_DZ",[1.53467,-1.93359,-0.076355],304.745],
+			["CinderWall_DZ",[-2.80469,1.07617,-0.0765076],124.745],
+			["CinderWallDoorSmall_DZ",[-2.13965,-2.59863,-0.0762634],34.7454]
+		]
 	] // to add a base place a comma here. ex: ],
 	//add base from server/EpochAdminToolLogs/SavedBases here
 ];
@@ -99,45 +111,40 @@ if(isNil "BD_Buildables") then {BD_Buildables = true;};
 if(isNil "BD_PlotPoles") then {BD_PlotPoles = true;};
 if(isNil "BD_vehicles") then {BD_vehicles = true;};
 if(isNil "BCCurrentBase") then {BCCurrentBase = [];};
+if(isNil "BC_BuildVector") then {BC_BuildVector = [];};
 
 // Temp variables to fix the trader dialogue issue
-private ["_TraderDialogLoadItemList","_TraderDialogShowPrices","_TraderDialogSell","_player"];
+private ["_player"];
 _player = player;
-_TraderDialogLoadItemList = TraderDialogLoadItemList;
-_TraderDialogShowPrices = TraderDialogShowPrices;
-_TraderDialogSell = TraderDialogSell;
 
-TraderDialogLoadItemList = {};
-TraderDialogShowPrices = {};
-TraderDialogSell = {};
-
-TraderDialogBuy = {
-	systemChat str [lbCurSel 12000, lbCurSel 12001];
-	[lbCurSel 12000, lbCurSel 12001] spawn {
+fn_BCSelect = {
+	systemChat str [lbCurSel 14000];
+	[lbCurSel 14000] spawn {
 		private ["_pindex", "_bindex", "_base", "_player", "_base_objects"];
 		systemChat str _this;
-		_pindex = _this select 0;
-		_bindex = _this select 1;
-		if (_pindex < 0 or _bindex < 0) exitWith {};
+		//_pindex = _this select 0;
+		_bindex = _this select 0;
+		if (_bindex < 0) exitWith {};
 		_base = BCBaseList select _bindex;
-		_player = BCNearbyList select _pindex;
+		//_player = BCNearbyList select _pindex;
 		_attach_position = player modelToWorld (_base select 2);
 		_attach_position set [2, getPosASL player select 2];
-		_base_objects = [_base select 3, _attach_position, _player] call fn_BCCreateBase;
+		_base_objects = [_base select 3, _attach_position, player] call fn_BCCreateBase;
 		[_base_objects] call fn_BCBuildbase;
 	};
 };
 
 fn_BCInsert = {
-	createdialog "TraderDialog";
-	lbClear 12000;
-	lbClear 12001;
-	ctrlShow [12005, false];
+	createdialog "EAT_BaseManager_Dialog";
+	//lbClear 12000;
+	lbClear 14000;
+	//ctrlShow [12005, false];
 	{
-		lbAdd [12001, format["%1 (%2)", _x select 1, _x select 0]];
+		lbAdd [14000, format["%1 (%2)", _x select 1, _x select 0]];
 		true
 	} count BCBaseList;
 
+	/*
 	BCNearbyList = [];
 	{
 		if (_x isKindOf "Man" and !(_x isKindOf "zZombie_base")) then {
@@ -146,6 +153,7 @@ fn_BCInsert = {
 		};
 		true
 	} count (player nearEntities ["CAManBase", 10]);
+	*/
 };
 
 fn_BCSetCenter = {
@@ -175,7 +183,7 @@ fn_BCSetRadius = {
 			private["_a", "_b", "_obj"];
 			_a = (BC_Center select 0) + (sin(_angle)*BC_radius);
 			_b = (BC_Center select 1) + (cos(_angle)*BC_radius);
-			_obj = createVehicle ["Sign_sphere100cm_EP1", [0,0,0], [], 0, "CAN_COLLIDE"];
+			_obj = "Sign_sphere100cm_EP1" createVehicleLocal [0,0,0];
 			_obj setPosASL [_a, _b, BC_center select 2];
 			_objects set [count _objects, _obj];
 			_angle = _angle + (360/_count);
@@ -186,7 +194,7 @@ fn_BCSetRadius = {
 			private["_a", "_b", "_obj"];
 			_a = (BC_Center select 0) + (sin(_angle)*BC_radius);
 			_b = (BC_Center select 2) + (cos(_angle)*BC_radius);
-			_obj = createVehicle ["Sign_sphere100cm_EP1", [0,0,0], [], 0, "CAN_COLLIDE"];
+			_obj = "Sign_sphere100cm_EP1" createVehicleLocal [0,0,0];
 			_obj setPosASL [_a, BC_center select 1, _b];
 			_objects set [count _objects, _obj];
 			_angle = _angle + (360/_count);
@@ -197,13 +205,13 @@ fn_BCSetRadius = {
 			private["_a", "_b", "_obj"];
 			_a = (BC_Center select 1) + (sin(_angle)*BC_radius);
 			_b = (BC_Center select 2) + (cos(_angle)*BC_radius);
-			_obj = createVehicle ["Sign_sphere100cm_EP1", [0,0,0], [], 0, "CAN_COLLIDE"];
+			_obj = "Sign_sphere100cm_EP1" createVehicleLocal [0,0,0];
 			_obj setPosASL [BC_center select 0, _a, _b];
 			_objects set [count _objects, _obj];
 			_angle = _angle + (360/_count);
 		};
 
-		sleep 30;
+		uiSleep 30;
 		{deleteVehicle _x; true } count _objects;
 	};
 };
@@ -250,7 +258,7 @@ fn_BCExport = {
 
 	// Tool use logger
 	if(EAT_logMinorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has exported a base",name _player,getPlayerUID _player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has exported a base",name player,getPlayerUID player];
 		publicVariable "EAT_PVEH_usageLogger";
 	};
 
@@ -292,7 +300,7 @@ fn_BCPaste = {
 	private ["_dimensions", "_attach_position", "_base_objects"];
 	if (isNil "BCCopiedBase") exitWith
 	{
-		systemChat "No base has been copied";
+		"No base has been copied" call dayz_rollingmessages;
 	};
 	_dimensions = BCCopiedBase call fn_BCGetDimensions;
 	_attach_position = player modelToWorld [0, ((_dimensions select 0) max (_dimensions select 1)), 0];
@@ -303,7 +311,7 @@ fn_BCPaste = {
 
 	// Tool use logger
 	if(EAT_logMajorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has pasted a copied base",name _player,getPlayerUID _player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has pasted a copied base",name player,getPlayerUID player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};	
 };
@@ -350,11 +358,9 @@ fn_BCConfirmDelete = {
 	_objects = nearestObjects [[_position select 0, _position select 1], _objectClasses, _distance];
 
 	{
-		//_x setDamage 1;
-		deleteVehicle _x;
 		_objectID = _x getVariable ["ObjectID", "0"];
 		_objectUID = _x getVariable ["ObjectUID", "0"];
-		PVDZ_obj_Destroy = [_objectID, _objectUID, (name player)];
+		PVDZ_obj_Destroy = [_objectID, _objectUID, player, _x, dayz_authKey];
 		publicVariableServer "PVDZ_obj_Destroy";
 	} forEach _objects;
 
@@ -362,21 +368,24 @@ fn_BCConfirmDelete = {
 
 	// Tool use logger
 	if(EAT_logMajorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name _player,getPlayerUID _player,count _objects];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has deleted %3 items using deletebase",name player,getPlayerUID player,count _objects];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
 
 fn_BCSaveToDb = {
 	{
-		PVDZ_obj_Publish = [_x getVariable ["CharacterID", dayz_characterID],_x,[getDir _x, getPosATL _x], typeOf _x];
+		_x setVariable ["CharacterID",dayz_characterID,true];
+		
+		PVDZ_obj_Publish = [dayz_characterID,_x,[getDir _x,getPosATL _x,BC_BuildVector],[],player,dayz_authKey];
 		publicVariableServer "PVDZ_obj_Publish";
-	} count BCCurrentBase;
+			
+	} forEach BCCurrentBase;
 	[format["<t size='0.6'>Added %1 objects to database</t>", count BCCurrentBase],0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 	
 	// Tool use logger
 	if(EAT_logMajorTool) then {
-		EAT_PVEH_usageLogger = format["%1 %2 -- has placed a saved base",name _player,getPlayerUID _player];
+		EAT_PVEH_usageLogger = format["%1 %2 -- has placed a saved base",name player,getPlayerUID player];
 		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 	};
 };
@@ -424,14 +433,17 @@ fn_BCCreateBase = {
 		];
 		_object attachTo [player];
 		_object setDir ((_x select 2) - getDir player);
+
 		if (count _x == 4) then {
 			_orig_obj = _x select 3;
 			_object setVariable ["CharacterID", _orig_obj getVariable ["CharacterID", ""], true];
 		};
+
 		if (!isNil "_player") then {
 			_object setVariable ["CharacterID", (_player getVariable ["CharacterID","0"]), true];
 		};
 		_objects set [count _objects, _object];
+
 		true
 	} count _items;
 	_objects
@@ -454,7 +466,7 @@ fn_BCBuildbase = {
 	_place = false;
 	while {!_finished} do {
 		private ["_player_direction"];
-		["<t size='0.6'>SPACE: Place | Q/R: Rotate | PgUp/PgDn: Height</t>",0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
+		["<t size='0.6'>SPACE: Place | Q/E: Rotate | PgUp/PgDn: Height</t>",0,0.8,0.5,0,0,8] spawn BIS_fnc_dynamicText;
 		_player_direction = getDir player;
 		if (DZE_Q or DZE_Z) then {
 			{
@@ -527,7 +539,6 @@ fn_BCGetDimensions = {
 		if ((_position select 0) > _xmax) then {
 			_xmax = _position select 0;
 		};
-		
 		if ((_position select 1) < _ymin) then {
 			_ymin = _position select 1;
 		};
@@ -562,7 +573,3 @@ BCBaseSaveMenu = [
 ];
 
 showCommandingMenu "#USER:BCMainMenu";
-
-TraderDialogLoadItemList = _TraderDialogLoadItemList;
-TraderDialogShowPrices = _TraderDialogShowPrices;
-TraderDialogSell = _TraderDialogSell;
