@@ -58,7 +58,7 @@ EAT_areaGodMode = false;
 /****************** Client Public Variables ******************/
 	// Broadcast server message to clients
 	"EAT_PVEH_serverMessage" addPublicVariableEventHandler {
-		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,0,10,2,0,8] spawn BIS_fnc_dynamicText;
+		[format["<t size='0.8' color='#ff0000' font='Zeppelin33'>%1</t>", _this select 1],0,-.2,10,2,0,8] spawn BIS_fnc_dynamicText;
 	};
 	
 	"EAT_teleportFixClient" addPublicVariableEventHandler {
