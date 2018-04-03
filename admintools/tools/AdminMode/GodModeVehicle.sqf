@@ -22,7 +22,7 @@ while{alive (vehicle player) && EAT_vehicleGod2} do
 	if(EAT_vehicleGod2) then {
 		_vehicle = (vehicle player);
 		_vehicle setfuel 1;
-		_vehicle setdammage 0;
+		_vehicle setdamage 0;
 		
 		_vehicle removeAllEventHandlers "handleDamage";
 		_vehicle addEventHandler ["handleDamage", {false}];

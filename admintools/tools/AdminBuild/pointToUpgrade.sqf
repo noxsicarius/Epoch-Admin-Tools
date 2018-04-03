@@ -32,6 +32,7 @@ if ((count _upgrade) > 0) then {
 
 	_location	= _obj getVariable["OEMPos",(getposATL _obj)];			// Get position
 	_dir = getDir _obj;													// Get direction
+	_vector = [(vectorDir _obj),(vectorUp _obj)];
 	_objectCharacterID 	= _obj getVariable ["CharacterID","0"];			// Current charID
 	_classname = _newclassname;
 	_object = createVehicle [_classname, [0,0,0], [], 0, "CAN_COLLIDE"];// Create new object 
@@ -50,9 +51,15 @@ if ((count _upgrade) > 0) then {
 	} else {	
 		cutText [format[(localize "str_epoch_player_159"),_text], "PLAIN DOWN", 5];
 	};
-
-	PVDZE_obj_Swap = [_objectCharacterID,_object,[_dir,_location],_classname,_obj,player];
-	publicVariableServer "PVDZE_obj_Swap";
+	
+	if (DZE_permanentPlot) then {
+			_ownerID = _obj getVariable["ownerPUID","0"];
+			_object setVariable ["ownerPUID",_ownerID,true];
+			PVDZE_obj_Swap = [_objectCharacterID,_object,[_dir,_location,dayz_playerUID,_vector],_classname,_obj,player,[],dayz_authKey];
+		} else {
+			PVDZE_obj_Swap = [_objectCharacterID,_object,[_dir,_location, _vector],_classname,_obj,player,[],dayz_authKey];
+		};
+		publicVariableServer "PVDZE_obj_Swap";
 
 	player reveal _object;
 

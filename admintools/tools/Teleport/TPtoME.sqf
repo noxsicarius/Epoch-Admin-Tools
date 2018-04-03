@@ -23,13 +23,13 @@ if (pselect5 != "exit" && pselect5 != "") then {
 		if(name _x == _name) then {
 			_UID = (getPlayerUID _x);
 			
-			EAT_returnPlayer = [_x, (getPos _x)]; // Used to return player to last position
+			EAT_returnPlayer = [_x, (getPosATL _x)]; // Used to return player to last position
 			EAT_tempList = EAT_tempList + [_UID];
 			
 			EAT_PVEH_teleportFix = ["add",_UID];
 			publicVariableServer "EAT_PVEH_teleportFix";
 			
-			titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
+			format["Teleporting %1", _name] call dayz_rollingMessages;
 			
 			sleep 1; // Give the clients time to receive the propagated antihack bypass.
 			

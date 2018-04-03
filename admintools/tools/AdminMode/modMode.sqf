@@ -26,10 +26,10 @@ optionMenu =
 };
 
 if(modMode) then {
-	titleText ["***Press F4 to toggle Mod-Mode options***","PLAIN"];titleFadeOut 5;
+	"***Press F4 to toggle Mod-Mode options***" call dayz_rollingMessages;
 	F4_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 62) then {call optionMenu;};"];
 }else{
-	titleText ["Mod Mode - DISABLED","PLAIN DOWN"];titleFadeOut 3;
+	"Mod Mode - DISABLED" call dayz_rollingMessages;
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F4_KEY];
 };
 

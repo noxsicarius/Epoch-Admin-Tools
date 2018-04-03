@@ -3,7 +3,7 @@ EAT_helpQueueMenu =
 ["",true],
 	["Teleport to player", [], "", -5, [["expression", "[] spawn fn_tpToPlayer"]], "1", "1"],
 	["Teleport player to you", [], "", -5, [["expression", "[] spawn fn_tpToMe"]], "1", "1"],
-	["Return Player to Last Pos",[],"", -5, [["expression", format[_EXECgenTools, "Teleport\returnPlayerTP.sqf"]]], "1", "1"],
+	["Return Player to Last Pos",[],"", -5, [["expression", 'player execVM "admintools\tools\Teleport\returnPlayerTP.sqf"']], "1", "1"],
 	["Remove a player from queue", [], "", -5, [["expression", "[] spawn fn_removeFromQueue"]], "1", "1"],
 	["", [], "", -5, [["expression", ""]], "1", "0"],
 		["Exit", [20], "", -5, [["expression", ""]], "1", "1"]
@@ -34,7 +34,7 @@ fn_tpToPlayer = {
 			if(name _x == _name) then
 			{
 				if(alive _x) then {
-					titleText[format["Teleporting to %1", _name],"PLAIN DOWN"];
+					format["Teleporting to %1", _name] call dayz_rollingMessages;
 					(vehicle _player) attachTo [_x, [2, 2, 0]];
 					sleep 0.25;
 					detach (vehicle _player);
@@ -45,7 +45,7 @@ fn_tpToPlayer = {
 						[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 					};
 				} else {
-					cutText[format["%1 is no longer alive, removing from queue",_name],"PLAIN DOWN",2];
+					format["%1 is no longer alive, removing from queue",_name] call dayz_rollingMessages;
 				};
 				breakOut "fn_tpToPlayer";
 			};
@@ -90,7 +90,7 @@ fn_tpToMe = {
 					EAT_PVEH_teleportFix = ["add",_UID];
 					publicVariableServer "EAT_PVEH_teleportFix";
 					
-					titleText[format["Teleporting %1", _name],"PLAIN DOWN"];
+					format["Teleporting %1", _name] call dayz_rollingMessages;
 
 					sleep 1; // Give the server time to register the antihack bypass.
 					_x attachTo [vehicle _player, [2, 2, 0]];
@@ -107,7 +107,7 @@ fn_tpToMe = {
 						[] spawn {publicVariable "EAT_PVEH_usageLogger";};
 					};
 				} else {
-					cutText["Player is no longer alive, removing from queue","PLAIN DOWN",2];
+					"Player is no longer alive, removing from queue" call dayz_rollingMessages;
 				};
 
 				breakOut "fn_tpToMe";

@@ -1,2 +1,2 @@
 //new
-5 !="this enableSimulation false;this allowDamage false;this disableAI 'FSM';this disableAI 'ANIM';this disableAI 'MOVE';" !"_hide = format["{ if(((getPlayerUID _x) == '%1')) then { _x hideObject %2; }; } forEach playableUnits;", (getPlayerUID player), invis];"
+5 !="this enableSimulation false;this allowDamage false;this disableAI 'FSM';this disableAI 'ANIM';this disableAI 'MOVE';" !"')) then { _x hideObject true; }; } forEach playableUnits;" !"')) then { _x hideObject false; }; } forEach playableUnits;"

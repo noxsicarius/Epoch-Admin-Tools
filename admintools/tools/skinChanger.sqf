@@ -23,7 +23,7 @@ if(_bagType !="") then {
 	if(_bagType in _backPacks) then
 	{
 		(vehicle _player) addBackpack _bagType;
-		sleep 0.1;
+		uiSleep 0.1;
 	
 		_array1 = _bagWeapons select 0;
 		_array2 = _bagWeapons select 1;

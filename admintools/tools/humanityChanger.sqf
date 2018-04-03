@@ -33,7 +33,7 @@ if(_addOrRemove != "reset") then {
 	};
 
 	_target setVariable["humanity", _humanity + humanityGain, true];
-	cutText [format["%1 humanity has been added (total: %2) for player %3", humanityGain, _humanity + humanityGain, name _target],"PLAIN DOWN"]; titleFadeOut 10;
+	format["%1 humanity has been added (total: %2) for player %3", humanityGain, _humanity + humanityGain, name _target] call dayz_rollingMessages;
 
 	// Tool use logger
 	if(EAT_logMinorTool) then {
@@ -43,7 +43,7 @@ if(_addOrRemove != "reset") then {
 }else{
 	humanityGain = _humanity - (_humanity * 2);
 	_target setVariable["humanity", 2500, true];
-	cutText [format["Humanity reset to 2500 for player %1", name _target],"PLAIN DOWN"]; titleFadeOut 10;
+	format["Humanity reset to 2500 for player %1", name _target] call dayz_rollingMessages;
 
 	// Tool use logger
 	if(EAT_logMinorTool) then {

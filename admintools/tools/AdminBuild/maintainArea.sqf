@@ -16,7 +16,7 @@ _findNearestPole = [];
 } count _target;
 
 _IsNearPlot = count (_findNearestPole);
-if(_IsNearPlot < 1) exitWith {s_player_maintain_area_preview = -1;s_player_maintain_area = -1; titleText["No plot pole found in 20 meters","PLAIN DOWN"];titleFadeOut 4;};
+if(_IsNearPlot < 1) exitWith {s_player_maintain_area_preview = -1;s_player_maintain_area = -1; "No plot pole found in 20 meters" call dayz_rollingMessages;};
 _target = _target select 0;
 _objectClasses = DZE_maintainClasses;
 _range = DZE_maintainRange; // set the max range for the maintain area

@@ -8,17 +8,17 @@ if((!(_playerName in EAT_helpQueue)) && (!(_cancel)) && (helpCount < EAT_antiSpa
 	EAT_helpQueue = EAT_helpQueue + [_playerName];
 	EAT_PVEH_contactAdmin = ["add", _playerName];
 	[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
-	cutText["An admin will be with you shortly", "PLAIN DOWN", 4];
+	"An admin will be with you shortly" call dayz_rollingMessages;
 	if(EAT_enableAntiSpam) then {helpCount = helpCount + 1;};
 } else {
 	if(_cancel) then {
 		if(_playerName in EAT_helpQueue) then {
-			cutText["Cancelled help ticket", "PLAIN DOWN", 3];
+			"Cancelled help ticket" call dayz_rollingMessages;
 			EAT_helpQueue = EAT_helpQueue - [_playerName];
 			EAT_PVEH_contactAdmin = ["remove", _playerName];
 			[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
 		} else {
-			cutText["No help ticket found", "PLAIN DOWN", 3];
+			"No help ticket found" call dayz_rollingMessages;
 		};
 	} else {
 		if((helpCount >= EAT_antiSpamLimit) && EAT_enableAntiSpam) then {
@@ -30,7 +30,7 @@ if((!(_playerName in EAT_helpQueue)) && (!(_cancel)) && (helpCount < EAT_antiSpa
 			Sleep EAT_blindTime;
 			1 cutText["","WHITE IN",5];
 		} else {
-			cutText["Please be patient", "PLAIN DOWN", 3];
+			"Please be patient" call dayz_rollingMessages;
 		};
 	};
 };

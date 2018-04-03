@@ -3,6 +3,7 @@ private ["_objectID","_objectUID","_obj","_ownerID","_dir","_pos","_holder","_we
 _obj = cursorTarget;
 if(isNull _obj) exitWith {};
 _objectID = _obj getVariable["ObjectID","0"];
+_ownerID = _obj getVariable["ObjectID","0"];
 _objType = typeOf _obj;
 _player = player;
 

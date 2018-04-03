@@ -1,11 +1,13 @@
 private ["_Secondary","_onLadder","_player"];
 
+if (isInTraderCity) exitWith {"You cannot commit suicide in a Trader City" call dayz_rollingMessages};
+
 _player = player;
 _Secondary = currentWeapon _player;
 
 suicide_answer=nil;
 
-if (_player getVariable["inCombat",false]) exitWith {cutText ["You are in combat", "PLAIN DOWN"];};
+if (_player getVariable["inCombat",false]) exitWith {"You are in combat" call dayz_rollingMessages;};
 
 DamiSpawn = 
 [
@@ -24,9 +26,9 @@ waitUntil {((!isNil 'suicide_answer')||(commandingMenu == ""))};
 if (isNil 'suicide_answer') then {suicide_answer=false;};
 
 if (suicide_answer) then {
-	cutText["You have grown tired of this endless battle.","PLAIN DOWN"];
+	"You have grown tired of this endless battle." call dayz_rollingMessages;
 	_player playmove "ActsPercMstpSnonWpstDnon_suicide1B";
-	sleep 8.4;
+	uiSleep 8.4;
 	_player fire _Secondary;
 	_selection = "body";
 	[player,'suicide'] call player_death;

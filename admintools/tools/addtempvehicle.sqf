@@ -6,12 +6,11 @@ _player = player;
 _dir = getDir vehicle _player;
 _pos = getPosATL vehicle _player;
 _pos = [(_pos select 0)+_dist*sin(_dir),(_pos select 1)+_dist*cos(_dir),0];
-_worldspace = [_dir,_pos];
 
-EAT_PVEH_vehSpawn = [_vehtospawn,_pos,_player];
+EAT_PVEH_vehSpawn = [_vehtospawn,[_dir,_pos],_player,dayz_authKey];
 	publicVariableServer "EAT_PVEH_vehSpawn";
-	
-cutText ["Spawned a vehicle.", "PLAIN DOWN"];
+
+"Spawned a vehicle." call dayz_rollingMessages;
 
 // Tool use logger
 if(EAT_logMinorTool) then {

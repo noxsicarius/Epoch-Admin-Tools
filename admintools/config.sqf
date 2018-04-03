@@ -3,7 +3,7 @@
 
 	//Replace 111111111 with your ID. 
 	EAT_superAdminList = [
-	"111111111", // <player name>
+	"999999999", // <player name>
 	"999999999" // <player name>
 	];
 	EAT_adminList = [
@@ -15,8 +15,6 @@
 	"999999999" // <player name>
 	];
 	
-
-	
 	//Enable/Disable weather/time change menu. This may cause server to revert to mid-day on restart.
 	EAT_wtChanger = false;
 
@@ -25,7 +23,10 @@
 		EAT_logMajorTool = true; //A major tool is a strong tool with high possibility for exploitation
 		EAT_logMinorTool = false;//A minor tool is a weak tool with low possibility for exploitation
 
-		
+
+/************** Use Debug Monitor? *****************/
+	EAT_DebugMonitor = true;
+
 /************** Safe Zone Variables *****************/
 	EAT_safeZones = true; //Enable the player safe zones script? REQUIRED for the other variables to take effect
 	EAT_szVehicleGod = true; // Protect vehicles in the safe zone
@@ -39,7 +40,7 @@
 	EAT_szZombieDistance = 20; // Distance to remove zombies from player in the zone
 	EAT_szUseSpeedLimits = true; // Enforce a speed limit for vehicles to stop from pushing players out of zone
 	EAT_szSpeedLimit = 35; // Max speed for vehicles inside the zones
-	EAT_szUseHint = false; // Use hints for messages? (will display at bottom of screen instead if false)
+	EAT_messageType = "DynamicText"; // Options: Hint, cutText, DynamicText - Do not use Hint if you have the debug monitor enabled.
 	EAT_szAdminWeapon = false; // Allow admins to use weapons in the safe zones? (True = yes)
 	
 	// You can find these in the sensors section of the mission.sqm for each map
@@ -73,7 +74,16 @@
 	DZE_buildMaxMoveDistance = 20;
 
 	
-	
+/************** Activation Variables ***************/
+
+EAT_AdminMenuHotkey = true; // Use hotkey to activate admin tools.
+EAT_ActionMenuHotkey = true; // Use hotkey to activate action menu.
+
+/*************** AI Spawner Options ****************/
+
+EAT_HumanityGainLoss = 25;
+EAT_aiDeleteTimer = 600;
+
 /************** Action Menu Variables **************/
 
 	/*
@@ -86,7 +96,7 @@
 		Give admins the same action menu above? (not really needed unless you are a playing admin)
 		Default: false
 	*/
-	EAT_ActionMenuAdmins = false;
+	EAT_ActionMenuAdmins = true;
 
 
 	/****** Bike variables ******/
@@ -115,7 +125,7 @@
 
 	// This option requires players to have the parts for building a Mozzie (consumes the parts)
 	// Required parts: main rotor, two scrap, one engine, one jerry can (full)
-	EAT_RequireToolBoxMozzie = true;
+	EAT_RequirePartsMozzie = true;
 
 	// This option dictates if players are allowed to repack a mozzie to get their items back
 	EAT_AllowPackMozzie = true;
@@ -131,13 +141,19 @@
 		
 	// Allow players to use the movement menu (dance)
 	EAT_AllowMovementMenu = true;
+	
+	// Allow players to set view distance
+	EAT_AllowViewDistance = true;
+	
+	// Allow players to remove grass
+	EAT_AllowToggleTerrain = true;
 
 	/* 
 		Allow players to open a help ticket with the admins.
 		The help queue can be viewed via the admin menu.
 		The player can NOT spam the admins.
 	*/
-	EAT_AllowContactAdmin = true;
+	EAT_AllowContactAdmin = false;
 
 		/*
 			Stops spamming of the contact admin. If it is enabled and a user contacts an admin

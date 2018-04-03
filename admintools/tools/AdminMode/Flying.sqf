@@ -78,13 +78,13 @@ toggle_hover =
     if (isnil "hovering") then
     {
         hovering = true;
-        titleText ["Hovering ON","PLAIN DOWN"]; titleFadeOut 4;
+        "Hovering ON" call dayz_rollingMessages;
         hoverPos = getPosATL (vehicle player);
     }
     else
     {
         hovering = nil;
-        titleText ["Hovering OFF","PLAIN DOWN"]; titleFadeOut 4;
+		"Hovering OFF" call dayz_rollingMessages;
         hoverPos = nil;
     };
 };

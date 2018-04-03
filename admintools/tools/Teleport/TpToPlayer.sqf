@@ -22,9 +22,9 @@ if (pselect5 != "exit" && pselect5 != "") then
 	{
 		scopeName "fn_tpToPlayer";
 		if(name _x == _name) then {
-			titleText[format["Teleporting to %1", _name],"PLAIN DOWN"];
+			format["Teleporting to %1", _name] call dayz_rollingMessages;
 			(vehicle player) attachTo [_x, [2, 2, 0]];
-			sleep 0.25;
+			uiSleep 0.25;
 			detach (vehicle player);
 
 			// Tool use logger

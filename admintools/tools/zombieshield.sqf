@@ -22,9 +22,10 @@ if(SheildMe) then {
 
 	showCommandingMenu "#USER:zombieDistanceScreen";
 	WaitUntil{(commandingMenu == "")};
-	titleText [format["Zombie shield activated with distance %1 meters!",ZombieDistance],"PLAIN DOWN"]; titleFadeOut 4;
+	format["Zombie shield activated with distance %1 meters!",ZombieDistance] call dayz_rollingMessages;
 } else {
 	zombieShield=false;
+	"Zombie shield deactivated!" call dayz_rollingMessages;
 };
 
 if(SheildMe && zombieShield) then {
@@ -52,10 +53,9 @@ if(SheildMe && zombieShield) then {
 		hideObject _x;
 	} forEach _zombies;
 	
-	Sleep 0.5;
+	uiSleep 0.5;
 	
 	{
 		deletevehicle _x;
 	} forEach _zombies;
 };
-titleText ["Zombie shield deactivated!","PLAIN DOWN"]; titleFadeOut 4;
