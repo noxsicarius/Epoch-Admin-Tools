@@ -9,7 +9,7 @@ if(EAT_vehicleGod2) then {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has vehicle god mode",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };
 
@@ -59,5 +59,5 @@ if(!isNil "_vehicle" && !inZone) then {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED vehicle god mode",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
