@@ -48,7 +48,7 @@ publicVariableServer "PVDZE_maintainArea";
 // Tool use logger
 if(EAT_logMinorTool) then {
 	EAT_PVEH_usageLogger = format["%1 %2 -- has used admin build to maintain an area",name player,getPlayerUID player];
-	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+	publicVariableServer "EAT_PVEH_usageLogger";
 };
 
 s_player_maintain_area = -1;
