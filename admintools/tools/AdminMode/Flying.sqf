@@ -94,7 +94,7 @@ if (EAT_flying2) then
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has added flying",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
     keyForward = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 17) then {call move_forward;}"];     //W - Forward
@@ -108,7 +108,7 @@ if (EAT_flying2) then
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED flying",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
     (findDisplay 46) displayRemoveEventHandler ["KeyDown", keyForward];
