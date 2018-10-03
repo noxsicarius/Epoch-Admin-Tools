@@ -19,5 +19,5 @@ EAT_returnPlayer = nil;
 // Leave the client in the bypass list for a short time to let the server register their new position
 uiSleep 3;
 EAT_PVEH_teleportFix = ["remove",_UID];
-[] spawn {publicVariableServer "EAT_PVEH_teleportFix"};
+publicVariableServer "EAT_PVEH_teleportFix";
 
