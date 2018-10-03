@@ -5,7 +5,7 @@ player removeAction s_player_upgrade_build;
 s_player_upgrade_build = 1;
 
 _obj = cursorTarget;
-if(isNull _obj) exitWith {s_player_upgrade_build = -1;};
+if(isNull _obj) exitWith {s_player_upgrade_build = -1; "No Object Selected" call dayz_rollingMessages;};
 
 _objectID 	= _obj getVariable ["ObjectID","0"]; // Find objectID
 _objectUID	= _obj getVariable ["ObjectUID","0"];// Find objectUID
@@ -37,6 +37,8 @@ if ((count _upgrade) > 0) then {
 	_classname = _newclassname;
 	_object = createVehicle [_classname, [0,0,0], [], 0, "CAN_COLLIDE"];// Create new object 
 	_object setDir _dir;												// Set direction
+	_object setVariable["memDir",_dir,true];
+	_object setVectorDirAndUp _vector;
 	_object setPosATL _location; 										// Set location
 
 	if (_lockable == 3) then {
@@ -46,12 +48,16 @@ if ((count _upgrade) > 0) then {
 		_combination = format["%1%2%3",_combination_1,_combination_2,_combination_3];
 				
 		_objectCharacterID = _combination;
+		DZE_Lock_Door = _combination;
 				
-		cutText [format[(localize "str_epoch_player_158"),_combination,_text], "PLAIN DOWN", 5];
+		format[localize "str_epoch_player_158",_combination,_text] call dayz_rollingMessages;
+		systemChat format[localize "str_epoch_player_158",_combination,_text];
 	} else {	
-		cutText [format[(localize "str_epoch_player_159"),_text], "PLAIN DOWN", 5];
+		format[localize "str_epoch_player_159",_text] call dayz_rollingMessages;
 	};
-	
+	if (DZE_GodModeBase && {!(_classname in DZE_GodModeBaseExclude)}) then {
+		_object addEventHandler ["HandleDamage",{false}];
+	};
 	if (DZE_permanentPlot) then {
 			_ownerID = _obj getVariable["ownerPUID","0"];
 			_object setVariable ["ownerPUID",_ownerID,true];
@@ -66,11 +72,11 @@ if ((count _upgrade) > 0) then {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has used admin build to upgrade: %3",name player,getPlayerUID player,_obj];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
 } else {
-	cutText [(localize "str_epoch_player_82"), "PLAIN DOWN"];
+	localize "str_epoch_player_82" call dayz_rollingMessages;
 };
 
 s_player_upgrade_build = -1;
