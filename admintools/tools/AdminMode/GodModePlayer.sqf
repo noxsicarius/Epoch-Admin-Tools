@@ -12,7 +12,7 @@ if (EAT_playerGod2) then
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has _player god mode",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
 	player_zombieCheck = {};
@@ -48,7 +48,7 @@ if (EAT_playerGod2) then
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 	if(!inZone) then {
 		player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
