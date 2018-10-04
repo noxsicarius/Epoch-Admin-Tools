@@ -30,8 +30,8 @@ if(EAT_areaGodMode) then {
 	if(radius <= 0) exitWith{EAT_areaGodMode = true;};
 
 	EAT_PVEH_safeZone = [[getPos player,radius]];
-	[] spawn {publicVariableServer "EAT_PVEH_safeZone"};
+	publicVariableServer "EAT_PVEH_safeZone";
 } else {
 	EAT_PVEH_safeZone = [[]];
-	[] spawn {publicVariableServer "EAT_PVEH_safeZone"};
+	publicVariableServer "EAT_PVEH_safeZone";
 };
