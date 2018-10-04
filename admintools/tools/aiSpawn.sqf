@@ -65,7 +65,7 @@ _player = player;
 
 if(EAT_logMajorTool) then {
 	EAT_PVEH_usageLogger = format["%1 %2 -- has added %3 AI units",name _player,getPlayerUID _player,EAT_aiCount];
-	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+	publicVariableServer "EAT_PVEH_usageLogger";
 };
 
 EAT_SpawnAI = {
