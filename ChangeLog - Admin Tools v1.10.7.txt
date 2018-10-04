@@ -5,8 +5,13 @@ by NoxSicarius
 
 ------------------- Version 1.10.7 Changelog ---------------------
 
+New Features:
+	Added Debug Monitor
+	AI Spawner, Temp Vehicle Spawner, Crate Spawning moved server side
+	Updated Keybindings
+	
 Bug Fixes:
-	Updated to work with Epoch 1.0.6 (INCOMEPLETE)
+	Updated to work with Epoch 1.0.6.2
 
 
 MD5 hash for the dll files IN THIS VERSION:
