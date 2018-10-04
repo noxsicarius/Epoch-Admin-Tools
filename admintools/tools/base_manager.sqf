@@ -259,7 +259,7 @@ fn_BCExport = {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has exported a base",name player,getPlayerUID player];
-		publicVariable "EAT_PVEH_usageLogger";
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
 	_objects
@@ -312,7 +312,7 @@ fn_BCPaste = {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has pasted a copied base",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};	
 };
 
@@ -386,7 +386,7 @@ fn_BCSaveToDb = {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has placed a saved base",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };
 
