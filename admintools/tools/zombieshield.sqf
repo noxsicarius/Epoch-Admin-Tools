@@ -48,14 +48,9 @@ if(SheildMe && zombieShield) then {
 	_pos = getPos _player;
 	_zombies = _pos nearEntities ["zZombie_Base",ZombieDistance];
 
-	{
-		_x setDamage 1;
-		hideObject _x;
-	} forEach _zombies;
-	
-	uiSleep 0.5;
-	
-	{
-		deletevehicle _x;
-	} forEach _zombies;
+	if((count _zombies) > 0) then {
+		{
+			deleteVehicle _x;
+		} forEach _zombies;	
+	};
 };
