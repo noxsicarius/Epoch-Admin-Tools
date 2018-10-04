@@ -53,7 +53,7 @@ fn_tpToPlayer = {
 		
 		EAT_helpQueue = EAT_helpQueue - [_name];
 		EAT_PVEH_contactAdmin = ["remove", _name];
-		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
+		publicVariable "EAT_PVEH_contactAdmin";
 	};
 	true
 };
@@ -116,7 +116,7 @@ fn_tpToMe = {
 		
 		EAT_helpQueue = EAT_helpQueue - [_name];
 		EAT_PVEH_contactAdmin = ["remove", _name];
-		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
+		publicVariable "EAT_PVEH_contactAdmin";
 	};
 	true
 };
@@ -142,7 +142,7 @@ fn_removeFromQueue = {
 		_name = pselect5;
 		EAT_helpQueue = EAT_helpQueue - [_name];
 		EAT_PVEH_contactAdmin = ["remove", _name];
-		[] spawn {publicVariable "EAT_PVEH_contactAdmin";};
+		publicVariable "EAT_PVEH_contactAdmin";
 	};
 
 	true
