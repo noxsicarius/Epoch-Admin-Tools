@@ -38,7 +38,7 @@ if (pselect5!= "exit" && pselect5!="") then
 			// Tool use logger
 			if(EAT_logMajorTool) then {
 				EAT_PVEH_usageLogger = format["%1 %2 -- has begun spectating %3",name _player,getPlayerUID _player,_name];
-				[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+				publicVariableServer "EAT_PVEH_usageLogger";
 			};
 		};
 	} forEach playableUnits;
@@ -51,6 +51,6 @@ if (!spectate && pselect5 != "exit") then
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has stopped spectating %3",name _player,getPlayerUID _player,_name];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };
