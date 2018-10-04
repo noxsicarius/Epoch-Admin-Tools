@@ -53,7 +53,7 @@ if(zCount <= 0) exitWith{};
 
 if(EAT_logMajorTool) then {
 	EAT_PVEH_usageLogger = format["%1 %2 -- has added %3 zombies",name _player,getPlayerUID _player,zCount];
-	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+	publicVariableServer "EAT_PVEH_usageLogger";
 };
 
 _i = 1;
