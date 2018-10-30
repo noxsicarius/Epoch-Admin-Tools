@@ -22,15 +22,6 @@ waitUntil {!isNil "_isOk"};
 if (_isOk and _isKeyOK) then {
  
 	_dir = round(random 360); 
-	_helipad = nearestObjects [_player, ["HeliHCivil","HeliHempty"], 100];
-	
-	/*
-	if(count _helipad > 0) then {
-		_location = (getPosATL (_helipad select 0));
-	} else {
-		_location = _pos;
-	};
-	*/
 	_location = _pos;
 	if(count _location != 0) then {
 		//place vehicle spawn marker (local)
@@ -42,7 +33,7 @@ if (_isOk and _isKeyOK) then {
 		// Tool use logger
 		if(EAT_logMajorTool) then {
 			EAT_PVEH_usageLogger = format["%1 %2 -- has added a permanent vehicle: %3",name _player,getPlayerUID _player,_vehtospawn];
-			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+			publicVariableServer "EAT_PVEH_usageLogger";
 		};
 	} else {
 		_removeitem = [_player, _config] call BIS_fnc_invRemove;

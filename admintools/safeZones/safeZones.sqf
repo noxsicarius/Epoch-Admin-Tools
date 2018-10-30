@@ -97,24 +97,11 @@ _fnc_exitZone = {
 _fnc_clearZombies = {
 	private["_zombies"];
 	_zombies = (vehicle player) nearEntities ["zZombie_Base",EAT_szZombieDistance];
-	// Kill and hide zombies
+	
 	if((count _zombies) > 0) then {
 		{
-			if (!isNull _x && !isPlayer _x) then {
-				_x setDamage 1;
-				hideObject _x;
-			} else {
-				_zombies = _zombies - [_x];
-			};
-		} forEach _zombies;
-
-		if((count _zombies) > 0) then {
-			// Failure to delay entity delete results in RPT spam of lost _agent
-			uiSleep 2;
-			{
-				deleteVehicle _x;
-			} forEach _zombies;	
-		};
+			deleteVehicle _x;
+		} forEach _zombies;	
 	};
 };
 
@@ -128,19 +115,11 @@ _fnc_clearAI = {
 		{
 			if ((!isNull group _x) && (getPlayerUID _x == '')) then
 			{
-				_x setDamage 1;
-				hideObject _x;
+				deleteVehicle _x;
 			} else {
 				_aiUnits = _aiUnits - [_x];
 			};
 		} forEach _aiUnits;
-		
-		if((count _aiUnits) > 0) then {
-			uiSleep 2;
-			{
-				deleteVehicle _x;
-			}forEach _aiUnits;
-		};
 	};
 };
 

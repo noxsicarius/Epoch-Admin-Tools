@@ -13,5 +13,5 @@ if (grassToggle) then {
 // Tool use logger
 if(EAT_logMinorTool) then {
 	EAT_PVEH_usageLogger = format["%1 %2 -- has turned grass %3",name player,getPlayerUID player,_toggle];
-	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+	publicVariableServer "EAT_PVEH_usageLogger";
 };

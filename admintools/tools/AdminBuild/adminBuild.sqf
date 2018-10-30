@@ -422,7 +422,7 @@ if(!_cancel) then {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has used admin build to place: %3",name player,getPlayerUID player,_item];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 	
 } else { //cancel build if passed _cancel arg was true or building on roads/trader city

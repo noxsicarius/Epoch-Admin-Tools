@@ -16,7 +16,6 @@ _deleteMenu =
 ["",true],
 	["Delete this Object?:", [-1], "", -5, [["expression", ""]], "1", "0"],
 	["Yes",[],"", -5,[["expression","EAT_databaseRemove = 1;"]],"1","1"],
-	["", [], "", -5,[["expression", ""]], "1", "0"],
 	["No", [20], "", -5, [["expression", "EAT_databaseRemove = -1"]], "1", "1"]
 ];
 showCommandingMenu "#USER:_deleteMenu";
@@ -27,7 +26,7 @@ if(EAT_databaseRemove <= 0) exitWith{};
 // Tool use logger
 if(EAT_logMinorTool && !isNull _obj) then {
 	EAT_PVEH_usageLogger = format["%1 %2 -- has deleted object: %3 ID:%4 UID:%5 from database",name _player,getPlayerUID _player,_text,_objectID,_objectUID];
-	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+	publicVariableServer "EAT_PVEH_usageLogger";
 };
 
 format["Deleted %1",_text] call dayz_rollingMessages;

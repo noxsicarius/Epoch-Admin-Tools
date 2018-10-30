@@ -140,7 +140,7 @@ EAT_areaGodMode = false;
 		EAT_buildOre = [["Ore","Gold","Gold_Vein_DZE"],["Ore","Silver","Silver_Vein_DZE"],["Ore","Iron","Iron_Vein_DZE"]];
 		
 	//Roads
-		EAT_buildRoad = [[]];
+		EAT_buildRoad = [["Runway","Taxi Straight","MAP_runway_beton"],["Runway","Taxi End1","MAP_runway_beton_end1"],["Runway","Taxi End2","MAP_runway_beton_end2"],["Runway","End 15","MAP_runway_end15"],["Runway","End 33","MAP_runway_end33"],["Runway","Main","MAP_runway_main"],["Runway","Main 40","MAP_runway_main_40"],["Grass Cutter","Large","ClutterCutter_EP1"],["Grass Cutter","Medium","ClutterCutter_small_EP1"],["Grass Cutter","Small","ClutterCutter_small_2_EP1"],["Heli Pad","Civilian","HeliHCivil"],["Heli Pad","Invisible","HeliHEmpty"]];
 
 	//Other
 		_buildMarker = [["Marker","Archway","Sign_circle_EP1"]];

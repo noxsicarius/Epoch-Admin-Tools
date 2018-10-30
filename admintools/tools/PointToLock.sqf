@@ -1,7 +1,7 @@
 private ["_objectID","_objectUID","_obj","_ownerID","_dir","_pos","_holder","_weapons","_magazines","_backpacks","_lockedClass","_player"];
 
 _obj = cursorTarget;
-if(isNull _obj) exitWith {};
+if(isNull _obj) exitWith {"No Object Selected" call dayz_rollingMessages;};
 
 _objType = typeOf _obj;
 _ownerID = _obj getVariable["ObjectID","0"];
@@ -26,7 +26,7 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has locked a vehicle: %3",name _player,getPlayerUID _player,_obj];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 } else {
 	//Lock Safe/Lock_box
@@ -51,7 +51,7 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		// Tool use logger
 		if(EAT_logMajorTool) then {
 			EAT_PVEH_usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
-			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+			publicVariableServer "EAT_PVEH_usageLogger";
 		};
 
 	} else {
@@ -69,7 +69,7 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		// Tool use logger
 		if(EAT_logMajorTool) then {
 			EAT_PVEH_usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
-			[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+			publicVariableServer "EAT_PVEH_usageLogger";
 		};
 	};
 };

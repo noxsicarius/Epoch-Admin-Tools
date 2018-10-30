@@ -46,12 +46,12 @@ if (pselect5 != "exit" && pselect5 != "") then {
 			Sleep 3;
 			EAT_tempList = EAT_tempList - [_UID];
 			EAT_PVEH_teleportFix = ["remove",_UID];
-			[] spawn {publicVariableServer "EAT_PVEH_teleportFix"};
+			publicVariableServer "EAT_PVEH_teleportFix";
 			
 			// Tool use logger
 			if(EAT_logMajorTool) then {
 				EAT_PVEH_usageLogger = format["%1 %2 -- has teleported %3_%4 to them",name player,getPlayerUID player,_name,_UID];
-				[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+				publicVariableServer "EAT_PVEH_usageLogger";
 			};
 			breakOut "fn_tpToMe";
 		};

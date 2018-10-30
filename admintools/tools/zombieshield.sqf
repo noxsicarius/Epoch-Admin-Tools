@@ -32,13 +32,13 @@ if(SheildMe && zombieShield) then {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name _player,getPlayerUID _player,ZombieDistance];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 } else {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has disabled zombie shield",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };
 
@@ -48,14 +48,9 @@ if(SheildMe && zombieShield) then {
 	_pos = getPos _player;
 	_zombies = _pos nearEntities ["zZombie_Base",ZombieDistance];
 
-	{
-		_x setDamage 1;
-		hideObject _x;
-	} forEach _zombies;
-	
-	uiSleep 0.5;
-	
-	{
-		deletevehicle _x;
-	} forEach _zombies;
+	if((count _zombies) > 0) then {
+		{
+			deleteVehicle _x;
+		} forEach _zombies;	
+	};
 };

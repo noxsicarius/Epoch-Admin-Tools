@@ -8,7 +8,7 @@ if(EAT_infAmmo2) then {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has turned ON infinite ammo",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };
 
@@ -23,5 +23,5 @@ vehicle player setUnitRecoilCoefficient 1;
 // Tool use logger
 if(EAT_logMajorTool) then {
 	EAT_PVEH_usageLogger = format["%1 %2 -- has turned OFF infinite ammo",name player,getPlayerUID player];
-	[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+	publicVariableServer "EAT_PVEH_usageLogger";
 };

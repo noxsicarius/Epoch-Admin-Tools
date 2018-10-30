@@ -4,7 +4,7 @@ if (EAT_speedBoost2) then {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has added speed boost",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
 	waituntil {!isnull (finddisplay 46)};
@@ -42,7 +42,7 @@ if (EAT_speedBoost2) then {
 	// Tool use logger
 	if(EAT_logMinorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED speed boost",name player,getPlayerUID player];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
 	(findDisplay 46) displayRemoveEventHandler ["KeyDown", SPEED_UP];

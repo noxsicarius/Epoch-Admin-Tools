@@ -1,9 +1,8 @@
 private ["_combo","_ct","_player"];
 _ct = cursorTarget;
+if(isNull _ct) exitWith{"No target" call dayz_rollingMessages;};
 _player = player;
 _combo = _ct getVariable ["CharacterID","0"];
-
-if(isNull _ct) exitWith{"No target" call dayz_rollingMessages;};
 
 if(_combo != "0") then {
 	if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Plane" OR _ct isKindOf "Ship") then {
@@ -20,7 +19,7 @@ if(_combo != "0") then {
 	// Tool use logger
 	if(EAT_logMajorTool) then {
 		EAT_PVEH_usageLogger = format["%1 %2 -- has viewed a locked item: %3",name _player,getPlayerUID _player,_combo];
-		[] spawn {publicVariable "EAT_PVEH_usageLogger";};
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 } else {
 	format["Not a valid target.",_combo] call dayz_rollingMessages;
