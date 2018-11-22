@@ -2,26 +2,25 @@
 	Heals all damage and makes the user invincible to damage by everything 
 	excluding antihack killing a hacker.
 */
-if(isNil "playerGod2") then {playerGod2 = true;} else {playerGod2 = !playerGod2};
+if(isNil "EAT_playerGod2") then {EAT_playerGod2 = true;} else {EAT_playerGod2 = !EAT_playerGod2};
 
 private["_player","_vehicle"];
 _player = player;
-_vehicle = (vehicle _player);
 
-if (playerGod2) then
+if (EAT_playerGod2) then
 {
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED _player god mode",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has _player god mode",name _player,getPlayerUID _player];
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 
 	player_zombieCheck = {};
 	fnc_usec_damageHandler = {};
 	fnc_usec_unconscious = {};
-	_vehicle removeAllEventHandlers "handleDamage";
-	_vehicle addEventHandler ["handleDamage", { false }];	
-	_vehicle allowDamage false;
+	_player removeAllEventHandlers "handleDamage";
+	_player addEventHandler ["handleDamage", { false }];	
+	_player allowDamage false;
 	r_player_unconscious = false;
 	r_player_infected = false;
 	r_player_injured = false;
@@ -47,20 +46,16 @@ if (playerGod2) then
 	_player setVariable['medForceUpdate',true,true];
 } else {
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has DISABLED _player god mode",name _player,getPlayerUID _player];
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
-	// Tool use broadcaster
-	if(!((getPlayerUID _player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has DISABLED god mode",name _player];
-		[] spawn {publicVariableServer "useBroadcaster";};
+	if(!inZone) then {
+		player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
+		fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
+		fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";
+		_player addEventHandler ["handleDamage", {true}];
+		_player removeAllEventHandlers "handleDamage";
+		_player allowDamage true;
 	};
-
-	player_zombieCheck = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_zombieCheck.sqf";
-	fnc_usec_damageHandler = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageHandler.sqf";
-	fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";	
-	_player addEventHandler ["handleDamage", {true}];
-	_player removeAllEventHandlers "handleDamage";
-	_player allowDamage true;
 };

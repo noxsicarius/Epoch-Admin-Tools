@@ -2,7 +2,7 @@ private ["_dialog","_building"];
 PermDialogSelected = -1;
 TempDialogSelected = -1;
 AdminDialogList = 13000;
-buildingList = allBuildingList;
+buildingList = EAT_allBuildingList;
 
 _dialog = createdialog "EAT_build_AdminDialog";
 lbClear AdminDialogList;
@@ -21,19 +21,19 @@ LoadSpecificList = {
 	{
 		case "Residential":
 		{
-			buildingList = buildResidential;
+			buildingList = EAT_buildResidential;
 		};
 		case "Military":
 		{
-			buildingList = buildMilitary;
+			buildingList = EAT_buildMilitary;
 		};
 		case "Industrial":
 		{
-			buildingList = buildIndustrial;
+			buildingList = EAT_buildIndustrial;
 		};
 		case "Religious":
 		{
-			buildingList = buildReligious;
+			buildingList = EAT_buildReligious;
 		};
 		case "Farm":
 		{
@@ -41,19 +41,19 @@ LoadSpecificList = {
 		};
 		case "Ores":
 		{
-			buildingList = buildOre;
+			buildingList = EAT_buildOre;
 		};
 		case "Graves":
 		{
-			buildingList = buildGrave;
+			buildingList = EAT_buildGrave;
 		};
 		case "Roads":
 		{
-			buildingList = buildRoad;
+			buildingList = EAT_buildRoad;
 		};
 		case "Other":
 		{
-			buildingList = buildOther;
+			buildingList = EAT_buildOther;
 		};
 	};
 	

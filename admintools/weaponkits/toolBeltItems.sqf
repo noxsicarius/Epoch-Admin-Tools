@@ -1,8 +1,10 @@
-// Toolbelt items required to build
-_GearAdd = (vehicle player);
-_GearAdd addWeapon 'ItemHatchet_DZE';
-_GearAdd addWeapon 'ItemKnife';
-_GearAdd addWeapon 'ItemMatchbox_DZE';
-_GearAdd addWeapon 'ItemEtool';
-_GearAdd addWeapon 'ItemToolbox';
-_GearAdd addWeapon 'ItemCrowbar';
+#define IS_TOOL(tool) (getNumber (configFile >> "CfgWeapons" >> tool >> "type") == 131072)
+	{
+		if (IS_TOOL(_x)) exitWith {
+			player removeWeapon _x;
+		}
+	} count (weapons player);
+
+	{
+		player addWeapon _x;
+	} count ["ItemHatchet","ItemKnife","ItemMatchbox","ItemEtool","ItemToolbox","ItemCrowbar"];

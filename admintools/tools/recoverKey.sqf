@@ -14,13 +14,13 @@ if (_ct isKindOf "LandVehicle" OR _ct isKindOf "Helicopter" OR _ct isKindOf "Pla
 	if ((_id > 7500) && (_id <= 10000)) then {_result = format["ItemKeyYellow%1",_id-7500];}else{
 	if ((_id > 10000) && (_id <= 12500)) then {_result = format["ItemKeyBlack%1",_id-10000];};};};};};
 	
-	cutText [format["id = %1, result = %2",_id,_result], "PLAIN"];
+	format["id = %1, result = %2",_id,_result] call dayz_rollingMessages;
 
 	_player addweapon _result;
-	cutText [format["Key [%1] added to inventory!",_result], "PLAIN"];
+	format["Key [%1] added to inventory!",_result] call dayz_rollingMessages;
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has generated %3 for a %4",name _player,getPlayerUID _player,_result,_ct];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has generated %3 for a %4",name _player,getPlayerUID _player,_result,_ct];
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };

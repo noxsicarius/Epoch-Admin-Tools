@@ -1,4 +1,4 @@
-private ["_done","_location","_done","_locOK","_pos","_worked"];
+private ["_done","_location","_locOK","_pos","_worked"];
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 _done = false;
 _locOK = true;
@@ -15,7 +15,7 @@ teleport = {
 		if ((vehicle player) != player && !((vehicle player) isKindOf "Ship")) then {
 			_location = [_pos select 0, _pos select 1] findEmptyPosition [0,10];
 			if (count _location < 1) then {
-				cutText["Unable to teleport here.","PLAIN DOWN"];
+				"Unable to teleport here." call dayz_rollingMessages;
 			} else {
 				(vehicle player) setpos _location;
 				_worked = true;
@@ -32,16 +32,16 @@ teleport = {
 
 	// Tool use logger
 	if(_worked) then {
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has teleported",name player,getPlayerUID player];
+			publicVariableServer "EAT_PVEH_usageLogger";
 		};
 	};
 };
 
 closedialog 0;
-sleep 0.5;
-TitleText [format["Click on the map to Teleport"], "PLAIN DOWN"]; titleFadeOut 3;
+uiSleep 0.5;
+"Click on the map to Teleport" call dayz_rollingMessages;
 
 if(!(visibleMap)) then {
 	openMap [true, false];

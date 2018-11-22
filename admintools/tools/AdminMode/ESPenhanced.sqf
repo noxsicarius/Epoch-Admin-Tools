@@ -10,7 +10,8 @@ if(isNil "storageList") then {storageList = [];};
 if(isNil "buildableObjectsList") then {buildableObjectsList = [];};
 if(isNil "crashList") then {crashList = [];};
 if(isNil "storageObjects") then {storageObjects = ["TentStorage","TentStorageDomed","TentStorageDomed2","VaultStorageLocked","OutHouse_DZ","Wooden_shed_DZ","WoodShack_DZ","StorageShed_DZ","LockboxStorageLocked","GunRack_DZ","WoodCrate_DZ"];};
-if(isNil "buildableObjects") then {buildableObjects = (dayz_allowedObjects - storageObjects) - ["LightPole_DZ","Plastic_Pole_EP1_DZ","Generator_DZ","TrapBear","ParkBench_DZ"];};
+//if(isNil "buildableObjects") then {buildableObjects = (DayZ_SafeObjects - storageObjects) - ["LightPole_DZ","Plastic_Pole_EP1_DZ","Generator_DZ","TrapBear","ParkBench_DZ"];};
+if(isNil "buildableObjects") then {buildableObjects = ["WoodFloor_DZ","WoodLargeWall_DZ","WoodLargeWallDoor_DZ","WoodLargeWallWin_DZ","WoodSmallWall_DZ","WoodSmallWallWin_DZ","WoodSmallWallDoor_DZ","WoodFloorHalf_DZ","WoodFloorQuarter_DZ","WoodStairs_DZ","WoodStairsSans_DZ","WoodStairsRails_DZ","WoodSmallWallThird_DZ","WoodLadder_DZ","Land_DZE_GarageWoodDoor","Land_DZE_LargeWoodDoor","Land_DZE_WoodDoor","Land_DZE_GarageWoodDoorLocked","Land_DZE_LargeWoodDoorLocked","Land_DZE_WoodDoorLocked","CinderWallHalf_DZ","CinderWall_DZ","CinderWallDoorway_DZ","CinderWallDoor_DZ","CinderWallDoorLocked_DZ","CinderWallSmallDoorway_DZ","CinderWallDoorSmall_DZ","CinderWallDoorSmallLocked_DZ","MetalFloor_DZ","WoodRamp_DZ"];};
 
 if (!("ItemGPS" in items player)) then {player addweapon "ItemGPS";};
 if(isNil "enhancedESP2") then {enhancedESP2 = true;} else {enhancedESP2 = !enhancedESP2};
@@ -114,18 +115,18 @@ F5Menu =
 if(enhancedESP2) then { 
 	dList = []; //List of dead bodies
 	dListMarkers = []; //List of Dead player markers
-	F5_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 63) then {call F5Menu;};"];
+	KEY_7 = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 8) then {call F5Menu;};"];
 	_player = player;
 	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has ENABLED enhanced ESP",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMajorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has enhanced ESP",name _player,getPlayerUID _player];
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };
 
 While {enhancedESP2} do 
 {
-	If (AddPlayersToMap) then 
+	If (AddPlayersToMap && (delayTime == 0 || changed)) then 
 	{
 		{
 			(group _x) addGroupIcon PlayersMarkerType;
@@ -174,7 +175,7 @@ While {enhancedESP2} do
 			}Foreach AllDead;
 		};
 
-		If (AddZombieToMap) then {
+		If (AddZombieToMap && (delayTime == 0 || changed)) then {
 			_pos = getPos player;
 			_zombies = _pos nearEntities ["zZombie_Base",ZombieVisibleDistance];
 			k=0;
@@ -327,10 +328,11 @@ While {enhancedESP2} do
 		
 		If (AddCrashesToMap && (delayTime == 0 || changed)) then 
 		{
-			crashList = allmissionobjects "UH1Wreck_DZ" + allmissionobjects "UH60Wreck_DZ" + allmissionobjects "UH60_NAVY_Wreck_DZ" + allmissionobjects "UH60_ARMY_Wreck_DZ" + allmissionobjects "UH60_NAVY_Wreck_burned_DZ" + allmissionobjects "UH60_ARMY_Wreck_burned_DZ" + allmissionobjects "Mass_grave_DZ" + allmissionobjects "Supply_Crate_DZE";
+			crashList = allmissionobjects "CrashSite_RU" + allmissionobjects "CrashSite_US" + allmissionobjects "CrashSite_EU" + allmissionobjects "CrashSite_UN" + allmissionobjects "Misc_cargo_cont_net1" + allmissionobjects "Misc_cargo_cont_net2" + allmissionobjects "Misc_cargo_cont_net3" + allmissionobjects "Supply_Crate_DZE";
 			i2 = 0;
 			{
 				_name = gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName");
+				if (gettext (configFile >> "CfgVehicles" >> (typeof _x) >> "displayName") == "House") then {_name = "Crashsite"};
 				pos = position _x;
 				deleteMarkerLocal ("crashMarker"+ (str i2));
 				MarkerCrash = "crashMarker" + (str i2);
@@ -455,10 +457,6 @@ While {enhancedESP2} do
 	if(delayTime == 5) then {
 		delayTime = 0;
 	};
-
-	{
-		clearGroupIcons (group _x);
-	} forEach allUnits;
 	
 	Sleep GlobalSleep;
 
@@ -466,19 +464,12 @@ While {enhancedESP2} do
 
 if(!enhancedESP2) then 
 {
-	(findDisplay 46) displayRemoveEventHandler ["KeyDown", F5_KEY];
+	(findDisplay 46) displayRemoveEventHandler ["KeyDown", KEY_7];
 
-	// Tool use logger
-	if(logMajorTool) then {
-		usageLogger = format["%1 %2 -- has DISABLED enhanced ESP",name player,getPlayerUID player];
-		[] spawn {publicVariable "usageLogger";};
-	};
-	// Tool use broadcaster
-	if(!((getPlayerUID player) in SuperAdminList) && broadcastToolUse) then {
-		useBroadcaster = format["%1 -- has disabled enhanced ESP",name player];
-		[] spawn {publicVariableServer "useBroadcaster";};
-	};
-
+	{
+		clearGroupIcons (group _x);
+	} forEach allUnits;
+	
 	If (AddDeadPlayersToMap) then 
 	{
 		{

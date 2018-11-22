@@ -16,11 +16,11 @@
 	To remove all function key support simply delete or comment out the lines in this file.
 */
 
-F1_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 59) then {[] execVM ""admintools\tools\Teleport\Teleport.sqf"";true};"];
-F2_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 60) then {[] execVM ""admintools\tools\Teleport\TPtoME.sqf"";true};"];
-F3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 61) then {[] execVM ""admintools\tools\Teleport\TpToPlayer.sqf"";true};"];
+// F1_KEY reserved for earplugs toggle
+// F2_Key used for hotkey admin tools activation
+// F3_KEY reserved for HUD status icons toggle
 // F4 is reserved for AdminMode.sqf and modMode.sqf
-// F5 is reserved for ESPenhanced.sqf
+// F5 is reserved for group manager
 // F6 is reserved for spectate.sqf
 // F7_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 65) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 // F8_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 66) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
@@ -29,8 +29,9 @@ F3_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1
 // F11_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 87) then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
 // WARNING: F12 is the screen shot key for steam
 // F12_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 88 then {[] execVM ""admintools\DIRECTORY_HERE\FILE_NAME_HERE.sqf"";true};"];
-
-// Used to delete target objects
-Del_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 211) then {[] execVM ""admintools\tools\DatabaseRemove.sqf"";true};"];
+Del_KEY = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 211) then {[] execVM ""admintools\tools\DatabaseRemove.sqf"";true};"]; // Used to delete target objects
+J_Key = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 36) then {[] execVM ""admintools\tools\getObjectDetails.sqf"";true};"]; // Displays cursor target details side chat
+L_Key = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 38) then {[] execVM ""admintools\tools\PointtoLock.sqf"";true};"]; // Locks object
+U_Key = (findDisplay 46) displayAddEventHandler ["KeyDown","if ((_this select 1) == 22) then {[] execVM ""admintools\tools\PointtoUnlock.sqf"";true};"]; // Unlocks object
 
 diag_log("Admin Tools: FunctionKeys.sqf Loaded");

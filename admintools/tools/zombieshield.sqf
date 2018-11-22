@@ -22,22 +22,23 @@ if(SheildMe) then {
 
 	showCommandingMenu "#USER:zombieDistanceScreen";
 	WaitUntil{(commandingMenu == "")};
-	titleText [format["Zombie shield activated with distance %1 meters!",ZombieDistance],"PLAIN DOWN"]; titleFadeOut 4;
+	format["Zombie shield activated with distance %1 meters!",ZombieDistance] call dayz_rollingMessages;
 } else {
 	zombieShield=false;
+	"Zombie shield deactivated!" call dayz_rollingMessages;
 };
 
 if(SheildMe && zombieShield) then {
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name _player,getPlayerUID _player,ZombieDistance];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has enabled zombie shield for distance: %3",name _player,getPlayerUID _player,ZombieDistance];
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 } else {
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has disabled zombie shield",name _player,getPlayerUID _player];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has disabled zombie shield",name _player,getPlayerUID _player];
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 };
 
@@ -47,15 +48,9 @@ if(SheildMe && zombieShield) then {
 	_pos = getPos _player;
 	_zombies = _pos nearEntities ["zZombie_Base",ZombieDistance];
 
-	{
-		_x setDamage 1;
-		hideObject _x;
-	} forEach _zombies;
-	
-	Sleep 0.5;
-	
-	{
-		deletevehicle _x;
-	} forEach _zombies;
+	if((count _zombies) > 0) then {
+		{
+			deleteVehicle _x;
+		} forEach _zombies;	
+	};
 };
-titleText ["Zombie shield deactivated!","PLAIN DOWN"]; titleFadeOut 4;

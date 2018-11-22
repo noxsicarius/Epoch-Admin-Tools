@@ -1,4 +1,4 @@
-Epoch Admin Tools V-1.10.0
+Epoch Admin Tools V-1.10.7
 =================
 
 ![Admin Tools](http://i.imgur.com/j0bTHPB.png)
@@ -76,53 +76,50 @@ If you are worried about the integrity of the dll files look at the change log f
 	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
 	~~~~
 	
-	Directly under this:
+	Directly *above* this:
 	
 	~~~~java
-	call compile preprocessFileLineNumbers "server_traders.sqf";
+	initialized = true;
 	~~~~
 
 	So that it looks like this:
 	~~~~java
+	initialized = false;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
-	progressLoadingScreen 0.1;
+	progressLoadingScreen 0.05;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
-	progressLoadingScreen 0.2;
+	progressLoadingScreen 0.1;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
-	progressLoadingScreen 0.4;
+	progressLoadingScreen 0.15;
 	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
-	progressLoadingScreen 0.5;
+	progressLoadingScreen 0.25;
 	call compile preprocessFileLineNumbers "server_traders.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\chernarus11.sqf"; //Add trader city objects 	locally on every machine early
 	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
 	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
-	progressLoadingScreen 1.0;
+	initialized = true;
 	~~~~
 	
-1. Paste the following at the bottom of the ***init***:
-
-	~~~~java
-	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	~~~~
+1. If you use the normal battleye antihack or similar do this step, if not then skip it.
 	
-1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
-	
-	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
+	> Find the antihack line in your ***init.sqf***, it will be similar to the one below
 
 	> ~~~~java
-	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
+	> execVM "\z\addons\dayz_code\system\antihack.sqf";
 	> ~~~~
 
 	> if you have the line above ***replace it*** with this:
 
 	> ~~~~java
 	> // Epoch Admin Tools
-	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
-	> {
-	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
-	> };
+	> [] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
 	> ~~~~
 	
-	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
+1. Paste the following at the bottom of the ***init***:
+
+	~~~~java
+	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
+	~~~~
 
 1. Save the init.sqf
 1. Open your ***description.ext***
@@ -139,131 +136,145 @@ If you are worried about the integrity of the dll files look at the change log f
 1. Extract the .txt files from the ***Epoch-Admin-Tools/Battleye*** folder to your server's Battleye folder, overwriting the existing .txt files. 
 
 	> Note: The location of your server's Battleye folder depends on the server and hosting. For some users, this may be in ***CONFIGFILES/Battleye***.
+	> Note: In order to use the GUI based build menu, you will have to disabled at least one line in createvehicle.txt. It is line 16 or the one that starts with 5 "Land_" change it to 1 "Land_" for log only.
+	> The only way around this is to make exceptions for all of the buildings listed in variables.sqf.
 	
 1. Locate your ***@DayZ_Epoch_Server/addons/dayz_server.pbo*** on your server host, download and unpack it, and open the resulting ***dayz_server*** folder.
-1. Open ***init/server_functions.sqf*** and replace this:
+1. Copy the ***EAT_vehSpawn.sqf, EAT_crateSpawn.sqf, and EAT_AiSpawn.sqf*** files contained in the downloaded directory dayz_server/compile to the same directory in the extracted dayz_server folder.
+
+1. Now open your ***init/server_functions.sqf*** and find:
 
     ~~~~java
-        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
+		spawn_vehicles = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_vehicles.sqf";
+    ~~~~
+	
+	Place the following lines directly BELOW it.
+	
+    ~~~~java
+		// Epoch Admin Tools
+		EAT_vehSpawn = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\EAT_vehSpawn.sqf";
+		EAT_CrateSpawn = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\EAT_crateSpawn.sqf";
+		EAT_serverAiSpawn = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\EAT_serverAiSpawn.sqf";
+    ~~~~
+
+	The next step is ***very important*** for security. What this file does is compare the files in the downloaded mission PBO with the copy on the server to verify that they have not been overwritten by a common exploit.
+	If you are not running a public server and have no need for security, then you can skip this step.
+	
+1. Open your ***init/mission_check.sqf*** and find:
+
+	~~~~java
+		_files = [
+			'description.ext','init.sqf','mission.sqm','rules.sqf','server_traders.sqf'
+		];
+	~~~~
+	
+	Place the following list of files inside the brackets.
+	
+	~~~~java
+		,'admintools\Activate.sqf','admintools\AdminToolsMain.sqf','admintools\config.sqf',
+		'admintools\dialog.hpp','admintools\variables.sqf','admintools\weaponkits\Backpack.sqf','admintools\weaponkits\medical.sqf','admintools\weaponkits\removeGear.sqf',
+		'admintools\weaponkits\toolBeltItems.sqf','admintools\weaponkits\WeaponKits.sqf','admintools\tools\addtempvehicle.sqf','admintools\tools\addvehicle.sqf',
+		'admintools\tools\addvehicleDialog.sqf','admintools\tools\aiSpawn.sqf','admintools\tools\base_manager.sqf','admintools\tools\contactAdminTickets.sqf',
+		'admintools\tools\DatabaseRemove.sqf','admintools\tools\displayLockCode.sqf','admintools\tools\ejectPlayers.sqf','admintools\tools\flipvehicle.sqf',
+		'admintools\tools\getObjectDetails.sqf','admintools\tools\getPosition.sqf','admintools\tools\healp.sqf','admintools\tools\humanityChanger.sqf','admintools\tools\keyRecovery.sqf',
+		'admintools\tools\messageDialog.sqf','admintools\tools\PointToLock.sqf','admintools\tools\PointToRepairPERM.sqf','admintools\tools\PointToUnlock.sqf','admintools\tools\recoverKey.sqf',
+		'admintools\tools\SafeZoneArea.sqf','admintools\tools\skinChanger.sqf','admintools\tools\spectate.sqf','admintools\tools\vehicleLocator.sqf','admintools\tools\zombieshield.sqf',
+		'admintools\tools\zombieSpawn.sqf','admintools\tools\Teleport\returnPlayerTP.sqf','admintools\tools\Teleport\Teleport.sqf','admintools\tools\Teleport\TPtoME.sqf',
+		'admintools\tools\Teleport\TpToPlayer.sqf','admintools\tools\AdminMode\AdminFastBuild.sqf','admintools\tools\AdminMode\adminMode.sqf','admintools\tools\AdminMode\ESPenhanced.sqf',
+		'admintools\tools\AdminMode\ESPplayer.sqf','admintools\tools\AdminMode\fastWalk.sqf','admintools\tools\AdminMode\Flying.sqf','admintools\tools\AdminMode\GodModePlayer.sqf',
+		'admintools\tools\AdminMode\GodModeVehicle.sqf','admintools\tools\AdminMode\GrassOFF.sqf','admintools\tools\AdminMode\InfiniteAmmo.sqf','admintools\tools\AdminMode\Invisibility.sqf',
+		'admintools\tools\AdminMode\modMode.sqf','admintools\tools\AdminMode\speedboost.sqf','admintools\tools\AdminBuild\adminBuild.sqf','admintools\tools\AdminBuild\buildingsDialog.sqf',
+		'admintools\tools\AdminBuild\maintainArea.sqf','admintools\tools\AdminBuild\pointToDowngrade.sqf','admintools\tools\AdminBuild\pointToUpgrade.sqf','admintools\safeZones\safeZones.sqf',
+		'admintools\KeyBindings\FunctionKeys.sqf','admintools\KeyBindings\NumberKeys.sqf','admintools\debug_monitor\debug_monitor.sqf','admintools\crates\spawnCrate.sqf','admintools\antihack\antihack.sqf',
+		'admintools\actionMenu\ActionsMenu.sqf','admintools\actionMenu\contactAdmin.sqf','admintools\actionMenu\deployBike.sqf','admintools\actionMenu\deployMozzie.sqf','admintools\actionMenu\movements.sqf',
+		'admintools\actionMenu\packBike.sqf','admintools\actionMenu\packMozzie.sqf','admintools\actionMenu\PlayerGrassToggle.sqf','admintools\actionMenu\serverRules.sqf','admintools\actionMenu\suicide.sqf'
+	~~~~
+	
+	The end result should look like this:
+	
+	~~~~java
+	_files = [
+		'description.ext','init.sqf','mission.sqm','rules.sqf','server_traders.sqf','admintools\Activate.sqf','admintools\AdminToolsMain.sqf','admintools\config.sqf',
+		'admintools\dialog.hpp','admintools\variables.sqf','admintools\weaponkits\Backpack.sqf','admintools\weaponkits\medical.sqf','admintools\weaponkits\removeGear.sqf',
+		'admintools\weaponkits\toolBeltItems.sqf','admintools\weaponkits\WeaponKits.sqf','admintools\tools\addtempvehicle.sqf','admintools\tools\addvehicle.sqf',
+		'admintools\tools\addvehicleDialog.sqf','admintools\tools\aiSpawn.sqf','admintools\tools\base_manager.sqf','admintools\tools\contactAdminTickets.sqf',
+		'admintools\tools\DatabaseRemove.sqf','admintools\tools\displayLockCode.sqf','admintools\tools\ejectPlayers.sqf','admintools\tools\flipvehicle.sqf',
+		'admintools\tools\getObjectDetails.sqf','admintools\tools\getPosition.sqf','admintools\tools\healp.sqf','admintools\tools\humanityChanger.sqf','admintools\tools\keyRecovery.sqf',
+		'admintools\tools\messageDialog.sqf','admintools\tools\PointToLock.sqf','admintools\tools\PointToRepairPERM.sqf','admintools\tools\PointToUnlock.sqf','admintools\tools\recoverKey.sqf',
+		'admintools\tools\SafeZoneArea.sqf','admintools\tools\skinChanger.sqf','admintools\tools\spectate.sqf','admintools\tools\vehicleLocator.sqf','admintools\tools\zombieshield.sqf',
+		'admintools\tools\zombieSpawn.sqf','admintools\tools\Teleport\returnPlayerTP.sqf','admintools\tools\Teleport\Teleport.sqf','admintools\tools\Teleport\TPtoME.sqf',
+		'admintools\tools\Teleport\TpToPlayer.sqf','admintools\tools\AdminMode\AdminFastBuild.sqf','admintools\tools\AdminMode\adminMode.sqf','admintools\tools\AdminMode\ESPenhanced.sqf',
+		'admintools\tools\AdminMode\ESPplayer.sqf','admintools\tools\AdminMode\fastWalk.sqf','admintools\tools\AdminMode\Flying.sqf','admintools\tools\AdminMode\GodModePlayer.sqf',
+		'admintools\tools\AdminMode\GodModeVehicle.sqf','admintools\tools\AdminMode\GrassOFF.sqf','admintools\tools\AdminMode\InfiniteAmmo.sqf','admintools\tools\AdminMode\Invisibility.sqf',
+		'admintools\tools\AdminMode\modMode.sqf','admintools\tools\AdminMode\speedboost.sqf','admintools\tools\AdminBuild\adminBuild.sqf','admintools\tools\AdminBuild\buildingsDialog.sqf',
+		'admintools\tools\AdminBuild\maintainArea.sqf','admintools\tools\AdminBuild\pointToDowngrade.sqf','admintools\tools\AdminBuild\pointToUpgrade.sqf','admintools\safeZones\safeZones.sqf',
+		'admintools\KeyBindings\FunctionKeys.sqf','admintools\KeyBindings\NumberKeys.sqf','admintools\debug_monitor\debug_monitor.sqf','admintools\crates\spawnCrate.sqf','admintools\antihack\antihack.sqf',
+		'admintools\actionMenu\ActionsMenu.sqf','admintools\actionMenu\contactAdmin.sqf','admintools\actionMenu\deployBike.sqf','admintools\actionMenu\deployMozzie.sqf','admintools\actionMenu\movements.sqf',
+		'admintools\actionMenu\packBike.sqf','admintools\actionMenu\packMozzie.sqf','admintools\actionMenu\PlayerGrassToggle.sqf','admintools\actionMenu\serverRules.sqf','admintools\actionMenu\suicide.sqf'
+	];
+	
+	Be mindful that all of the files are inside the brackets. All of the files should have a comma afterwards except for the last one in the list.
+	If you start your server and get a message stating that a file could not be found, you probably have made an error here.
+	
+1. Open ***system/scheduler/sched_safetyVehicle.sqf*** and replace this:
+
+    ~~~~java
+		if (vehicle _x != _x && !(vehicle _x in dayz_serverObjectMonitor) && !((typeOf vehicle _x) in DZE_safeVehicle)) then {
     ~~~~
     
 	...with this:
 
     ~~~~java
     	// Epoch Admin Tools
-        if(vehicle _x != _x && !(vehicle _x in PVDZE_serverObjectMonitor) && (isPlayer _x)  && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["MalSar",0] !=1)) then {
+		if (vehicle _x != _x && !(vehicle _x in dayz_serverObjectMonitor) && !((typeOf vehicle _x) in DZE_safeVehicle) && (vehicle _x getVariable ["EAT_Veh",0] !=1)) then {
     ~~~~
     
-	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["MalSar",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
+	> Note: This step may not work well if you use other mods that modify this operator. The important code to fit into this operator is `(vehicle _x getVariable ["EAT_Veh",0] !=1)` which can be added easily with a rudimentary knowledge of programming.
 
-1. Now open your ***compile/server_updateObject.sqf*** and place this:
-
-
-    ~~~~java
-    // Epoch Admin Tools
-    if (_object getVariable "MalSar" == 1) exitWith {};
-    ~~~~
-
-    ...immediately above this:
+1. Now open your ***compile/server_updateObject.sqf*** and find:
 
     ~~~~java
-    if (!_parachuteWest and !(locked _object)) then {
+		_objectID = _object getVariable ["ObjectID","0"];
+    ~~~~
+	
+	Place the following directly ABOVE it.
+	
+    ~~~~java
+		// Epoch Admin Tools
+		if (_object getVariable ["EAT_Veh",0] == 1) exitWith {};
     ~~~~
 
-5. Repack the server pbo and upload it to your server. 
+5. Repack the server pbo and upload it to your server.
 
+Keybindings
+
+
+~~~~java
+	F2  	- Activate admin tools (if enabled by setting variable EAT_AdminMenuHotkey to true)
+	F4  	- Admin mode/mod mode options - when toggled on
+	F6  	- Cancel spectate
+	4  		- Admin teleport
+	5   	- Teleport player to admin
+	6   	- Teleport to player
+	7   	- Enhanced ESP options - when toggled on
+	U   	- Unlock vehicle/safe/lockbox/door
+	L   	- Lock vehicle/safe/lockbox/door
+	J   	- Display object information in systemchat
+	Del 	- Delete object
+	Ins 	- Toggle Debug
+	Tab 	- Activate action menu (if enabled by setting variable EAT_ActionMenuHotkey to true)
+	Shift+w - Fastwalk or vehicle boost - when enabled
+	q,w,a,s,d, and space bar are used if flying is toggled on
+~~~~
+
+## Install finished
 
 #### View the [Epoch Admin Tools Wiki](https://github.com/gregariousjb/Epoch-Admin-Tools/wiki) for additional configuration options and help.
 
-
-
 # Updating
 
-### Follow these steps exactly or there may be errors and extra files left behind.
-
-1. Download the version you want to update to. 
-
-	> The newest update download is here: ***[Download Zip](https://github.com/gregariousjb/Epoch-Admin-Tools/archive/master.zip)***
-	
-1. Go to the install directory for the admin tools:
-
-	> Epoch -> MPMissions -> YourMissionName -> admintools
-	
-1. Copy your AdminList.sqf file to your desktop
-1. Go back one directory to Epoch -> MPMissions -> YourMissionName and delete the admintools folder
-1. Copy the new admintools folder you downloaded in the zip to this directory
-
-	> If you are asked to replace any file then you did not delete everything correctly.
-
-1. Open your ***init.sqf***, find and delete the Epoch Admin Tools edits
-
-	> * [] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	> * The epoch antihack edit inside the !isDedicated if statement. (Only if it exists)
-	> * The call compile lines showin in the step below that may belong to the tool
-	
-1. Paste the following 
-	
-	~~~~java
-	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
-	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
-	~~~~
-	
-	Directly under this:
-	
-	~~~~java
-	call compile preprocessFileLineNumbers "server_traders.sqf";
-	~~~~
-
-	So that it looks like this:
-	~~~~java
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
-	progressLoadingScreen 0.1;
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
-	progressLoadingScreen 0.2;
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
-	progressLoadingScreen 0.4;
-	call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
-	progressLoadingScreen 0.5;
-	call compile preprocessFileLineNumbers "server_traders.sqf";
-	call compile preprocessFileLineNumbers "admintools\config.sqf"; // Epoch admin Tools config file
-	call compile preprocessFileLineNumbers "admintools\variables.sqf"; // Epoch admin Tools variables
-	progressLoadingScreen 1.0;
-	~~~~
-	
-1. Paste the following at the bottom of the ***init.sqf***:
-
-	~~~~java
-	[] execVM "admintools\Activate.sqf"; // Epoch admin tools
-	~~~~
-	
-1. If you use the normal battleye antiahck or similar do this step, if not then skip it.
-	
-	> Find the antihack line in your ***init.sqf***, it may or may not be the same as this
-
-	> ~~~~java
-	> [] execVM "\z\addons\dayz_code\system\antihack.sqf";
-	> ~~~~
-
-	> if you have the line above ***replace it*** with this:
-
-	> ~~~~java
-	> // Epoch Admin Tools
-	> if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList)) then 
-	> {
-	> 	[] execVM "admintools\antihack\antihack.sqf"; // Epoch Antihack with bypass
-	> };
-	> ~~~~
-	
-	> If you do not have the mentioned line then simply replace the antihack.sqf line in the above code with the one you have.
-	> If you do not have an antihack line at all ***DO NOT*** add this code, just skip this step.
-
-1. Save the init.sqf and close it
-1. Now go into the admintools folder and open ***config.sqf***
-1. Open the AdminList.sqf you copied to your desktop.
-1. Copy all of the UIDs from the old Adminlist to your new one. ***This version has many changes and no longer uses AdminList.sqf***
-	
-
-#### You have now successfully and correctly updated your tools.
+### Current version only works with epoch 1.0.6 so no mod update is needed. Use a fresh install.
+### If you want the 1.0.5 version go to the releases tab for this repo on github
 
 
 ## FAQ

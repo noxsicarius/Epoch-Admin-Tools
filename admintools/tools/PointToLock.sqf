@@ -1,7 +1,7 @@
 private ["_objectID","_objectUID","_obj","_ownerID","_dir","_pos","_holder","_weapons","_magazines","_backpacks","_lockedClass","_player"];
 
 _obj = cursorTarget;
-if(isNull _obj) exitWith {};
+if(isNull _obj) exitWith {"No Object Selected" call dayz_rollingMessages;};
 
 _objType = typeOf _obj;
 _ownerID = _obj getVariable["ObjectID","0"];
@@ -24,51 +24,34 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 	s_player_lockUnlock_crtl = -1;
 
 	// Tool use logger
-	if(logMinorTool) then {
-		usageLogger = format["%1 %2 -- has locked a vehicle: %3",name _player,getPlayerUID _player,_obj];
-		[] spawn {publicVariable "usageLogger";};
+	if(EAT_logMinorTool) then {
+		EAT_PVEH_usageLogger = format["%1 %2 -- has locked a vehicle: %3",name _player,getPlayerUID _player,_obj];
+		publicVariableServer "EAT_PVEH_usageLogger";
 	};
 } else {
 	//Lock Safe/Lock_box
-	if(_objType == "VaultStorage") then {
+	if(_objType in DZE_UnLockedStorage) then {
 		_lockedClass = getText (configFile >> "CfgVehicles" >> _objType >> "lockedClass");
-		_obj setVariable["packing",1];
-		_dir = direction _obj;
-		_pos = _obj getVariable["OEMPos",(getposATL _obj)];
-		_ownerID = _obj getVariable["CharacterID","0"];
-
-		//log lock
-		PVDZE_log_lockUnlock = [player, _obj,true];
-		publicVariableServer "PVDZE_log_lockUnlock";
+		_text = getText (configFile >> "CfgVehicles" >> _objType >> "displayName");
 		
-		//place locked vault
-		_holder = createVehicle [_lockedClass,_pos,[], 0, "CAN_COLLIDE"];
-		_holder setdir _dir;
-		_holder setPosATL _pos;
-		player reveal _holder;
-		
-		//set locked vault variables
-		_holder setVariable["CharacterID",_ownerID,true];
-		_holder setVariable["ObjectID",_objectID,true];
-		_holder setVariable["ObjectUID",_objectUID,true];
-		_holder setVariable ["OEMPos", _pos, true];
+		disableUserInput true; // Make sure player can not modify gear while it is being saved
+		(findDisplay 106) closeDisplay 0; // Close gear
+		dze_waiting = nil;
+	
+		[_lockedClass,objNull] call fn_waitForObject;
+	
+		PVDZE_handleSafeGear = [_player,_obj,1];
+		publicVariableServer "PVDZE_handleSafeGear";	
+		//wait for response from server to verify safe was logged and saved before proceeding
+		waitUntil {!isNil "dze_waiting"};
+		disableUserInput false; // Safe is done saving now
 
-		_weapons = getWeaponCargo _obj;
-		_magazines = getMagazineCargo _obj;
-		_backpacks = getBackpackCargo _obj;
-
-		// remove vault
-		deleteVehicle _obj;
-
-		// Fill variables with loot
-		_holder setVariable ["WeaponCargo", _weapons, true];
-		_holder setVariable ["MagazineCargo", _magazines, true];
-		_holder setVariable ["BackpackCargo", _backpacks, true];
+		format[localize "str_epoch_player_117",_text] call dayz_rollingMessages;
 		
 		// Tool use logger
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has locked a safe - ID:%3 UID:%4",name _player,getPlayerUID _player,_objectID,_ownerID];
+			publicVariableServer "EAT_PVEH_usageLogger";
 		};
 
 	} else {
@@ -84,9 +67,9 @@ if (_obj isKindOf "LandVehicle" || _obj isKindOf "Air" || _obj isKindOf "Ship") 
 		if(_obj animationPhase "RightShutter" == 1) then {_obj animate ["RightShutter", 0];};
 		
 		// Tool use logger
-		if(logMajorTool) then {
-			usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
-			[] spawn {publicVariable "usageLogger";};
+		if(EAT_logMajorTool) then {
+			EAT_PVEH_usageLogger = format["%1 %2 -- has locked a door - ID:%3 Combo:%4",name _player,getPlayerUID _player,_objectID,_objectCharacterID];
+			publicVariableServer "EAT_PVEH_usageLogger";
 		};
 	};
 };

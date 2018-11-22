@@ -1,7 +1,10 @@
-private ["_vehicle","_type","_name","_hitpoints","_player"];
+private ["_configVeh","_capacity","_vehicle","_type","_name","_hitpoints","_player","_strH"];
 
 _vehicle = cursorTarget;
+if (isNull _vehicle) exitWith {"No target" call dayz_rollingMessages;};
 _type = typeOf _vehicle;
+_configVeh = configFile >> "cfgVehicles" >> _type;
+_capacity = getNumber(_configVeh >> "fuelCapacity");
 _name = getText(configFile >> "cfgVehicles" >> _type >> "displayName");
 _hitpoints = _vehicle call vehicle_getHitpoints;
 _player = player;
@@ -10,20 +13,25 @@ _player = player;
     private ["_damage","_selection"];
     _damage = [_vehicle,_x] call object_getHit;
 
-    if (_damage > 0) then {
-		_selection = getText(configFile >> "cfgVehicles" >> _type >> "HitPoints" >> _x >> "name");
-		[_vehicle,_selection,0] call object_setFixServer;
+   if (_damage > 0) then {
+	_vehicle setVariable[_strH,0,true];
 	};
-} count _hitpoints;
+} forEach _hitpoints;
 
-_vehicle setDamage 0;
-_vehicle setFuel 1;
-_vehicle setVehicleAmmo 1;
-_vehicle setVelocity [0,0,1];
-titleText [format["%1 permanently repaired, refuelled and rearmed.", _name], "PLAIN DOWN"]; titleFadeOut 3;
+if (local _vehicle) then {
+	[_vehicle,_capacity] call local_setFuel;
+} else {
+	PVDZ_send = [_vehicle,"SetFuel",[_vehicle,_capacity]];
+	publicVariableServer "PVDZ_send";
+};
+
+PVDZ_veh_Save = [_vehicle,"repair"];
+publicVariableServer "PVDZ_veh_Save";
+
+format["%1 Repaired and Refueled", _name] call dayz_rollingMessages;
 
 // Tool use logger
-if(logMinorTool) then {
-	usageLogger = format["%1 %2 -- has permanently repaired %3",name _player,getPlayerUID _player,_vehicle];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMinorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has repaired %3",name _player,getPlayerUID _player,_vehicle];
+	publicVariableServer "EAT_PVEH_usageLogger";
 };

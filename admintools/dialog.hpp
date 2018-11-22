@@ -249,7 +249,7 @@ class EAT_Veh_AdminDialog
 			h = 0.55016 * safezoneH;
 			colorBackground[] = {0,0,0,0.7};
 		};
-
+		/*
 		class EAT_veh_RscText_1001: EAT_RscText
 		{
 			idc = 1001;
@@ -259,7 +259,7 @@ class EAT_Veh_AdminDialog
 			w = 0.170212 * safezoneW;
 			h = 0.0166935 * safezoneH;
 		};
-
+		*/
 		class EAT_veh_RscListBox_1500: EAT_RscListBox
 		{
 			idc = 13000;
@@ -323,7 +323,26 @@ class EAT_Veh_AdminDialog
 			h = 0.0590864 * safezoneH;
 			onButtonClick="[""Ship""] call LoadSpecificList;";
 		};
-
+		class EAT_veh_RscShortcutButton_1709: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "All Vehicles";
+			x = 0.295498 * safezoneW + safezoneX;
+			y = 0.218000 * safezoneH + safezoneY;
+			w = 0.085 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "call LoadAllVehiclesList; EAT_EpochOnlyVehicles = false;";
+		};
+		class EAT_veh_RscShortcutButton_1708: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Epoch Vehicles";
+			x = 0.380498 * safezoneW + safezoneX;
+			y = 0.218000 * safezoneH + safezoneY;
+			w = 0.1 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "call LoadEpochOnlyList; EAT_EpochOnlyVehicles = true;";
+		};
 		class EAT_veh_RscShortcutButton_1710: EAT_RscShortcutButton
 		{
 			idc = -1;
@@ -333,6 +352,162 @@ class EAT_Veh_AdminDialog
 			w = 0.0651391 * safezoneW;
 			h = 0.0590864 * safezoneH;
 			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+	};
+};
+
+class EAT_Veh_ModDialog
+{
+	idd = -1;
+	movingenable = 0;
+
+	class Controls {
+		class EAT_veh_RscText_1002: EAT_RscText
+		{
+			idc = 1000;
+			x = 0.283646 * safezoneW + safezoneX;
+			y = 0.22492 * safezoneH + safezoneY;
+			w = 0.432709 * safezoneW;
+			h = 0.55016 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class EAT_veh_RscText_1003: EAT_RscText
+		{
+			idc = 1001;
+			text = "Pick a vehicle or select a category";
+			x = 0.295498 * safezoneW + safezoneX;
+			y = 0.235917 * safezoneH + safezoneY;
+			w = 0.170212 * safezoneW;
+			h = 0.0166935 * safezoneH;
+		};
+		class EAT_veh_RscListBox_1501: EAT_RscListBox
+		{
+			idc = 13000;
+			x = 0.290407 * safezoneW + safezoneX;
+			y = 0.268674 * safezoneH + safezoneY;
+			w = 0.419186 * safezoneW;
+			h = 0.447636 * safezoneH;
+		};
+
+		class EAT_veh_RscShortcutButton_1730: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Temp";
+			x = 0.297168 * safezoneW + safezoneX;
+			y = 0.720556 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "TempDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+
+		class EAT_veh_RscShortcutButton_1731: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Perm";
+			x = 0.37154 * safezoneW + safezoneX;
+			y = 0.720556 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "PermDialogSelected = (lbCurSel 13000); ((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+
+		class EAT_veh_RscShortcutButton_1732: EAT_RscShortcutButton
+		{
+			idc = 12004;
+			text = "Air";
+			x = 0.485168 * safezoneW + safezoneX;
+			y = 0.218000 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick="[""Air""] call LoadSpecificList;";
+		};
+
+		class EAT_veh_RscShortcutButton_1734: EAT_RscShortcutButton
+		{
+			idc = 12005;
+			text = "Land";
+			x = 0.55954 * safezoneW + safezoneX;
+			y = 0.218000 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick="[""LandVehicle""] call LoadSpecificList;";
+		};
+
+		class EAT_veh_RscShortcutButton_1735: EAT_RscShortcutButton
+		{
+			idc = 12006;
+			text = "Sea";
+			x = 0.633912 * safezoneW + safezoneX;
+			y = 0.218000 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick="[""Ship""] call LoadSpecificList;";
+		};
+		class EAT_veh_RscShortcutButton_1736: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Close";
+			x = 0.633912 * safezoneW + safezoneX;
+			y = 0.720556 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+	};
+};
+
+class EAT_BaseManager_Dialog
+{
+	idd = -1;
+	movingenable = 0;
+
+	class Controls {
+		class EAT_baseManager_RscText_1050: EAT_RscText
+		{
+			idc = 1050;
+			x = 0.283646 * safezoneW + safezoneX;
+			y = 0.22492 * safezoneH + safezoneY;
+			w = 0.432709 * safezoneW;
+			h = 0.55016 * safezoneH;
+			colorBackground[] = {0,0,0,0.7};
+		};
+		class EAT_baseManager_RscText_1051: EAT_RscText
+		{
+			idc = 1051;
+			text = "Epoch Admin Tools Base Manager";
+			x = 0.295498 * safezoneW + safezoneX;
+			y = 0.235917 * safezoneH + safezoneY;
+			w = 0.170212 * safezoneW;
+			h = 0.0166935 * safezoneH;
+		};
+		class EAT_baseManager_RscListBox_1552: EAT_RscListBox
+		{
+			idc = 14000;
+			x = 0.290407 * safezoneW + safezoneX;
+			y = 0.268674 * safezoneH + safezoneY;
+			w = 0.419186 * safezoneW;
+			h = 0.447636 * safezoneH;
+		};
+
+		class EAT_baseManager_RscShortcutButton_1750: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Close";
+			x = 0.297168 * safezoneW + safezoneX;
+			y = 0.720556 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 9000);";
+		};
+		class EAT_baseManager_RscShortcutButton_1710: EAT_RscShortcutButton
+		{
+			idc = -1;
+			text = "Select";
+			x = 0.633912 * safezoneW + safezoneX;
+			y = 0.720556 * safezoneH + safezoneY;
+			w = 0.0651391 * safezoneW;
+			h = 0.0590864 * safezoneH;
+			onButtonClick = "[(lbCurSel 14000)] call fn_BCSelect; ((ctrlParent (_this select 0)) closeDisplay 9000);";
 		};
 	};
 };

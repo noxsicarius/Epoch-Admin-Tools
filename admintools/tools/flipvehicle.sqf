@@ -1,1 +1,1 @@
-(getPos player nearestObject "LandVehicle") setVectorUp [0, 0, 1];titleText ["Vehicle is now right-side up", "PLAIN DOWN"];titleFadeOut 3;
+private "_vehicle";_vehicle = getPos player nearestObject "LandVehicle";if (isNull _vehicle) exitWith {"There are no vehicles near to flip" call dayz_rollingMessages;};_vehicle setVectorUp [0, 0, 1];_vehicleType = typeOf _vehicle;format["Your %1 is now right-side up",_vehicleType] call dayz_rollingMessages;

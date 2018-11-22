@@ -5,7 +5,7 @@ area = 0;
 zCount = 0;
 _player = player;
 
-areaMenu =
+_areaMenu =
 [
 ["",true],
 	["Set Radius:", [-1], "", -5, [["expression", ""]], "1", "0"],
@@ -24,7 +24,7 @@ areaMenu =
 		["Exit", [20], "", -5, [["expression", "area = -1;"]], "1", "1"]
 ];
 
-amountMenu =
+_amountMenu =
 [
 ["",true],
 	["Select zombie count:", [-1], "", -5, [["expression", ""]], "1", "0"],
@@ -43,17 +43,17 @@ amountMenu =
 		["Exit", [20], "", -5, [["expression", "zCount = -1;"]], "1", "1"]
 ];
 
-showCommandingMenu "#USER:areaMenu";
+showCommandingMenu "#USER:_areaMenu";
 waitUntil{(area != 0) || (commandingMenu == "")};
-if(area == -1) exitWith{};
+if(area <= 0) exitWith{};
 
-showCommandingMenu "#USER:amountMenu";
+showCommandingMenu "#USER:_amountMenu";
 waitUntil{(zCount != 0) || (commandingMenu == "")};
-if(zCount == -1) exitWith{};
+if(zCount <= 0) exitWith{};
 
-if(logMajorTool) then {
-	usageLogger = format["%1 %2 -- has spawned %3 zombies",name _player,getPlayerUID _player,zCount];
-	[] spawn {publicVariable "usageLogger";};
+if(EAT_logMajorTool) then {
+	EAT_PVEH_usageLogger = format["%1 %2 -- has added %3 zombies",name _player,getPlayerUID _player,zCount];
+	publicVariableServer "EAT_PVEH_usageLogger";
 };
 
 _i = 1;
