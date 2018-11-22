@@ -1,9 +1,9 @@
 ==================================================
-You are using Epoch Admin Tools version 1.10.7
+You are using Epoch Admin Tools version 1.11.0
 by NoxSicarius
 ==================================================
 
-------------------- Version 1.10.7 Changelog ---------------------
+------------------- Version 1.11.0 Changelog ---------------------
 
 New Features:
 	Added Debug Monitor
